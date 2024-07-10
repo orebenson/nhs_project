@@ -136,7 +136,8 @@ p {
 
 .width-container {
     width: 100%;
-    max-width: calc(var(--site-max-width) + 3rem);
+    /*max-width: calc(var(--site-max-width) + 3rem);*/
+    max-width: var(--site-max-width);
     display: flex;
     flex-direction: column;
 }
@@ -155,7 +156,15 @@ p {
 }
 
 .header-items div {
-    padding: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+@media (max-width: 1150px) {
+    .header-items {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
 }
 
 .header-logo {
@@ -183,19 +192,21 @@ p {
     fill: var(--header-background-colour)
 }
 
-.header-toggle-nav {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-size: 1.1rem;
-}
-
 .nhs-icon-chevron-down {
     fill: #fff;
     height: 24px;
     right: 4px;
     transform: rotate(90deg);
     width: 24px
+}
+
+.header-toggle-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1.1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .header-toggle-nav.active {
@@ -330,7 +341,7 @@ p {
     padding-top: 2rem;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1150px) {
     .page-container {
         padding-left: 1rem;
         padding-right: 1rem;
