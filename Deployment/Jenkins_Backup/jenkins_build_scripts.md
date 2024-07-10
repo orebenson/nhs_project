@@ -11,7 +11,7 @@ mysql -u root -pcomsc < src/main/resources/data.sql
 /opt/gradle/gradle-8.0.2/bin/gradle bootjar
 
 # NHS-Deployment-Dev
-cp -r "/var/lib/jenkins/workspace/NHS-Tests-Dev/" ./
+cp -r "/var/lib/jenkins/workspace/NHS-Tests-Dev/*" ./
 cd build/libs
 java -jar NHS_project-0.0.1-SNAPSHOT.jar --server.port=8080
 
