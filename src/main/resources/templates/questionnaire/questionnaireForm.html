@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link th:replace="~{fragments/mainFragments :: mainStyles}"/>
+    <script th:replace="~{fragments/mainFragments :: mainScripts}"></script>
+
+<!--    put any extra stylesheets / scripts here-->
+
+    <title>Pre-appointment Questionnaire</title>
+</head>
+<body>
+
+<header th:replace="~{fragments/mainFragments :: header}"></header>
+<div class="main-container">
+    <div class="page-container">
+        <h1>Pre-appointment Questionnaire </h1>
+
+        <p>Please complete and submit this form before your next appointment.</p>
+
+        <form action="/submit-your-form-handler" method="post">
+            <label for="medications">Medications:</label><br>
+            <textarea id="medications" name="medications" rows="4" cols="50" placeholder="List your current medications"></textarea><br><br>
+
+            <label for="changesToHealth"> Any changes to Health/New Diagnoses:</label><br>
+            <textarea id="changesToHealth" name="changesToHealth" rows="4" cols="50" placeholder="Describe any recent health changes or diagnoses"></textarea><br><br>
+
+            <label for="swellingConcerns">Any concerns Regarding Swelling:</label><br>
+            <textarea id="swellingConcerns" name="swellingConcerns" rows="4" cols="50" placeholder="Express any concerns about swelling"></textarea><br><br>
+
+            <label for="hosieryConcerns">Any concerns Regarding Hosiery:</label><br>
+            <textarea id="hosieryConcerns" name="hosieryConcerns" rows="4" cols="50" placeholder="Discuss any issues with hosiery"></textarea><br><br>
+
+            <label for="cellulitisEpisodes">Episodes of Cellulitis Since Last Appointment:</label><br>
+            <input type="number" id="cellulitisEpisodes" name="cellulitisEpisodes" placeholder="Enter number of episodes"><br><br>
+
+            <input type="submit" value="Submit">
+        </form>
+
+    </div>
+</div>
+<footer th:replace="~{fragments/mainFragments :: footer}"></footer>
+
+</body>
+</html>
