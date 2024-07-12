@@ -31,14 +31,20 @@
 
                 <div class="collapse-nav" aria-hidden="true" hidden>
                     <div class="nav-items-container">
-                        <div class="nav-item"><a href="#">What is Lymphoedema?</a></div>
-                        <div class="nav-item"><a href="#">Our Services</a></div>
-                        <div class="nav-item"><a href="#">Questionnaires</a></div>
-                        <div class="nav-item"><a href="#">Contact Us</a></div>
-                        <div class="nav-item"><a href="#">Support</a></div>
-                        <div class="nav-item"><a href="#">Leg Lymphoedema</a></div>
-                        <div class="nav-item"><a href="#">Your Diary</a></div>
-                        <div class="nav-item"><a href="#">Login</a></div>
+                        <div class="nav-item"><a class="nav-link" href="#">What is Lymphoedema?</a></div>
+                        <div class="nav-item"><a class="nav-link" href="#">Our Services</a></div>
+                        <div class="nav-item"><a class="nav-link" href="#">Questionnaires</a></div>
+                        <div class="nav-item"><a class="nav-link" href="#">Contact Us</a></div>
+                        <div class="nav-item"><a class="nav-link" href="#">Support</a></div>
+                        <div class="nav-item"><a class="nav-link" href="#">Leg Lymphoedema</a></div>
+                        <div class="nav-item"><a class="nav-link" href="#">Your Diary</a></div>
+                        <div class="nav-item" th:unless="${#authorization.expression('isAuthenticated()')}"><a class="nav-link" th:href="@{/login}">Login</a></div>
+
+                        <div class="nav-item" th:if="${#authorization.expression('isAuthenticated()')}">
+                            <form th:action="@{/logout}" method="post" class="nav-form">
+                                <button type="submit" class="nav-link-button nav-link">Logout</button>
+                            </form>
+                        </div>
 <!--                        <div th:if="${#authorization.expression('hasRole(''ADMIN'')')}" class="nav-item">-->
 <!--                            <a href="#">Admin Area</a>-->
 <!--                        </div>-->

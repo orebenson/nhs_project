@@ -11,14 +11,14 @@
 
     <!--    put any extra stylesheets / scripts here-->
 
-    <title>Document</title>
+    <title>Login</title>
 </head>
 <body>
 
 <header th:replace="~{fragments/mainFragments :: header}"></header>
 <div class="main-container">
     <div class="page-container">
-
+        <h1>Login</h1>
         <form th:method="post" th:action="@{/login}" class="container">
             <div>
                 <label for="email">Email:</label>
