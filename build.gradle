@@ -29,16 +29,27 @@ repositories {
 }
 
 dependencies {
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	runtimeOnly 'mysql:mysql-connector-java'
+	implementation 'org.mariadb.jdbc:mariadb-java-client:2.1.2'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+
+	implementation 'junit:junit:4.13.2'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-	implementation 'org.mariadb.jdbc:mariadb-java-client:2.1.2'
-	runtimeOnly 'mysql:mysql-connector-java'
+	testImplementation 'com.h2database:h2'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	testImplementation("io.github.bonigarcia:webdrivermanager:5.1.0")
+	testImplementation group: 'net.sourceforge.htmlunit', name: 'htmlunit', version: '2.32'
+	testImplementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.1.0'
 }
 
 tasks.named('test') {
