@@ -47,9 +47,9 @@ dependencies {
 	testImplementation 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-	testImplementation("io.github.bonigarcia:webdrivermanager:5.1.0")
-	testImplementation group: 'net.sourceforge.htmlunit', name: 'htmlunit', version: '2.32'
-	testImplementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.1.0'
+//	testImplementation("io.github.bonigarcia:webdrivermanager:5.1.0")
+//	testImplementation group: 'net.sourceforge.htmlunit', name: 'htmlunit', version: '2.32'
+//	testImplementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.1.0'
 }
 
 tasks.named('test') {

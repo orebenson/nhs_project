@@ -5,10 +5,12 @@ drop table if exists users_roles;
 
 create table if not exists user_table
 (
-    username VARCHAR(50)  NOT NULL PRIMARY KEY,
+    user_id  BIGINT      NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    email    VARCHAR(50) NOT NULL,
+    firstname VARCHAR(50)  NOT NULL,
+    lastname VARCHAR(50)  NOT NULL,
     password VARCHAR(500) NOT NULL,
     enabled  boolean      NOT NULL,
-    email    VARCHAR(50),
     address  VARCHAR(500),
     address2  VARCHAR(500),
     city     VARCHAR(50),
@@ -24,12 +26,12 @@ create table if not exists roles_table
 create table if not exists users_roles
 (
     id       BIGINT      NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL,
+    user_id  BIGINT      NOT NULL,
     role_id  BIGINT      NOT NULL
 ) engine = InnoDB;
 
 create view if not exists user_authorities as
-select u.username as username, CONCAT("ROLE_", r.name) as authority
+select u.user_id as user_id, CONCAT("ROLE_", r.name) as authority
 from user_table u
-         inner join users_roles ur on u.username = ur.username
+         inner join users_roles ur on u.user_id = ur.user_id
          inner join roles_table r on ur.role_id = r.role_id;
