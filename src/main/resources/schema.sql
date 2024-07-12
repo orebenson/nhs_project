@@ -2,6 +2,7 @@ use nhsdb;
 drop table if exists user_table;
 drop table if exists roles_table;
 drop table if exists users_roles;
+drop table if exists user_authorities;
 
 create table if not exists user_table
 (
@@ -11,10 +12,10 @@ create table if not exists user_table
     lastname VARCHAR(50)  NOT NULL,
     password VARCHAR(500) NOT NULL,
     enabled  boolean      NOT NULL,
-    address  VARCHAR(500),
+    address1  VARCHAR(500),
     address2  VARCHAR(500),
     city     VARCHAR(50),
-    zipCode  VARCHAR(500)
+    postcode  VARCHAR(10)
 ) engine = InnoDB;
 
 create table if not exists roles_table
@@ -31,7 +32,7 @@ create table if not exists users_roles
 ) engine = InnoDB;
 
 create view if not exists user_authorities as
-select u.user_id as user_id, CONCAT("ROLE_", r.name) as authority
+select u.user_id as user_id, CONCAT('ROLE_', r.name) as authority
 from user_table u
          inner join users_roles ur on u.user_id = ur.user_id
          inner join roles_table r on ur.role_id = r.role_id;

@@ -1,10 +1,65 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link th:replace="~{fragments/mainFragments :: mainStyles}"/>
+    <script th:replace="~{fragments/mainFragments :: mainScripts}"></script>
+
+    <!--    put any extra stylesheets / scripts here-->
+
+    <title>Login</title>
 </head>
 <body>
+
+<header th:replace="~{fragments/mainFragments :: header}"></header>
+<div class="main-container">
+    <div class="page-container">
+        <a th:href="@{/login}">&lt; back</a>
+        <h1>Register</h1>
+        <form th:method="post" th:action="@{/register}" th:object="${newUserObject}">
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" th:field="*{email}" />
+            </div>
+            <div>
+                <label for="firstname">First Name:</label>
+                <input type="text" id="firstname" name="firstname" th:field="*{firstname}" />
+            </div>
+            <div>
+                <label for="lastname">Last Name:</label>
+                <input type="text" id="lastname" name="lastname" th:field="*{lastname}" />
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" th:field="*{password}" />
+            </div>
+            <div>
+                <label for="address1">Address Line 1:</label>
+                <input type="text" id="address1" name="address1" th:field="*{address1}" />
+            </div>
+            <div>
+                <label for="address2">Address Line 2:</label>
+                <input type="text" id="address2" name="address2" th:field="*{address2}" />
+            </div>
+            <div>
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" th:field="*{city}" />
+            </div>
+            <div>
+                <label for="postcode">Postcode:</label>
+                <input type="text" id="postcode" name="postcode" th:field="*{postcode}" />
+            </div>
+            <div>
+                <input type="submit" value="Register" />
+            </div>
+        </form>
+    </div>
+</div>
+<footer th:replace="~{fragments/mainFragments :: footer}"></footer>
 
 </body>
 </html>

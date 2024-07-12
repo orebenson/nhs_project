@@ -38,6 +38,7 @@
                         <div class="nav-item"><a class="nav-link" href="#">Support</a></div>
                         <div class="nav-item"><a class="nav-link" href="#">Leg Lymphoedema</a></div>
                         <div class="nav-item"><a class="nav-link" href="#">Your Diary</a></div>
+
                         <div class="nav-item" th:unless="${#authorization.expression('isAuthenticated()')}"><a class="nav-link" th:href="@{/login}">Login</a></div>
 
                         <div class="nav-item" th:if="${#authorization.expression('isAuthenticated()')}">
@@ -45,9 +46,10 @@
                                 <button type="submit" class="nav-link-button nav-link">Logout</button>
                             </form>
                         </div>
-<!--                        <div th:if="${#authorization.expression('hasRole(''ADMIN'')')}" class="nav-item">-->
-<!--                            <a href="#">Admin Area</a>-->
+<!--                        <div th:if="${#authorization.expression('isAuthenticated()') and #authorization.expression('hasRole(''ADMIN'')')}" class="nav-item">-->
+<!--                            <a href="#">Doctor's Area</a>-->
 <!--                        </div>-->
+
                     </div>
                 </div>
 

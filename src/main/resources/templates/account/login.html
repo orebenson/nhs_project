@@ -19,7 +19,7 @@
 <div class="main-container">
     <div class="page-container">
         <h1>Login</h1>
-        <form th:method="post" th:action="@{/login}" class="container">
+        <form th:method="post" th:action="@{/login}">
             <div>
                 <label for="email">Email:</label>
                 <input name="email" type="email" id="email"/>
@@ -32,7 +32,7 @@
                 <input type="submit" value="Login"/>
             </div>
         </form>
-
+        <a th:href="@{/register}">Register a new account &gt;</a>
     </div>
 </div>
 <footer th:replace="~{fragments/mainFragments :: footer}"></footer>
