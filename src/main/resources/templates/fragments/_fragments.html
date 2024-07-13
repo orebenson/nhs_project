@@ -100,7 +100,7 @@
                 </li>
                 <li class="nhsuk-header__navigation-item">
                     <a class="nhsuk-header__navigation-link" href="#">
-                        Your Diary
+                        Diary
                     </a>
                 </li>
                 <li class="nhsuk-header__navigation-item" th:unless="${#authorization.expression('isAuthenticated()')}">
@@ -110,7 +110,7 @@
                 </li>
                 <li class="nhsuk-header__navigation-item" th:if="${#authorization.expression('isAuthenticated()')}">
                     <a class="nhsuk-header__navigation-link logout-link" th:href="@{/account}">
-                        Your Account
+                        Account
                     </a>
                 </li>
                 <li class="nhsuk-mobile-menu-container">
