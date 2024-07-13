@@ -32,6 +32,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Long createAdminUser(User user) {
+        return userRepository.createAdminUser(user);
+    }
+
+    @Override
     public Boolean deleteUserByEmail(String email) {
         return userRepository.deleteUserByEmail(email);
     }
