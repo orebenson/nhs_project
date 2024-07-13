@@ -1,32 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
 
-  <link th:replace="~{fragments/mainFragments :: mainStyles}"/>
-  <script th:replace="~{fragments/mainFragments :: mainScripts}"></script>
-
-  <!--    put any extra stylesheets / scripts here-->
 
   <title>Login</title>
+
+  <!--    add any extra javascript file references here-->
+
 </head>
 <body>
-
-<header th:replace="~{fragments/mainFragments :: header}"></header>
-<div class="main-container">
-  <div class="page-container">
-
-
-
-    <h1>Login Success</h1>
+<script th:replace="~{fragments/_fragments :: pagescript}"></script>
+<header th:replace="~{fragments/_fragments :: header}"></header>
+<div class="nhsuk-width-container">
+  <main class="nhsuk-main-wrapper" id="maincontent" role="main">
 
 
-  </div>
+
+
+
+
+  <h1>Login Success</h1>
+
+
+
+
+  </main>
 </div>
-<footer th:replace="~{fragments/mainFragments :: footer}"></footer>
-
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
 </body>
 </html>

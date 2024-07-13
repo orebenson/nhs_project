@@ -38,8 +38,9 @@ public class SecurityConfig {
 //            "/**",
             //
             "/",
-            "/stylesheets/**",
-            "/scripts/**",
+            "/css/**",
+            "/js/**",
+            "/assets/**",
             "/403",
             "/login",
             "/login/**",

@@ -4,7 +4,7 @@
   <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
 
 
-  <title>Error</title>
+  <title>Account</title>
 
   <!--    add any extra javascript file references here-->
 
@@ -17,7 +17,16 @@
 
 
 
-  <h1>403</h1>
+    <h1>Your Account</h1>
+    <div th:if="${#authorization.expression('isAuthenticated()')}">
+      <p>Welcome, <span th:text="${#authorization.getAuthentication().getName()}"></span></p>
+    </div>
+    <form th:method="post" th:action="@{/logout}">
+      <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+        Logout
+      </button>
+    </form>
+
 
 
   </main>

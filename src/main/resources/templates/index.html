@@ -1,31 +1,29 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <link th:replace="~{fragments/mainFragments :: mainStyles}"/>
-    <script th:replace="~{fragments/mainFragments :: mainScripts}"></script>
+    <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
     <title>Home</title>
 </head>
 <body>
+<script th:replace="~{fragments/_fragments :: pagescript}"></script>
+<header th:replace="~{fragments/_fragments :: header}"></header>
+<div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent" role="main">
 
-<header th:replace="~{fragments/mainFragments :: header}"></header>
-<div class="main-container">
-    <div class="page-container">
+
         <h1> Welcome to this site about Lymphoedema... </h1>
         <h2> Header 2</h2>
         <h3> Header 3</h3>
-        <p>contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent</p>
-        <p>contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent</p>
-        <p>contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent</p>
-        <p>contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent</p>
+        <p>conten`t content content content content content content content content content content content content
+            content content content content content content content content content content content </p>
+        <p>content content content content content content content content content content content content content
+            content content content content content content content content content content content </p>
+        <p>content content content content content content content content content content content content content
+            content content content content content content content content content content content </p>
 
-    </div>
+
+    </main>
 </div>
-<footer th:replace="~{fragments/mainFragments :: footer}"></footer>
-
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
 </body>
 </html>
