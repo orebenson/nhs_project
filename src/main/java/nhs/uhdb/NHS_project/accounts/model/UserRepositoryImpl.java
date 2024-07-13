@@ -1,5 +1,6 @@
 package nhs.uhdb.NHS_project.accounts.model;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -36,27 +37,45 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public Long getUserIdByEmail(String email) {
         String sql = "SELECT user_id FROM user_table WHERE email = ?";
-        return jdbc.queryForObject(sql, Long.class, email);
+        try {
+            return jdbc.queryForObject(sql, Long.class, email);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     @Override
     public User getUserByEmail(String email) {
         String sql = "SELECT * FROM user_table WHERE email = ?";
-        User user = jdbc.queryForObject(sql, userMapper, email);
-        if (user != null) user.setPassword("");
-        return user;
+        try {
+            User user = jdbc.queryForObject(sql, userMapper, email);
+            if (user != null) user.setPassword("");
+            return user;
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     @Override
     public User getUserByUserId(Long user_id) {
         String sql = "SELECT * FROM user_table WHERE user_id = ?";
-        User user = jdbc.queryForObject(sql, userMapper, user_id);
-        if (user != null) user.setPassword("");
-        return user;
+        try {
+            User user = jdbc.queryForObject(sql, userMapper, user_id);
+            if (user != null) user.setPassword("");
+            return user;
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     @Override
     public Long createUser(User user) {
+        try {
+            String user_exists_sql = "SELECT user_id FROM user_table WHERE email = ?";
+            Long user_exists_id = jdbc.queryForObject(user_exists_sql, Long.class, user.getEmail());
+            if (user_exists_id != null) return null;
+        } catch (EmptyResultDataAccessException e) {}
+
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         String sql = "INSERT INTO user_table (email, firstname, lastname, password, enabled, address1, address2, city, postcode) VALUES (?,?,?,?,?,?,?,?,?) RETURNING user_id";
         Long user_id = jdbc.queryForObject(sql, Long.class, user.getEmail(), user.getFirstname(), user.getLastname(), encodedPassword, true, user.getAddress1(), user.getAddress2(), user.getCity(), user.getPostcode());
@@ -67,6 +86,12 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public Long createAdminUser(User user) {
+        try {
+            String user_exists_sql = "SELECT user_id FROM user_table WHERE email = ?";
+            Long user_exists_id = jdbc.queryForObject(user_exists_sql, Long.class, user.getEmail());
+            if (user_exists_id != null) return null;
+        } catch (EmptyResultDataAccessException e) {}
+
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         String sql = "INSERT INTO user_table (email, firstname, lastname, password, enabled, address1, address2, city, postcode) VALUES (?,?,?,?,?,?,?,?,?) RETURNING user_id";
         Long user_id = jdbc.queryForObject(sql, Long.class, user.getEmail(), user.getFirstname(), user.getLastname(), encodedPassword, true, user.getAddress1(), user.getAddress2(), user.getCity(), user.getPostcode());

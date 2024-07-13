@@ -6,7 +6,7 @@ values
 
 -- add default admin account admin admin
 insert into user_table (email, firstname, lastname, password, enabled)
-values ('admin@admin.com','AdminFirstname','AdminLastname', '$2a$12$zKMHlbOC7UXOLCdq5ZibC.ANCzcxgpoGbode97Dc2Fi1zakG2fP6O', true);
+values ('admin@admin.com','Default','Admin', '$2a$12$zKMHlbOC7UXOLCdq5ZibC.ANCzcxgpoGbode97Dc2Fi1zakG2fP6O', true);
 
 -- admin user_id is 1 as it is the first created account
 insert into users_roles (user_id, role_id)
