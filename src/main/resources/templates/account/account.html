@@ -10,11 +10,41 @@
 <div class="nhsuk-width-container">
   <main class="nhsuk-main-wrapper" id="maincontent" role="main">
 
-    <div th:if="${#authorization.expression('isAuthenticated()')}">
-      <h2>Welcome, <span th:text="${name}"></span></h2>
-    </div>
+    <h1>My Account Details</h1>
 
-    <h1>Your Account</h1>
+    <dl class="nhsuk-summary-list">
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          Name
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          <span th:text="${user.firstname} + ' ' + ${user.lastname}"></span>
+        </dd>
+      </div>
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          Address information
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          <span th:text="${user.address1}"></span><br>
+          <span th:text="${user.address2}"></span><br>
+          <span th:text="${user.city}"></span><br>
+          <span th:text="${user.postcode}"></span>
+        </dd>
+      </div>
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          Contact details
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          <p th:text="${user.email}">karen.francis@example.com</p>
+        </dd>
+      </div>
+
+    </dl>
 
     <form th:method="post" th:action="@{/logout}">
       <button class="nhsuk-button" data-module="nhsuk-button" type="submit">

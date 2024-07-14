@@ -22,7 +22,7 @@ public class AdminAccountController {
 
     @GetMapping("/admin")
     public ModelAndView admin(Principal principal) {
-        ModelAndView mav = new ModelAndView("account/adminAccount");
+        ModelAndView mav = new ModelAndView("account/admin/adminAccount");
         String loggedInUserEmail = principal.getName();
         User loggedInUser = userService.getUserByEmail(loggedInUserEmail);
         mav.addObject("name", loggedInUser.getFirstname() + ' ' + loggedInUser.getLastname());
@@ -31,7 +31,7 @@ public class AdminAccountController {
 
     @GetMapping("/admin/register")
     public ModelAndView adminRegister() {
-        ModelAndView mav = new ModelAndView("account/adminRegister");
+        ModelAndView mav = new ModelAndView("account/admin/adminRegister");
         mav.addObject("newUserObject", new User());
         return mav;
     }
@@ -39,13 +39,23 @@ public class AdminAccountController {
     @PostMapping("/admin/register")
     public ModelAndView registerUser(@ModelAttribute("newUserObject") User user) {
         Long user_id = userService.createAdminUser(user);
-        if (user_id == null) return new ModelAndView("redirect:/register/error");
-        return new ModelAndView("redirect:/register/success");
+        if (user_id == null) return new ModelAndView("redirect:/admin/register/error");
+        return new ModelAndView("redirect:/admin/register/success");
+    }
+
+    @GetMapping("/admin/register/success")
+    public ModelAndView adminRegisterSuccess() {
+        return new ModelAndView("account/admin/adminRegisterSuccess");
+    }
+
+    @GetMapping("/admin/register/error")
+    public ModelAndView adminRegisterError() {
+        return new ModelAndView("account/admin/adminRegisterError");
     }
 
     @GetMapping("/admin/search")
     public ModelAndView adminSearchUser() {
-        ModelAndView mav = new ModelAndView("account/adminSearchUser");
+        ModelAndView mav = new ModelAndView("account/admin/adminSearchUser");
         mav.addObject("newUserObject", new User());
         return mav;
     }
@@ -53,15 +63,15 @@ public class AdminAccountController {
     @PostMapping("/admin/search")
     public ModelAndView adminSearchUserSubmit(@ModelAttribute("newUserObject") User user) {
         Long user_id = userService.getUserIdByEmail(user.getEmail());
-        if (user_id == null) return new ModelAndView("account/adminSearchUserError");
+        if (user_id == null) return new ModelAndView("account/admin/adminSearchUserError");
         return new ModelAndView("redirect:/admin/search/" + user_id);
     }
 
     @GetMapping("/admin/search/{id}")
     public ModelAndView adminViewUser(@PathVariable Long id) {
-        ModelAndView mav = new ModelAndView("account/adminViewUser");
+        ModelAndView mav = new ModelAndView("account/admin/adminViewUser");
         User user = userService.getUserByUserId(id);
-        if (user == null) return new ModelAndView("account/adminSearchUser");
+        if (user == null) return new ModelAndView("account/admin/adminSearchUser");
         mav.addObject("user", user);
         return mav;
     }

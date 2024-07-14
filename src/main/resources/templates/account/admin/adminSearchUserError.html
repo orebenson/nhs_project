@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
-    <title>Login</title>
+    <title>Admin Area</title>
 </head>
 <body>
 <script th:replace="~{fragments/_fragments :: pagescript}"></script>
@@ -10,10 +10,9 @@
 <div class="nhsuk-width-container">
     <main class="nhsuk-main-wrapper" id="maincontent" role="main">
 
-
         <div class="nhsuk-back-link">
 
-            <a class="nhsuk-back-link__link" th:href="@{/login}">
+            <a class="nhsuk-back-link__link" th:href="@{/admin/search}">
                 <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                      aria-hidden="true" height="24" width="24">
                     <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
@@ -23,13 +22,19 @@
 
         <div class="nhsuk-form-group--error">
             <h2>
-                Login error
+                Patient search error
             </h2>
             <p>
-                Your email or password is incorrect
+                Patient email not found
             </p>
         </div>
 
+
+        <div th:unless="${#authorization.expression('isAuthenticated()') and #authorization.expression('hasRole(''ADMIN'')')}">
+            <script th:inline="javascript">
+                window.location.href = '/login';
+            </script>
+        </div>
 
     </main>
 </div>

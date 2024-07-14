@@ -10,8 +10,19 @@ public class ErrorController {
     public ModelAndView error403() {
         return new ModelAndView("error/403");
     }
+
+    @GetMapping("/500")
+    public ModelAndView error500() {
+        return new ModelAndView("error/500");
+    }
+
+    @GetMapping("/404")
+    public ModelAndView error404() {
+        return new ModelAndView("error/404");
+    }
+
     @GetMapping("/error")
     public ModelAndView error() {
-        return new ModelAndView("500");
+        return new ModelAndView("error/500");
     }
 }

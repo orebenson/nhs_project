@@ -22,6 +22,7 @@ public class AccountController {
         String loggedInUserEmail = principal.getName();
         User loggedInUser = userService.getUserByEmail(loggedInUserEmail);
         mav.addObject("name", loggedInUser.getFirstname() + ' ' + loggedInUser.getLastname());
+        mav.addObject("user", loggedInUser);
         return mav;
     }
 }
