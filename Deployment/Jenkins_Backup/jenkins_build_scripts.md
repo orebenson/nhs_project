@@ -21,6 +21,9 @@ mysql -u root -pcomsc < src/main/resources/data.sql
 
 ## NHS-Deployment-Dev - triggered by NHS-Tests-Dev
 cp -r "/var/lib/jenkins/workspace/NHS-Tests-Dev/." ./
+mysql -u root -pcomsc -e "DROP DATABASE IF EXISTS nhsdb; CREATE DATABASE nhsdb;"
+mysql -u root -pcomsc < src/main/resources/schema.sql
+mysql -u root -pcomsc < src/main/resources/data.sql
 cd build/libs
 java -jar NHS_project-0.0.1-SNAPSHOT.jar --server.port=8080
 
