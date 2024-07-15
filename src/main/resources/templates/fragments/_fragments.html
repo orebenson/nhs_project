@@ -1,6 +1,5 @@
-<!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:fragment="headcontent">
     <meta charset="UTF-8">
@@ -23,6 +22,7 @@
           crossorigin>
     <link rel="preconnect  dns-prefetch" href="https://www.nhs.uk/">
     <link rel="preconnect  dns-prefetch" href="https://assets.nhs.uk/" crossorigin>
+
 
     <link rel="stylesheet" href="/css/nhsuk-8.2.0.min.css">
     <script src="/js/nhsuk-8.2.0.min.js" defer></script>
@@ -100,14 +100,26 @@
                 </li>
                 <li class="nhsuk-header__navigation-item">
                     <a class="nhsuk-header__navigation-link" href="#">
-                        Your Diary
+                        Diary
                     </a>
                 </li>
-                <li class="nhsuk-header__navigation-item">
-                    <a class="nhsuk-header__navigation-link" href="#">
+                <li class="nhsuk-header__navigation-item" th:unless="${#authorization.expression('isAuthenticated()')}">
+                    <a class="nhsuk-header__navigation-link" th:href="@{/login}">
                         Login
                     </a>
                 </li>
+                <li class="nhsuk-header__navigation-item" th:if="${#authorization.expression('isAuthenticated()') and #authorization.expression('hasRole(''USER'')')}">
+                    <a class="nhsuk-header__navigation-link logout-link" th:href="@{/account}">
+                        Account
+                    </a>
+                </li>
+
+                <li class="nhsuk-header__navigation-item" th:if="${#authorization.expression('isAuthenticated()') and #authorization.expression('hasRole(''ADMIN'')')}">
+                    <a class="nhsuk-header__navigation-link logout-link" th:href="@{/admin}">
+                        Admin Area
+                    </a>
+                </li>
+
                 <li class="nhsuk-mobile-menu-container">
                     <button class="nhsuk-header__menu-toggle nhsuk-header__navigation-link" id="toggle-menu"
                             aria-expanded="false">
