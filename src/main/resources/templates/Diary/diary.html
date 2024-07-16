@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
+    <title>Diary</title>
+    <!-- Include any additional JavaScript file references here -->
+</head>
+<body>
+<script th:replace="~{fragments/_fragments :: pagescript}"></script>
+<header th:replace="~{fragments/_fragments :: header}"></header>
+<div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+        <h1>Patient Diary</h1>
+        <div class="nhsuk-error-summary nhsuk-u-visually-hidden" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
+            <h2 class="nhsuk-error-summary__title" id="error-summary-title">Leg Lymphodema Progress</h2>
+            <div class="nhsuk-error-summary__body">
+                <ul class="nhsuk-list nhsuk-error-summary__list" role="list" id="error-summary-list"></ul>
+            </div>
+        </div>
+        <form id="diary-form" method="post" th:action="@{/submit-diary}">
+            <fieldset class="nhsuk-fieldset">
+                <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                    <h1 class="nhsuk-fieldset__heading">Diary Entry</h1>
+                </legend>
+                <div class="nhsuk-form-group">
+                    <label class="nhsuk-label" for="diary-entry">Diary Entry:</label>
+                    <textarea class="nhsuk-textarea nhsuk-u-width-one-half" id="diary-entry" name="diary-entry" rows="8" required></textarea>
+                </div>
+                <button class="nhsuk-button" type="submit">Save Entry</button>
+            </fieldset>
+        </form>
+    </main>
+</div>
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
+</body>
+</html>
