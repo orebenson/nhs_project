@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
+
+    <script src="/js/validation/_formValidatorUtil.js" defer></script>
+    <script src="/js/validation/adminCreateTreatmentPlanValidation.js" defer></script>
+    <title>Admin Area</title>
+
+    <!--    add any extra javascript file references here-->
+
+</head>
+<body>
+<script th:replace="~{fragments/_fragments :: pagescript}"></script>
+<header th:replace="~{fragments/_fragments :: header}"></header>
+<div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+
+        <div class="nhsuk-back-link">
+
+            <a class="nhsuk-back-link__link" th:href="@{/admin}">
+                <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                     aria-hidden="true" height="24" width="24">
+                    <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+                </svg>
+                Go back</a>
+        </div>
+
+
+        <div class="nhsuk-error-summary nhsuk-u-visually-hidden" aria-labelledby="error-summary-title" role="alert"
+             tabindex="-1">
+            <h2 class="nhsuk-error-summary__title" id="error-summary-title">
+                There is a problem
+            </h2>
+            <div class="nhsuk-error-summary__body">
+                <ul class="nhsuk-list nhsuk-error-summary__list" role="list" id="error-summary-list"></ul>
+            </div>
+        </div>
+
+        <form th:method="post" th:action="@{/admin/plans/add}" th:object="${plan}" id="admin-create-plan-form">
+            <fieldset class="nhsuk-fieldset">
+                <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                    <h1 class="nhsuk-fieldset__heading">
+                        Create a new treatment plan
+                    </h1>
+                </legend>
+
+                <div class="nhsuk-form-group">
+                    <label class="nhsuk-label" for="name">
+                        Name:
+                    </label>
+                    <input class="nhsuk-input nhsuk-u-width-two-thirds" type="text" id="name" name="name"
+                           th:field="*{name}"/>
+                </div>
+
+                <div class="nhsuk-form-group">
+                    <label class="nhsuk-label" for="description">
+                        Description:
+                    </label>
+                    <textarea class="nhsuk-textarea" id="description" name="description" rows="3"
+                              aria-describedby="example-hint" th:field="*{description}"></textarea>
+                </div>
+            </fieldset>
+
+            <div id="exercises-container">
+                <fieldset class="nhsuk-fieldset exercise-fieldset">
+                    <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                        <h1 class="nhsuk-fieldset__heading">
+                            Exercise 1 details
+                        </h1>
+                    </legend>
+
+                    <div class="nhsuk-form-group">
+                        <label class="nhsuk-label" for="exercise-0-name">
+                            Name:
+                        </label>
+                        <input class="nhsuk-input nhsuk-u-width-two-thirds" type="text" id="exercise-0-name" name="exercises[0].name"/>
+                    </div>
+
+                    <div class="nhsuk-form-group">
+                        <label class="nhsuk-label" for="exercise-0-description">
+                            Description:
+                        </label>
+                        <textarea class="nhsuk-textarea" id="exercise-0-description" name="exercises[0].description" rows="2"></textarea>
+                    </div>
+                    <div class="nhsuk-form-group">
+                        <label class="nhsuk-label" for="exercise-0-video-link">
+                            Video link:
+                        </label>
+                        <input class="nhsuk-input nhsuk-u-width-two-thirds" type="text" id="exercise-0-video-link" name="exercises[0].videoLink"/>
+                    </div>
+                </fieldset>
+            </div>
+
+
+            <button class="nhsuk-button nhsuk-button--secondary" type="button" id="add-exercise-button">
+                Add an exercise
+            </button>
+
+            <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+                Create plan
+            </button>
+        </form>
+
+        <div th:unless="${#authorization.expression('isAuthenticated()') and #authorization.expression('hasRole(''ADMIN'')')}">
+            <script th:inline="javascript">
+                window.location.href = '/login';
+            </script>
+        </div>
+
+    </main>
+</div>
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let exerciseCount = 1;
+
+        document.getElementById('add-exercise-button').addEventListener('click', function () {
+            const container = document.getElementById('exercises-container');
+
+            const fieldset = document.createElement('fieldset');
+            fieldset.className = 'nhsuk-fieldset exercise-fieldset';
+
+            const legend = document.createElement('legend');
+            legend.className = 'nhsuk-fieldset__legend nhsuk-fieldset__legend--l';
+            const h1 = document.createElement('h1');
+            h1.className = 'nhsuk-fieldset__heading';
+            h1.innerText = `Exercise ${exerciseCount+1} details`;
+            legend.appendChild(h1);
+            fieldset.appendChild(legend);
+
+            const nameGroup = document.createElement('div');
+            nameGroup.className = 'nhsuk-form-group';
+            const nameLabel = document.createElement('label');
+            nameLabel.className = 'nhsuk-label';
+            nameLabel.setAttribute('for', `exercise-${exerciseCount}-name`);
+            nameLabel.innerText = 'Name:';
+            const nameInput = document.createElement('input');
+            nameInput.className = 'nhsuk-input nhsuk-u-width-two-thirds';
+            nameInput.type = 'text';
+            nameInput.id = `exercise-${exerciseCount}-name`;
+            nameInput.name = `exercises[${exerciseCount}].name`;
+            nameGroup.appendChild(nameLabel);
+            nameGroup.appendChild(nameInput);
+            fieldset.appendChild(nameGroup);
+
+            const descriptionGroup = document.createElement('div');
+            descriptionGroup.className = 'nhsuk-form-group';
+            const descriptionLabel = document.createElement('label');
+            descriptionLabel.className = 'nhsuk-label';
+            descriptionLabel.setAttribute('for', `exercise-${exerciseCount}-description`);
+            descriptionLabel.innerText = 'Description:';
+            const descriptionTextarea = document.createElement('textarea');
+            descriptionTextarea.className = 'nhsuk-textarea';
+            descriptionTextarea.id = `exercise-${exerciseCount}-description`;
+            descriptionTextarea.name = `exercises[${exerciseCount}].description`;
+            descriptionTextarea.rows = '2';
+            descriptionGroup.appendChild(descriptionLabel);
+            descriptionGroup.appendChild(descriptionTextarea);
+            fieldset.appendChild(descriptionGroup);
+
+            const videoLinkGroup = document.createElement('div');
+            videoLinkGroup.className = 'nhsuk-form-group';
+            const videoLinkLabel = document.createElement('label');
+            videoLinkLabel.className = 'nhsuk-label';
+            videoLinkLabel.setAttribute('for', `exercise-${exerciseCount}-video-link`);
+            videoLinkLabel.innerText = 'Video link:';
+            const videoLinkInputLabel = document.createElement('label');
+            videoLinkInputLabel.className = 'nhsuk-label';
+            videoLinkInputLabel.setAttribute('for', `exercise-${exerciseCount}-video-link`);
+            videoLinkInputLabel.innerText = 'Video link:';
+            const videoLinkInput = document.createElement('input');
+            videoLinkInput.className = 'nhsuk-input nhsuk-u-width-two-thirds';
+            videoLinkInput.type = 'text';
+            videoLinkInput.id = `exercise-${exerciseCount}-video-link`;
+            videoLinkInput.name = `exercises[${exerciseCount}].videoLink`;
+            videoLinkGroup.appendChild(videoLinkInputLabel);
+            videoLinkGroup.appendChild(videoLinkInput);
+            fieldset.appendChild(videoLinkGroup);
+
+            container.appendChild(fieldset);
+            exerciseCount++;
+        });
+    });
+</script>
+</body>
+</html>
