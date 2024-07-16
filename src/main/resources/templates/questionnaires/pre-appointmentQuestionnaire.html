@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -22,20 +22,20 @@
 
         <p>Please complete and submit this form before your next appointment.</p>
 
-        <form action="/submit-your-form-handler" method="post">
-            <label for="medications">Medications:</label><br>
+        <form th:action="@{/submitquestionnaire}" method="post">
+            <label for="medications">1. Medications:</label><br>
             <textarea id="medications" name="medications" rows="4" cols="50" placeholder="List your current medications"></textarea><br><br>
 
-            <label for="changesToHealth"> Any changes to Health/New Diagnoses:</label><br>
+            <label for="changesToHealth">2. Any changes to Health/New Diagnoses:</label><br>
             <textarea id="changesToHealth" name="changesToHealth" rows="4" cols="50" placeholder="Describe any recent health changes or diagnoses"></textarea><br><br>
 
-            <label for="swellingConcerns">Any concerns Regarding Swelling:</label><br>
+            <label for="swellingConcerns">3. Any concerns Regarding Swelling:</label><br>
             <textarea id="swellingConcerns" name="swellingConcerns" rows="4" cols="50" placeholder="Express any concerns about swelling"></textarea><br><br>
 
-            <label for="hosieryConcerns">Any concerns Regarding Hosiery:</label><br>
+            <label for="hosieryConcerns">4. Any concerns Regarding Hosiery:</label><br>
             <textarea id="hosieryConcerns" name="hosieryConcerns" rows="4" cols="50" placeholder="Discuss any issues with hosiery"></textarea><br><br>
 
-            <label for="cellulitisEpisodes">Episodes of Cellulitis Since Last Appointment:</label><br>
+            <label for="cellulitisEpisodes">5. Episodes of Cellulitis Since Last Appointment:</label><br>
             <input type="number" id="cellulitisEpisodes" name="cellulitisEpisodes" placeholder="Enter number of episodes"><br><br>
 
             <input type="submit" value="Submit">
@@ -45,7 +45,7 @@
 </div>
 <footer th:replace="~{fragments/mainFragments :: footer}"></footer>
 
-<!--<script src="/scripts/questionnaireFormScripts.js"></script>-->
+<!--<script src="/scripts/questionnaireFormSc ripts.js"></script>-->
 
 </body>
 </html>

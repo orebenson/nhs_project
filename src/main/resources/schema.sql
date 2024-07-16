@@ -3,6 +3,7 @@ drop table if exists user_table;
 drop table if exists roles_table;
 drop table if exists users_roles;
 drop table if exists user_authorities;
+drop table if exists pre_appointment_questionnaire;
 
 create table if not exists user_table
 (
@@ -29,6 +30,15 @@ create table if not exists users_roles
     id       BIGINT      NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_id  BIGINT      NOT NULL,
     role_id  BIGINT      NOT NULL
+) engine = InnoDB;
+
+create table if not exists pre_appointment_questionnaire
+(
+    id                  BIGINT      NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id             BIGINT      NOT NULL,
+    date_completed      DATETIME    NOT NULL,
+    question_1          TEXT        NOT NULL,
+    question_2          TEXT        NOT NULL
 ) engine = InnoDB;
 
 create view if not exists user_authorities as
