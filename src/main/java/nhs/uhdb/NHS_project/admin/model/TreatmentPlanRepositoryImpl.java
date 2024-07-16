@@ -47,6 +47,7 @@ public class TreatmentPlanRepositoryImpl implements TreatmentPlanRepository {
     private void createExercisesForTreatmentPlan(TreatmentPlan plan) {
         for (Exercise exercise : plan.getExercises()) {
             Long exercise_id = exerciseRepository.createExercise(exercise);
+            if(exercise_id == null) return;
             String sql = "INSERT INTO treatment_plan_exercises (treatment_plan_id, exercise_id) VALUES (?, ?)";
             jdbc.update(sql, plan.getId(), exercise_id);
         }

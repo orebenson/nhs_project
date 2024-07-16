@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Objects;
 
 @Repository
 public class ExerciseRepositoryImpl implements ExerciseRepository {
@@ -42,6 +43,8 @@ public class ExerciseRepositoryImpl implements ExerciseRepository {
 
     @Override
     public Long createExercise(Exercise exercise) {
+        if(exercise.getName().equals("")) return null;
+
         Long videoId = videoRepository.createVideo(exercise.getVideoLink());
 
         String sqlExercise = "INSERT INTO exercises (name, description, video_id) VALUES (?, ?, ?) RETURNING exercise_id";
