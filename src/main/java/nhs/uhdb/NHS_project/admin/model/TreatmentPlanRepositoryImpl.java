@@ -76,6 +76,7 @@ public class TreatmentPlanRepositoryImpl implements TreatmentPlanRepository {
 
     @Override
     public Boolean setUserTreatmentPlan(Long user_id, Long treatment_plan_id) {
+        if(treatment_plan_id == 0) return true;
         String sql = "INSERT INTO user_treatment_plans (user_id, treatment_plan_id) VALUES (?, ?)";
         int rowsAffected = jdbc.update(sql, user_id, treatment_plan_id);
         return rowsAffected > 0;

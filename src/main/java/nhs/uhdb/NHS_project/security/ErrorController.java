@@ -21,6 +21,11 @@ public class ErrorController {
         return new ModelAndView("error/404");
     }
 
+    @GetMapping("/400")
+    public ModelAndView error400() {
+        return new ModelAndView("error/400");
+    }
+
     @GetMapping("/error")
     public ModelAndView error() {
         return new ModelAndView("error/500");

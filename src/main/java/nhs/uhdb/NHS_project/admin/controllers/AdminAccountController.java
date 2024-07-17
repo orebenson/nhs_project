@@ -74,11 +74,16 @@ public class AdminAccountController {
     @GetMapping("/admin/search/{id}")
     public ModelAndView adminViewUser(@PathVariable Long id) {
         ModelAndView mav = new ModelAndView("admin/adminViewUser");
+
         User user = userService.getUserByUserId(id);
-        if (user == null) return new ModelAndView("admin/adminSearchUser");
-        TreatmentPlan userPlan = treatmentPlanService.getTreatmentPlanByUserId(user.getUser_id());
-        if(userPlan == null) userPlan = new TreatmentPlan();
-        userPlan.setName("None");
+        if (user == null) return new ModelAndView("admin/adminSearchUserError");
+
+        TreatmentPlan userPlan = treatmentPlanService.getTreatmentPlanByUserId(id);
+        if(userPlan == null) {
+            userPlan = new TreatmentPlan();
+            userPlan.setName("None");
+        }
+
         mav.addObject("userPlan", userPlan);
         mav.addObject("user", user);
         return mav;

@@ -15,8 +15,8 @@ public class TreatmentPlan {
     private List<Exercise> exercises;
     public TreatmentPlan() {
         this.id = null;
-        this.exercises = new ArrayList<>();
-        this.description = "";
         this.name = "";
+        this.description = "";
+        this.exercises = new ArrayList<>();
     }
 }
