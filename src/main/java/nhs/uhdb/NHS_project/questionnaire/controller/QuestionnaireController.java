@@ -1,4 +1,4 @@
-package nhs.uhdb.NHS_project.questionnaire;
+package nhs.uhdb.NHS_project.questionnaire.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
