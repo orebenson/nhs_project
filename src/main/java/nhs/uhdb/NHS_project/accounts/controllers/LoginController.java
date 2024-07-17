@@ -11,6 +11,11 @@ public class LoginController {
         return new ModelAndView("account/login");
     }
 
+    @GetMapping("/logout")
+    public ModelAndView logout() {
+        return new ModelAndView("redirect:/");
+    }
+
     @GetMapping("/login/success")
     public ModelAndView loginSuccess() {
         return new ModelAndView("account/loginSuccess");
