@@ -16,20 +16,30 @@ values ('test@test.com','Default','User', '$2a$10$UnsqVzZTipaKE77lf6Bfme/nvIqwIR
 insert into users_roles (user_id, role_id)
 values (2, 2);
 
--- add default treatment plan
-INSERT INTO treatment_plans (name, description) VALUES ('Default Treatment Plan', 'This is the default treatment plan.');
+-- add default treatment plan 1
+INSERT INTO treatment_plans (name, description) VALUES ('Default Treatment Plan 1', 'This is the default treatment plan.');
 
--- Inserting videos
 INSERT INTO videos (video_link) VALUES ('http://example.com/video1');
 INSERT INTO videos (video_link) VALUES ('http://example.com/video2');
 INSERT INTO videos (video_link) VALUES ('http://example.com/video3');
 
--- Inserting exercises
 INSERT INTO exercises (name, description, video_id) VALUES ('Exercise 1', 'Description for Exercise 1', 1);
 INSERT INTO exercises (name, description, video_id) VALUES ('Exercise 2', 'Description for Exercise 2', 2);
 INSERT INTO exercises (name, description, video_id) VALUES ('Exercise 3', 'Description for Exercise 3', 3);
 
--- Linking exercises to the treatment plan
 INSERT INTO treatment_plan_exercises (treatment_plan_id, exercise_id) VALUES (1, 1);
 INSERT INTO treatment_plan_exercises (treatment_plan_id, exercise_id) VALUES (1, 2);
 INSERT INTO treatment_plan_exercises (treatment_plan_id, exercise_id) VALUES (1, 3);
+
+-- add default treatment plan 2
+INSERT INTO treatment_plans (name, description) VALUES ('Default Treatment Plan 2', 'This is the second default treatment plan.');
+
+INSERT INTO videos (video_link) VALUES ('http://example.com/video4');
+INSERT INTO videos (video_link) VALUES ('http://example.com/video5');
+
+INSERT INTO exercises (name, description, video_id) VALUES ('Exercise 4', 'Description for Exercise 4', 4);
+INSERT INTO exercises (name, description, video_id) VALUES ('Exercise 5', 'Description for Exercise 5', 5);
+
+INSERT INTO treatment_plan_exercises (treatment_plan_id, exercise_id) VALUES (2, 3);
+INSERT INTO treatment_plan_exercises (treatment_plan_id, exercise_id) VALUES (2, 4);
+INSERT INTO treatment_plan_exercises (treatment_plan_id, exercise_id) VALUES (2, 5);

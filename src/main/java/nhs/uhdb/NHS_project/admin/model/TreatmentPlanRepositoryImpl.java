@@ -55,7 +55,7 @@ public class TreatmentPlanRepositoryImpl implements TreatmentPlanRepository {
     }
 
     private Long updateTreatmentPlan(TreatmentPlan plan) {
-        String sql = "UPDATE treatment_plans SET name = ?, description = ?, WHERE treatment_plan_id = ?";
+        String sql = "UPDATE treatment_plans SET name = ?, description = ? WHERE treatment_plan_id = ?";
         jdbc.update(sql, plan.getName(), plan.getDescription(), plan.getId());
         createExercisesForTreatmentPlan(plan);
         return plan.getId();
@@ -77,9 +77,17 @@ public class TreatmentPlanRepositoryImpl implements TreatmentPlanRepository {
     @Override
     public Boolean setUserTreatmentPlan(Long user_id, Long treatment_plan_id) {
         if(treatment_plan_id == 0) return true;
-        String sql = "INSERT INTO user_treatment_plans (user_id, treatment_plan_id) VALUES (?, ?)";
-        int rowsAffected = jdbc.update(sql, user_id, treatment_plan_id);
-        return rowsAffected > 0;
+
+        try {
+            String deleteSql = "DELETE FROM user_treatment_plans WHERE user_id = ?";
+            jdbc.update(deleteSql, user_id);
+
+            String sql = "INSERT INTO user_treatment_plans (user_id, treatment_plan_id) VALUES (?, ?)";
+            int rowsAffected = jdbc.update(sql, user_id, treatment_plan_id);
+            return rowsAffected > 0;
+        } catch (EmptyResultDataAccessException e) {
+            return false;
+        }
     }
 
     @Override
