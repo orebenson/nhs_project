@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
+  <title>Contact Us</title>
+</head>
+<body>
+<script th:replace="~{fragments/_fragments :: pagescript}"></script>
+<header th:replace="~{fragments/_fragments :: header}"></header>
+
+<div class="nhsuk-width-container">
+  <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+    <h1>Contact Us</h1>
+
+    <div class="nhsuk-grid-row">
+      <div class="nhsuk-grid-column-one-half">
+        <h2>Contact Information</h2>
+        <p>You can reach our service through the following methods:</p>
+        <ul>
+          <li>Phone: 0123 456 7890</li>
+          <li>Email: contact@nhsservice.com</li>
+          <li>Address: 123 NHS Street, Healthcare City, HC1 2AB</li>
+        </ul>
+      </div>
+      <div class="nhsuk-grid-column-one-half">
+        <h2>Contact Form</h2>
+        <form class="nhsuk-form">
+          <div class="nhsuk-form-group">
+            <label class="nhsuk-label" for="name">
+              Name
+            </label>
+            <input class="nhsuk-input" id="name" name="name" type="text">
+          </div>
+
+          <div class="nhsuk-form-group">
+            <label class="nhsuk-label" for="email">
+              Email
+            </label>
+            <input class="nhsuk-input" id="email" name="email" type="email">
+          </div>
+
+          <div class="nhsuk-form-group">
+            <label class="nhsuk-label" for="message">
+              Message
+            </label>
+            <textarea class="nhsuk-textarea" id="message" name="message" rows="5"></textarea>
+          </div>
+
+          <button class="nhsuk-button" type="submit">
+            Send message
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
+</body>
+</html>
