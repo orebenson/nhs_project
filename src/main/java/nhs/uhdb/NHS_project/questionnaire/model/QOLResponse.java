@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class QolQuestionnaire {
+public class QOLResponse {
 
     private Long id;
     private Integer walking;

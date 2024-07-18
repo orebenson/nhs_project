@@ -1,51 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
 
-    <link th:replace="~{fragments/mainFragments :: mainStyles}"/>
-    <script th:replace="~{fragments/mainFragments :: mainScripts}"></script>
-
-<!--    put any extra stylesheets / scripts here-->
 
     <title>Pre-appointment Questionnaire</title>
+
+    <!--    add any extra javascript file references here-->
+    <!--<script src="/scripts/questionnaireFormScripts.js"></script>-->
+
 </head>
 <body>
+<script th:replace="~{fragments/_fragments :: pagescript}"></script>
+<header th:replace="~{fragments/_fragments :: header}"></header>
+<div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent" role="main">
 
-<header th:replace="~{fragments/mainFragments :: header}"></header>
-<div class="main-container">
-    <div class="page-container">
-        <h1>Pre-appointment Questionnaire </h1>
+        <fieldset class="nhsuk-fieldset">
+            <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                <h1 class="nhsuk-fieldset__heading">
+                    Pre-appointment Questionnaire
+                </h1>
+            </legend>
 
         <p>Please complete and submit this form before your next appointment.</p>
 
         <form th:action="@{/submitquestionnaire}" method="post">
-            <label for="medications">1. Medications:</label><br>
-            <textarea id="medications" name="medications" rows="4" cols="50" placeholder="List your current medications"></textarea><br><br>
+            <fieldset class="nhsuk-fieldset">
+                <div class="nhsuk-form-group">
 
-            <label for="changesToHealth">2. Any changes to Health/New Diagnoses:</label><br>
-            <textarea id="changesToHealth" name="changesToHealth" rows="4" cols="50" placeholder="Describe any recent health changes or diagnoses"></textarea><br><br>
+                    <label class="nhsuk-label" for="medications">
+                        1. Medications:
+                    </label>
+                    <div class="nhsuk-hint" id="medications-hint">
+                        List your current medications.
+                    </div>
+                    <textarea class="nhsuk-textarea" id="medications" name="medications" rows="5"
+                              aria-describedby="medications"></textarea>
+                </div>
 
-            <label for="swellingConcerns">3. Any concerns Regarding Swelling:</label><br>
-            <textarea id="swellingConcerns" name="swellingConcerns" rows="4" cols="50" placeholder="Express any concerns about swelling"></textarea><br><br>
+                <div class="nhsuk-form-group">
+                    <label class="nhsuk-label" for="changes-to-health">
+                        2. Any changes to health/new diagnoses:
+                    </label>
+                    <div class="nhsuk-hint" id="changes-to-health-hint">
+                        Describe any recent health changes or diagnoses
+                    </div>
+                    <textarea class="nhsuk-textarea" id="changes-to-health" name="changes-to-health" rows="5"
+                              aria-describedby="changes-to-health"></textarea>
+                </div>
 
-            <label for="hosieryConcerns">4. Any concerns Regarding Hosiery:</label><br>
-            <textarea id="hosieryConcerns" name="hosieryConcerns" rows="4" cols="50" placeholder="Discuss any issues with hosiery"></textarea><br><br>
+                <div class="nhsuk-form-group">
+                    <label class="nhsuk-label" for="swellingConcerns">
+                        3. Any concerns regarding swelling:
+                    </label>
+                    <div class="nhsuk-hint" id="swellingConcerns-hint">
+                        Express any concerns about swelling.
+                    </div>
+                    <textarea class="nhsuk-textarea" id="swellingConcerns" name="swellingConcerns" rows="5"
+                              aria-describedby="swellingConcerns"></textarea>
+                </div>
 
-            <label for="cellulitisEpisodes">5. Episodes of Cellulitis Since Last Appointment:</label><br>
-            <input type="number" id="cellulitisEpisodes" name="cellulitisEpisodes" placeholder="Enter number of episodes"><br><br>
+                <div class="nhsuk-form-group">
+                    <label class="nhsuk-label" for="hosieryConcerns">
+                        4. Any concerns regarding hosiery:
+                    </label>
+                    <div class="nhsuk-hint" id="hosieryConcerns-hint">
+                        Discuss any issues with hosiery, including any allergies.
+                    </div>
+                    <textarea class="nhsuk-textarea" id="hosieryConcerns" name="hosieryConcerns" rows="5"
+                              aria-describedby="hosieryConcerns"></textarea>
+                </div>
 
-            <input type="submit" value="Submit">
+                <div class="nhsuk-form-group">
+                    <label class="nhsuk-label" for="cellulitisEpisodes">
+                        5. Episodes of cellulitis since last appointment:
+                    </label>
+                    <div class="nhsuk-hint" id="example-with-hint-text-hint">
+                        Enter number of episodes
+                    </div>
+                    <input class="nhsuk-input nhsuk-input--width-10" id="cellulitisEpisodes" name="cellulitisEpisodes"
+                           type="text" aria-describedby="Number of cellulitis episodes" inputmode="numeric">
+                </div>
+
+            </fieldset>
+            <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+                Submit Questionnaire
+            </button>
         </form>
 
-    </div>
-</div>
-<footer th:replace="~{fragments/mainFragments :: footer}"></footer>
 
-<!--<script src="/scripts/questionnaireFormSc ripts.js"></script>-->
+    </main>
+</div>
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
 
 </body>
 </html>
