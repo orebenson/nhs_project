@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
-public class QuestionnaireResponse {
+public class PreappointmentResponse {
 
     private Long id;
     private String medications;
@@ -16,7 +16,7 @@ public class QuestionnaireResponse {
     private Integer cellulitisEpisodes;
     private LocalDateTime createdAt;
 
-    public QuestionnaireResponse() {
+    public PreappointmentResponse() {
         this.id = null;
         this.medications = "";
         this.changesToHealth = "";
