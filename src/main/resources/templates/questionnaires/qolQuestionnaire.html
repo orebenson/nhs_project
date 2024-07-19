@@ -15,70 +15,156 @@
 <div class="nhsuk-width-container">
     <main class="nhsuk-main-wrapper" id="maincontent" role="main">
 
+        <div class="nhsuk-back-link">
+
+            <a class="nhsuk-back-link__link" th:href="@{/taskhub}">
+                <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                     aria-hidden="true" height="24" width="24">
+                    <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+                </svg>
+                Go back</a>
+        </div>
 
 
-        <!--        page content  goes here-->
-        <h1> Quality of Life Questionnaire </h1>
 
-        <form th:action="@{/submit}" th:object="${response}" method="post">
-            <p><strong>(Q1) How much does your swollen leg affect the following activities?</strong><br>
-                If any of the items are not applicable to you, please write N/A in the relevant answer box(es)</p>
-            <table>
+        <form th:action="@{/submit}" th:object="${responses}" method="post" id="qol-form">
+            <fieldset class="nhsuk-fieldset">
+                <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                    <h1 class="nhsuk-fieldset__heading">
+                        Quality of Life Questionnaire
+                    </h1>
+                </legend>
+                <strong><p>If any of the questions are not applicable to you, please write N/A in the relevant answer box(es)</p></strong>
+                <p><strong>(Q1) How much does your swollen leg affect the following activities?</strong></p>
+                <table>
+<!--                <tr>-->
+<!--                    <th>Activity</th>-->
+<!--                    <th>Not at all</th>-->
+<!--                    <th>A little</th>-->
+<!--                    <th>Quite a bit</th>-->
+<!--                    <th>A lot</th>-->
+<!--                    <th>N/A</th>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>a) Your walking</td>-->
+<!--                    <td><input type="radio" th:field="*{walking}" value="1"></td>-->
+<!--                    <td><input type="radio" th:field="*{walking}" value="2"></td>-->
+<!--                    <td><input type="radio" th:field="*{walking}" value="3"></td>-->
+<!--                    <td><input type="radio" th:field="*{walking}" value="4"></td>-->
+<!--                    <td><input type="radio" th:field="*{walking}" value="0"></td>-->
+<!--                </tr>-->
+
+<!--                <tr>-->
+<!--                    <td>b) Your ability to bend, e.g. to tie shoelaces or cut toenails</td>-->
+<!--                    <td><input type="radio" th:field="*{bending}" value="1"></td>-->
+<!--                    <td><input type="radio" th:field="*{bending}" value="2"></td>-->
+<!--                    <td><input type="radio" th:field="*{bending}" value="3"></td>-->
+<!--                    <td><input type="radio" th:field="*{bending}" value="4"></td>-->
+<!--                    <td><input type="radio" th:field="*{bending}" value="0"></td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>c) Your ability to stand</td>-->
+<!--                    <td><input type="radio" th:field="*{standing}" value="1"></td>-->
+<!--                    <td><input type="radio" th:field="*{standing}" value="2"></td>-->
+<!--                    <td><input type="radio" th:field="*{standing}" value="3"></td>-->
+<!--                    <td><input type="radio" th:field="*{standing}" value="4"></td>-->
+<!--                    <td><input type="radio" th:field="*{standing}" value="0"></td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>d) Your ability to get up from a chair</td>-->
+<!--                    <td><input type="radio" th:field="*{gettingUp}" value="1"></td>-->
+<!--                    <td><input type="radio" th:field="*{gettingUp}" value="2"></td>-->
+<!--                    <td><input type="radio" th:field="*{gettingUp}" value="3"></td>-->
+<!--                    <td><input type="radio" th:field="*{gettingUp}" value="4"></td>-->
+<!--                    <td><input type="radio" th:field="*{gettingUp}" value="0"></td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>e) Your occupation</td>-->
+<!--                    <td><input type="radio" th:field="*{occupation}" value="1"></td>-->
+<!--                    <td><input type="radio" th:field="*{occupation}" value="2"></td>-->
+<!--                    <td><input type="radio" th:field="*{occupation}" value="3"></td>-->
+<!--                    <td><input type="radio" th:field="*{occupation}" value="4"></td>-->
+<!--                    <td><input type="radio" th:field="*{occupation}" value="0"></td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td>f) Your ability to do housework</td>-->
+<!--                    <td><input type="radio" th:field="*{housework}" value="1"></td>-->
+<!--                    <td><input type="radio" th:field="*{housework}" value="2"></td>-->
+<!--                    <td><input type="radio" th:field="*{housework}" value="3"></td>-->
+<!--                    <td><input type="radio" th:field="*{housework}" value="4"></td>-->
+<!--                    <td><input type="radio" th:field="*{housework}" value="0"></td>-->
+<!--                </tr>-->
+<!--            </table>-->
+
+<!--            <p><strong>(Q2) Does the swelling affect your leisure activities/social life?</strong></p>-->
+<!--            <table>-->
+<!--                <tr>-->
+<!--                    <td>Not at all</td>-->
+<!--                    <td><input type="radio" th:field="*{leisureActivities}" value="1"></td>-->
+<!--                    <td>A little</td>-->
+<!--                    <td><input type="radio" th:field="*{leisureActivities}" value="2"></td>-->
+<!--                    <td>Quite a bit</td>-->
+<!--                    <td><input type="radio" th:field="*{leisureActivities}" value="3"></td>-->
+<!--                    <td>A lot</td>-->
+<!--                    <td><input type="radio" th:field="*{leisureActivities}" value="4"></td>-->
+<!--                    <td>N/A</td>-->
+<!--                    <td><input type="radio" th:field="*{leisureActivities}" value="0"></td>-->
+<!--                </tr>-->
+<!--            </table>-->
+<!--            <label for="leisureExamples">Please give examples:</label> <br>-->
+<!--            <textarea id="leisureExamples" th:field="*{leisureExamples}" rows="4" cols="50"></textarea>-->
+<!--            <br>-->
+
+<!--            <table>-->
+<!--                <tr>-->
+<!--                    <th>Question</th>-->
+<!--                    <th>Not at all</th>-->
+<!--                    <th>A little</th>-->
+<!--                    <th>Quite a bit</th>-->
+<!--                    <th>A lot</th>-->
+<!--                    <th>N/A</th>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td><strong>(Q3) How much do you have to depend on other people?</strong></td>-->
+<!--                    <td><input type="radio" th:field="*{dependency}" value="1"></td>-->
+<!--                    <td><input type="radio" th:field="*{dependency}" value="2"></td>-->
+<!--                    <td><input type="radio" th:field="*{dependency}" value="3"></td>-->
+<!--                    <td><input type="radio" th:field="*{dependency}" value="4"></td>-->
+<!--                    <td><input type="radio" th:field="*{dependency}" value="0"></td>-->
+<!--                </tr>-->
+
+<!--                <tr>-->
+<!--                    <td><strong>(Q4) How much do you feel the swelling affects your appearance?</strong></td>-->
+<!--                    <td><input type="radio" th:field="*{appearance}" value="1"></td>-->
+<!--                    <td><input type="radio" th:field="*{appearance}" value="2"></td>-->
+<!--                    <td><input type="radio" th:field="*{appearance}" value="3"></td>-->
+<!--                    <td><input type="radio" th:field="*{appearance}" value="4"></td>-->
+<!--                    <td><input type="radio" th:field="*{appearance}" value="0"></td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                    <td><strong>(Q5) How much difficulty do you have finding clothes to fit?</strong></td>-->
+<!--                    <td><input type="radio" th:field="*{clothesFitDifficulty}" value="1"></td>-->
+<!--                    <td><input type="radio" th:field="*{clothesFitDifficulty}" value="2"></td>-->
+<!--                    <td><input type="radio" th:field="*{clothesFitDifficulty}" value="3"></td>-->
+<!--                    <td><input type="radio" th:field="*{clothesFitDifficulty}" value="4"></td>-->
+<!--                    <td><input type="radio" th:field="*{clothesFitDifficulty}" value="0"></td>-->
+<!--                </tr>-->
                 <tr>
-                    <th>Activity</th>
-                    <th>Not at all</th>
-                    <th>A little</th>
-                    <th>Quite a bit</th>
-                    <th>A lot</th>
-                    <th>N/A</th>
+                    <td>a) Your walking</td>
+                    <td><input type="radio" name="walking" value="1"></td>
+                    <td><input type="radio" name="walking" value="2"></td>
+                    <td><input type="radio" name="walking" value="3"></td>
+                    <td><input type="radio" name="walking" value="4"></td>
+                    <td><input type="radio" name="walking" value="0"></td>
                 </tr>
-                <div class="nhsuk-form-group">
-                    <fieldset class="nhsuk-fieldset">
-                        <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
-                            <h1 class="nhsuk-fieldset__heading">
-                                (Q1) How much does your swollen leg affect your walking?
-                            </h1>
-                        </legend>
 
-                        <div class="nhsuk-radios nhsuk-radios--inline">
-                            <div class="nhsuk-radios__item">
-                                <input class="nhsuk-radios__input" id="walking-1" name="walking" type="radio" value="1">
-                                <label class="nhsuk-label nhsuk-radios__label" for="walking-1">
-                                    Not at all
-                                </label>
-                            </div>
-                            <div class="nhsuk-radios__item">
-                                <input class="nhsuk-radios__input" id="walking-2" name="walking" type="radio" value="2">
-                                <label class="nhsuk-label nhsuk-radios__label" for="walking-2">
-                                    A little
-                                </label>
-                            </div>
-                            <div class="nhsuk-radios__item">
-                                <input class="nhsuk-radios__input" id="walking-3" name="walking" type="radio" value="3">
-                                <label class="nhsuk-label nhsuk-radios__label" for="walking-3">
-                                    Quite a bit
-                                </label>
-                            </div>
-                            <div class="nhsuk-radios__item">
-                                <input class="nhsuk-radios__input" id="walking-4" name="walking" type="radio" value="4">
-                                <label class="nhsuk-label nhsuk-radios__label" for="walking-4">
-                                    A lot
-                                </label>
-                            </div>
-                            <div class="nhsuk-radios__item">
-                                <input class="nhsuk-radios__input" id="walking-na" name="walking" type="radio" value="N/A">
-                                <label class="nhsuk-label nhsuk-radios__label" for="walking-na">
-                                    N/A
-                                </label>
-                            </div>
-                        </div>
-                    </fieldset>
                 <tr>
-                    <td>b) Your ability to bend, e.g., to tie shoelaces or cut toenails</td>
+                    <td>b) Your ability to bend, e.g. to tie shoelaces or cut toenails</td>
                     <td><input type="radio" name="bending" value="1"></td>
                     <td><input type="radio" name="bending" value="2"></td>
                     <td><input type="radio" name="bending" value="3"></td>
                     <td><input type="radio" name="bending" value="4"></td>
+                    <td><input type="radio" name="bending" value="0"></td>
                 </tr>
                 <tr>
                     <td>c) Your ability to stand</td>
@@ -86,6 +172,7 @@
                     <td><input type="radio" name="standing" value="2"></td>
                     <td><input type="radio" name="standing" value="3"></td>
                     <td><input type="radio" name="standing" value="4"></td>
+                    <td><input type="radio" name="standing" value="0"></td>
                 </tr>
                 <tr>
                     <td>d) Your ability to get up from a chair</td>
@@ -93,6 +180,7 @@
                     <td><input type="radio" name="gettingUp" value="2"></td>
                     <td><input type="radio" name="gettingUp" value="3"></td>
                     <td><input type="radio" name="gettingUp" value="4"></td>
+                    <td><input type="radio" name="gettingUp" value="0"></td>
                 </tr>
                 <tr>
                     <td>e) Your occupation</td>
@@ -100,6 +188,7 @@
                     <td><input type="radio" name="occupation" value="2"></td>
                     <td><input type="radio" name="occupation" value="3"></td>
                     <td><input type="radio" name="occupation" value="4"></td>
+                    <td><input type="radio" name="occupation" value="0"></td>
                 </tr>
                 <tr>
                     <td>f) Your ability to do housework</td>
@@ -107,6 +196,7 @@
                     <td><input type="radio" name="housework" value="2"></td>
                     <td><input type="radio" name="housework" value="3"></td>
                     <td><input type="radio" name="housework" value="4"></td>
+                    <td><input type="radio" name="housework" value="0"></td>
                 </tr>
             </table>
 
@@ -121,31 +211,57 @@
                     <td><input type="radio" name="leisureActivities" value="3"></td>
                     <td>A lot</td>
                     <td><input type="radio" name="leisureActivities" value="4"></td>
+                    <td>N/A</td>
+                    <td><input type="radio" name="leisureActivities" value="0"></td>
                 </tr>
             </table>
-            <label for="leisureExamples">Please give examples:</label>
+            <label for="leisureExamples">Please give examples:</label> <br>
             <textarea id="leisureExamples" name="leisureExamples" rows="4" cols="50"></textarea>
+            <br><br>
 
-            <!-- Add similar sections for other questions following the pattern above -->
-            <!-- Skipping directly to Q22 for brevity -->
-
-            <p><strong>(Q22) Overall, how would you rate your quality of life at present?</strong><br>
-                Please mark your score on the following scale:</p>
             <table>
                 <tr>
-                    <td>0 (Poor)</td>
-                    <td><input type="radio" name="qualityOfLife" value="0"></td>
-                    <td>1</td>
-                    <td><input type="radio" name="qualityOfLife" value="1"></td>
-                    <!-- Add more options up to 10 -->
-                    <td>10 (Excellent)</td>
-                    <td><input type="radio" name="qualityOfLife" value="10"></td>
+                    <th>Questions</th>
+                    <th>Not at all</th>
+                    <th>A little</th>
+                    <th>Quite a bit</th>
+                    <th>A lot</th>
+                    <th>N/A</th>
+                </tr>
+                <tr>
+                    <td><strong>(Q3) How much do you have to depend on other people?</strong></td>
+                    <td><input type="radio" name="dependency" value="1"></td>
+                    <td><input type="radio" name="dependency" value="2"></td>
+                    <td><input type="radio" name="dependency" value="3"></td>
+                    <td><input type="radio" name="dependency" value="4"></td>
+                    <td><input type="radio" name="dependency" value="0"></td>
+                </tr>
+
+                <tr>
+                    <td><strong>(Q4) How much do you feel the swelling affects your appearance?</strong></td>
+                    <td><input type="radio" name="appearance" value="1"></td>
+                    <td><input type="radio" name="appearance" value="2"></td>
+                    <td><input type="radio" name="appearance" value="3"></td>
+                    <td><input type="radio" name="appearance" value="4"></td>
+                    <td><input type="radio" name="appearance" value="0"></td>
+                </tr>
+                <tr>
+                    <td><strong>(Q5) How much difficulty do you have finding clothes to fit?</strong></td>
+                    <td><input type="radio" name="clothes_fit_difficulty" value="1"></td>
+                    <td><input type="radio" name="clothes_fit_difficulty" value="2"></td>
+                    <td><input type="radio" name="clothes_fit_difficulty" value="3"></td>
+                    <td><input type="radio" name="clothes_fit_difficulty" value="4"></td>
+                    <td><input type="radio" name="clothes_fit_difficulty" value="0"></td>
                 </tr>
             </table>
-
-            <button type="submit">Submit</button>
-
-
+<!--            <button class="nhsuk-button" data-module="nhsuk-button" type="submit">-->
+<!--                Submit Quality of Life Questionnaire-->
+<!--            </button>-->
+            </fieldset>
+            <a class="nhsuk-button" data-module="nhsuk-button" href="/taskhub/questionnaire-submitted">
+                Submit Quality of Life Questionnaire
+            </a>
+        </form>
     </main>
 </div>
 <footer th:replace="~{fragments/_fragments :: footer}"></footer>

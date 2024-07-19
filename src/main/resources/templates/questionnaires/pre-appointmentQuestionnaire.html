@@ -35,7 +35,7 @@
 
             <p>Please complete and submit this form before your next appointment.</p>
 
-            <form th:action="@{/submitquestionnaire}" method="post">
+            <form th:action="@{/submitquestionnaire}" th:method="post" id="pre-appointment-form">
                 <fieldset class="nhsuk-fieldset">
                     <div class="nhsuk-form-group">
                         <h3 class="nhsuk-label-wrapper">
@@ -104,9 +104,12 @@
                     </div>
 
                 </fieldset>
-                <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
-                    Submit Questionnaire
-                </button>
+<!--                <button class="nhsuk-button" data-module="nhsuk-button" type="submit">-->
+<!--                    Submit Pre-Appointment Questionnaire-->
+<!--                </button>-->
+                <a class="nhsuk-button" data-module="nhsuk-button" href="/taskhub/questionnaire-submitted">
+                    Submit Pre-Appointment Questionnaire
+                </a>
             </form>
 
 
