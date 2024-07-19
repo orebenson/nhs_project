@@ -4,7 +4,7 @@
     <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
 
 
-    <title>Page Title</title>
+    <title>Questionnaire Task Hub</title>
 
     <!--    add any extra javascript file references here-->
 
@@ -15,19 +15,40 @@
 <div class="nhsuk-width-container">
     <main class="nhsuk-main-wrapper" id="maincontent" role="main">
 
+        <h1>Questionnaire TaskHub</h1>
+        <div th:if="${tasksEmpty}">
+            <p>Great! You have no tasks remaining.</p>
+        </div>
+        <div th:unless="${tasksEmpty}">
+            <p>Please note you have outstanding tasks that need to be completed before your next appointment, please
+                click on each of the individual questionnaires.</p>
+            <h2>Tasks Remaining:</h2>
+            <br>
 
+            <div class="nhsuk-action-link">
+                <a class="nhsuk-action-link__link" th:href="@{/taskhub/preappointment-questionnaire}">
+                    <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
+                        <path d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
+                    </svg>
+                    <span class="nhsuk-action-link__text">Pre-Appointment Questionnaire</span>
+                </a>
+            </div>
 
-        <!--        page content  goes here-->
-        <h1> Header 1 </h1>
-        <h2> Header 2</h2>
-        <h3> Header 3</h3>
-        <p>content content content content content content content content content content content content content content content content  content content content content content content content content </p>
-        <p>content content content content content content content content content content content content content content content content  content content content content content content content content </p>
-        <p>content content content content content content content content content content content content content content content content content content content content content content content content </p>
-        <p>contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent content content content content content </p>
-        <!--        content-->
+            <ul>
+                <li th:each="task : ${tasks}" th:text="${task.name}">Task Name</li>
+            </ul>
+            <div th:each="task : ${tasks}">
+                <a th:href="@{/completeTask/{id}(id=${task.id})}" th:text="'Complete ' + ${task.name}">Complete Task</a>
+            </div>
+            <br>
+        </div>
 
-
+        <a class="nhsuk-button nhsuk-button--secondary" data-module="nhsuk-button" href="/">
+            Exit and Complete later
+        </a>
+        <!--        <a href="/saveAndCompleteLater">Save and complete later</a>-->
 
     </main>
 </div>

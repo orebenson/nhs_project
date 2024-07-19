@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class PreAppointmentQuestionnaire {
 
-    @GetMapping("/questionnaires")
+    @GetMapping("/taskhub/preappointment-questionnaire")
     public ModelAndView questionnaire() {
         return new ModelAndView("questionnaires/pre-appointmentQuestionnaire");
     }

@@ -48,8 +48,8 @@ public class SecurityConfig {
             "/register/**",
             "/account",
             "/account/**",
-            "/questionnaires",
-            "/questionnaires/**",
+            "/taskhub",
+            "/taskhub/**",
             "/api/**"
     };
 
