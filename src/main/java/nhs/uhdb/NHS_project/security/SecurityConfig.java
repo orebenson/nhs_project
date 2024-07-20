@@ -44,6 +44,7 @@ public class SecurityConfig {
             "/error",
             "/error/**",
             "/403",
+            "/405",
             "/400",
             "/404",
             "/500",
