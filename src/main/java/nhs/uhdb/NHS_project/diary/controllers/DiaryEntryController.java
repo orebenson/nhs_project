@@ -4,7 +4,6 @@ import nhs.uhdb.NHS_project.accounts.model.User;
 import nhs.uhdb.NHS_project.accounts.service.UserService;
 import nhs.uhdb.NHS_project.admin.model.Exercise;
 import nhs.uhdb.NHS_project.admin.service.ExerciseService;
-import nhs.uhdb.NHS_project.admin.service.TreatmentPlanService;
 import nhs.uhdb.NHS_project.diary.model.DiaryEntry;
 import nhs.uhdb.NHS_project.diary.services.DiaryEntryService;
 import org.springframework.stereotype.Controller;
@@ -31,6 +30,7 @@ public class DiaryEntryController {
         this.exerciseService = exerciseService;
         this.diaryEntryService = diaryEntryService;
     }
+
     @GetMapping("/diary/entry")
     public ModelAndView getDiaryEntry(Principal principal) {
         ModelAndView mav = new ModelAndView("diary/diaryEntry");

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class DiaryEntryRepositoryImpl implements DiaryEntryRepository {
@@ -85,4 +87,16 @@ public class DiaryEntryRepositoryImpl implements DiaryEntryRepository {
             return null;
         }
     }
+
+    @Override
+    public List<DiaryEntry> getDiaryEntriesByUserId(Long user_id) {
+        String sql = "SELECT * FROM diary_entries WHERE user_id = ?";
+        try {
+            return jdbc.query(sql, diaryEntryRowMapper, user_id);
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<>();
+        }
+    }
+
+
 }

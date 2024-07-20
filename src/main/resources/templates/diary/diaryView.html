@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
+    <title>Diary</title>
+</head>
+<body>
+<script th:replace="~{fragments/_fragments :: pagescript}"></script>
+<header th:replace="~{fragments/_fragments :: header}"></header>
+<div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+
+        <h1>Your Diary</h1>
+
+
+        <form th:method="get" th:action="@{/diary/entry}">
+            <div th:if="${todayEntered == null}">
+                <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+                    Enter for today
+                </button>
+            </div>
+
+            <div th:unless="${todayEntered == null}">
+                <button class="nhsuk-button nhsuk-button--secondary" data-module="nhsuk-button" type="submit">
+                    Re-enter for today
+                </button>
+            </div>
+
+        </form>
+
+
+    </main>
+</div>
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
+</body>
+</html>
