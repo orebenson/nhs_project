@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
+    <title>Diary</title>
+</head>
+<body>
+<script th:replace="~{fragments/_fragments :: pagescript}"></script>
+<header th:replace="~{fragments/_fragments :: header}"></header>
+<div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+        <h2>Diary entry for <span th:text="${#temporals.format(date, 'dd/MM/yyyy')}"></span></h2>
+
+        <div th:if="${entry.id == null}">
+            <h3>You do not have an entry for this date</h3>
+        </div>
+
+        <div th:if="${entry.id != null}">
+
+            <dl class="nhsuk-summary-list">
+
+                <div class="nhsuk-summary-list__row">
+                    <dt class="nhsuk-summary-list__key">
+                        Weight
+                    </dt>
+                    <dd class="nhsuk-summary-list__value"
+                        th:text="${entry.weight > 0 ? entry.weight + ' kg' : 'N/A'}"></dd>
+                </div>
+
+                <div class="nhsuk-summary-list__row">
+                    <dt class="nhsuk-summary-list__key">
+                        Cellulitis Details
+                    </dt>
+                    <dd class="nhsuk-summary-list__value"
+                        th:text="${entry.cellulitisDetails.length() > 0 ? entry.cellulitisDetails : 'N/A'}"></dd>
+                </div>
+
+                <div class="nhsuk-summary-list__row">
+                    <dt class="nhsuk-summary-list__key">
+                        Mobility Details
+                    </dt>
+                    <dd class="nhsuk-summary-list__value"
+                        th:text="${entry.mobilityDetails.length() > 0 ? entry.mobilityDetails : 'N/A'}"></dd>
+                </div>
+
+                <div class="nhsuk-summary-list__row">
+                    <dt class="nhsuk-summary-list__key">
+                        Discomfort Details
+                    </dt>
+                    <dd class="nhsuk-summary-list__value"
+                        th:text="${entry.discomfortDetails.length() > 0 ? entry.discomfortDetails : 'N/A'}"></dd>
+                </div>
+
+                <div class="nhsuk-summary-list__row">
+                    <dt class="nhsuk-summary-list__key">
+                        Wellness Score
+                    </dt>
+                    <dd class="nhsuk-summary-list__value"
+                        th:text="${entry.wellnessScore > 0 ? entry.wellnessScore : 'N/A'}"></dd>
+                </div>
+
+                <div class="nhsuk-summary-list__row">
+                    <dt class="nhsuk-summary-list__key">
+                        Quality of Life Score
+                    </dt>
+                    <dd class="nhsuk-summary-list__value"
+                        th:text="${entry.qualityOfLifeScore > 0 ? entry.qualityOfLifeScore : 'N/A'}"></dd>
+                </div>
+
+                <div class="nhsuk-summary-list__row">
+                    <dt class="nhsuk-summary-list__key">
+                        Completed treatments
+                    </dt>
+                    <dd class="nhsuk-summary-list__value">
+                        <div th:if="${entry.completedExercises.size() < 1}">
+                            N/A
+                        </div>
+                        <div th:if="${entry.completedExercises.size() > 0}">
+                            <ul>
+                                <li th:each="exercise : ${entry.completedExercises}" th:text="${exercise.name}"></li>
+                            </ul>
+                        </div>
+                    </dd>
+                </div>
+
+            </dl>
+
+        </div>
+
+    </main>
+</div>
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
+</body>
+</html>

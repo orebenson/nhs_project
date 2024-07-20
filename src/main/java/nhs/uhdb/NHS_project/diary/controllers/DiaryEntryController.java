@@ -6,11 +6,9 @@ import nhs.uhdb.NHS_project.admin.model.Exercise;
 import nhs.uhdb.NHS_project.admin.service.ExerciseService;
 import nhs.uhdb.NHS_project.diary.model.DiaryEntry;
 import nhs.uhdb.NHS_project.diary.services.DiaryEntryService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
@@ -63,6 +61,17 @@ public class DiaryEntryController {
         Long result = diaryEntryService.createDiaryEntry(newEntry);
         if(result == null) return new ModelAndView("diary/diaryEntryError");
         return new ModelAndView("diary/diaryEntrySuccess");
+    }
+
+    @GetMapping("/diary/history/{date}") // date = YYYY-MM-DD
+    public ModelAndView getDiaryHistory(Principal principal, @PathVariable @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate date) {
+        Long user_id = userService.getUserIdByEmail(principal.getName());
+        ModelAndView mav = new ModelAndView("diary/diaryHistory");
+        DiaryEntry diaryEntry = diaryEntryService.getDiaryEntryByUserIdAndDate(user_id, date);
+        if (diaryEntry == null) diaryEntry = new DiaryEntry();
+        mav.addObject("entry", diaryEntry);
+        mav.addObject("date", date);
+        return mav;
     }
 
 }
