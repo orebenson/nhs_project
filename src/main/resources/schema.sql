@@ -6,6 +6,7 @@ drop table if exists treatment_plans;
 drop table if exists exercises;
 drop table if exists videos;
 drop table if exists treatment_plan_exercises;
+drop table if exists user_treatment_plans;
 drop table if exists user_authorities;
 
 create table if not exists user_table

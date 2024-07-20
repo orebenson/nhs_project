@@ -38,12 +38,16 @@ public class ExerciseRepositoryImpl implements ExerciseRepository {
         String sql = "SELECT e.* FROM exercises e " +
                 "JOIN treatment_plan_exercises tpe ON e.exercise_id = tpe.exercise_id " +
                 "WHERE tpe.treatment_plan_id = ?";
-        return jdbc.query(sql, exerciseRowMapper, treatmentPlanId);
+        try {
+            return jdbc.query(sql, exerciseRowMapper, treatmentPlanId);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     @Override
     public Long createExercise(Exercise exercise) {
-        if(exercise.getName().equals("")) return null;
+        if (exercise.getName().equals("")) return null;
 
         Long videoId = videoRepository.createVideo(exercise.getVideoLink());
 
@@ -57,7 +61,12 @@ public class ExerciseRepositoryImpl implements ExerciseRepository {
     @Override
     public Exercise getExerciseById(Long exercise_id) {
         String sql = "SELECT * FROM exercises WHERE exercise_id = ?";
-        return jdbc.queryForObject(sql, exerciseRowMapper, exercise_id);
+        try {
+            return jdbc.queryForObject(sql, exerciseRowMapper, exercise_id);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+
     }
 
     @Override
@@ -73,7 +82,12 @@ public class ExerciseRepositoryImpl implements ExerciseRepository {
                 "JOIN treatment_plan_exercises tpe ON e.exercise_id = tpe.exercise_id " +
                 "JOIN user_treatment_plans utp ON tpe.treatment_plan_id = utp.treatment_plan_id " +
                 "WHERE utp.user_id = ?";
-        return jdbc.query(sql, exerciseRowMapper, user_id);
+        try {
+            return jdbc.query(sql, exerciseRowMapper, user_id);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+
     }
 
     @Override
@@ -83,6 +97,11 @@ public class ExerciseRepositoryImpl implements ExerciseRepository {
                 "JOIN user_treatment_plans utp ON tpe.treatment_plan_id = utp.treatment_plan_id " +
                 "JOIN user_table u ON utp.user_id = u.user_id " +
                 "WHERE u.email = ?";
-        return jdbc.query(sql, exerciseRowMapper, email);
+        try {
+            return jdbc.query(sql, exerciseRowMapper, email);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+
     }
 }

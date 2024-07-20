@@ -1,5 +1,6 @@
 package nhs.uhdb.NHS_project.admin.model;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -33,6 +34,11 @@ public class VideoRepositoryImpl implements VideoRepository{
     @Override
     public Video getVideoById(Long video_id) {
         String sql = "SELECT * FROM videos WHERE video_id = ?";
-        return jdbc.queryForObject(sql, videoRowMapper, video_id);
+        try {
+            return jdbc.queryForObject(sql, videoRowMapper, video_id);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+
     }
 }

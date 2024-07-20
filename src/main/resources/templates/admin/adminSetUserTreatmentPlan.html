@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
+    <title>Admin Area</title>
+    <!-- Add any extra JavaScript file references here -->
+</head>
+<body>
+<script th:replace="~{fragments/_fragments :: pagescript}"></script>
+<header th:replace="~{fragments/_fragments :: header}"></header>
+<div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+        <nav class="nhsuk-breadcrumb" aria-label="Breadcrumb">
+            <div class="nhsuk-width-container">
+                <ol class="nhsuk-breadcrumb__list">
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/admin}">Admin
+                        area</a></li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/admin/search}">Search
+                        patients</a></li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link"
+                                                          th:href="@{/admin/search/{userId}(userId=${user.user_id})}">Patient
+                        details</a></li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Set treatment plan</a>
+                    </li>
+                </ol>
+                <p class="nhsuk-breadcrumb__back">
+                    <a class="nhsuk-breadcrumb__backlink" th:href="@{/admin/search/{userId}(userId=${user.user_id})}">
+                        <span class="nhsuk-u-visually-hidden">Go back &nbsp;</span>
+                        Patient details
+                    </a>
+                </p>
+            </div>
+        </nav>
+
+        <h2>Set treatment plan for user <span
+                th:text="${user.getFirstname() + ' ' + user.getLastname()}">User Name</span></h2>
+        <form th:method="post" th:action="@{/admin/{user_id}/plan(user_id=${user.user_id})}" th:object="${selectedPlan}"
+              id="admin-set-user-plan-form">
+            <div class="nhsuk-form-group">
+                <label class="nhsuk-label" for="select-1">
+                    Treatment plans
+                </label>
+                <select class="nhsuk-select" id="select-1" name="selectedPlanId" th:field="*{id}">
+                    <option th:each="plan : ${plans}" th:value="${plan.getId()}" th:text="${plan.getName()}">Plan Name
+                    </option>
+                </select>
+            </div>
+
+            <div th:each="plan : ${plans}" th:id="'plan-details-' + ${plan.getId()}"
+                 class="nhsuk-summary-list nhsuk-u-visually-hidden">
+                <div class="nhsuk-summary-list__row">
+                    <dt class="nhsuk-summary-list__key">
+                        Name
+                    </dt>
+                    <dd class="nhsuk-summary-list__value">
+                        <span th:text="${plan.getName()}"></span>
+                    </dd>
+                </div>
+                <div class="nhsuk-summary-list__row">
+                    <dt class="nhsuk-summary-list__key">
+                        Description
+                    </dt>
+                    <dd class="nhsuk-summary-list__value">
+                        <p th:text="${plan.getDescription()}"></p>
+                    </dd>
+                </div>
+                <div class="nhsuk-summary-list__row">
+                    <dt class="nhsuk-summary-list__key">
+                        Exercises
+                    </dt>
+                    <dd class="nhsuk-summary-list__value">
+                        <div th:each="exercise : ${plan.getExercises()}">
+                            <span th:text="${exercise.getName()}">Exercise Name</span>
+                            <span>(<a th:text="${exercise.getVideoLink()}" th:href="${exercise.getVideoLink()}">Link</a>)</span>
+                            <br>
+                        </div>
+
+                    </dd>
+                </div>
+            </div>
+
+            <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+                Set plan
+            </button>
+        </form>
+    </main>
+</div>
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
+
+<script>
+    function togglePlanDetails(planDetails, select) {
+        let selectedId = 'plan-details-' + select.value;
+
+        for (let i = 0; i < planDetails.length; i++) {
+            if (planDetails[i].id === selectedId) {
+                planDetails[i].classList.remove('nhsuk-u-visually-hidden');
+            } else {
+                planDetails[i].classList.add('nhsuk-u-visually-hidden');
+            }
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const select = document.getElementById('select-1');
+        const planDetails = document.querySelectorAll('.nhsuk-summary-list');
+        togglePlanDetails(planDetails, select);
+        select.addEventListener('change', () => {
+            togglePlanDetails(planDetails, select)
+        })
+    });
+</script>
+
+</body>
+</html>
