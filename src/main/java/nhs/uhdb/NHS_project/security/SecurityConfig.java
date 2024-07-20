@@ -61,6 +61,8 @@ public class SecurityConfig {
 
     public static final String[] USER_WHITELIST = {
             "/logout",
+            "/diary",
+            "/diary/**",
     };
 
     @Bean

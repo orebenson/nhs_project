@@ -5,8 +5,11 @@ drop table if exists users_roles;
 drop table if exists treatment_plans;
 drop table if exists exercises;
 drop table if exists videos;
+drop table if exists photos;
 drop table if exists treatment_plan_exercises;
 drop table if exists user_treatment_plans;
+drop table if exists diary_entries;
+drop table if exists diary_entry_exercises;
 drop table if exists user_authorities;
 
 create table if not exists user_table
@@ -73,4 +76,28 @@ create table if not exists videos
 (
     video_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     video_link VARCHAR(500) NOT NULL
+) engine = InnoDB;
+
+create table if not exists photos
+(
+    photo_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    photo BLOB NOT NULL
+) engine = InnoDB;
+
+create table if not exists diary_entries (
+   diary_entry_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+   user_id BIGINT NOT NULL,
+   createdAt DATE NOT NULL,
+   weight INT,
+   cellulitisDetails VARCHAR(500),
+   mobilityDetails VARCHAR(500),
+   discomfortDetails VARCHAR(500),
+   wellnessScore INT,
+   qualityOfLifeScore INT
+
+) engine = InnoDB;
+
+create table if not exists diary_entry_exercises (
+    diary_entry_id BIGINT NOT NULL,
+    exercise_id BIGINT NOT NULL
 ) engine = InnoDB;
