@@ -40,15 +40,12 @@
             </div>
         </div>
 
+        <h1>
+            Enter progress for <span th:text="${#temporals.format(date, 'dd/MM/yyyy')}"></span>
+        </h1>
+
         <form th:method="post" th:action="@{/diary/entry}" th:object="${newEntry}" id="diary-entry-form">
             <fieldset class="nhsuk-fieldset">
-                <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
-                    <h1 class="nhsuk-fieldset__heading">
-                        Enter progress for <span th:text="${#temporals.format(date, 'dd/MM/yyyy')}"></span>
-                    </h1>
-                </legend>
-
-
                 <div class="nhsuk-form-group">
                     <label class="nhsuk-label" for="weight">
                         Today's Weight (kg)
@@ -59,7 +56,7 @@
 
                 <div class="nhsuk-form-group">
                     <label class="nhsuk-label" for="wellnessScore">
-                        Wellness Score
+                        How is your mentall well-being today?
                     </label>
                     <select class="nhsuk-select" id="wellnessScore" name="wellnessScore" th:field="*{wellnessScore}">
                         <option value="3" selected>Average</option>
@@ -72,7 +69,7 @@
 
                 <div class="nhsuk-form-group">
                     <label class="nhsuk-label" for="qualityOfLifeScore">
-                        Quality of Life Score
+                        How is your quality of life today?
                     </label>
                     <select class="nhsuk-select" id="qualityOfLifeScore" name="qualityOfLifeScore"
                             th:field="*{qualityOfLifeScore}">
@@ -83,6 +80,39 @@
                         <option value="5">Excellent</option>
                     </select>
                 </div>
+            </fieldset>
+
+            <fieldset class="nhsuk-fieldset">
+                <div class="nhsuk-form-group">
+                    <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                        <h1 class="nhsuk-fieldset__heading">
+                            Which of your treatments have you completed today?
+                        </h1>
+                    </legend>
+
+                    <div class="nhsuk-checkboxes">
+                        <div th:each="exercise : ${userExercises}" class="nhsuk-checkboxes__item">
+                            <input class="nhsuk-checkboxes__input" type="checkbox"
+                                   th:id="'exercise-' + ${exercise.id}" th:name="selectedExercises"
+                                   th:value="${exercise.id}"/>
+
+                            <label class="nhsuk-label nhsuk-checkboxes__label"
+                                   th:for="'exercise-' + ${exercise.id}">
+                                <span th:text="${exercise.name}">Exercise Name</span> -
+                                <a th:href="${exercise.videoLink}" target="_blank"
+                                   th:text="${exercise.videoLink}">Video Link</a>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="nhsuk-fieldset">
+                <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                    <h1 class="nhsuk-fieldset__heading">
+                        Further details
+                    </h1>
+                </legend>
 
                 <div class="nhsuk-character-count" data-module="nhsuk-character-count" data-maxlength="200">
                     <div class="nhsuk-form-group">
@@ -131,9 +161,9 @@
                         You can enter up to 200 characters
                     </div>
                 </div>
-
-
             </fieldset>
+
+
             <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
                 Submit
             </button>

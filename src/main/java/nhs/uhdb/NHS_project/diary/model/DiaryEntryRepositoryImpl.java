@@ -41,12 +41,12 @@ public class DiaryEntryRepositoryImpl implements DiaryEntryRepository {
 
     @Override
     public Long createDiaryEntry(DiaryEntry diaryEntry) {
-        String removeExistingEntrySql = "DELETE FROM diary_entries WHERE user_id = ? AND createdAt = ?";
         String createDiaryEntrySql = "INSERT INTO diary_entries (user_id, createdAt, weight, cellulitisDetails, mobilityDetails, discomfortDetails, wellnessScore, qualityOfLifeScore) VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING diary_entry_id";
         String insertExerciseSql = "INSERT INTO diary_entry_exercises (diary_entry_id, exercise_id) VALUES (?, ?) RETURNING diary_entry_id";
 
         try {
-            jdbc.update(removeExistingEntrySql, diaryEntry.getUser_id(), Date.valueOf(diaryEntry.getCreatedAt()));
+            deleteDiaryEntryIfExists(diaryEntry.getUser_id(), diaryEntry.getCreatedAt());
+
             Long diaryEntryId = jdbc.queryForObject(createDiaryEntrySql, Long.class,
                     diaryEntry.getUser_id(),
                     Date.valueOf(diaryEntry.getCreatedAt()),
@@ -65,6 +65,14 @@ public class DiaryEntryRepositoryImpl implements DiaryEntryRepository {
             return null;
         }
 
+    }
+
+    private void deleteDiaryEntryIfExists(Long userId, LocalDate createdAt) {
+        String removeExistingExercisesSql = "DELETE FROM diary_entry_exercises WHERE diary_entry_id = (SELECT diary_entry_id FROM diary_entries WHERE user_id = ? AND createdAt = ?)";
+        String removeExistingEntrySql = "DELETE FROM diary_entries WHERE user_id = ? AND createdAt = ?";
+
+        jdbc.update(removeExistingExercisesSql, userId, Date.valueOf(createdAt));
+        jdbc.update(removeExistingEntrySql, userId, Date.valueOf(createdAt));
     }
 
 

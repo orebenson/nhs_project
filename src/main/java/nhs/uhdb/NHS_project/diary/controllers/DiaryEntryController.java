@@ -11,10 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -37,17 +39,26 @@ public class DiaryEntryController {
 
         List<Exercise> userExercises = exerciseService.getTreatmentPlanExercisesByUserId(loggedInUser.getUser_id());
         DiaryEntry newEntry = new DiaryEntry();
-        newEntry.setCompletedExercises(userExercises);
         mav.addObject("date", LocalDate.now());
         mav.addObject("newEntry", newEntry);
+        mav.addObject("userExercises", userExercises);
         return mav;
     }
 
     @PostMapping("/diary/entry")
-    public ModelAndView postDiaryEntry(Principal principal, @ModelAttribute("newEntry") DiaryEntry newEntry)  {
+    public ModelAndView postDiaryEntry(Principal principal, @ModelAttribute("newEntry") DiaryEntry newEntry, @RequestParam(value = "selectedExercises", required = false) List<Long> selectedExercises)  {
         newEntry.setUser_id(userService.getUserIdByEmail(principal.getName()));
         newEntry.setCreatedAt(LocalDate.now());
-        // for exercise in the newEntry.exercises, if the value is false (not selected), remove from entry
+
+        if (selectedExercises != null && !selectedExercises.isEmpty()) {
+            List<Exercise> selectedExercisesList = new ArrayList<>();
+            for (Long exerciseId : selectedExercises) {
+                Exercise temp = new Exercise();
+                temp.setId(exerciseId);
+                selectedExercisesList.add(temp);
+            }
+            newEntry.setCompletedExercises(selectedExercisesList);
+        }
 
         Long result = diaryEntryService.createDiaryEntry(newEntry);
         if(result == null) return new ModelAndView("diary/diaryEntryError");
