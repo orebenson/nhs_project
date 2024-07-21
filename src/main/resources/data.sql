@@ -15,30 +15,46 @@ values ('test@test.com','Default','User', '$2a$10$UnsqVzZTipaKE77lf6Bfme/nvIqwIR
 insert into users_roles (user_id, role_id) values (2, 2);
 insert into user_treatment_plans (user_id, treatment_plan_id) values (2, 1);
 
+
+-- add default links
+INSERT INTO videos (video_link) VALUES ('http://example.com/skincare_video');
+INSERT INTO videos (video_link) VALUES ('http://example.com/exercise_video');
+INSERT INTO videos (video_link) VALUES ('http://example.com/sld_mld_video');
+INSERT INTO videos (video_link) VALUES ('http://example.com/compression_video');
+INSERT INTO videos (video_link) VALUES ('http://example.com/donning_doffing_video');
+INSERT INTO videos (video_link) VALUES ('http://example.com/easy_wrap_video');
+
+-- add default exercises
+INSERT INTO exercises (name, description, video_id) VALUES ('Skincare Routine', 'Daily moisturizing and skin inspection to prevent complications.', 1);
+INSERT INTO exercises (name, description, video_id) VALUES ('Daily Exercise Routine', 'Exercise routine to enhance lymphatic flow and reduce swelling.', 2);
+INSERT INTO exercises (name, description, video_id) VALUES ('Self-Lymphatic Drainage (SLD) / Manual Lymphatic Drainage (MLD)', 'Techniques for promoting lymphatic drainage.', 3);
+INSERT INTO exercises (name, description, video_id) VALUES ('Intermittent Pneumatic Compression', 'Using a pneumatic compression device to help reduce swelling.', 4);
+INSERT INTO exercises (name, description, video_id) VALUES ('Donning and Doffing', 'How to properly put on and take off compression garments.', 5);
+INSERT INTO exercises (name, description, video_id) VALUES ('Application of Easy Wraps', 'How to apply and adjust easy wraps or bandages.', 6);
+
+
 -- add default treatment plan 1
-INSERT INTO treatment_plans (name, description) VALUES ('Default Treatment Plan 1', 'This is the default treatment plan.');
-
-INSERT INTO videos (video_link) VALUES ('http://example.com/video1');
-INSERT INTO videos (video_link) VALUES ('http://example.com/video2');
-INSERT INTO videos (video_link) VALUES ('http://example.com/video3');
-
-INSERT INTO exercises (name, description, video_id) VALUES ('Treatment 1', 'Description for Treatment 1', 1);
-INSERT INTO exercises (name, description, video_id) VALUES ('Treatment 2', 'Description for Treatment 2', 2);
-INSERT INTO exercises (name, description, video_id) VALUES ('Treatment 3', 'Description for Treatment 3', 3);
-
+INSERT INTO treatment_plans (name, description) VALUES ('Default Leg Lymphoedema Treatment Plan', 'This treatment plan includes daily practices for managing leg lymphoedema, including skincare, exercises, self-lymphatic drainage, and more.');
 INSERT INTO treatment_plan_exercises (treatment_plan_id, exercise_id) VALUES (1, 1);
 INSERT INTO treatment_plan_exercises (treatment_plan_id, exercise_id) VALUES (1, 2);
 INSERT INTO treatment_plan_exercises (treatment_plan_id, exercise_id) VALUES (1, 3);
+INSERT INTO treatment_plan_exercises (treatment_plan_id, exercise_id) VALUES (1, 4);
+INSERT INTO treatment_plan_exercises (treatment_plan_id, exercise_id) VALUES (1, 5);
+INSERT INTO treatment_plan_exercises (treatment_plan_id, exercise_id) VALUES (1, 6);
+
 
 -- add default treatment plan 2
 INSERT INTO treatment_plans (name, description) VALUES ('Default Treatment Plan 2', 'This is the second default treatment plan.');
-
-INSERT INTO videos (video_link) VALUES ('http://example.com/video4');
-INSERT INTO videos (video_link) VALUES ('http://example.com/video5');
-
-INSERT INTO exercises (name, description, video_id) VALUES ('Treatment 4', 'Description for Treatment 4', 4);
-INSERT INTO exercises (name, description, video_id) VALUES ('Treatment 5', 'Description for Treatment 5', 5);
-
 INSERT INTO treatment_plan_exercises (treatment_plan_id, exercise_id) VALUES (2, 3);
 INSERT INTO treatment_plan_exercises (treatment_plan_id, exercise_id) VALUES (2, 4);
 INSERT INTO treatment_plan_exercises (treatment_plan_id, exercise_id) VALUES (2, 5);
+
+
+-- add default treatment plan 3
+INSERT INTO treatment_plans (name, description) VALUES ('Default Treatment Plan 3', 'This is the third default treatment plan.');
+INSERT INTO treatment_plan_exercises (treatment_plan_id, exercise_id) VALUES (3, 1);
+INSERT INTO treatment_plan_exercises (treatment_plan_id, exercise_id) VALUES (3, 2);
+INSERT INTO treatment_plan_exercises (treatment_plan_id, exercise_id) VALUES (3, 3);
+
+
+
