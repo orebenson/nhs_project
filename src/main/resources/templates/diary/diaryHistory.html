@@ -9,6 +9,25 @@
 <header th:replace="~{fragments/_fragments :: header}"></header>
 <div class="nhsuk-width-container">
     <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+
+        <nav class="nhsuk-breadcrumb" aria-label="Breadcrumb">
+            <div class="nhsuk-width-container">
+                <ol class="nhsuk-breadcrumb__list">
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/diary}">Diary</a>
+                    </li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Diary entry for <span th:text="${#temporals.format(date, 'dd/MM/yyyy')}"></span></a>
+                    </li>
+
+                </ol>
+                <p class="nhsuk-breadcrumb__back">
+                    <a class="nhsuk-breadcrumb__backlink" th:href="@{/diary}">
+                        <span class="nhsuk-u-visually-hidden">Go back &nbsp;</span>
+                        Diary
+                    </a>
+                </p>
+            </div>
+        </nav>
+
         <h2>Diary entry for <span th:text="${#temporals.format(date, 'dd/MM/yyyy')}"></span></h2>
 
         <div th:if="${entry.id == null}">

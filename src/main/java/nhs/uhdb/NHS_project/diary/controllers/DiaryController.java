@@ -32,10 +32,9 @@ public class DiaryController {
         Long user_id = userService.getUserIdByEmail(principal.getName());
 
         DiaryEntry todayEntered = diaryEntryService.getDiaryEntryByUserIdAndDate(user_id, LocalDate.now());
-        List<DiaryEntry> userDiaryEntries = diaryEntryService.getDiaryEntriesByUserId(user_id);
-
+        List<String> userDiaryEntries = diaryEntryService.getFormattedDiaryEntryDatesByUserId(user_id);
         mav.addObject("todayEntered",todayEntered);
-        mav.addObject("userDiaryEntries",userDiaryEntries);
+        mav.addObject("entryDates",userDiaryEntries);
         return mav;
     }
 

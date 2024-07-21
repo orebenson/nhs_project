@@ -9,4 +9,5 @@ public interface DiaryEntryService {
     Long createDiaryEntry(DiaryEntry diaryEntry);
     DiaryEntry getDiaryEntryByUserIdAndDate(Long user_id, LocalDate date);
     List<DiaryEntry> getDiaryEntriesByUserId(Long user_id);
+    List<String> getFormattedDiaryEntryDatesByUserId(Long user_id);
 }

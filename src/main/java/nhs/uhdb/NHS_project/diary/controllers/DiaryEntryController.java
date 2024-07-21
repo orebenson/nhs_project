@@ -63,7 +63,7 @@ public class DiaryEntryController {
         return new ModelAndView("diary/diaryEntrySuccess");
     }
 
-    @GetMapping("/diary/history/{date}") // date = YYYY-MM-DD
+    @GetMapping("/diary/history/{date}")
     public ModelAndView getDiaryHistory(Principal principal, @PathVariable @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate date) {
         Long user_id = userService.getUserIdByEmail(principal.getName());
         ModelAndView mav = new ModelAndView("diary/diaryHistory");
