@@ -25,9 +25,22 @@ public class DiaryController {
         this.treatmentPlanService = treatmentPlanService;
     }
 
-    @GetMapping("/diary")
+    @GetMapping("/diaryview")
     public ModelAndView getDiaryView(Principal principal) {
         ModelAndView mav = new ModelAndView("diary/diaryView");
+
+        Long user_id = userService.getUserIdByEmail(principal.getName());
+
+        DiaryEntry todayEntered = diaryEntryService.getDiaryEntryByUserIdAndDate(user_id, LocalDate.now());
+        List<String> userDiaryEntries = diaryEntryService.getFormattedDiaryEntryDatesByUserId(user_id);
+        mav.addObject("todayEntered",todayEntered);
+        mav.addObject("entryDates",userDiaryEntries);
+        return mav;
+    }
+
+    @GetMapping("/diary")
+    public ModelAndView getDiary(Principal principal) {
+        ModelAndView mav = new ModelAndView("diary/diary");
 
         Long user_id = userService.getUserIdByEmail(principal.getName());
 
