@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -85,7 +86,7 @@ public class ExerciseRepositoryImpl implements ExerciseRepository {
         try {
             return jdbc.query(sql, exerciseRowMapper, user_id);
         } catch (EmptyResultDataAccessException e) {
-            return null;
+            return new ArrayList<>();
         }
 
     }
@@ -100,8 +101,20 @@ public class ExerciseRepositoryImpl implements ExerciseRepository {
         try {
             return jdbc.query(sql, exerciseRowMapper, email);
         } catch (EmptyResultDataAccessException e) {
-            return null;
+            return new ArrayList<>();
         }
 
+    }
+
+    @Override
+    public List<Exercise> getCompletedExercisesByDiaryEntryId(Long diary_entry_id) {
+        String sql = "SELECT e.* FROM exercises e " +
+                "JOIN diary_entry_exercises dee ON e.exercise_id = dee.exercise_id " +
+                "WHERE dee.diary_entry_id = ?";
+        try {
+            return jdbc.query(sql, exerciseRowMapper, diary_entry_id);
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<>();
+        }
     }
 }
