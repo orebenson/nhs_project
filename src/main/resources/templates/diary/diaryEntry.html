@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
+    <script src="/js/validation/_formValidatorUtil.js" defer></script>
+    <script src="/js/validation/diaryEntryFormValidation.js" defer></script>
+    <title>Diary Entry</title>
+</head>
+<body>
+<script th:replace="~{fragments/_fragments :: pagescript}"></script>
+<header th:replace="~{fragments/_fragments :: header}"></header>
+<div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+
+        <nav class="nhsuk-breadcrumb" aria-label="Breadcrumb">
+            <div class="nhsuk-width-container">
+                <ol class="nhsuk-breadcrumb__list">
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/diary}">Diary</a>
+                    </li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Diary entry</a>
+                    </li>
+
+                </ol>
+                <p class="nhsuk-breadcrumb__back">
+                    <a class="nhsuk-breadcrumb__backlink" th:href="@{/diary}">
+                        <span class="nhsuk-u-visually-hidden">Go back &nbsp;</span>
+                        Diary
+                    </a>
+                </p>
+            </div>
+        </nav>
+
+        <div class="nhsuk-error-summary nhsuk-u-visually-hidden" aria-labelledby="error-summary-title" role="alert"
+             tabindex="-1">
+            <h2 class="nhsuk-error-summary__title" id="error-summary-title">
+                There is a problem
+            </h2>
+            <div class="nhsuk-error-summary__body">
+                <ul class="nhsuk-list nhsuk-error-summary__list" role="list" id="error-summary-list"></ul>
+            </div>
+        </div>
+
+        <h1>
+            Enter progress for <span th:text="${#temporals.format(date, 'dd/MM/yyyy')}"></span>
+        </h1>
+
+        <form th:method="post" th:action="@{/diary/entry}" th:object="${newEntry}" id="diary-entry-form">
+            <fieldset class="nhsuk-fieldset">
+                <div class="nhsuk-form-group">
+                    <label class="nhsuk-label" for="weight">
+                        Today's Weight (kg)
+                    </label>
+                    <input class="nhsuk-input nhsuk-input--width-4" type="number" id="weight" name="weight"
+                           th:field="*{weight}"/>
+                </div>
+
+                <div class="nhsuk-form-group">
+                    <label class="nhsuk-label" for="wellnessScore">
+                        How is your mentall well-being today?
+                    </label>
+                    <select class="nhsuk-select" id="wellnessScore" name="wellnessScore" th:field="*{wellnessScore}">
+                        <option value="3" selected>3 - Average</option>
+                        <option value="1">1 - Extremely Poor</option>
+                        <option value="2">2 - Poor</option>
+                        <option value="4">4 - Good</option>
+                        <option value="5">5 - Excellent</option>
+                    </select>
+                </div>
+
+                <div class="nhsuk-form-group">
+                    <label class="nhsuk-label" for="qualityOfLifeScore">
+                        How is your quality of life today?
+                    </label>
+                    <select class="nhsuk-select" id="qualityOfLifeScore" name="qualityOfLifeScore"
+                            th:field="*{qualityOfLifeScore}">
+                        <option value="3" selected>3 - Average</option>
+                        <option value="1">1 - Extremely Poor</option>
+                        <option value="2">2 - Poor</option>
+                        <option value="4">4 - Good</option>
+                        <option value="5">5 - Excellent</option>
+                    </select>
+                </div>
+            </fieldset>
+
+            <fieldset class="nhsuk-fieldset">
+                <div class="nhsuk-form-group">
+                    <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                        <h1 class="nhsuk-fieldset__heading">
+                            Which of your treatments have you completed today?
+                        </h1>
+                    </legend>
+
+                    <div class="nhsuk-checkboxes">
+                        <div th:each="exercise : ${userExercises}" class="nhsuk-checkboxes__item">
+                            <input class="nhsuk-checkboxes__input" type="checkbox"
+                                   th:id="'exercise-' + ${exercise.id}" th:name="selectedExercises"
+                                   th:value="${exercise.id}"/>
+
+                            <label class="nhsuk-label nhsuk-checkboxes__label"
+                                   th:for="'exercise-' + ${exercise.id}">
+                                <span th:text="${exercise.name}">Exercise Name</span> -
+                                <a th:href="${exercise.videoLink}" target="_blank"
+                                   th:text="${exercise.videoLink}">Video Link</a>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="nhsuk-fieldset">
+                <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                    <h1 class="nhsuk-fieldset__heading">
+                        Further details
+                    </h1>
+                </legend>
+
+                <div class="nhsuk-character-count" data-module="nhsuk-character-count" data-maxlength="200">
+                    <div class="nhsuk-form-group">
+                        <label class="nhsuk-label nhsuk-u-width-two-thirds" for="cellulitisDetails">
+                            If you experienced any episodes of cellulitis, please provide details here. If not, you
+                            can
+                            leave this field blank.
+                        </label>
+                        <textarea class="nhsuk-textarea nhsuk-js-character-count nhsuk-u-width-two-thirds"
+                                  id="cellulitisDetails"
+                                  name="cellulitisDetails" rows="2" aria-describedby="cellulitisDetails-hint"
+                                  th:field="*{cellulitisDetails}"></textarea>
+                    </div>
+                    <div class="nhsuk-hint nhsuk-character-count__message" id="cellulitisDetails-info">
+                        You can enter up to 200 characters
+                    </div>
+                </div>
+
+                <div class="nhsuk-character-count" data-module="nhsuk-character-count" data-maxlength="200">
+                    <div class="nhsuk-form-group">
+                        <label class="nhsuk-label nhsuk-u-width-two-thirds" for="mobilityDetails">
+                            Please describe any mobility issues you have experienced. If you have not had any issues,
+                            you may leave this field blank.
+                        </label>
+                        <textarea class="nhsuk-textarea nhsuk-js-character-count nhsuk-u-width-two-thirds"
+                                  id="mobilityDetails" name="mobilityDetails" rows="2"
+                                  aria-describedby="mobilityDetails-hint" th:field="*{mobilityDetails}"></textarea>
+                    </div>
+                    <div class="nhsuk-hint nhsuk-character-count__message" id="mobilityDetails-info">
+                        You can enter up to 200 characters
+                    </div>
+                </div>
+
+                <div class="nhsuk-character-count" data-module="nhsuk-character-count" data-maxlength="200">
+                    <div class="nhsuk-form-group">
+                        <label class="nhsuk-label nhsuk-u-width-two-thirds" for="discomfortDetails">
+                            If you have experienced any discomfort, please provide details here. If not, you can leave
+                            this
+                            field blank.
+                        </label>
+                        <textarea class="nhsuk-textarea nhsuk-js-character-count nhsuk-u-width-two-thirds"
+                                  id="discomfortDetails" name="discomfortDetails" rows="2"
+                                  aria-describedby="discomfortDetails-hint" th:field="*{discomfortDetails}"></textarea>
+                    </div>
+                    <div class="nhsuk-hint nhsuk-character-count__message" id="discomfortDetails-info">
+                        You can enter up to 200 characters
+                    </div>
+                </div>
+            </fieldset>
+
+
+            <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+                Submit
+            </button>
+        </form>
+
+        <div th:unless="${#authorization.expression('isAuthenticated()') and #authorization.expression('hasRole(''USER'')')}">
+            <script th:inline="javascript">
+                window.location.href = '/login';
+            </script>
+        </div>
+
+    </main>
+</div>
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
+</body>
+</html>

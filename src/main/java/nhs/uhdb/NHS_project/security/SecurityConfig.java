@@ -41,9 +41,17 @@ public class SecurityConfig {
             "/css/**",
             "/js/**",
             "/assets/**",
+            "/error",
+            "/error/**",
             "/403",
+            "/405",
+            "/400",
+            "/404",
+            "/500",
+            "/landing",
             "/login",
             "/login/**",
+            "/logout",
             "/register",
             "/register/**",
             "/account",
@@ -53,6 +61,8 @@ public class SecurityConfig {
 
     public static final String[] USER_WHITELIST = {
             "/logout",
+            "/diary",
+            "/diary/**",
     };
 
     @Bean

@@ -1,6 +1,7 @@
 package nhs.uhdb.NHS_project.admin.model;
 
 import nhs.uhdb.NHS_project.accounts.model.User;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -54,7 +55,7 @@ public class TreatmentPlanRepositoryImpl implements TreatmentPlanRepository {
     }
 
     private Long updateTreatmentPlan(TreatmentPlan plan) {
-        String sql = "UPDATE treatment_plans SET name = ?, description = ?, WHERE treatment_plan_id = ?";
+        String sql = "UPDATE treatment_plans SET name = ?, description = ? WHERE treatment_plan_id = ?";
         jdbc.update(sql, plan.getName(), plan.getDescription(), plan.getId());
         createExercisesForTreatmentPlan(plan);
         return plan.getId();
@@ -75,9 +76,18 @@ public class TreatmentPlanRepositoryImpl implements TreatmentPlanRepository {
 
     @Override
     public Boolean setUserTreatmentPlan(Long user_id, Long treatment_plan_id) {
-        String sql = "INSERT INTO user_treatment_plans (user_id, treatment_plan_id) VALUES (?, ?)";
-        int rowsAffected = jdbc.update(sql, user_id, treatment_plan_id);
-        return rowsAffected > 0;
+        if(treatment_plan_id == 0) return true;
+
+        try {
+            String deleteSql = "DELETE FROM user_treatment_plans WHERE user_id = ?";
+            jdbc.update(deleteSql, user_id);
+
+            String sql = "INSERT INTO user_treatment_plans (user_id, treatment_plan_id) VALUES (?, ?)";
+            int rowsAffected = jdbc.update(sql, user_id, treatment_plan_id);
+            return rowsAffected > 0;
+        } catch (EmptyResultDataAccessException e) {
+            return false;
+        }
     }
 
     @Override
@@ -85,7 +95,11 @@ public class TreatmentPlanRepositoryImpl implements TreatmentPlanRepository {
         String sql = "SELECT tp.* FROM treatment_plans tp " +
                 "JOIN user_treatment_plans utp ON tp.treatment_plan_id = utp.treatment_plan_id " +
                 "WHERE utp.user_id = ?";
-        return jdbc.queryForObject(sql, treatmentPlanMapper, user_id);
+        try {
+            return jdbc.queryForObject(sql, treatmentPlanMapper, user_id);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     @Override
@@ -94,6 +108,11 @@ public class TreatmentPlanRepositoryImpl implements TreatmentPlanRepository {
                 "JOIN user_treatment_plans utp ON tp.treatment_plan_id = utp.treatment_plan_id " +
                 "JOIN user_table u ON utp.user_id = u.user_id " +
                 "WHERE u.email = ?";
-        return jdbc.queryForObject(sql, treatmentPlanMapper, email);
+        try {
+            return jdbc.queryForObject(sql, treatmentPlanMapper, email);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+
     }
 }

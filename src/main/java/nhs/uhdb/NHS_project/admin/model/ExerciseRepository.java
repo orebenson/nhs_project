@@ -11,4 +11,6 @@ public interface ExerciseRepository {
     List<Exercise> getTreatmentPlanExercisesByUserId(Long user_id);
 
     List<Exercise> getTreatmentPlanExercisesByUserEmail(String email);
+    List<Exercise> getCompletedExercisesByDiaryEntryId(Long diary_entry_id);
+
 }

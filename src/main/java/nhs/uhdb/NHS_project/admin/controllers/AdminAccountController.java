@@ -2,6 +2,8 @@ package nhs.uhdb.NHS_project.admin.controllers;
 
 import nhs.uhdb.NHS_project.accounts.model.User;
 import nhs.uhdb.NHS_project.accounts.service.UserService;
+import nhs.uhdb.NHS_project.admin.model.TreatmentPlan;
+import nhs.uhdb.NHS_project.admin.service.TreatmentPlanService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,9 +17,11 @@ import java.security.Principal;
 public class AdminAccountController {
 
     private UserService userService;
+    private TreatmentPlanService treatmentPlanService;
 
-    public AdminAccountController(UserService userService) {
+    public AdminAccountController(UserService userService, TreatmentPlanService treatmentPlanService) {
         this.userService = userService;
+        this.treatmentPlanService = treatmentPlanService;
     }
 
     @GetMapping("/admin")
@@ -70,8 +74,17 @@ public class AdminAccountController {
     @GetMapping("/admin/search/{id}")
     public ModelAndView adminViewUser(@PathVariable Long id) {
         ModelAndView mav = new ModelAndView("admin/adminViewUser");
+
         User user = userService.getUserByUserId(id);
-        if (user == null) return new ModelAndView("admin/adminSearchUser");
+        if (user == null) return new ModelAndView("admin/adminSearchUserError");
+
+        TreatmentPlan userPlan = treatmentPlanService.getTreatmentPlanByUserId(id);
+        if(userPlan == null) {
+            userPlan = new TreatmentPlan();
+            userPlan.setName("None");
+        }
+
+        mav.addObject("userPlan", userPlan);
         mav.addObject("user", user);
         return mav;
     }

@@ -16,15 +16,23 @@
 <div class="nhsuk-width-container">
     <main class="nhsuk-main-wrapper" id="maincontent" role="main">
 
-        <div class="nhsuk-back-link">
+        <nav class="nhsuk-breadcrumb" aria-label="Breadcrumb">
+            <div class="nhsuk-width-container">
+                <ol class="nhsuk-breadcrumb__list">
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/admin}">Admin
+                        area</a></li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Create treatment plan</a>
+                    </li>
 
-            <a class="nhsuk-back-link__link" th:href="@{/admin}">
-                <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                     aria-hidden="true" height="24" width="24">
-                    <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
-                </svg>
-                Go back</a>
-        </div>
+                </ol>
+                <p class="nhsuk-breadcrumb__back">
+                    <a class="nhsuk-breadcrumb__backlink" th:href="@{/admin}">
+                        <span class="nhsuk-u-visually-hidden">Go back &nbsp;</span>
+                        Admin area
+                    </a>
+                </p>
+            </div>
+        </nav>
 
 
         <div class="nhsuk-error-summary nhsuk-u-visually-hidden" aria-labelledby="error-summary-title" role="alert"
@@ -57,16 +65,16 @@
                     <label class="nhsuk-label" for="description">
                         Description:
                     </label>
-                    <textarea class="nhsuk-textarea" id="description" name="description" rows="3"
+                    <textarea class="nhsuk-textarea nhsuk-u-width-two-thirds" id="description" name="description" rows="2"
                               aria-describedby="example-hint" th:field="*{description}"></textarea>
                 </div>
             </fieldset>
 
             <div id="exercises-container">
                 <fieldset class="nhsuk-fieldset exercise-fieldset">
-                    <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                    <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--m">
                         <h1 class="nhsuk-fieldset__heading">
-                            Exercise 1 details
+                            Treatment 1 details
                         </h1>
                     </legend>
 
@@ -81,7 +89,7 @@
                         <label class="nhsuk-label" for="exercise-0-description">
                             Description:
                         </label>
-                        <textarea class="nhsuk-textarea" id="exercise-0-description" name="exercises[0].description" rows="2"></textarea>
+                        <textarea class="nhsuk-textarea nhsuk-u-width-two-thirds" id="exercise-0-description" name="exercises[0].description" rows="2"></textarea>
                     </div>
                     <div class="nhsuk-form-group">
                         <label class="nhsuk-label" for="exercise-0-video-link">
@@ -94,7 +102,7 @@
 
 
             <button class="nhsuk-button nhsuk-button--secondary" type="button" id="add-exercise-button">
-                Add an exercise
+                Add a treatment or exercise
             </button>
 
             <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
@@ -122,10 +130,10 @@
             fieldset.className = 'nhsuk-fieldset exercise-fieldset';
 
             const legend = document.createElement('legend');
-            legend.className = 'nhsuk-fieldset__legend nhsuk-fieldset__legend--l';
+            legend.className = 'nhsuk-fieldset__legend nhsuk-fieldset__legend--m';
             const h1 = document.createElement('h1');
             h1.className = 'nhsuk-fieldset__heading';
-            h1.innerText = `Exercise ${exerciseCount+1} details`;
+            h1.innerText = `Treatment ${exerciseCount+1} details`;
             legend.appendChild(h1);
             fieldset.appendChild(legend);
 
@@ -151,7 +159,7 @@
             descriptionLabel.setAttribute('for', `exercise-${exerciseCount}-description`);
             descriptionLabel.innerText = 'Description:';
             const descriptionTextarea = document.createElement('textarea');
-            descriptionTextarea.className = 'nhsuk-textarea';
+            descriptionTextarea.className = 'nhsuk-textarea nhsuk-u-width-two-thirds';
             descriptionTextarea.id = `exercise-${exerciseCount}-description`;
             descriptionTextarea.name = `exercises[${exerciseCount}].description`;
             descriptionTextarea.rows = '2';

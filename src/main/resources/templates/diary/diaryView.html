@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
+    <title>Diary</title>
+</head>
+<body>
+<script th:replace="~{fragments/_fragments :: pagescript}"></script>
+<header th:replace="~{fragments/_fragments :: header}"></header>
+<div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+
+        <h1>Your Diary</h1>
+
+        <p>Welcome to your personalized treatment tracking area. This space is designed for you and your doctor to monitor your progress together.</p>
+        <ul>
+            <li>Log daily updates and developments related to your treatment</li>
+            <li>Review past entries</li>
+            <li>Submit information for your doctor to review</li>
+        </ul>
+
+        <form th:method="get" th:action="@{/diary/entry}">
+            <div th:if="${todayEntered == null}">
+                <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+                    Add today's diary entry
+                </button>
+            </div>
+
+            <div th:unless="${todayEntered == null}">
+                <button class="nhsuk-button nhsuk-button--secondary" data-module="nhsuk-button" type="submit">
+                    Update today's diary entry
+                </button>
+            </div>
+        </form>
+
+        <details class="nhsuk-details nhsuk-expander nhsuk-u-width-two-thirds">
+            <summary class="nhsuk-details__summary">
+                <span class="nhsuk-details__summary-text">
+                  Previous entries
+                </span>
+            </summary>
+            <div class="nhsuk-details__text" th:if="${entryDates.size() < 1}">
+                <p>You do not have any diary entries</p>
+            </div>
+            <div class="nhsuk-details__text" th:if="${entryDates.size() > 0}">
+                <p th:each="date : ${entryDates}">
+                    <a th:href="@{/diary/history/{date}(date=${date})}" th:text="${date}"></a>
+                </p>
+            </div>
+        </details>
+
+
+    </main>
+</div>
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
+</body>
+</html>
