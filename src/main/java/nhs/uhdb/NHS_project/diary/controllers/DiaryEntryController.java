@@ -93,7 +93,7 @@ public class DiaryEntryController {
             Files.createDirectories(filePath.getParent());
             Files.copy(photo.getInputStream(), filePath);
 
-            newEntry.setPhotoUrl(filePath.toString());
+            //newEntry.setPhotoUrl(filePath.toString());
         }
 
         Long result = diaryEntryService.createDiaryEntry(newEntry);

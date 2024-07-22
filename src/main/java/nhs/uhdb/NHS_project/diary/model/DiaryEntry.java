@@ -21,8 +21,8 @@ public class DiaryEntry {
     private int wellnessScore;
     private int qualityOfLifeScore;
     private List<Exercise> completedExercises;
-    private String photoUrl;     // URL to the uploaded photo
-    private String measurements; // Measurement details
+
+
 
 
     public DiaryEntry() {
@@ -36,8 +36,7 @@ public class DiaryEntry {
         this.wellnessScore = 0;
         this.qualityOfLifeScore = 0;
         this.completedExercises = new ArrayList<>();
-        this.photoUrl = "";
-        this.measurements = "";
+
     }
 
 }
