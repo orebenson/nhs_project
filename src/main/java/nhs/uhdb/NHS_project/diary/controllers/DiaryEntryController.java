@@ -10,11 +10,19 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.multipart.MultipartFile;
+import java.io.IOException;
+
+
 
 import java.security.Principal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.Files;
+
 
 @Controller
 public class DiaryEntryController {
@@ -73,5 +81,27 @@ public class DiaryEntryController {
         mav.addObject("date", date);
         return mav;
     }
+
+    @PostMapping("/diary/entryWithPhoto")
+    public ModelAndView postDiaryEntry(Principal principal, @ModelAttribute("newEntry") DiaryEntry newEntry,
+                                       @RequestParam("photo") MultipartFile photo,
+                                       @RequestParam(value = "selectedExercises", required = false) List<Long> selectedExercises) throws IOException {
+        if (!photo.isEmpty()) {
+            String directory = "/uploads/diary_photos/";
+            String filename = photo.getOriginalFilename();
+            Path filePath = Paths.get(directory, filename);
+            Files.createDirectories(filePath.getParent());
+            Files.copy(photo.getInputStream(), filePath);
+
+            newEntry.setPhotoUrl(filePath.toString());
+        }
+
+        Long result = diaryEntryService.createDiaryEntry(newEntry);
+        if(result == null) return new ModelAndView("redirect:/diary/entryError");
+
+        return new ModelAndView("redirect:/diary/entrySuccess");
+    }
+
+
 
 }
