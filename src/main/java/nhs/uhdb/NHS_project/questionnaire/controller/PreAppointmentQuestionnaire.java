@@ -12,9 +12,5 @@ public class PreAppointmentQuestionnaire {
         return new ModelAndView("questionnaires/pre-appointmentQuestionnaire");
     }
 
-//    @PostMapping("/questionnaires")
-//    public ModelAndView submitForm(){
-//    return new
-//    }
 
 }

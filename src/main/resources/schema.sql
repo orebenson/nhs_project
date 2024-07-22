@@ -36,54 +36,6 @@ create table if not exists users_roles
     role_id  BIGINT      NOT NULL
 ) engine = InnoDB;
 
--- create table if not exists qol_responses
--- (
---     id                  BIGINT AUTO_INCREMENT PRIMARY KEY,
---     user_id             BIGINT NOT NULL,
---     walking             BIGINT NOT NULL,
---     bending             BIGINT NOT NULL,
---     standing            BIGINT NOT NULL,
---     getting_up          BIGINT NOT NULL,
---     occupation          BIGINT NOT NULL,
---     housework           BIGINT NOT NULL,
---     leisure_activities  TEXT,
---     dependency          BIGINT NOT NULL,
---     appearance          BIGINT NOT NULL,
---     clothes_fit_difficulty  BIGINT NOT NULL,
---     clothes_preference_difficulty   BIGINT NOT NULL,
---     shoes_fit_difficulty    BIGINT NOT NULL,
---     socks_fit_difficulty    BIGINT NOT NULL,
---     self_perception         BIGINT NOT NULL,
---     relationship_impact     BIGINT NOT NULL,
---     pain                BIGINT NOT NULL,
---     numbness            BIGINT NOT NULL,
---     pins_needles        BIGINT NOT NULL,
---     leg_weakness        BIGINT NOT NULL,
---     leg_heaviness       BIGINT NOT NULL,
---     sleep_trouble       BIGINT NOT NULL,
---     difficulty_concentrating BIGINT NOT NULL,
---     feeling_tense       BIGINT NOT NULL,
---     feeling_worried     BIGINT NOT NULL,
---     feeling_irritable   BIGINT NOT NULL,
---     feeling_depressed   BIGINT NOT NULL,
---     quality_of_life     BIGINT NOT NULL,
---     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
---     FOREIGN KEY (user_id) REFERENCES user_table(user_id)
--- ) engine = InnoDB;
-
-create table if not exists questionnaire_responses
-(
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        user_id  BIGINT NOT NULL,
-        medications TEXT NOT NULL,
-        changes_to_health TEXT NOT NULL,
-        swelling_concerns TEXT NOT NULL,
-        hosiery_concerns TEXT NOT NULL,
-        cellulitis_episodes BIGINT NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
---         FOREIGN KEY (user_id) REFERENCES user_table(user_id)
-) engine = InnoDB;
-
 create view if not exists user_authorities as
 select u.user_id as user_id, CONCAT('ROLE_', r.name) as authority
 from user_table u

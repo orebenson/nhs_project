@@ -12,9 +12,5 @@ public class QolQuestionnaire {
         return new ModelAndView("questionnaires/qolQuestionnaire");
     }
 
-//    @PostMapping("/questionnaires")
-//    public ModelAndView submitForm(){
-//    return new
-//    }
 
 }
