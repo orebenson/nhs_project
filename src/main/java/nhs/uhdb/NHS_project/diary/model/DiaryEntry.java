@@ -22,6 +22,9 @@ public class DiaryEntry {
     private int qualityOfLifeScore;
     private List<Exercise> completedExercises;
 
+
+
+
     public DiaryEntry() {
         this.id = null;
         this.user_id = null;
@@ -33,6 +36,7 @@ public class DiaryEntry {
         this.wellnessScore = 0;
         this.qualityOfLifeScore = 0;
         this.completedExercises = new ArrayList<>();
+
     }
 
 }

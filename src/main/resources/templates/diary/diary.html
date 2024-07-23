@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
+    <title>Patient Diary</title>
+    <!-- Add any extra JavaScript file references here -->
+</head>
+<body>
+<script th:replace="~{fragments/_fragments :: pagescript}"></script>
+<header th:replace="~{fragments/_fragments :: header}"></header>
+<div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+
+        <!-- Diary Landing Page -->
+        <h1 class="nhsuk-heading-xl">My Diary</h1>
+
+        <!--        enter for today-->
+        <form th:method="get" th:action="@{/diary/entry}">
+            <div th:if="${todayEntered == null}">
+                <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+                    Add today's diary entry
+                </button>
+            </div>
+
+            <div th:unless="${todayEntered == null}">
+                <button class="nhsuk-button nhsuk-button--secondary" data-module="nhsuk-button" type="submit">
+                    Update today's diary entry
+                </button>
+            </div>
+        </form>
+
+        <!--        previous diary entries-->
+        <details class="nhsuk-details nhsuk-expander nhsuk-u-width-two-thirds">
+            <summary class="nhsuk-details__summary">
+                <span class="nhsuk-details__summary-text">
+                  Previous entries
+                </span>
+            </summary>
+            <div class="nhsuk-details__text" th:if="${entryDates.size() < 1}">
+                <p>You do not have any diary entries</p>
+            </div>
+            <div class="nhsuk-details__text" th:if="${entryDates.size() > 0}">
+                <p th:each="date : ${entryDates}">
+                    <a th:href="@{/diary/history/{date}(date=${date})}" th:text="${date}"></a>
+                </p>
+            </div>
+        </details>
+
+        <!-- Notification Settings -->
+        <h2>Notification settings</h2>
+        <form th:method="post" th:action="@{/submit-notifications}" id="notification-settings-form">
+            <fieldset class="nhsuk-fieldset">
+                <div class="nhsuk-checkboxes">
+
+                    <div class="nhsuk-checkboxes__item">
+                        <input class="nhsuk-checkboxes__input" id="daily-reminders" name="daily-reminders"
+                               type="checkbox"
+                               value="daily-reminders">
+                        <label class="nhsuk-label nhsuk-checkboxes__label" for="daily-reminders">
+                            Daily reminders:
+                        </label>
+                    </div>
+
+                    <div class="nhsuk-checkboxes__item">
+                        <input class="nhsuk-checkboxes__input" id="pre-appointment-reminders"
+                               name="pre-appointment-reminders" type="checkbox" value="pre-appointment-reminders">
+                        <label class="nhsuk-label nhsuk-checkboxes__label" for="pre-appointment-reminders">
+                            Pre-appointment questionnaire reminders:
+                        </label>
+                    </div>
+
+                </div>
+            </fieldset>
+            <br>
+            <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+                Save settings
+            </button>
+
+        </form>
+
+        <!-- View Progress Page -->
+        <h2>Progress</h2>
+        <label class="nhsuk-label" for="progress-dropdown">Select metric:</label>
+        <select class="nhsuk-select" id="progress-dropdown" name="progress-dropdown">
+            <option value="weight">Weight</option>
+            <option value="swelling">Swelling Measurement</option>
+            <!-- Add more options as needed -->
+        </select>
+        <div id="progress-chart">
+            <!-- Placeholder for the progress chart -->
+            <p>Your progress chart will appear here.</p>
+        </div>
+    </main>
+</div>
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
+</body>
+</html>
