@@ -56,6 +56,8 @@ public class SecurityConfig {
             "/register/**",
             "/account",
             "/account/**",
+            "/taskhub",
+            "/taskhub/**",
             "/api/**"
     };
 

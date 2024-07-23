@@ -11,6 +11,7 @@ drop table if exists user_treatment_plans;
 drop table if exists diary_entries;
 drop table if exists diary_entry_exercises;
 drop table if exists user_authorities;
+drop table if exists pre_appointment_questionnaire;
 
 create table if not exists user_table
 (
