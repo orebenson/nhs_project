@@ -6,6 +6,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class KMController {
-    @GetMapping("/KingsMill")
+    @GetMapping("/ContactUs/KingsMill")
     public ModelAndView getLandingPage() { return new ModelAndView("contactus/KingsMill"); }
 }
