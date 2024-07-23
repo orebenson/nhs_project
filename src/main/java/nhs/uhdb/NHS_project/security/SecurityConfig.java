@@ -56,7 +56,9 @@ public class SecurityConfig {
             "/register/**",
             "/account",
             "/account/**",
-            "/api/**",
+            "/taskhub",
+            "/taskhub/**",
+            "/api/**"
     };
 
     public static final String[] USER_WHITELIST = {
