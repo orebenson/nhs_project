@@ -8,6 +8,108 @@
 <body>
 <script th:replace="~{fragments/_fragments :: pagescript}"></script>
 <header th:replace="~{fragments/_fragments :: header}"></header>
+<div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+        <h1>Kings Mill Hospital</h1>
 
+        <div class="nhsuk-grid-column-two-thirds">
+
+
+            <h2>Contact us</h2>
+
+            <ul class="nhsuk-grid-row nhsuk-card-group">
+
+                <li id="contactdetails_addressinfo_card_wrapper" class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+                    <div class="nhsuk-card">
+                        <div class="nhsuk-card__content">
+
+                            <div id="address_panel">
+
+                                <h3 id="address_panel_title">Address</h3>
+
+                                <address id="address_panel_address">
+                                    King's Mill Hospital                <br>
+                                    Mansfield Road                <br>
+                                    Sutton-in-Ashfield                <br>
+                                    Nottinghamshire           <br>
+                                    NG17 4JL    </address>
+
+                                <p id="address_panel_google_map_text">
+                                    <a id="address_panel_google_map_link" rel="noopener noreferrer external" href="https://www.google.com/maps/search/Long+Eaton+Health+Centre+Long+Eaton+Health+Centre+Midland+Street%2c+Long+Eaton++Nottingham++NG10+1RY/@52.90141677856445,-1.2716232538223269,17z">
+                                        Get directions (opens in Google Maps)
+                                    </a>
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li id="contactdetails_contactinfo_card_wrapper" class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+                    <div class="nhsuk-card">
+                        <div class="nhsuk-card__content">
+
+                            <div id="contact_info_panel">
+
+                                <h3 id="contact_info_panel_phone_title">Phone</h3>
+                                <p id="contact_info_panel_phone_text">0162 362 2515</p>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+
+            </ul>
+        </div>
+
+        <table class="nhsuk-table">
+            <caption class="nhsuk-table__caption">Opening Hours</caption>
+            <thead role="rowgroup" class="nhsuk-table__head">
+            <tr role="row">
+                <th role="columnheader" class="" scope="col">
+                    Day
+                </th>
+                <th role="columnheader" class="" scope="col">
+                    Times
+                </th>
+            </tr>
+            </thead>
+            <tbody class="nhsuk-table__body">
+            <tr role="row" class="nhsuk-table__row">
+                <td class="nhsuk-table__cell">Monday</td>
+                <td class="nhsuk-table__cell ">24 Hours</td>
+            </tr>
+            <tr role="row" class="nhsuk-table__row">
+                <td class="nhsuk-table__cell">Tuesday</td>
+                <td class="nhsuk-table__cell ">24 Hours</td>
+            </tr>
+            <tr role="row" class="nhsuk-table__row">
+                <td class="nhsuk-table__cell">Wednesday</td>
+                <td class="nhsuk-table__cell ">24 Hours</td>
+            </tr>
+            <tr role="row" class="nhsuk-table__row">
+                <td class="nhsuk-table__cell">Thursday</td>
+                <td class="nhsuk-table__cell ">24 Hours</td>
+            </tr>
+            <tr role="row" class="nhsuk-table__row">
+                <td class="nhsuk-table__cell">Friday</td>
+                <td class="nhsuk-table__cell ">24 Hours</td>
+            </tr>
+            <tr role="row" class="nhsuk-table__row">
+                <td class="nhsuk-table__cell">Saturday</td>
+                <td class="nhsuk-table__cell ">24 Hours</td>
+            </tr>
+            <tr role="row" class="nhsuk-table__row">
+                <td class="nhsuk-table__cell">Sunday</td>
+                <td class="nhsuk-table__cell ">24 Hours</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </main>
+</div>
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
 </body>
 </html>
