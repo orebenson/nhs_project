@@ -13,45 +13,50 @@
   <main class="nhsuk-main-wrapper" id="maincontent" role="main">
     <h1>Contact Us</h1>
 
+    <p>You can reach our service at the following locations:</p>
+
     <div class="nhsuk-grid-row">
-      <div class="nhsuk-grid-column-one-half">
-        <h2>Contact Information</h2>
-        <p>You can reach our service through the following methods:</p>
-        <ul>
-          <li>Phone: 0123 456 7890</li>
-          <li>Email: contact@nhsservice.com</li>
-          <li>Address: 123 NHS Street, Healthcare City, HC1 2AB</li>
-        </ul>
+      <div class="nhsuk-grid-column-one-third">
+        <div class="nhsuk-card">
+          <div class="nhsuk-card__content">
+            <h2 class="nhsuk-card__heading">Nightingale Community Hospital</h2>
+            <p>Phone: 01332 265 500</p>
+            <p>Address: Florence Nightingale Community Hospital, London Rd, Derby, DE1 2QY</p>
+            <a th:href="@{/Nightingale}">
+              Get Direction
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="nhsuk-grid-column-one-half">
-        <h2>Contact Form</h2>
-        <form class="nhsuk-form">
-          <div class="nhsuk-form-group">
-            <label class="nhsuk-label" for="name">
-              Name
-            </label>
-            <input class="nhsuk-input" id="name" name="name" type="text">
+      <div class="nhsuk-grid-column-one-third">
+        <div class="nhsuk-card">
+          <div class="nhsuk-card__content">
+            <h2 class="nhsuk-card__heading">Long Eaton Health Centre</h2>
+            <p>Phone: 0115 855 4000</p>
+            <p>Address: Long Eaton Health Centre, Midland Street, Long Eaton, Nottingham, NG10 1RY</p>
+            <a th:href="@{/LongEaton}">
+              Get Direction
+            </a>
           </div>
-
-          <div class="nhsuk-form-group">
-            <label class="nhsuk-label" for="email">
-              Email
-            </label>
-            <input class="nhsuk-input" id="email" name="email" type="email">
-          </div>
-
-          <div class="nhsuk-form-group">
-            <label class="nhsuk-label" for="message">
-              Message
-            </label>
-            <textarea class="nhsuk-textarea" id="message" name="message" rows="5"></textarea>
-          </div>
-
-          <button class="nhsuk-button" type="submit">
-            Send message
-          </button>
-        </form>
+        </div>
       </div>
+      <div class="nhsuk-grid-column-one-third">
+        <div class="nhsuk-card">
+          <div class="nhsuk-card__content">
+            <h2 class="nhsuk-card__heading">Kings Mill Hospital</h2>
+            <p>Phone: 0162 362 2515</p>
+            <p>Address: King's Mill Hospital, Mansfield Road, Sutton in Ashfield, Nottinghamshire, NG17 4JL,</p>
+            <a th:href="@{/KingsMill}">
+              Get Direction
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nhsuk-warning-callout">
+      <h3 class="nhsuk-warning-callout__label">Important</h3>
+      <p>For medical emergencies, always call 999 or visit your nearest A&E department.</p>
     </div>
   </main>
 </div>

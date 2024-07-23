@@ -1,4 +1,4 @@
-package nhs.uhdb.NHS_project.contactus_page;
+package nhs.uhdb.NHS_project.contactus_page.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
