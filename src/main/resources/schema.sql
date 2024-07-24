@@ -11,7 +11,7 @@ drop table if exists user_treatment_plans;
 drop table if exists diary_entries;
 drop table if exists diary_entry_exercises;
 drop table if exists user_authorities;
-drop table if exists pre_appointment_questionnaire;
+drop table if exists preappointment_questionnaire_responses;
 
 create table if not exists user_table
 (
@@ -101,4 +101,16 @@ create table if not exists diary_entries (
 create table if not exists diary_entry_exercises (
     diary_entry_id BIGINT NOT NULL,
     exercise_id BIGINT NOT NULL
+) engine = InnoDB;
+
+create table if not exists preappointment_questionnaire_responses
+(
+    preappointment_questionnaire_response_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id  BIGINT NOT NULL,
+    created_at DATE NOT NULL
+    medications TEXT NOT NULL,
+    changes_to_health TEXT NOT NULL,
+    swelling_concerns TEXT NOT NULL,
+    hosiery_concerns TEXT NOT NULL,
+    cellulitis_episodes BIGINT NOT NULL,
 ) engine = InnoDB;

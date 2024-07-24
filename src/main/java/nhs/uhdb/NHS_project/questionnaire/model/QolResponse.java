@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class QOLResponse {
+public class QolResponse {
 
     private Long id;
     private Integer walking;

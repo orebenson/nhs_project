@@ -7,7 +7,7 @@
     <title>Pre-appointment Questionnaire</title>
 
     <!--    add any extra javascript file references here-->
-    <!--<script src="/scripts/questionnaireFormScripts.js"></script>-->
+    <script src="js/questionnaire/formControl"></script>
 
 </head>
 <body>
@@ -35,7 +35,7 @@
 
             <p>Please complete and submit this form before your next appointment.</p>
 
-            <form th:action="@{/submitquestionnaire}" th:method="post" id="pre-appointment-form">
+            <form th:object="${preappointmentQuestionnaireForm} th:action="@{/submitquestionnaire}" th:method="post" id="pre-appointment-form">
                 <fieldset class="nhsuk-fieldset">
                     <div class="nhsuk-form-group">
                         <h3 class="nhsuk-label-wrapper">
@@ -46,7 +46,7 @@
                         <!--                    <div class="nhsuk-hint" id="medications-hint">-->
                         <!--                        List your current medications.-->
                         <!--                    </div>-->
-                        <textarea class="nhsuk-textarea" id="medications" name="medications" rows="5"
+                        <input th:field="${medications}" textarea class="nhsuk-textarea" id="medications" name="medications" rows="5"
                                   aria-describedby="medications"></textarea>
                     </div>
 
@@ -59,7 +59,7 @@
                         <!--                    <div class="nhsuk-hint" id="changes-to-health-hint">-->
                         <!--                        Describe any recent health changes or diagnoses-->
                         <!--                    </div>-->
-                        <textarea class="nhsuk-textarea" id="changes-to-health" name="changes-to-health" rows="5"
+                        <input th:field="${changesToHealth}" textarea class="nhsuk-textarea" id="changes-to-health" name="changes-to-health" rows="5"
                                   aria-describedby="changes-to-health"></textarea>
                     </div>
 
@@ -72,7 +72,7 @@
                         <!--                    <div class="nhsuk-hint" id="swellingConcerns-hint">-->
                         <!--                        Express any concerns you may have about swelling of the affected areas.-->
                         <!--                    </div>-->
-                        <textarea class="nhsuk-textarea" id="swellingConcerns" name="swellingConcerns" rows="5"
+                        <input th:field="${swellingConcerns}" textarea class="nhsuk-textarea" id="swellingConcerns" name="swellingConcerns" rows="5"
                                   aria-describedby="swellingConcerns"></textarea>
                     </div>
 
@@ -85,22 +85,29 @@
                         <!--                    <div class="nhsuk-hint" id="hosieryConcerns-hint">-->
                         <!--                        Discuss any issues with hosiery, including any allergies.-->
                         <!--                    </div>-->
-                        <textarea class="nhsuk-textarea" id="hosieryConcerns" name="hosieryConcerns" rows="5"
-                                  aria-describedby="hosieryConcerns"></textarea>
+                        <input th:field="${hosieryConcerns}" textarea class="nhsuk-textarea" id="hosieryConcerns" name="hosieryConcerns" rows="5" aria-describedby="hosieryConcerns"></textarea>
                     </div>
 
                     <div class="nhsuk-form-group">
-                        <h3 class="nhsuk-label-wrapper">
-                            5. Episodes of cellulitis since last appointment.</h3>
-                        <label class="nhsuk-label" for="cellulitisEpisodes">
-                            Enter number of episodes of cellulitis since your last appointment.
-                        </label>
-                        <!--                    <div class="nhsuk-hint" id="example-with-hint-text-hint">-->
-                        <!--                        Enter number of episodes of cellulitis since your last appointment.-->
-                        <!--                    </div>-->
-                        <input class="nhsuk-input nhsuk-input--width-10" id="cellulitisEpisodes"
-                               name="cellulitisEpisodes"
-                               type="text" aria-describedby="Number of cellulitis episodes" inputmode="numeric">
+                        <h3 class="nhsuk-label-wrapper">5. Episodes of cellulitis since last appointment.</h3>
+                        <fieldset class="nhsuk-fieldset">
+                            <div class="nhsuk-radios">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="cellulitisYes" name="cellulitisEpisodesChoice" type="radio" value="yes" onchange="toggleInput(true)">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="cellulitisYes">Yes</label>
+                                </div>
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="cellulitisNo" name="cellulitisEpisodesChoice" type="radio" value="no" onchange="toggleInput(false)">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="cellulitisNo">No</label>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="nhsuk-form-group" id="numberInput" style="display:none;">
+                            <label class="nhsuk-label" for="cellulitisEpisodes">
+                                Enter number of episodes of cellulitis since your last appointment.
+                            </label>
+                            <input th:field="${cellulitisEpisodes}" class="nhsuk-input nhsuk-input--width-10" id="cellulitisEpisodes" name="cellulitisEpisodes" type="text" aria-describedby="Number of cellulitis episodes" inputmode="numeric">
+                        </div>
                     </div>
 
                 </fieldset>

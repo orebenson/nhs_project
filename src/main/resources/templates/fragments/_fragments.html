@@ -95,7 +95,7 @@
                     </a>
                 </li>
                 <li class="nhsuk-header__navigation-item" th:if="${#authorization.expression('isAuthenticated()') and #authorization.expression('hasRole(''USER'')')}">
-                    <a class="nhsuk-header__navigation-link" th:href="@{/taskhub}">
+                    <a class="nhsuk-header__navigation-link" th:href="@{/questionnaires}">
                         Questionnaire TaskHub
                     </a>
                 </li>

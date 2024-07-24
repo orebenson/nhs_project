@@ -2,6 +2,8 @@ package nhs.uhdb.NHS_project.questionnaire.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -9,12 +11,14 @@ import java.time.LocalDateTime;
 public class PreappointmentResponse {
 
     private Long id;
+    private Long user_id;
+    private LocalDate createdAt;
     private String medications;
     private String changesToHealth;
     private String swellingConcerns;
     private String hosieryConcerns;
     private Integer cellulitisEpisodes;
-    private LocalDateTime createdAt;
+
 
     public PreappointmentResponse() {
         this.id = null;
