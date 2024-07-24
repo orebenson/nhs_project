@@ -102,6 +102,14 @@ public class DiaryEntryController {
         return new ModelAndView("redirect:/diary/entrySuccess");
     }
 
+    @GetMapping("/diary/progress")
+    public ResponseEntity<List<ProgressData>> getProgressData(@RequestParam("metric") String metric, Principal principal) {
+        Long userId = userService.getUserIdByEmail(principal.getName());
+        List<ProgressData> data = diaryEntryService.getMetricData(userId, metric);
+        return ResponseEntity.ok(data);
+    }
+
+
 
 
 }
