@@ -46,13 +46,36 @@
 
         <form th:method="post" th:action="@{/diary/entry}" th:object="${newEntry}" id="diary-entry-form">
             <fieldset class="nhsuk-fieldset">
-                <div class="nhsuk-form-group">
-                    <label class="nhsuk-label" for="weight">
-                        Today's Weight (kg)
-                    </label>
-                    <input class="nhsuk-input nhsuk-input--width-4" type="number" id="weight" name="weight"
-                           th:field="*{weight}"/>
-                </div>
+
+
+                <fieldset class="nhsuk-fieldset">
+                    <div class="nhsuk-form-group">
+                        <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                            <h1 class="nhsuk-fieldset__heading">
+                                Which of your measurements have you completed today?
+                            </h1>
+                        </legend>
+
+                        <label class="nhsuk-label" for="weight">
+                            Today's Weight (kg)
+                        </label>
+                        <input class="nhsuk-input nhsuk-input--width-4" type="number" id="weight" name="weight"
+                               th:field="*{weight}"/>
+
+<!--                        <div th:each="measurement, index: *{measurements}">-->
+<!--                            <label class="nhsuk-label" th:for="'measurement-' + ${index}"-->
+<!--                                   th:text="${measurement.measurementType.name} + ' - ' + ${measurement.measurementType.description} + ' - (' + ${measurement.measurementType.unit} + ')'">-->
+<!--                                Measurement Info-->
+<!--                            </label>-->
+<!--                            <input class="nhsuk-input nhsuk-input&#45;&#45;width-4" type="number"-->
+<!--                                   th:id="'measurement-' + ${index}"-->
+<!--                                   th:name="'measurements[' + ${index} + '].value'"-->
+<!--                                   th:field="*{measurements[__${index}__].value}"-->
+<!--                            />-->
+<!--                        </div>-->
+
+                    </div>
+                </fieldset>
 
                 <div class="nhsuk-form-group">
                     <label class="nhsuk-label" for="wellnessScore">

@@ -5,7 +5,9 @@ import nhs.uhdb.NHS_project.accounts.service.UserService;
 import nhs.uhdb.NHS_project.admin.model.Exercise;
 import nhs.uhdb.NHS_project.admin.service.ExerciseService;
 import nhs.uhdb.NHS_project.diary.model.DiaryEntry;
+import nhs.uhdb.NHS_project.diary.model.Measurement;
 import nhs.uhdb.NHS_project.diary.services.DiaryEntryService;
+import nhs.uhdb.NHS_project.diary.services.MeasurementService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -30,11 +32,13 @@ public class DiaryEntryController {
     private UserService userService;
     private ExerciseService exerciseService;
     private DiaryEntryService diaryEntryService;
+    private MeasurementService measurementService;
 
-    public DiaryEntryController(UserService userService, ExerciseService exerciseService, DiaryEntryService diaryEntryService) {
+    public DiaryEntryController(UserService userService, ExerciseService exerciseService, DiaryEntryService diaryEntryService, MeasurementService measurementService) {
         this.userService = userService;
         this.exerciseService = exerciseService;
         this.diaryEntryService = diaryEntryService;
+        this.measurementService = measurementService;
     }
 
     @GetMapping("/diary/entry")
@@ -44,7 +48,9 @@ public class DiaryEntryController {
         User loggedInUser = userService.getUserByEmail(loggedInUserEmail);
 
         List<Exercise> userExercises = exerciseService.getTreatmentPlanExercisesByUserId(loggedInUser.getUser_id());
+        List<Measurement> userMeasurements = measurementService.getEmptyMeasurementsByUserId(loggedInUser.getUser_id());
         DiaryEntry newEntry = new DiaryEntry();
+        newEntry.setMeasurements(userMeasurements);
         mav.addObject("date", LocalDate.now());
         mav.addObject("newEntry", newEntry);
         mav.addObject("userExercises", userExercises);
