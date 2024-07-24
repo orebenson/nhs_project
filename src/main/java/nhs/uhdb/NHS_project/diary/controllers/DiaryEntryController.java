@@ -82,25 +82,25 @@ public class DiaryEntryController {
         return mav;
     }
 
-    @PostMapping("/diary/entryWithPhoto")
-    public ModelAndView postDiaryEntry(Principal principal, @ModelAttribute("newEntry") DiaryEntry newEntry,
-                                       @RequestParam("photo") MultipartFile photo,
-                                       @RequestParam(value = "selectedExercises", required = false) List<Long> selectedExercises) throws IOException {
-        if (!photo.isEmpty()) {
-            String directory = "/uploads/diary_photos/";
-            String filename = photo.getOriginalFilename();
-            Path filePath = Paths.get(directory, filename);
-            Files.createDirectories(filePath.getParent());
-            Files.copy(photo.getInputStream(), filePath);
-
-            //newEntry.setPhotoUrl(filePath.toString());
-        }
-
-        Long result = diaryEntryService.createDiaryEntry(newEntry);
-        if(result == null) return new ModelAndView("redirect:/diary/entryError");
-
-        return new ModelAndView("redirect:/diary/entrySuccess");
-    }
+//    @PostMapping("/diary/entryWithPhoto")
+//    public ModelAndView postDiaryEntry(Principal principal, @ModelAttribute("newEntry") DiaryEntry newEntry,
+//                                       @RequestParam("photo") MultipartFile photo,
+//                                       @RequestParam(value = "selectedExercises", required = false) List<Long> selectedExercises) throws IOException {
+//        if (!photo.isEmpty()) {
+//            String directory = "/uploads/diary_photos/";
+//            String filename = photo.getOriginalFilename();
+//            Path filePath = Paths.get(directory, filename);
+//            Files.createDirectories(filePath.getParent());
+//            Files.copy(photo.getInputStream(), filePath);
+//
+//            //newEntry.setPhotoUrl(filePath.toString());
+//        }
+//
+//        Long result = diaryEntryService.createDiaryEntry(newEntry);
+//        if(result == null) return new ModelAndView("redirect:/diary/entryError");
+//
+//        return new ModelAndView("redirect:/diary/entrySuccess");
+//    }
 
 
 
