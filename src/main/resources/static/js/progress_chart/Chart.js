@@ -4,7 +4,7 @@ document.getElementById('progress-dropdown').addEventListener('change', function
         .then(data => {
             const ctx = document.getElementById('progress-chart').getContext('2d');
             new Chart(ctx, {
-                type: 'line', 
+                type: 'line',
                 data: {
                     labels: data.map(entry => entry.date),
                     datasets: [{

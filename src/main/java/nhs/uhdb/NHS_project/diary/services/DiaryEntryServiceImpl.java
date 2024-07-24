@@ -2,6 +2,7 @@ package nhs.uhdb.NHS_project.diary.services;
 
 import nhs.uhdb.NHS_project.diary.model.DiaryEntry;
 import nhs.uhdb.NHS_project.diary.model.DiaryEntryRepository;
+import nhs.uhdb.NHS_project.diary.model.ProgressData;
 import org.apache.tomcat.jni.Local;
 import org.springframework.stereotype.Service;
 
@@ -46,6 +47,26 @@ public class DiaryEntryServiceImpl implements DiaryEntryService {
             }
         }
         return formattedDates;
+    }
+
+    @Override
+    public List<ProgressData> getMetricData(Long userId, String metric) {
+        List<DiaryEntry> entries = diaryEntryRepository.getDiaryEntriesByUserId(userId);
+        List<ProgressData> metrics = new ArrayList<>();
+        for (DiaryEntry entry : entries) {
+            ProgressData data = new ProgressData();
+            data.setDate(entry.getCreatedAt());
+            switch (metric) {
+                case "weight":
+                    data.setValue(entry.getWeight());
+                    break;
+                case "wellnessScore":
+                    data.setValue(entry.getWellnessScore());
+                    break;
+            }
+            metrics.add(data);
+        }
+        return metrics;
     }
 
 }
