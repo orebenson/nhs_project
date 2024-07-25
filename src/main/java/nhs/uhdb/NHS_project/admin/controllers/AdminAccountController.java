@@ -2,7 +2,9 @@ package nhs.uhdb.NHS_project.admin.controllers;
 
 import nhs.uhdb.NHS_project.accounts.model.User;
 import nhs.uhdb.NHS_project.accounts.service.UserService;
+import nhs.uhdb.NHS_project.admin.model.LymphoedemaType;
 import nhs.uhdb.NHS_project.admin.model.TreatmentPlan;
+import nhs.uhdb.NHS_project.admin.service.LymphoedemaTypeService;
 import nhs.uhdb.NHS_project.admin.service.TreatmentPlanService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +21,12 @@ public class AdminAccountController {
     private UserService userService;
     private TreatmentPlanService treatmentPlanService;
 
-    public AdminAccountController(UserService userService, TreatmentPlanService treatmentPlanService) {
+    private LymphoedemaTypeService lymphoedemaTypeService;
+
+    public AdminAccountController(UserService userService, TreatmentPlanService treatmentPlanService, LymphoedemaTypeService lymphoedemaTypeService) {
         this.userService = userService;
         this.treatmentPlanService = treatmentPlanService;
+        this.lymphoedemaTypeService = lymphoedemaTypeService;
     }
 
     @GetMapping("/admin")
@@ -84,7 +89,14 @@ public class AdminAccountController {
             userPlan.setName("None");
         }
 
+        LymphoedemaType userLymphoedemaType = lymphoedemaTypeService.getLymphoedemaTypeByUserId(id);
+        if(userLymphoedemaType == null) {
+            userLymphoedemaType = new LymphoedemaType();
+            userLymphoedemaType.setName("None");
+        }
+
         mav.addObject("userPlan", userPlan);
+        mav.addObject("userLymphoedemaType", userLymphoedemaType);
         mav.addObject("user", user);
         return mav;
     }

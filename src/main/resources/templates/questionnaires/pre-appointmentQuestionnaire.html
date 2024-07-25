@@ -35,7 +35,7 @@
 
             <p>Please complete and submit this form before your next appointment.</p>
 
-            <form th:object="${preappointmentQuestionnaireForm} th:action="@{/submitquestionnaire}" th:method="post" id="pre-appointment-form">
+            <form th:object="${preappointmentQuestionnaireForm} th:action="${/submitquestionnaire}" th:method="post" id="pre-appointment-form">
                 <fieldset class="nhsuk-fieldset">
                     <div class="nhsuk-form-group">
                         <h3 class="nhsuk-label-wrapper">

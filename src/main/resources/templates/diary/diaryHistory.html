@@ -48,6 +48,25 @@
 
                 <div class="nhsuk-summary-list__row">
                     <dt class="nhsuk-summary-list__key">
+                        Measurements
+                    </dt>
+                    <dd class="nhsuk-summary-list__value">
+                        <div th:if="${entry.measurements.size() < 1}">
+                            N/A
+                        </div>
+                        <div th:if="${entry.measurements.size() > 0}">
+                            <ul>
+                                <li th:each="measurement : ${entry.measurements}" >
+                                    <span th:if="${measurement.value > 0}"  th:text="${measurement.measurementType.name} + ' - ' + ${measurement.value} + ' ' + ${measurement.measurementType.unit}"></span>
+                                    <span th:if="${measurement.value < 1}" th:text="${measurement.measurementType.name} + ' - N/A'"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </dd>
+                </div>
+
+                <div class="nhsuk-summary-list__row">
+                    <dt class="nhsuk-summary-list__key">
                         Cellulitis Details
                     </dt>
                     <dd class="nhsuk-summary-list__value"
@@ -101,6 +120,8 @@
                         </div>
                     </dd>
                 </div>
+
+
 
             </dl>
 

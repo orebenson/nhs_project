@@ -49,6 +49,8 @@ public class SecurityConfig {
             "/404",
             "/500",
             "/landing",
+            "/ContactUs",
+            "/ContactUs/**",
             "/login",
             "/login/**",
             "/logout",
