@@ -69,12 +69,12 @@ VALUES (3, 1),
 
 -- add default measurement types
 INSERT INTO measurement_types (name, description, unit)
-VALUES ('Ankle Circumference', 'Measurement around the narrowest part of the ankle', 'cm'),
-       ('Calf Circumference', 'Measurement around the widest part of the calf', 'cm'),
-       ('Knee Circumference', 'Measurement around the knee joint', 'cm'),
-       ('Thigh Circumference', 'Measurement around the widest part of the thigh', 'cm'),
-       ('Foot Length', 'Measurement from the heel to the tip of the longest toe', 'cm'),
-       ('Foot Circumference', 'Measurement around the widest part of the foot', 'cm');
+VALUES ('Ankle Circumference', 'around the narrowest part of the ankle', 'cm'),
+       ('Calf Circumference', 'around the widest part of the calf', 'cm'),
+       ('Knee Circumference', 'around the knee joint', 'cm'),
+       ('Thigh Circumference', 'around the widest part of the thigh', 'cm'),
+       ('Foot Length', 'from the heel to the tip of the longest toe', 'cm'),
+       ('Foot Circumference', 'around the widest part of the foot', 'cm');
 
 
 -- add default lymphoedema types

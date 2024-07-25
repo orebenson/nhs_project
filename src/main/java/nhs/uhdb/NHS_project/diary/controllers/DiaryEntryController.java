@@ -13,8 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.multipart.MultipartFile;
-import java.io.IOException;
 
+import java.io.IOException;
 
 
 import java.security.Principal;
@@ -58,9 +58,16 @@ public class DiaryEntryController {
     }
 
     @PostMapping("/diary/entry")
-    public ModelAndView postDiaryEntry(Principal principal, @ModelAttribute("newEntry") DiaryEntry newEntry, @RequestParam(value = "selectedExercises", required = false) List<Long> selectedExercises)  {
+    public ModelAndView postDiaryEntry(Principal principal, @ModelAttribute("newEntry") DiaryEntry newEntry,
+                                       @RequestParam(value = "selectedExercises", required = false) List<Long> selectedExercises,
+                                       @RequestParam(value = "measurements", required = false) List<Measurement> measurements
+    ) {
         newEntry.setUser_id(userService.getUserIdByEmail(principal.getName()));
         newEntry.setCreatedAt(LocalDate.now());
+
+        if (measurements != null && !measurements.isEmpty()) {
+            newEntry.setMeasurements(measurements);
+        }
 
         if (selectedExercises != null && !selectedExercises.isEmpty()) {
             List<Exercise> selectedExercisesList = new ArrayList<>();
@@ -73,7 +80,7 @@ public class DiaryEntryController {
         }
 
         Long result = diaryEntryService.createDiaryEntry(newEntry);
-        if(result == null) return new ModelAndView("diary/diaryEntryError");
+        if (result == null) return new ModelAndView("diary/diaryEntryError");
         return new ModelAndView("diary/diaryEntrySuccess");
     }
 
@@ -107,7 +114,6 @@ public class DiaryEntryController {
 //
 //        return new ModelAndView("redirect:/diary/entrySuccess");
 //    }
-
 
 
 }

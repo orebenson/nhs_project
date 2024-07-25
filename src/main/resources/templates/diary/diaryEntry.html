@@ -45,43 +45,54 @@
         </h1>
 
         <form th:method="post" th:action="@{/diary/entry}" th:object="${newEntry}" id="diary-entry-form">
+
             <fieldset class="nhsuk-fieldset">
 
+                <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                    <h1 class="nhsuk-fieldset__heading">
+                        Which of your measurements have you completed today?
+                    </h1>
+                </legend>
 
-                <fieldset class="nhsuk-fieldset">
-                    <div class="nhsuk-form-group">
-                        <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
-                            <h1 class="nhsuk-fieldset__heading">
-                                Which of your measurements have you completed today?
-                            </h1>
-                        </legend>
+                <div class="nhsuk-form-group">
+                    <label class="nhsuk-label" for="weight">
+                        Today's Weight (kg)
+                    </label>
+                    <input class="nhsuk-input nhsuk-input--width-4" type="number" id="weight" name="weight"
+                           th:field="*{weight}"/>
+                </div>
 
-                        <label class="nhsuk-label" for="weight">
-                            Today's Weight (kg)
-                        </label>
-                        <input class="nhsuk-input nhsuk-input--width-4" type="number" id="weight" name="weight"
-                               th:field="*{weight}"/>
+                <div th:each="measurement, iterStat : ${newEntry.measurements}" class="nhsuk-form-group">
+                    <label class="nhsuk-label" th:for="'measurement-' + ${measurement.id}"
+                           th:text="${measurement.measurementType.name} + ' - ' + ${measurement.measurementType.description} + ' - (' + ${measurement.measurementType.unit} + ')'">
+                        Measurement Info
+                    </label>
+                    <input class="nhsuk-input nhsuk-input--width-4" type="number"
+                           th:id="'measurement-' + ${measurement.id}"
+                           th:name="'measurements[' + ${iterStat.index} + '].value'"
+                           th:value="${measurement.value}"
+                    />
+                    <input type="hidden" th:name="'measurements[' + ${iterStat.index} + '].id'" th:value="${measurement.id}" />
+                    <input type="hidden" th:name="'measurements[' + ${iterStat.index} + '].measurementType.id'" th:value="${measurement.measurementType.id}" />
+                </div>
 
-<!--                        <div th:each="measurement, index: *{measurements}">-->
-<!--                            <label class="nhsuk-label" th:for="'measurement-' + ${index}"-->
-<!--                                   th:text="${measurement.measurementType.name} + ' - ' + ${measurement.measurementType.description} + ' - (' + ${measurement.measurementType.unit} + ')'">-->
-<!--                                Measurement Info-->
-<!--                            </label>-->
-<!--                            <input class="nhsuk-input nhsuk-input&#45;&#45;width-4" type="number"-->
-<!--                                   th:id="'measurement-' + ${index}"-->
-<!--                                   th:name="'measurements[' + ${index} + '].value'"-->
-<!--                                   th:field="*{measurements[__${index}__].value}"-->
-<!--                            />-->
-<!--                        </div>-->
 
-                    </div>
-                </fieldset>
+            </fieldset>
+
+            <br>
+            <fieldset class="nhsuk-fieldset">
+                <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                    <h1 class="nhsuk-fieldset__heading">
+                        How are you feeling today?
+                    </h1>
+                </legend>
 
                 <div class="nhsuk-form-group">
                     <label class="nhsuk-label" for="wellnessScore">
-                        How is your mentall well-being today?
+                        How is your mental well-being today?
                     </label>
-                    <select class="nhsuk-select" id="wellnessScore" name="wellnessScore" th:field="*{wellnessScore}">
+                    <select class="nhsuk-select" id="wellnessScore" name="wellnessScore"
+                            th:field="*{wellnessScore}">
                         <option value="3" selected>3 - Average</option>
                         <option value="1">1 - Extremely Poor</option>
                         <option value="2">2 - Poor</option>
@@ -105,6 +116,7 @@
                 </div>
             </fieldset>
 
+            <br>
             <fieldset class="nhsuk-fieldset">
                 <div class="nhsuk-form-group">
                     <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
@@ -130,8 +142,7 @@
                 </div>
             </fieldset>
 
-
-
+            <br>
             <fieldset class="nhsuk-fieldset">
                 <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
                     <h1 class="nhsuk-fieldset__heading">
@@ -159,7 +170,8 @@
                 <div class="nhsuk-character-count" data-module="nhsuk-character-count" data-maxlength="200">
                     <div class="nhsuk-form-group">
                         <label class="nhsuk-label nhsuk-u-width-two-thirds" for="mobilityDetails">
-                            Please describe any mobility issues you have experienced. If you have not had any issues,
+                            Please describe any mobility issues you have experienced. If you have not had any
+                            issues,
                             you may leave this field blank.
                         </label>
                         <textarea class="nhsuk-textarea nhsuk-js-character-count nhsuk-u-width-two-thirds"
@@ -174,13 +186,15 @@
                 <div class="nhsuk-character-count" data-module="nhsuk-character-count" data-maxlength="200">
                     <div class="nhsuk-form-group">
                         <label class="nhsuk-label nhsuk-u-width-two-thirds" for="discomfortDetails">
-                            If you have experienced any discomfort, please provide details here. If not, you can leave
+                            If you have experienced any discomfort, please provide details here. If not, you can
+                            leave
                             this
                             field blank.
                         </label>
                         <textarea class="nhsuk-textarea nhsuk-js-character-count nhsuk-u-width-two-thirds"
                                   id="discomfortDetails" name="discomfortDetails" rows="2"
-                                  aria-describedby="discomfortDetails-hint" th:field="*{discomfortDetails}"></textarea>
+                                  aria-describedby="discomfortDetails-hint"
+                                  th:field="*{discomfortDetails}"></textarea>
                     </div>
                     <div class="nhsuk-hint nhsuk-character-count__message" id="discomfortDetails-info">
                         You can enter up to 200 characters
