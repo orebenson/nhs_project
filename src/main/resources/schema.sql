@@ -10,8 +10,13 @@ drop table if exists treatment_plan_exercises;
 drop table if exists user_treatment_plans;
 drop table if exists diary_entries;
 drop table if exists diary_entry_exercises;
-drop table if exists user_authorities;
-drop table if exists pre_appointment_questionnaire;
+drop table if exists lymphoedema_types;
+drop table if exists user_lymphoedema_types;
+drop table if exists diary_entry_measurements;
+drop table if exists measurement_types;
+drop table if exists lymphoedema_type_measurements;
+drop table if exists diary_entry_photos;
+
 
 create table if not exists user_table
 (
@@ -85,6 +90,7 @@ create table if not exists photos
     photo BLOB NOT NULL
 ) engine = InnoDB;
 
+
 create table if not exists diary_entries (
    diary_entry_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
    user_id BIGINT NOT NULL,
@@ -98,7 +104,43 @@ create table if not exists diary_entries (
 
 ) engine = InnoDB;
 
+create table if not exists diary_entry_photos (
+    diary_entry_id BIGINT NOT NULL,
+    photo_id BIGINT NOT NULL
+) engine = InnoDB;
+
 create table if not exists diary_entry_exercises (
     diary_entry_id BIGINT NOT NULL,
     exercise_id BIGINT NOT NULL
+) engine = InnoDB;
+
+create table if not exists lymphoedema_types (
+    lymphoedema_type_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(500) NOT NULL,
+    description VARCHAR(500)
+) engine = InnoDB;
+
+create table if not exists user_lymphoedema_types (
+    lymphoedema_type_id BIGINT NOT NULL,
+    user_id BIGINT NOT NULL
+) engine = InnoDB;
+
+create table if not exists lymphoedema_type_measurements (
+    lymphoedema_type_id BIGINT NOT NULL,
+    measurement_type_id BIGINT NOT NULL
+
+) engine = InnoDB;
+
+create table if not exists measurement_types (
+    measurement_type_id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(500) NOT NULL,
+    description VARCHAR(500),
+    unit VARCHAR(10)
+) engine = InnoDB;
+
+create table if not exists diary_entry_measurements (
+    measurement_id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    diary_entry_id BIGINT NOT NULL,
+    measurement_type_id BIGINT NOT NULL,
+    measurement_value BIGINT
 ) engine = InnoDB;
