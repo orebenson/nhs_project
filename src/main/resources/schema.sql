@@ -15,6 +15,7 @@ drop table if exists user_lymphoedema_types;
 drop table if exists diary_entry_measurements;
 drop table if exists measurement_types;
 drop table if exists lymphoedema_type_measurements;
+drop table if exists diary_entry_photos;
 
 
 create table if not exists user_table
@@ -89,6 +90,7 @@ create table if not exists photos
     photo BLOB NOT NULL
 ) engine = InnoDB;
 
+
 create table if not exists diary_entries (
    diary_entry_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
    user_id BIGINT NOT NULL,
@@ -100,6 +102,11 @@ create table if not exists diary_entries (
    wellnessScore INT,
    qualityOfLifeScore INT
 
+) engine = InnoDB;
+
+create table if not exists diary_entry_photos (
+    diary_entry_id BIGINT NOT NULL,
+    photo_id BIGINT NOT NULL
 ) engine = InnoDB;
 
 create table if not exists diary_entry_exercises (
