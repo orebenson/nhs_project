@@ -12,10 +12,10 @@ public class QuestionnaireController {
     }
 
 
-    @GetMapping("/questionnaires/qol-questionnaire")
-    public ModelAndView qolQuestionnaire() {
-        return new ModelAndView("questionnaires/qolQuestionnaire");
-    }
+//    @GetMapping("/questionnaires/qol-questionnaire")
+//    public ModelAndView qolQuestionnaire() {
+//        return new ModelAndView("questionnaires/qolQuestionnaire");
+//    }
 
 
 }

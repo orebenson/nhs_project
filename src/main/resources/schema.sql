@@ -107,10 +107,10 @@ create table if not exists preappointment_questionnaire_responses
 (
     preappointment_questionnaire_response_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id  BIGINT NOT NULL,
-    created_at DATE NOT NULL
+    created_at DATE NOT NULL,
     medications TEXT NOT NULL,
     changes_to_health TEXT NOT NULL,
     swelling_concerns TEXT NOT NULL,
     hosiery_concerns TEXT NOT NULL,
-    cellulitis_episodes BIGINT NOT NULL,
+    cellulitis_episodes BIGINT NOT NULL
 ) engine = InnoDB;

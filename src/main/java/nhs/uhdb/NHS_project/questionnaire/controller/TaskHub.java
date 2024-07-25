@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class TaskHub {
 
-    @GetMapping("/taskhub")
+    @GetMapping("/questionnaires")
     public ModelAndView tasks() {
         return new ModelAndView("questionnaires/taskHubPage");
     }
