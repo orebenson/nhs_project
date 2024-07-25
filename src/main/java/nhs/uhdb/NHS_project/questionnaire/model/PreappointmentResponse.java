@@ -26,7 +26,7 @@ public class PreappointmentResponse {
         this.changesToHealth = "";
         this.swellingConcerns = "";
         this.hosieryConcerns = "";
-        this.cellulitisEpisodes = null;
+        this.cellulitisEpisodes = 0;
     }
 
 }

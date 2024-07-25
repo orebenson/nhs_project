@@ -16,7 +16,7 @@ drop table if exists diary_entry_measurements;
 drop table if exists measurement_types;
 drop table if exists lymphoedema_type_measurements;
 drop table if exists diary_entry_photos;
-
+drop table if exists preappointment_questionnaire_responses;
 
 create table if not exists user_table
 (
@@ -143,4 +143,16 @@ create table if not exists diary_entry_measurements (
     diary_entry_id BIGINT NOT NULL,
     measurement_type_id BIGINT NOT NULL,
     measurement_value BIGINT
+) engine = InnoDB;
+
+create table if not exists preappointment_questionnaire_responses
+(
+    preappointment_questionnaire_response_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id  BIGINT NOT NULL,
+    created_at DATE NOT NULL,
+    medications TEXT NOT NULL,
+    changes_to_health TEXT NOT NULL,
+    swelling_concerns TEXT NOT NULL,
+    hosiery_concerns TEXT NOT NULL,
+    cellulitis_episodes INT
 ) engine = InnoDB;

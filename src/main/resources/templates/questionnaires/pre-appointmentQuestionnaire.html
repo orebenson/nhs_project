@@ -7,7 +7,7 @@
     <title>Pre-appointment Questionnaire</title>
 
     <!--    add any extra javascript file references here-->
-    <script src="js/questionnaire/formControl"></script>
+    <script src="js/questionnaire/formControl.js"></script>
 
 </head>
 <body>
@@ -18,7 +18,7 @@
 
         <div class="nhsuk-back-link">
 
-            <a class="nhsuk-back-link__link" th:href="@{/taskhub}">
+            <a class="nhsuk-back-link__link" th:href="@{/questionnaires}">
                 <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                      aria-hidden="true" height="24" width="24">
                     <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
@@ -35,7 +35,9 @@
 
             <p>Please complete and submit this form before your next appointment.</p>
 
-            <form th:object="${preappointmentQuestionnaireForm} th:action="${/submitquestionnaire}" th:method="post" id="pre-appointment-form">
+            <form th:object="${preappointmentQuestionnaireForm}"
+                  th:action="@{/questionnaires/preappointment-questionnaire}" th:method="post"
+                  id="preappointment-form">
                 <fieldset class="nhsuk-fieldset">
                     <div class="nhsuk-form-group">
                         <h3 class="nhsuk-label-wrapper">
@@ -43,10 +45,8 @@
                         <label class="nhsuk-label" for="medications">
                             List any current medications you are currently taking and have been prescribed.
                         </label>
-                        <!--                    <div class="nhsuk-hint" id="medications-hint">-->
-                        <!--                        List your current medications.-->
-                        <!--                    </div>-->
-                        <input th:field="${medications}" textarea class="nhsuk-textarea" id="medications" name="medications" rows="5"
+                        <textarea th:field="*{medications}" class="nhsuk-textarea" id="medications" name="medications"
+                                  rows="5"
                                   aria-describedby="medications"></textarea>
                     </div>
 
@@ -56,10 +56,8 @@
                         <label class="nhsuk-label" for="changes-to-health">
                             Describe any recent health changes or diagnoses.
                         </label>
-                        <!--                    <div class="nhsuk-hint" id="changes-to-health-hint">-->
-                        <!--                        Describe any recent health changes or diagnoses-->
-                        <!--                    </div>-->
-                        <input th:field="${changesToHealth}" textarea class="nhsuk-textarea" id="changes-to-health" name="changes-to-health" rows="5"
+                        <textarea th:field="*{changesToHealth}" class="nhsuk-textarea" id="changes-to-health"
+                                  name="changes-to-health" rows="5"
                                   aria-describedby="changes-to-health"></textarea>
                     </div>
 
@@ -69,10 +67,8 @@
                         <label class="nhsuk-label" for="swellingConcerns">
                             Express any concerns you may have about swelling of the affected areas.
                         </label>
-                        <!--                    <div class="nhsuk-hint" id="swellingConcerns-hint">-->
-                        <!--                        Express any concerns you may have about swelling of the affected areas.-->
-                        <!--                    </div>-->
-                        <input th:field="${swellingConcerns}" textarea class="nhsuk-textarea" id="swellingConcerns" name="swellingConcerns" rows="5"
+                        <textarea th:field="*{swellingConcerns}" class="nhsuk-textarea" id="swellingConcerns"
+                                  name="swellingConcerns" rows="5"
                                   aria-describedby="swellingConcerns"></textarea>
                     </div>
 
@@ -82,10 +78,8 @@
                         <label class="nhsuk-label" for="hosieryConcerns">
                             Discuss any issues with hosiery, including any allergies.
                         </label>
-                        <!--                    <div class="nhsuk-hint" id="hosieryConcerns-hint">-->
-                        <!--                        Discuss any issues with hosiery, including any allergies.-->
-                        <!--                    </div>-->
-                        <input th:field="${hosieryConcerns}" textarea class="nhsuk-textarea" id="hosieryConcerns" name="hosieryConcerns" rows="5" aria-describedby="hosieryConcerns"></textarea>
+                        <textarea th:field="*{hosieryConcerns}" class="nhsuk-textarea" id="hosieryConcerns"
+                                  name="hosieryConcerns" rows="5" aria-describedby="hosieryConcerns"></textarea>
                     </div>
 
                     <div class="nhsuk-form-group">
@@ -93,11 +87,14 @@
                         <fieldset class="nhsuk-fieldset">
                             <div class="nhsuk-radios">
                                 <div class="nhsuk-radios__item">
-                                    <input class="nhsuk-radios__input" id="cellulitisYes" name="cellulitisEpisodesChoice" type="radio" value="yes" onchange="toggleInput(true)">
+                                    <input class="nhsuk-radios__input" id="cellulitisYes"
+                                           name="cellulitisEpisodesChoice"
+                                           type="radio" value="yes" onchange="toggleInput(true)">
                                     <label class="nhsuk-label nhsuk-radios__label" for="cellulitisYes">Yes</label>
                                 </div>
                                 <div class="nhsuk-radios__item">
-                                    <input class="nhsuk-radios__input" id="cellulitisNo" name="cellulitisEpisodesChoice" type="radio" value="no" onchange="toggleInput(false)">
+                                    <input class="nhsuk-radios__input" id="cellulitisNo" name="cellulitisEpisodesChoice"
+                                           type="radio" value="no" onchange="toggleInput(false)">
                                     <label class="nhsuk-label nhsuk-radios__label" for="cellulitisNo">No</label>
                                 </div>
                             </div>
@@ -106,20 +103,18 @@
                             <label class="nhsuk-label" for="cellulitisEpisodes">
                                 Enter number of episodes of cellulitis since your last appointment.
                             </label>
-                            <input th:field="${cellulitisEpisodes}" class="nhsuk-input nhsuk-input--width-10" id="cellulitisEpisodes" name="cellulitisEpisodes" type="text" aria-describedby="Number of cellulitis episodes" inputmode="numeric">
+                            <input th:field="*{cellulitisEpisodes}" class="nhsuk-input nhsuk-input--width-10"
+                                   id="cellulitisEpisodes" name="cellulitisEpisodes" type="text"
+                                   aria-describedby="Number of cellulitis episodes" inputmode="numeric">
                         </div>
                     </div>
-
                 </fieldset>
-<!--                <button class="nhsuk-button" data-module="nhsuk-button" type="submit">-->
-<!--                    Submit Pre-Appointment Questionnaire-->
-<!--                </button>-->
-                <a class="nhsuk-button" data-module="nhsuk-button" href="/taskhub/questionnaire-submitted">
+                <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
                     Submit Pre-Appointment Questionnaire
-                </a>
+                </button>
+
             </form>
-
-
+        </fieldset>
     </main>
 </div>
 <footer th:replace="~{fragments/_fragments :: footer}"></footer>

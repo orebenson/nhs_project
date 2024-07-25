@@ -7,13 +7,15 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
-public class PreappointmentResponseRepositoryImpl {
+public class PreappointmentResponseRepositoryImpl implements PreappointmentResponseRepository{
 
     private JdbcTemplate jdbc;
     private RowMapper<PreappointmentResponse> preappointmentResponseRowMapper;
-    private UserService userService;
 
     public PreappointmentResponseRepositoryImpl(JdbcTemplate aJdbc) {
         this.jdbc = aJdbc;
@@ -35,9 +37,30 @@ public class PreappointmentResponseRepositoryImpl {
         };
     }
 
-    public Long createPreappointmentResponse(PreappointmentResponse preappointmentResponse) {
-        String createPreappointmentResponseSql = "INSERT INTO preappointment_questionnaire_responses (user_id, createdAt, medications, changesToHealth, swellingConcerns, hosieryConcerns, cellulitisEpisodes)"
-                + "Values (?, ?, ?, ?, ?, ?, ?, ?)"
+    @Override
+    public PreappointmentResponse getResponseByUserIdAndDate(Long user_id, LocalDate date) {
+        String sql = "SELECT * FROM preappointment_questionnaire_responses WHERE user_id = ? AND createdAt = ?";
+        try {
+            return jdbc.queryForObject(sql, preappointmentResponseRowMapper, user_id, Date.valueOf(date));
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public List<PreappointmentResponse> getResponsesByUserId(Long user_id) {
+        String sql = "SELECT * FROM preappointment_questionnaire_responses WHERE user_id = ?";
+        try {
+            return jdbc.query(sql, preappointmentResponseRowMapper, user_id);
+        } catch (EmptyResultDataAccessException e) {
+            return new ArrayList<>();
+        }
+    }
+
+
+    public Long saveResponse(PreappointmentResponse preappointmentResponse) {
+        String createPreappointmentResponseSql = "INSERT INTO preappointment_questionnaire_responses (user_id, created_at, medications, changes_to_health, swelling_concerns, hosiery_concerns, cellulitis_episodes)"
+                + "Values (?, ?, ?, ?, ?, ?, ?)"
                 + " RETURNING preappointment_questionnaire_response_id";
 
         try {

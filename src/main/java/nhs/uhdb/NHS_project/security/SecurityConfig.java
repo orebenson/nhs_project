@@ -35,7 +35,7 @@ public class SecurityConfig {
 
     public static final String[] ENDPOINTS_WHITELIST = {
             // all users can see all pages currently, for testing purposes
-            "/**",
+//            "/**",
             //
             "/",
             "/css/**",
@@ -58,8 +58,6 @@ public class SecurityConfig {
             "/register/**",
             "/account",
             "/account/**",
-            "/questionnaires",
-            "/questionnaires/**",
             "/api/**"
     };
 
@@ -67,6 +65,8 @@ public class SecurityConfig {
             "/logout",
             "/diary",
             "/diary/**",
+            "/questionnaires",
+            "/questionnaires/**"
     };
 
     @Bean

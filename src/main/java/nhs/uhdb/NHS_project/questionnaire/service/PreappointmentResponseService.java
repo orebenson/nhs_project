@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface PreappointmentResponseService {
     PreappointmentResponse getResponseByUserIdAndDate (Long user_id, LocalDate date);
-    Long createResponse(PreappointmentResponse preappointmentResponse);
-    List<PreappointmentResponse> getResponsesbyUserId(Long user_id);
+    Long saveResponse(PreappointmentResponse preappointmentResponse);
+    List<PreappointmentResponse> getResponsesByUserId(Long user_id);
 
 
 }
