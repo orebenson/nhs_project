@@ -3,9 +3,12 @@ package nhs.uhdb.NHS_project.diary.controllers;
 import nhs.uhdb.NHS_project.accounts.service.UserService;
 import nhs.uhdb.NHS_project.admin.service.TreatmentPlanService;
 import nhs.uhdb.NHS_project.diary.model.DiaryEntry;
+import nhs.uhdb.NHS_project.diary.model.ProgressData;
 import nhs.uhdb.NHS_project.diary.services.DiaryEntryService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
@@ -49,6 +52,13 @@ public class DiaryController {
         mav.addObject("todayEntered",todayEntered);
         mav.addObject("entryDates",userDiaryEntries);
         return mav;
+    }
+
+    @GetMapping("/diary/progress")
+    public ResponseEntity<List<ProgressData>> getProgressData(@RequestParam("metric") String metric, Principal principal) {
+        Long userId = userService.getUserIdByEmail(principal.getName());
+        List<ProgressData> data = diaryEntryService.getMetricData(userId, metric);
+        return ResponseEntity.ok(data);
     }
 
 
