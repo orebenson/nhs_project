@@ -63,6 +63,9 @@ public class DiaryEntryServiceImpl implements DiaryEntryService {
                 case "wellnessScore":
                     data.setValue(entry.getWellnessScore());
                     break;
+                case "qualityOfLifeScore":
+                    data.setValue(entry.getQualityOfLifeScore());
+                    break;
             }
             metrics.add(data);
         }
