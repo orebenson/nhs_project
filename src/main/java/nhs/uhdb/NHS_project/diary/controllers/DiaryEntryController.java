@@ -5,10 +5,12 @@ import nhs.uhdb.NHS_project.accounts.service.UserService;
 import nhs.uhdb.NHS_project.admin.model.Exercise;
 import nhs.uhdb.NHS_project.admin.service.ExerciseService;
 import nhs.uhdb.NHS_project.diary.model.DiaryEntry;
+import nhs.uhdb.NHS_project.diary.model.ProgressData;
 import nhs.uhdb.NHS_project.diary.model.Measurement;
 import nhs.uhdb.NHS_project.diary.services.DiaryEntryService;
 import nhs.uhdb.NHS_project.diary.services.MeasurementService;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -114,6 +116,9 @@ public class DiaryEntryController {
 //
 //        return new ModelAndView("redirect:/diary/entrySuccess");
 //    }
+
+
+
 
 
 }
