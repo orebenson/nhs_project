@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
+  <title>Contact Us</title>
+</head>
+<body>
+<script th:replace="~{fragments/_fragments :: pagescript}"></script>
+<header th:replace="~{fragments/_fragments :: header}"></header>
+
+<div class="nhsuk-width-container">
+  <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+    <h1>Contact Us</h1>
+
+    <p>You can reach our service at the following locations:</p>
+
+    <div class="nhsuk-grid-row">
+      <div class="nhsuk-grid-column-one-third">
+        <div class="nhsuk-card">
+          <div class="nhsuk-card__content">
+            <h2 class="nhsuk-card__heading">Nightingale Community Hospital</h2>
+            <p>Phone: 01332 265 500</p>
+            <p>Address: Florence Nightingale Community Hospital, London Rd, Derby, DE1 2QY</p>
+            <a th:href="@{/ContactUs/Nightingale}">
+              Get Direction
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="nhsuk-grid-column-one-third">
+        <div class="nhsuk-card">
+          <div class="nhsuk-card__content">
+            <h2 class="nhsuk-card__heading">Long Eaton Health Centre</h2>
+            <p>Phone: 0115 855 4000</p>
+            <p>Address: Long Eaton Health Centre, Midland Street, Long Eaton, Nottingham, NG10 1RY</p>
+            <a th:href="@{/ContactUs/LongEaton}">
+              Get Direction
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="nhsuk-grid-column-one-third">
+        <div class="nhsuk-card">
+          <div class="nhsuk-card__content">
+            <h2 class="nhsuk-card__heading">Kings Mill Hospital</h2>
+            <p>Phone: 0162 362 2515</p>
+            <p>Address: King's Mill Hospital, Mansfield Road, Sutton in Ashfield, Nottinghamshire, NG17 4JL,</p>
+            <a th:href="@{/ContactUs/KingsMill}">
+              Get Direction
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nhsuk-warning-callout">
+      <h3 class="nhsuk-warning-callout__label">Important</h3>
+      <p>For medical emergencies, always call 999 or visit your nearest local GP.</p>
+    </div>
+  </main>
+</div>
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
+</body>
+</html>

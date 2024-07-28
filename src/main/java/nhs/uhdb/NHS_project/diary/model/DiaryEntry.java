@@ -21,8 +21,7 @@ public class DiaryEntry {
     private int wellnessScore;
     private int qualityOfLifeScore;
     private List<Exercise> completedExercises;
-
-
+    private List<Measurement> measurements;
 
 
     public DiaryEntry() {
@@ -36,6 +35,7 @@ public class DiaryEntry {
         this.wellnessScore = 0;
         this.qualityOfLifeScore = 0;
         this.completedExercises = new ArrayList<>();
+        this.measurements = new ArrayList<>();
 
     }
 

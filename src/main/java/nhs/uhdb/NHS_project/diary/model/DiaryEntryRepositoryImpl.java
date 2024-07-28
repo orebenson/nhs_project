@@ -17,10 +17,12 @@ public class DiaryEntryRepositoryImpl implements DiaryEntryRepository {
     private JdbcTemplate jdbc;
     private RowMapper<DiaryEntry> diaryEntryRowMapper;
     private ExerciseRepository exerciseRepository;
+    private MeasurementRepository measurementRepository;
 
-    public DiaryEntryRepositoryImpl(JdbcTemplate aJdbc, ExerciseRepository exerciseRepository) {
+    public DiaryEntryRepositoryImpl(JdbcTemplate aJdbc, ExerciseRepository exerciseRepository, MeasurementRepository measurementRepository) {
         this.jdbc = aJdbc;
         this.exerciseRepository = exerciseRepository;
+        this.measurementRepository = measurementRepository;
         setDiaryEntryRowMapper();
     }
 
@@ -37,6 +39,7 @@ public class DiaryEntryRepositoryImpl implements DiaryEntryRepository {
             diaryEntry.setQualityOfLifeScore(resultSet.getInt("qualityOfLifeScore"));
             diaryEntry.setWellnessScore(resultSet.getInt("wellnessScore"));
             diaryEntry.setCompletedExercises(exerciseRepository.getCompletedExercisesByDiaryEntryId(resultSet.getLong("diary_entry_id")));
+            diaryEntry.setMeasurements(measurementRepository.getMeasurementsByDiaryEntryId(resultSet.getLong("diary_entry_id")));
             return diaryEntry;
         };
     }
@@ -62,6 +65,8 @@ public class DiaryEntryRepositoryImpl implements DiaryEntryRepository {
             for (Exercise exercise : diaryEntry.getCompletedExercises()) {
                 jdbc.update(insertExerciseSql, diaryEntryId, exercise.getId());
             }
+            measurementRepository.submitMeasurementsForDiaryEntry(diaryEntry.getMeasurements(), diaryEntryId);
+
             return diaryEntryId;
         } catch (EmptyResultDataAccessException e) {
             return null;
