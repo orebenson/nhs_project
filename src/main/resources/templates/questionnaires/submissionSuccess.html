@@ -4,7 +4,7 @@
   <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
 
 
-  <title>Successful Submission</title>
+  <title>Successful Submission!</title>
 
   <!--    add any extra javascript file references here-->
 
@@ -16,13 +16,12 @@
   <main class="nhsuk-main-wrapper" id="maincontent" role="main">
 
 
-
     <!--        page content  goes here-->
-    <h2>Thank you for submitting your questionnaire!</h2>
-    <p>Please return to the Questionnaire TaskHub to check for any outstanding tasks.</p>
+    <h2>Thank you for your submission.</h2>
+    <p>Please return to the Questionnaires page to check for any outstanding tasks.</p>
 
-    <a class="nhsuk-button" data-module="nhsuk-button" href="/taskHubPage">
-      Return to Questionnaire TaskHub
+    <a class="nhsuk-button" data-module="nhsuk-button" th:href="@{/questionnaires}">
+      Return to Questionnaires Page
     </a>
 
 

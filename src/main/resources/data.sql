@@ -98,3 +98,5 @@ VALUES (1, 1),
        (2, 5),
        (2, 6);
 
+INSERT INTO qol_activity_key_table (not_at_all, a_little, quite_a_bit, a_lot, n_a)
+VALUES (1,2,3,4,0)

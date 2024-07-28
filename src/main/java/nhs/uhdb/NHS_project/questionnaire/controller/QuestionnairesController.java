@@ -11,9 +11,4 @@ public class QuestionnairesController {
         return new ModelAndView("questionnaires/taskHubPage");
     }
 
-//    @GetMapping("/taskhub/questionnaire-submitted")
-//    public ModelAndView questionnaireSuccess() {
-//        return new ModelAndView("questionnaires/submissionSuccess");
-//    }
-
 }

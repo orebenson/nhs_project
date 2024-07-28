@@ -64,7 +64,7 @@ public class PreappointmentResponseRepositoryImpl implements PreappointmentRespo
                 + " RETURNING preappointment_questionnaire_response_id";
 
         try {
-            Long preAppointmentQuestionnaireId = jdbc.queryForObject(createPreappointmentResponseSql,
+            Long preappointmentResponseId = jdbc.queryForObject(createPreappointmentResponseSql,
                     Long.class,
                     preappointmentResponse.getUser_id(),
                     Date.valueOf(preappointmentResponse.getCreatedAt()),
@@ -74,7 +74,7 @@ public class PreappointmentResponseRepositoryImpl implements PreappointmentRespo
                     preappointmentResponse.getHosieryConcerns(),
                     preappointmentResponse.getCellulitisEpisodes()
             );
-            return preAppointmentQuestionnaireId;
+            return preappointmentResponseId;
 
 
         } catch (EmptyResultDataAccessException e) {
