@@ -19,6 +19,8 @@ drop table if exists diary_entry_photos;
 drop table if exists preappointment_questionnaire_responses;
 drop table if exists qol_activity_key_table;
 drop table if exists qol_questionnaire_responses;
+drop table if exists cellulitis_incident_responses;
+drop table if exists preappointment_cellulitis_incident_responses;
 
 create table if not exists user_table
 (
@@ -149,7 +151,7 @@ create table if not exists diary_entry_measurements (
 
 create table if not exists preappointment_questionnaire_responses
 (
-    preappointment_questionnaire_response_id INT AUTO_INCREMENT PRIMARY KEY,
+    preappointment_questionnaire_response_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     user_id  BIGINT NOT NULL,
     created_at DATE NOT NULL,
     medications TEXT NOT NULL,
@@ -170,7 +172,7 @@ create table if not exists qol_activity_key_table
 
 create table if not exists qol_questionnaire_responses
 (
-    qol_questionnaire_response_id         BIGINT AUTO_INCREMENT PRIMARY KEY,
+    qol_questionnaire_response_id  BIGINT AUTO_INCREMENT PRIMARY KEY,
     user_id             BIGINT NOT NULL,
     created_at          DATE NOT NULL,
     walking             INT NOT NULL,
@@ -201,4 +203,31 @@ create table if not exists qol_questionnaire_responses
     feeling_irritable   INT NOT NULL,
     feeling_depressed   INT NOT NULL,
     quality_of_life     INT NOT NULL
+) engine = InnoDB;
+
+create table if not exists cellulitis_incident_responses
+(
+    cellulitis_incident_response_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    date_of_cellulitis TEXT NOT NULL,
+    area_affected TEXT NOT NULL,
+    redness TEXT NOT NULL,
+    pain_discomfort TEXT NOT NULL,
+    warm_touch TEXT NOT NULL,
+    swelling_worsen TEXT NOT NULL,
+    blisters TEXT NOT NULL,
+    raised_temperature TEXT NOT NULL,
+    flu_symptoms TEXT NOT NULL,
+    advice_visit TEXT NOT NULL,
+    oral_antibiotics TEXT NOT NULL,
+    course_duration TEXT NOT NULL,
+    iv_antibiotics TEXT NOT NULL,
+    hospital_admission TEXT NOT NULL,
+    lymphoedema_clinic_contact TEXT NOT NULL,
+    comments TEXT NOT NULL
+) engine = InnoDB;
+
+create table if not exists preappointment_cellulitis_incident_responses
+(
+    preappointment_questionnaire_response_id BIGINT NOT NULL,
+    cellulitis_incident_response_id BIGINT NOT NULL
 ) engine = InnoDB;

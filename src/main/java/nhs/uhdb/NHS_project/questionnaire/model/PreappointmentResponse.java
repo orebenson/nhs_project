@@ -3,8 +3,11 @@ package nhs.uhdb.NHS_project.questionnaire.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.sql.Array;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -18,6 +21,7 @@ public class PreappointmentResponse {
     private String swellingConcerns;
     private String hosieryConcerns;
     private Integer cellulitisEpisodes;
+    private List<CellulitisIncident> episodes;
 
 
     public PreappointmentResponse() {
@@ -27,6 +31,7 @@ public class PreappointmentResponse {
         this.swellingConcerns = "";
         this.hosieryConcerns = "";
         this.cellulitisEpisodes = 0;
+        this.episodes = new ArrayList<>();
     }
 
 }

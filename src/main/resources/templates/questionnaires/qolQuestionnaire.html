@@ -25,7 +25,7 @@
                 Go back</a>
         </div>
 
-        <form th:object="${qolQuestionnaireForm}" th:action="@{/questionnaires/qolQuestionnaire}" th:method="post" id="qol-form">
+        <form th:object="${qolQuestionnaireForm}" th:action="@{/questionnaires/qol-questionnaire}" th:method="post" id="qol-form">
             <fieldset class="nhsuk-fieldset">
                 <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
                     <h1 class="nhsuk-fieldset__heading">
@@ -116,7 +116,7 @@
 
                 <table>
                     <tr>
-                        <th>Question</th>
+                        <th>Questions</th>
                         <th>Not at all</th>
                         <th>A little</th>
                         <th>Quite a bit</th>
@@ -233,7 +233,7 @@
                     <h2>In the past week...</h2>
                 <table>
                     <tr>
-                        <th>Question</th>
+                        <th>Questions</th>
                         <th>Not at all</th>
                         <th>A little</th>
                         <th>Quite a bit</th>

@@ -7,12 +7,13 @@
     <title>Pre-appointment Questionnaire</title>
 
     <!--    add any extra javascript file references here-->
-    <script src="js/questionnaire/formControl.js"></script>
+    <script src="/js/questionnaire/formControl.js" defer></script>
 
 </head>
 <body>
 <script th:replace="~{fragments/_fragments :: pagescript}"></script>
 <header th:replace="~{fragments/_fragments :: header}"></header>
+
 <div class="nhsuk-width-container">
     <main class="nhsuk-main-wrapper" id="maincontent" role="main">
 
@@ -26,98 +27,287 @@
                 Go back</a>
         </div>
 
-        <fieldset class="nhsuk-fieldset">
-            <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
-                <h1 class="nhsuk-fieldset__heading">
-                    Pre-Appointment Questionnaire
-                </h1>
-            </legend>
 
-            <p>Please complete and submit this form before your next appointment.</p>
+        <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+            <h1 class="nhsuk-fieldset__heading">
+                Pre-Appointment Questionnaire
+            </h1>
+        </legend>
 
-            <form th:object="${preappointmentQuestionnaireForm}"
-                  th:action="@{/questionnaires/preappointment-questionnaire}" th:method="post"
-                  id="preappointment-form">
+        <p>Please complete and submit this form before your next appointment.</p>
+
+        <form th:object="${preappointmentQuestionnaireForm}"
+              th:action="@{/questionnaires/preappointment-questionnaire}" th:method="post"
+              id="preappointment-form">
+            <div class="nhsuk-form-group">
+                <h3 class="nhsuk-label-wrapper">1. Medications</h3>
+                <label class="nhsuk-label" for="medications">
+                    List any current medications you are currently taking and have been prescribed.
+                </label>
+                <textarea th:field="*{medications}" class="nhsuk-textarea" id="medications" name="medications"
+                          rows="5" aria-describedby="medications"></textarea>
+            </div>
+
+            <div class="nhsuk-form-group">
+                <h3 class="nhsuk-label-wrapper">2. Any changes to health/new diagnoses</h3>
+                <label class="nhsuk-label" for="changes-to-health">
+                    Describe any recent health changes or diagnoses.
+                </label>
+                <textarea th:field="*{changesToHealth}" class="nhsuk-textarea" id="changes-to-health"
+                          name="changes-to-health" rows="5"
+                          aria-describedby="changes-to-health"></textarea>
+            </div>
+
+            <div class="nhsuk-form-group">
+                <h3 class="nhsuk-label-wrapper">3. Any concerns regarding swelling</h3>
+                <label class="nhsuk-label" for="swellingConcerns">
+                    Express any concerns you may have about swelling of the affected areas.
+                </label>
+                <textarea th:field="*{swellingConcerns}" class="nhsuk-textarea" id="swellingConcerns"
+                          name="swellingConcerns" rows="5"
+                          aria-describedby="swellingConcerns"></textarea>
+            </div>
+
+            <div class="nhsuk-form-group">
+                <h3 class="nhsuk-label-wrapper">4. Any concerns regarding hosiery</h3>
+                <label class="nhsuk-label" for="hosieryConcerns">
+                    Discuss any issues with hosiery, including any allergies.
+                </label>
+                <textarea th:field="*{hosieryConcerns}" class="nhsuk-textarea" id="hosieryConcerns"
+                          name="hosieryConcerns" rows="5" aria-describedby="hosieryConcerns"></textarea>
+            </div>
+
+            <div class="nhsuk-form-group">
+                <h3 class="nhsuk-label-wrapper">
+                    5. Any episodes of cellulitis since last appointment
+                </h3>
+                <div class="nhsuk-radios nhsuk-radios--inline">
+                    <div class="nhsuk-radios__item">
+                        <input class="nhsuk-radios__input" id="cellulitisYes" name="cellulitisChoice"
+                               type="radio" value="yes" onchange="toggleInput(true)">
+                        <label class="nhsuk-label nhsuk-radios__label" for="cellulitisYes">
+                            Yes
+                        </label>
+                    </div>
+
+                    <div class="nhsuk-radios__item">
+                        <input class="nhsuk-radios__input" id="cellulitisNo" name="cellulitisChoice"
+                               type="radio" value="no" onchange="toggleInput(false)">
+                        <label class="nhsuk-label nhsuk-radios__label" for="cellulitisNo">
+                            No
+                        </label>
+                    </div>
+                </div>
+
+                <div class="nhsuk-form-group" id="numberInput" style="display:none;">
+                    <label class="nhsuk-label" for="cellulitisEpisodes">
+                        Enter number of episodes of cellulitis since your last appointment.
+                    </label>
+                    <input th:field="*{cellulitisEpisodes}" class="nhsuk-input nhsuk-input--width-10"
+                           id="cellulitisEpisodes" name="cellulitisEpisodes" type="text"
+                           aria-describedby="Number of cellulitis episodes" inputmode="numeric">
+                    <br><br>
+                    <div id="cellulitisEpisodesContainer"></div>
+
+                </div>
+            </div>
+
+            <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+                Submit Pre-Appointment Questionnaire
+            </button>
+
+        </form>
+    </main>
+</div>
+
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
+
+
+
+
+<script>
+    document.getElementById('cellulitisEpisodes').addEventListener('input', function() {
+        let episodeCount = parseInt(this.value);
+        let container = document.getElementById('cellulitisEpisodesContainer');
+        container.innerHTML = '';
+
+        if (!isNaN(episodeCount) && episodeCount > 0) {
+            for (let i = 1; i <= episodeCount; i++) {
+                let episodeDetails = document.createElement('div');
+                episodeDetails.classList.add('nhsuk-form-group');
+                episodeDetails.innerHTML = `
+                <h3 class="nhsuk-label-wrapper">5.1. Cellulitis Incident Details (Episode ${i})</h3>
+                                <label class="nhsuk-label" for="episodes[${i-1}].dateOfCellulitis"><strong>What date did the cellulitis occur?</strong></label>
+                <input th:field="*{episodes[${i-1}].dateOfCellulitis}" type="date" class="nhsuk-input" id="episodes[${i-1}].dateOfCellulitis" name="episodes[${i-1}].dateOfCellulitis">
+
+                <label class="nhsuk-label" for="episodes[${i-1}].areaAffected"><strong>What area was affected by the cellulitis?</strong></label>
+                <input th:field="*{episodes[${i-1}].areaAffected}" type="text" class="nhsuk-input" id="episodes[${i-1}].areaAffected" name="episodes[${i-1}].areaAffected">
+
                 <fieldset class="nhsuk-fieldset">
-                    <div class="nhsuk-form-group">
-                        <h3 class="nhsuk-label-wrapper">
-                            1. Medications</h3>
-                        <label class="nhsuk-label" for="medications">
-                            List any current medications you are currently taking and have been prescribed.
-                        </label>
-                        <textarea th:field="*{medications}" class="nhsuk-textarea" id="medications" name="medications"
-                                  rows="5"
-                                  aria-describedby="medications"></textarea>
-                    </div>
-
-                    <div class="nhsuk-form-group">
-                        <h3 class="nhsuk-label-wrapper">
-                            2. Any changes to health/new diagnoses:</h3>
-                        <label class="nhsuk-label" for="changes-to-health">
-                            Describe any recent health changes or diagnoses.
-                        </label>
-                        <textarea th:field="*{changesToHealth}" class="nhsuk-textarea" id="changes-to-health"
-                                  name="changes-to-health" rows="5"
-                                  aria-describedby="changes-to-health"></textarea>
-                    </div>
-
-                    <div class="nhsuk-form-group">
-                        <h3 class="nhsuk-label-wrapper">
-                            3. Any concerns regarding swelling:</h3>
-                        <label class="nhsuk-label" for="swellingConcerns">
-                            Express any concerns you may have about swelling of the affected areas.
-                        </label>
-                        <textarea th:field="*{swellingConcerns}" class="nhsuk-textarea" id="swellingConcerns"
-                                  name="swellingConcerns" rows="5"
-                                  aria-describedby="swellingConcerns"></textarea>
-                    </div>
-
-                    <div class="nhsuk-form-group">
-                        <h3 class="nhsuk-label-wrapper">
-                            4. Any concerns regarding hosiery.</h3>
-                        <label class="nhsuk-label" for="hosieryConcerns">
-                            Discuss any issues with hosiery, including any allergies.
-                        </label>
-                        <textarea th:field="*{hosieryConcerns}" class="nhsuk-textarea" id="hosieryConcerns"
-                                  name="hosieryConcerns" rows="5" aria-describedby="hosieryConcerns"></textarea>
-                    </div>
-
-                    <div class="nhsuk-form-group">
-                        <h3 class="nhsuk-label-wrapper">5. Episodes of cellulitis since last appointment.</h3>
-                        <fieldset class="nhsuk-fieldset">
-                            <div class="nhsuk-radios">
-                                <div class="nhsuk-radios__item">
-                                    <input class="nhsuk-radios__input" id="cellulitisYes"
-                                           name="cellulitisEpisodesChoice"
-                                           type="radio" value="yes" onchange="toggleInput(true)">
-                                    <label class="nhsuk-label nhsuk-radios__label" for="cellulitisYes">Yes</label>
-                                </div>
-                                <div class="nhsuk-radios__item">
-                                    <input class="nhsuk-radios__input" id="cellulitisNo" name="cellulitisEpisodesChoice"
-                                           type="radio" value="no" onchange="toggleInput(false)">
-                                    <label class="nhsuk-label nhsuk-radios__label" for="cellulitisNo">No</label>
-                                </div>
-                            </div>
-                        </fieldset>
-                        <div class="nhsuk-form-group" id="numberInput" style="display:none;">
-                            <label class="nhsuk-label" for="cellulitisEpisodes">
-                                Enter number of episodes of cellulitis since your last appointment.
-                            </label>
-                            <input th:field="*{cellulitisEpisodes}" class="nhsuk-input nhsuk-input--width-10"
-                                   id="cellulitisEpisodes" name="cellulitisEpisodes" type="text"
-                                   aria-describedby="Number of cellulitis episodes" inputmode="numeric">
+                    <legend class="nhsuk-label"><strong>Was there any redness?</strong></legend>
+                    <div class="nhsuk-radios nhsuk-radios--inline">
+                        <div class="nhsuk-radios__item">
+                            <input th:field="*{episodes[${i-1}].redness}" class="nhsuk-radios__input" id="episodes[${i-1}].rednessYes" name="episodes[${i-1}].redness" type="radio" value="yes">
+                            <label class="nhsuk-label nhsuk-radios__label" for="episodes[${i-1}].rednessYes">Yes</label>
+                        </div>
+                        <div class="nhsuk-radios__item">
+                            <input th:field="*{episodes[${i-1}].redness}" class="nhsuk-radios__input" id="episodes[${i-1}].rednessNo" name="episodes[${i-1}].redness" type="radio" value="no">
+                            <label class="nhsuk-label nhsuk-radios__label" for="episodes[${i-1}].rednessNo">No</label>
                         </div>
                     </div>
                 </fieldset>
-                <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
-                    Submit Pre-Appointment Questionnaire
-                </button>
 
-            </form>
-        </fieldset>
-    </main>
-</div>
-<footer th:replace="~{fragments/_fragments :: footer}"></footer>
+                <fieldset class="nhsuk-fieldset">
+                    <legend class="nhsuk-label"><strong>Did you experience increased pain or discomfort?</strong></legend>
+                    <div class="nhsuk-radios nhsuk-radios--inline">
+                        <div class="nhsuk-radios__item">
+                            <input th:field="*{episodes[${i-1}].painDiscomfort}" class="nhsuk-radios__input" id="episodes[${i-1}].painDiscomfortYes" name="episodes[${i-1}].painDiscomfort" type="radio" value="yes">
+                            <label class="nhsuk-label nhsuk-radios__label" for="episodes[${i-1}].painDiscomfortYes">Yes</label>
+                        </div>
+                        <div class="nhsuk-radios__item">
+                            <input th:field="*{episodes[${i-1}].painDiscomfort}" class="nhsuk-radios__input" id="episodes[${i-1}].painDiscomfortNo" name="episodes[${i-1}].painDiscomfort" type="radio" value="no">
+                            <label class="nhsuk-label nhsuk-radios__label" for="episodes[${i-1}].painDiscomfortNo">No</label>
+                        </div>
+                    </div>
+                </fieldset>
 
-</body>
-</html>
+                <fieldset class="nhsuk-fieldset">
+                    <legend class="nhsuk-label"><strong>Was the affected area warm to touch?</strong></legend>
+                    <div class="nhsuk-radios nhsuk-radios--inline">
+                        <div class="nhsuk-radios__item">
+                            <input th:field="*{episodes[${i-1}].warmTouch}" class="nhsuk-radios__input" id="episodes[${i-1}].warmTouchYes" name="episodes[${i-1}].warmTouch" type="radio" value="yes">
+                            <label class="nhsuk-label nhsuk-radios__label" for="episodes[${i-1}].warmTouchYes">Yes</label>
+                        </div>
+                        <div class="nhsuk-radios__item">
+                            <input th:field="*{episodes[${i-1}].warmTouch}" class="nhsuk-radios__input" id="episodes[${i-1}].warmTouchNo" name="episodes[${i-1}].warmTouch" type="radio" value="no">
+                            <label class="nhsuk-label nhsuk-radios__label" for="episodes[${i-1}].warmTouchNo">No</label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="nhsuk-fieldset">
+                    <legend class="nhsuk-label"><strong>Did your swelling worsen?</strong></legend>
+                    <div class="nhsuk-radios nhsuk-radios--inline">
+                        <div class="nhsuk-radios__item">
+                            <input th:field="*{episodes[${i-1}].swellingWorsen}" class="nhsuk-radios__input" id="episodes[${i-1}].swellingWorsenYes" name="episodes[${i-1}].swellingWorsen" type="radio" value="yes">
+                            <label class="nhsuk-label nhsuk-radios__label" for="episodes[${i-1}].swellingWorsenYes">Yes</label>
+                        </div>
+                        <div class="nhsuk-radios__item">
+                            <input th:field="*{episodes[${i-1}].swellingWorsen}" class="nhsuk-radios__input" id="episodes[${i-1}].swellingWorsenNo" name="episodes[${i-1}].swellingWorsen" type="radio" value="no">
+                            <label class="nhsuk-label nhsuk-radios__label" for="episodes[${i-1}].swellingWorsenNo">No</label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="nhsuk-fieldset">
+                    <legend class="nhsuk-label"><strong>Did you develop any blisters?</strong></legend>
+                    <div class="nhsuk-radios nhsuk-radios--inline">
+                        <div class="nhsuk-radios__item">
+                            <input th:field="*{episodes[${i-1}].blisters}" class="nhsuk-radios__input" id="episodes[${i-1}].blistersYes" name="episodes[${i-1}].blisters" type="radio" value="yes">
+                            <label class="nhsuk-label nhsuk-radios__label" for="episodes[${i-1}].blistersYes">Yes</label>
+                        </div>
+                        <div class="nhsuk-radios__item">
+                            <input th:field="*{episodes[${i-1}].blisters}" class="nhsuk-radios__input" id="episodes[${i-1}].blistersNo" name="episodes[${i-1}].blisters" type="radio" value="no">
+                            <label class="nhsuk-label nhsuk-radios__label" for="episodes[${i-1}].blistersNo">No</label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="nhsuk-fieldset">
+                    <legend class="nhsuk-label"><strong>Did you have a raised temperature?</strong></legend>
+                    <div class="nhsuk-radios nhsuk-radios--inline">
+                        <div class="nhsuk-radios__item">
+                            <input th:field="*{episodes[${i-1}].raisedTemperature}" class="nhsuk-radios__input" id="episodes[${i-1}].raisedTemperatureYes" name="episodes[${i-1}].raisedTemperature" type="radio" value="yes">
+                            <label class="nhsuk-label nhsuk-radios__label" for="episodes[${i-1}].raisedTemperatureYes">Yes</label>
+                        </div>
+                        <div class="nhsuk-radios__item">
+                            <input th:field="*{episodes[${i-1}].raisedTemperature}" class="nhsuk-radios__input" id="episodes[${i-1}].raisedTemperatureNo" name="episodes[${i-1}].raisedTemperature" type="radio" value="no">
+                            <label class="nhsuk-label nhsuk-radios__label" for="episodes[${i-1}].raisedTemperatureNo">No</label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="nhsuk-fieldset">
+                    <legend class="nhsuk-label"><strong>Did you experience any flu-like symptoms?</strong></legend>
+                    <div class="nhsuk-radios nhsuk-radios--inline">
+                        <div class="nhsuk-radios__item">
+                            <input th:field="*{episodes[${i-1}].fluSymptoms}" class="nhsuk-radios__input" id="episodes[${i-1}].fluSymptomsYes" name="episodes[${i-1}].fluSymptoms" type="radio" value="yes">
+                            <label class="nhsuk-label nhsuk-radios__label" for="episodes[${i-1}].fluSymptomsYes">Yes</label>
+                        </div>
+                        <div class="nhsuk-radios__item">
+                            <input th:field="*{episodes[${i-1}].fluSymptoms}" class="nhsuk-radios__input" id="episodes[${i-1}].fluSymptomsNo" name="episodes[${i-1}].fluSymptoms" type="radio" value="no">
+                            <label class="nhsuk-label nhsuk-radios__label" for="episodes[${i-1}].fluSymptomsNo">No</label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <label class="nhsuk-label" for="episodes[${i-1}].adviceVisit"><strong>Where did you visit/contact for advice/review?</strong></label>
+                <input th:field="*{episodes[${i-1}].adviceVisit}" type="text" class="nhsuk-input" id="episodes[${i-1}].adviceVisit" name="episodes[${i-1}].adviceVisit">
+
+                <fieldset class="nhsuk-fieldset">
+                    <legend class="nhsuk-label"><strong>Were you prescribed oral antibiotics (tablets)?</strong></legend>
+                    <div class="nhsuk-radios nhsuk-radios--inline">
+                        <div class="nhsuk-radios__item">
+                            <input th:field="*{episodes[${i-1}].oralAntibiotics}" class="nhsuk-radios__input" id="episodes[${i-1}].oralAntibioticsYes" name="episodes[${i-1}].oralAntibiotics" type="radio" value="yes">
+                            <label class="nhsuk-label nhsuk-radios__label" for="episodes[${i-1}].oralAntibioticsYes">Yes</label>
+                        </div>
+                        <div class="nhsuk-radios__item">
+                            <input th:field="*{episodes[${i-1}].oralAntibiotics}" class="nhsuk-radios__input" id="episodes[${i-1}].oralAntibioticsNo" name="episodes[${i-1}].oralAntibiotics" type="radio" value="no">
+                            <label class="nhsuk-label nhsuk-radios__label" for="episodes[${i-1}].oralAntibioticsNo">No</label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <label class="nhsuk-label" for="episodes[${i-1}].courseDuration"><strong>If yes, how long did this course last for?</strong></label>
+                <input th:field="*{episodes[${i-1}].courseDuration}" type="text" class="nhsuk-input" id="episodes[${i-1}].courseDuration" name="episodes[${i-1}].courseDuration">
+
+                <fieldset class="nhsuk-fieldset">
+                    <legend class="nhsuk-label"><strong>Did you require IV antibiotics (through a drip)?</strong></legend>
+                    <div class="nhsuk-radios nhsuk-radios--inline">
+                        <div class="nhsuk-radios__item">
+                            <input th:field="*{episodes[${i-1}].ivAntibiotics}" class="nhsuk-radios__input" id="episodes[${i-1}].ivAntibioticsYes" name="episodes[${i-1}].ivAntibiotics" type="radio" value="yes">
+                            <label class="nhsuk-label nhsuk-radios__label" for="episodes[${i-1}].ivAntibioticsYes">Yes</label>
+                        </div>
+                        <div class="nhsuk-radios__item">
+                            <input th:field="*{episodes[${i-1}].ivAntibiotics}" class="nhsuk-radios__input" id="episodes[${i-1}].ivAntibioticsNo" name="episodes[${i-1}].ivAntibiotics" type="radio" value="no">
+                            <label class="nhsuk-label nhsuk-radios__label" for="episodes[${i-1}].ivAntibioticsNo">No</label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="nhsuk-fieldset">
+                    <legend class="nhsuk-label"><strong>Did you require admission to hospital?</strong></legend>
+                    <div class="nhsuk-radios nhsuk-radios--inline">
+                        <div class="nhsuk-radios__item">
+                            <input th:field="*{episodes[${i-1}].hospitalAdmission}" class="nhsuk-radios__input" id="episodes[${i-1}].hospitalAdmissionYes" name="episodes[${i-1}].hospitalAdmission" type="radio" value="yes">
+                            <label class="nhsuk-label nhsuk-radios__label" for="episodes[${i-1}].hospitalAdmissionYes">Yes</label>
+                        </div>
+                        <div class="nhsuk-radios__item">
+                            <input th:field="*{episodes[${i-1}].hospitalAdmission}" class="nhsuk-radios__input" id="episodes[${i-1}].hospitalAdmissionNo" name="episodes[${i-1}].hospitalAdmission" type="radio" value="no">
+                            <label class="nhsuk-label nhsuk-radios__label" for="episodes[${i-1}].hospitalAdmissionNo">No</label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset class="nhsuk-fieldset">
+                    <legend class="nhsuk-label"><strong>Did you contact the Lymphoedema Clinic to inform them you’d had cellulitis?</strong></legend>
+                    <div class="nhsuk-radios nhsuk-radios--inline">
+                        <div class="nhsuk-radios__item">
+                            <input th:field="*{episodes[${i-1}].lymphoedemaClinicContact}" class="nhsuk-radios__input" id="episodes[${i-1}].lymphoedemaClinicContactYes" name="episodes[${i-1}].lymphoedemaClinicContact" type="radio" value="yes">
+                            <label class="nhsuk-label nhsuk-radios__label" for="episodes[${i-1}].lymphoedemaClinicContactYes">Yes</label>
+                        </div>
+                        <div class="nhsuk-radios__item">
+                            <input th:field="*{episodes[${i-1}].lymphoedemaClinicContact}" class="nhsuk-radios__input" id="episodes[${i-1}].lymphoedemaClinicContactNo" name="episodes[${i-1}].lymphoedemaClinicContact" type="radio" value="no">
+                            <label class="nhsuk-label nhsuk-radios__label" for="episodes[${i-1}].lymphoedemaClinicContactNo">No</label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <label class="nhsuk-label" for="episodes[${i-1}].comments"><strong>Comments</strong></label>
+                <textarea th:field="*{episodes[${i-1}].comments}" class="nhsuk-textarea" id="episodes[${i-1}].comments" name="episodes[${i-1}].comments" rows="5" aria-describedby="comments"></textarea>
+                `;
+                container.appendChild(episodeDetails);
+            }
+        }
+    });
+</script>
