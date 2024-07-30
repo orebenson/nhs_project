@@ -153,15 +153,17 @@
 
                     <div class="photo-upload">
                         <label class="nhsuk-label" for="photoFile0">Upload photo 1:</label>
-                        <input class="nhsuk-file-upload" type="file" id="photoFile0" name="photoFile0" accept="image/*">
+                        <input class="nhsuk-file-upload" type="file" id="photoFile0" name="photoFile0" accept="image/*" capture="environment" onchange="validateFileUpload(this)">
                     </div>
+                    <br>
                     <div class="photo-upload">
                         <label class="nhsuk-label" for="photoFile1">Upload photo 2:</label>
-                        <input class="nhsuk-file-upload" type="file" id="photoFile1" name="photoFile1" accept="image/*">
+                        <input class="nhsuk-file-upload" type="file" id="photoFile1" name="photoFile1" accept="image/*" capture="environment" onchange="validateFileUpload(this)">
                     </div>
+                    <br>
                     <div class="photo-upload">
                         <label class="nhsuk-label" for="photoFile2">Upload photo 3:</label>
-                        <input class="nhsuk-file-upload" type="file" id="photoFile2" name="photoFile2" accept="image/*">
+                        <input class="nhsuk-file-upload" type="file" id="photoFile2" name="photoFile2" accept="image/*" capture="environment" onchange="validateFileUpload(this)">
                     </div>
                 </div>
             </fieldset>
@@ -241,5 +243,22 @@
     </main>
 </div>
 <footer th:replace="~{fragments/_fragments :: footer}"></footer>
+<script>
+    function validateFileUpload(element) {
+        const selectedFile = element.files[0];
+        const allowedTypes = ['image/jpeg', 'image/png', 'application/pdf'];
+        const maxSizeInBytes = 5 * 1024 * 1024;
+
+        if (selectedFile.size > maxSizeInBytes) {
+            alert('File size exceeds the limit of 5 MB. Please upload a smaller file.');
+            element.value = '';
+        }
+
+        if (!allowedTypes.includes(selectedFile.type)) {
+            alert('Invalid file type. Please upload a JPEG, PNG, or PDF file.');
+            element.value = '';
+        }
+    }
+</script>
 </body>
 </html>
