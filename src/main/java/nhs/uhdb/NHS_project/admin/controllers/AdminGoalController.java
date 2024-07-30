@@ -13,9 +13,10 @@ public class AdminGoalController {
     private UserService userService;
 
     @GetMapping("/admin/{user_id}/goalSetting")
-    public ModelAndView adminGoalSetting(@PathVariable("user_id") int user_id) {
+    public ModelAndView adminGoalSetting(@PathVariable("user_id") Long user_id) {
         ModelAndView modelAndView = new ModelAndView("admin/adminSetUserGoal");
         User user = userService.getUserByUserId(user_id);
+        if (user == null) return new ModelAndView("admin/adminSearchUserError");
         return modelAndView;
     }
 }
