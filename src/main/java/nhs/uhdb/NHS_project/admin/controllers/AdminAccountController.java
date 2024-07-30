@@ -6,6 +6,10 @@ import nhs.uhdb.NHS_project.admin.model.LymphoedemaType;
 import nhs.uhdb.NHS_project.admin.model.TreatmentPlan;
 import nhs.uhdb.NHS_project.admin.service.LymphoedemaTypeService;
 import nhs.uhdb.NHS_project.admin.service.TreatmentPlanService;
+import nhs.uhdb.NHS_project.diary.controllers.ImageUtil;
+import nhs.uhdb.NHS_project.diary.model.DiaryEntry;
+import nhs.uhdb.NHS_project.diary.services.DiaryEntryService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,19 +18,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
+import java.time.LocalDate;
+import java.util.List;
 
 @Controller
 public class AdminAccountController {
 
     private UserService userService;
     private TreatmentPlanService treatmentPlanService;
-
     private LymphoedemaTypeService lymphoedemaTypeService;
+    private DiaryEntryService diaryEntryService;
 
-    public AdminAccountController(UserService userService, TreatmentPlanService treatmentPlanService, LymphoedemaTypeService lymphoedemaTypeService) {
+    public AdminAccountController(UserService userService, TreatmentPlanService treatmentPlanService, LymphoedemaTypeService lymphoedemaTypeService, DiaryEntryService diaryEntryService) {
         this.userService = userService;
         this.treatmentPlanService = treatmentPlanService;
         this.lymphoedemaTypeService = lymphoedemaTypeService;
+        this.diaryEntryService = diaryEntryService;
     }
 
     @GetMapping("/admin")
@@ -95,9 +102,28 @@ public class AdminAccountController {
             userLymphoedemaType.setName("None");
         }
 
+        List<String> userDiaryEntries = diaryEntryService.getFormattedDiaryEntryDatesByUserId(id);
+
+        mav.addObject("entryDates",userDiaryEntries);
         mav.addObject("userPlan", userPlan);
         mav.addObject("userLymphoedemaType", userLymphoedemaType);
         mav.addObject("user", user);
+        return mav;
+    }
+
+    @GetMapping("/admin/{id}/diary/history/{date}")
+    public ModelAndView getUserDiaryHistory(@PathVariable Long id, @PathVariable @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate date) {
+        ModelAndView mav = new ModelAndView("admin/adminViewUserDiaryHistory");
+
+        User user = userService.getUserByUserId(id);
+        if (user == null) return new ModelAndView("admin/adminSearchUserError");
+
+        DiaryEntry diaryEntry = diaryEntryService.getDiaryEntryByUserIdAndDate(id, date);
+        if (diaryEntry == null) diaryEntry = new DiaryEntry();
+        mav.addObject("entry", diaryEntry);
+        mav.addObject("user", user);
+        mav.addObject("date", date);
+        mav.addObject("imgUtil", new ImageUtil());
         return mav;
     }
 }

@@ -81,6 +81,22 @@
 
         </dl>
 
+        <details class="nhsuk-details nhsuk-expander nhsuk-u-width-two-thirds">
+            <summary class="nhsuk-details__summary">
+                <span class="nhsuk-details__summary-text">
+                  Patient diary entries
+                </span>
+            </summary>
+            <div class="nhsuk-details__text" th:if="${entryDates.size() < 1}">
+                <p>This patient does not have any diary entries</p>
+            </div>
+            <div class="nhsuk-details__text" th:if="${entryDates.size() > 0}">
+                <p th:each="date : ${entryDates}">
+                    <a th:href="@{/admin/{id}/diary/history/{date}(id=${user.user_id}, date=${date})}" th:text="${date}"></a>
+                </p>
+            </div>
+        </details>
+
         <div class="nhsuk-action-link">
             <a class="nhsuk-action-link__link" th:href="@{/admin/{userId}/plan(userId=${user.user_id})}">
                 <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg"
