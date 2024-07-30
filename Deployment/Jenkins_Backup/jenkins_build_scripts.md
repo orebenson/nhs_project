@@ -87,3 +87,5 @@ cd Terraform_Docker
 /usr/local/bin/terraform init
 /usr/local/bin/terraform plan
 /usr/local/bin/terraform apply -auto-approve
+
+echo "Assigned IP: $(cat floating_ip.txt)"

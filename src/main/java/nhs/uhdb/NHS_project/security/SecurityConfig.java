@@ -58,6 +58,12 @@ public class SecurityConfig {
             "/register/**",
             "/account",
             "/account/**",
+            "/services",
+            "/services/**",
+            "/support",
+            "/support/**",
+            "/information",
+            "/information/**",
             "/api/**"
     };
 
