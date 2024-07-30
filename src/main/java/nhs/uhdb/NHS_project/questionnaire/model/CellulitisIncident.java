@@ -3,6 +3,8 @@ package nhs.uhdb.NHS_project.questionnaire.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+
+//Using Lombok annotation to generate getters and setters, including constructors
 @Data
 @AllArgsConstructor
 public class CellulitisIncident {

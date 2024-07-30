@@ -20,28 +20,32 @@ public class PreappointmentResponseServiceImpl implements PreappointmentResponse
     //Using logger for debugging
     private static final Logger LOGGER = Logger.getLogger(PreappointmentResponseServiceImpl.class.getName());
 
-
+    //Constructor to initialise repositories
     public PreappointmentResponseServiceImpl(PreappointmentResponseRepository preappointmentResponseRepository, CellulitisIncidentRepository cellulitisIncidentRepository) {
         this.preappointmentResponseRepository = preappointmentResponseRepository;
         this.cellulitisIncidentRepository = cellulitisIncidentRepository;
     }
 
+    //Method to retrieve a PreappointmentResponse by user ID and date
     @Override
     public PreappointmentResponse getResponseByUserIdAndDate(Long user_id, LocalDate date) {
         return preappointmentResponseRepository.getResponseByUserIdAndDate(user_id, date);
     }
 
+    //Method to save a new PreappointmentResponse and associated CellulitisIncidents to the database
     @Override
     public Long saveResponse(PreappointmentResponse preappointmentResponse) {
         Long responseId = preappointmentResponseRepository.saveResponse(preappointmentResponse);
         for (CellulitisIncident incident : preappointmentResponse.getEpisodes()) {
             Long incidentId = cellulitisIncidentRepository.saveIncident(incident, responseId);
 
+            //Log the successful save of the CellulitisIncident
             LOGGER.info("Saved CellulitisIncident with ID: " + incidentId);
         }
         return responseId;
     }
 
+    //Method to retrieve all PreappointmentResponses by user ID
     @Override
     public List<PreappointmentResponse> getResponsesByUserId(Long user_id) {
         return preappointmentResponseRepository.getResponsesByUserId(user_id);

@@ -16,12 +16,13 @@ public class QolResponseRepositoryImpl implements QolResponseRepository{
     private JdbcTemplate jdbc;
     private RowMapper<QolResponse> qolResponseRowMapper;
 
+    // Constructor to initialise JdbcTemplate and set up RowMapper
     public QolResponseRepositoryImpl(JdbcTemplate aJdbc) {
         this.jdbc = aJdbc;
         setResponsesRowMapper();
     }
 
-    //setting row mapper for responses received
+    //Method to set up the RowMapper for mapping resultSet to QolResponse object
     private void setResponsesRowMapper() {
         this.qolResponseRowMapper = (resultSet, i) -> {
             QolResponse qolResponse = new QolResponse();
@@ -61,7 +62,7 @@ public class QolResponseRepositoryImpl implements QolResponseRepository{
         };
     }
 
-    //function for getting response user by id and date
+    //Method to retrieve a QolResponse by user ID and date
     @Override
     public QolResponse getResponseByUserIdAndDate(Long user_id, LocalDate date) {
         String sql = "SELECT * FROM qol_questionnaire_responses WHERE user_id = ? AND created_at = ?";
@@ -72,7 +73,7 @@ public class QolResponseRepositoryImpl implements QolResponseRepository{
         }
     }
 
-    //function for getting response by user id within a list
+    //Method to retrieve all QolResponses by user ID
     @Override
     public List<QolResponse> getResponsesByUserId(Long user_id) {
         String sql = "SELECT * FROM qol_questionnaire_responses WHERE user_id = ?";
@@ -84,7 +85,7 @@ public class QolResponseRepositoryImpl implements QolResponseRepository{
     }
 
 
-    //function for saving the response into the db
+    //Method to save a new QolResponse to the database and return its ID
     public Long saveResponse(QolResponse qolResponse) {
         String createQolResponseSql = "INSERT INTO qol_questionnaire_responses "
                 + "(user_id, created_at, walking, bending, standing, getting_up, occupation, housework, "

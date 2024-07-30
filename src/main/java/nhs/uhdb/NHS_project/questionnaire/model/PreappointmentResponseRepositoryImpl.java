@@ -17,11 +17,13 @@ public class PreappointmentResponseRepositoryImpl implements PreappointmentRespo
     private JdbcTemplate jdbc;
     private RowMapper<PreappointmentResponse> preappointmentResponseRowMapper;
 
+    //Constructor to initialise JdbcTemplate and set up RowMapper
     public PreappointmentResponseRepositoryImpl(JdbcTemplate aJdbc) {
         this.jdbc = aJdbc;
         setResponsesRowMapper();
     }
 
+    //Method for mapping fields from resultSet to PreappointmentResponse object
     private void setResponsesRowMapper() {
         this.preappointmentResponseRowMapper = (resultSet, i) -> {
             PreappointmentResponse preappointmentResponse = new PreappointmentResponse();
@@ -37,6 +39,7 @@ public class PreappointmentResponseRepositoryImpl implements PreappointmentRespo
         };
     }
 
+    //Method to retrieve a PreappointmentResponse by user ID and date
     @Override
     public PreappointmentResponse getResponseByUserIdAndDate(Long user_id, LocalDate date) {
         String sql = "SELECT * FROM preappointment_questionnaire_responses WHERE user_id = ? AND createdAt = ?";
@@ -47,6 +50,7 @@ public class PreappointmentResponseRepositoryImpl implements PreappointmentRespo
         }
     }
 
+    //Method to retrieve all PreappointmentResponses by user ID
     @Override
     public List<PreappointmentResponse> getResponsesByUserId(Long user_id) {
         String sql = "SELECT * FROM preappointment_questionnaire_responses WHERE user_id = ?";
@@ -58,6 +62,7 @@ public class PreappointmentResponseRepositoryImpl implements PreappointmentRespo
     }
 
 
+    //Method to save a new PreappointmentResponse to the database and return its ID
     public Long saveResponse(PreappointmentResponse preappointmentResponse) {
         String createPreappointmentResponseSql = "INSERT INTO preappointment_questionnaire_responses (user_id, created_at, medications, changes_to_health, swelling_concerns, hosiery_concerns, cellulitis_episodes)"
                 + "Values (?, ?, ?, ?, ?, ?, ?)"

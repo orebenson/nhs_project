@@ -18,13 +18,13 @@ public class CellulitisIncidentRepositoryImpl implements CellulitisIncidentRepos
     //Using logger for debugging
     private static final Logger LOGGER = Logger.getLogger(CellulitisIncidentRepositoryImpl.class.getName());
 
-
+    //Constructor to initialise JdbcTemplate and set up RowMapper
     public CellulitisIncidentRepositoryImpl(JdbcTemplate aJdbc) {
         this.jdbc = aJdbc;
         setResponsesRowMapper();
     }
 
-    //Mapping fields from resultSet to CellulitisIncident object
+    //Method for mapping fields from resultSet to the CellulitisIncident object
     private void setResponsesRowMapper() {
         this.cellulitisIncidentRowMapper = (resultSet, i) -> {
             CellulitisIncident cellulitisIncident = new CellulitisIncident();
@@ -48,12 +48,14 @@ public class CellulitisIncidentRepositoryImpl implements CellulitisIncidentRepos
         };
     }
 
+    //Method to retrieve all cellulitis incidents from the database
     @Override
     public List<CellulitisIncident> getAllCellulitisIncident() {
         String sql = "SELECT * FROM cellulitis_incident_responses";
         return jdbc.query(sql, cellulitisIncidentRowMapper);
     }
 
+    //Method to save a new cellulitis incident to the database and link it to a pre-appointment response
     @Override
     public Long saveIncident(CellulitisIncident incident, Long responseId) {
         String sql = "INSERT INTO cellulitis_incident_responses (date_of_cellulitis, area_affected, redness, pain_discomfort, warm_touch, swelling_worsen, blisters, raised_temperature, flu_symptoms, advice_visit, oral_antibiotics, course_duration, iv_antibiotics, hospital_admission, lymphoedema_clinic_contact, comments) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -72,10 +74,12 @@ public class CellulitisIncidentRepositoryImpl implements CellulitisIncidentRepos
             return incidentId;
 
         } catch (EmptyResultDataAccessException e) {
+            //Logging the exception if no result is found
             LOGGER.severe("EmptyResultDataAccessException: " + e.getMessage());
             e.printStackTrace();
             return null;
         } catch (Exception e) {
+            //Logging any other exceptions
             LOGGER.severe("Exception: " + e.getMessage());
             e.printStackTrace();
             return null;

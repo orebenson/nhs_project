@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.time.LocalDate;
 
+//Using Lombok annotation to generate getters and setters, including constructors
 @Data
 @AllArgsConstructor
 public class QolResponse {

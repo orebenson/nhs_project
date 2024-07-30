@@ -6,8 +6,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class QuestionnairesController {
 
+
+    //Method to handle GET requests for the questionnaires task hub page
     @GetMapping("/questionnaires")
-    public ModelAndView tasks() {
+    public ModelAndView questionnaires() {
         return new ModelAndView("questionnaires/taskHubPage");
     }
 

@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+//Using Lombok annotation to generate getters and setters, including constructors
 @Data
 @AllArgsConstructor
 public class PreappointmentResponse {
