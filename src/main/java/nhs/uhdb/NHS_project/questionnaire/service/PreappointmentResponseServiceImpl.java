@@ -16,6 +16,8 @@ public class PreappointmentResponseServiceImpl implements PreappointmentResponse
 
     private PreappointmentResponseRepository preappointmentResponseRepository;
     private CellulitisIncidentRepository cellulitisIncidentRepository;
+
+    //Using logger for debugging
     private static final Logger LOGGER = Logger.getLogger(PreappointmentResponseServiceImpl.class.getName());
 
 
@@ -34,7 +36,8 @@ public class PreappointmentResponseServiceImpl implements PreappointmentResponse
         Long responseId = preappointmentResponseRepository.saveResponse(preappointmentResponse);
         for (CellulitisIncident incident : preappointmentResponse.getEpisodes()) {
             Long incidentId = cellulitisIncidentRepository.saveIncident(incident, responseId);
-            LOGGER.info("Saved CellulitisIncident with ID: " + incidentId);
+
+//            LOGGER.info("Saved CellulitisIncident with ID: " + incidentId);
         }
         return responseId;
     }
