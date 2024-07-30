@@ -121,6 +121,24 @@
                     </dd>
                 </div>
 
+                <div class="nhsuk-summary-list__row">
+                    <dt class="nhsuk-summary-list__key">
+                        Photos
+                    </dt>
+                    <dd class="nhsuk-summary-list__value">
+                        <div th:if="${entry.photos.size() < 1}">
+                            N/A
+                        </div>
+                        <div th:if="${entry.photos.size() > 0}">
+
+                            <figure th:each="photo : ${entry.photos}" class="nhsuk-image">
+                                <img class="nhsuk-image__img" th:alt="'Photo: ' + ${photo.id}"  th:src="'data:image/jpeg;base64,' + ${imgUtil.getImgData(photo.getBytes())}"/>
+                            </figure>
+
+                        </div>
+                    </dd>
+                </div>
+
 
 
             </dl>

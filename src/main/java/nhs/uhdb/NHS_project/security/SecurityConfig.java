@@ -60,13 +60,15 @@ public class SecurityConfig {
             "/account/**",
             "/taskhub",
             "/taskhub/**",
-            "/api/**"
+            "/api/**",
+            "/photo",
+            "/photo/**",
     };
 
     public static final String[] USER_WHITELIST = {
             "/logout",
             "/diary",
-            "/diary/**",
+            "/diary/**"
     };
 
     @Bean

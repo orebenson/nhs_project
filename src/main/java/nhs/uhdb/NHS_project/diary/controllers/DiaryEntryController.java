@@ -114,6 +114,7 @@ public class DiaryEntryController {
         if (diaryEntry == null) diaryEntry = new DiaryEntry();
         mav.addObject("entry", diaryEntry);
         mav.addObject("date", date);
+        mav.addObject("imgUtil", new ImageUtil());
         return mav;
     }
 
