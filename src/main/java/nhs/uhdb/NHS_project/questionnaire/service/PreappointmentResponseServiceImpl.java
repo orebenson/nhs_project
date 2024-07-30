@@ -37,7 +37,7 @@ public class PreappointmentResponseServiceImpl implements PreappointmentResponse
         for (CellulitisIncident incident : preappointmentResponse.getEpisodes()) {
             Long incidentId = cellulitisIncidentRepository.saveIncident(incident, responseId);
 
-//            LOGGER.info("Saved CellulitisIncident with ID: " + incidentId);
+            LOGGER.info("Saved CellulitisIncident with ID: " + incidentId);
         }
         return responseId;
     }

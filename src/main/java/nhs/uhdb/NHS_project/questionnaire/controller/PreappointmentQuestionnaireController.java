@@ -45,11 +45,11 @@ public class PreappointmentQuestionnaireController {
         form.setUser_id(loggedInUser.getUser_id());
         form.setCreatedAt(LocalDate.now());
 
-//        LOGGER.info("Submitting form: " + form);
+        LOGGER.info("Submitting form: " + form);
 
         Long responseID = preappointmentResponseService.saveResponse(form);
 
-//        LOGGER.info("Saved PreappointmentResponse with ID: " + responseID);
+        LOGGER.info("Saved PreappointmentResponse with ID: " + responseID);
 
         return new ModelAndView("/questionnaires/submissionSuccess");
     }

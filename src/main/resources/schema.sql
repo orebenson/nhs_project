@@ -17,7 +17,7 @@ drop table if exists measurement_types;
 drop table if exists lymphoedema_type_measurements;
 drop table if exists diary_entry_photos;
 drop table if exists preappointment_questionnaire_responses;
-drop table if exists qol_activity_key_table;
+drop table if exists qol_activity_score_key_table;
 drop table if exists qol_questionnaire_responses;
 drop table if exists cellulitis_incident_responses;
 drop table if exists preappointment_cellulitis_incident_responses;
@@ -161,13 +161,10 @@ create table if not exists preappointment_questionnaire_responses
     cellulitis_episodes INT
 ) engine = InnoDB;
 
-create table if not exists qol_activity_key_table
+create table if not exists qol_activity_score_key_table
 (
-    not_at_all INT,
-    a_little INT,
-    quite_a_bit INT,
-    a_lot INT,
-    n_a INT
+    choice TEXT,
+    score INT
 ) engine = InnoDB;
 
 create table if not exists qol_questionnaire_responses

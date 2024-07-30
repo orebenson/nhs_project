@@ -58,25 +58,25 @@ public class CellulitisIncidentRepositoryImpl implements CellulitisIncidentRepos
     public Long saveIncident(CellulitisIncident incident, Long responseId) {
         String sql = "INSERT INTO cellulitis_incident_responses (date_of_cellulitis, area_affected, redness, pain_discomfort, warm_touch, swelling_worsen, blisters, raised_temperature, flu_symptoms, advice_visit, oral_antibiotics, course_duration, iv_antibiotics, hospital_admission, lymphoedema_clinic_contact, comments) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
-//            LOGGER.info("Attempting to save CellulitisIncident: " + incident);
+            LOGGER.info("Attempting to save CellulitisIncident: " + incident);
             jdbc.update(sql, incident.getDateOfCellulitis(), incident.getAreaAffected(), incident.getRedness(), incident.getPainDiscomfort(), incident.getWarmTouch(), incident.getSwellingWorsen(), incident.getBlisters(), incident.getRaisedTemperature(), incident.getFluSymptoms(), incident.getAdviceVisit(), incident.getOralAntibiotics(), incident.getCourseDuration(), incident.getIvAntibiotics(), incident.getHospitalAdmission(), incident.getLymphoedemaClinicContact(), incident.getComments());
 
             Long incidentId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Long.class);
-//            LOGGER.info("Saved CellulitisIncident with ID: " + incidentId);
+            LOGGER.info("Saved CellulitisIncident with ID: " + incidentId);
 
             String linkSql = "INSERT INTO preappointment_cellulitis_incident_responses (preappointment_questionnaire_response_id, cellulitis_incident_response_id) VALUES (?, ?)";
             jdbc.update(linkSql, responseId, incidentId);
 
-//            LOGGER.info("Linked CellulitisIncident with ID: " + incidentId + " to PreappointmentResponse with ID: " + responseId);
+            LOGGER.info("Linked CellulitisIncident with ID: " + incidentId + " to PreappointmentResponse with ID: " + responseId);
 
             return incidentId;
 
         } catch (EmptyResultDataAccessException e) {
-//            LOGGER.severe("EmptyResultDataAccessException: " + e.getMessage());
+            LOGGER.severe("EmptyResultDataAccessException: " + e.getMessage());
             e.printStackTrace();
             return null;
         } catch (Exception e) {
-//            LOGGER.severe("Exception: " + e.getMessage());
+            LOGGER.severe("Exception: " + e.getMessage());
             e.printStackTrace();
             return null;
         }
