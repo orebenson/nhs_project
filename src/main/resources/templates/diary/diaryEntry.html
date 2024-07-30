@@ -44,7 +44,7 @@
             Enter progress for <span th:text="${#temporals.format(date, 'dd/MM/yyyy')}"></span>
         </h1>
 
-        <form th:method="post" th:action="@{/diary/entry}" th:object="${newEntry}" id="diary-entry-form">
+        <form th:method="post" th:action="@{/diary/entry}" th:object="${newEntry}" id="diary-entry-form" enctype="multipart/form-data">
 
             <fieldset class="nhsuk-fieldset">
 
@@ -138,6 +138,30 @@
                                    th:text="${exercise.videoLink}">Video Link</a>
                             </label>
                         </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <br>
+            <fieldset class="nhsuk-fieldset">
+                <div class="nhsuk-form-group">
+                    <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                        <h1 class="nhsuk-fieldset__heading">
+                            Please upload photos of the affected area
+                        </h1>
+                    </legend>
+
+                    <div class="photo-upload">
+                        <label class="nhsuk-label" for="photoFile0">Upload photo 1:</label>
+                        <input class="nhsuk-file-upload" type="file" id="photoFile0" name="photoFile0" accept="image/*">
+                    </div>
+                    <div class="photo-upload">
+                        <label class="nhsuk-label" for="photoFile1">Upload photo 2:</label>
+                        <input class="nhsuk-file-upload" type="file" id="photoFile1" name="photoFile1" accept="image/*">
+                    </div>
+                    <div class="photo-upload">
+                        <label class="nhsuk-label" for="photoFile2">Upload photo 3:</label>
+                        <input class="nhsuk-file-upload" type="file" id="photoFile2" name="photoFile2" accept="image/*">
                     </div>
                 </div>
             </fieldset>

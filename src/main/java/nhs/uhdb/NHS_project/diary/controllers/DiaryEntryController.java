@@ -5,6 +5,7 @@ import nhs.uhdb.NHS_project.accounts.service.UserService;
 import nhs.uhdb.NHS_project.admin.model.Exercise;
 import nhs.uhdb.NHS_project.admin.service.ExerciseService;
 import nhs.uhdb.NHS_project.diary.model.DiaryEntry;
+import nhs.uhdb.NHS_project.diary.model.Photo;
 import nhs.uhdb.NHS_project.diary.model.ProgressData;
 import nhs.uhdb.NHS_project.diary.model.Measurement;
 import nhs.uhdb.NHS_project.diary.services.DiaryEntryService;
@@ -16,6 +17,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 
@@ -62,10 +66,26 @@ public class DiaryEntryController {
     @PostMapping("/diary/entry")
     public ModelAndView postDiaryEntry(Principal principal, @ModelAttribute("newEntry") DiaryEntry newEntry,
                                        @RequestParam(value = "selectedExercises", required = false) List<Long> selectedExercises,
-                                       @RequestParam(value = "measurements", required = false) List<Measurement> measurements
-    ) {
+                                       @RequestParam(value = "measurements", required = false) List<Measurement> measurements,
+                                       @RequestParam(value = "photoFile0", required = false) MultipartFile photoFile0,
+                                       @RequestParam(value = "photoFile1", required = false) MultipartFile photoFile1,
+                                       @RequestParam(value = "photoFile2", required = false) MultipartFile photoFile2
+    ) throws IOException {
         newEntry.setUser_id(userService.getUserIdByEmail(principal.getName()));
         newEntry.setCreatedAt(LocalDate.now());
+
+        List<MultipartFile> photoFiles = List.of(photoFile0, photoFile1, photoFile2);
+        for (MultipartFile photoFile : photoFiles) {
+            if (photoFile != null && !photoFile.isEmpty()) {
+                BufferedImage bufferedImage = ImageIO.read(photoFile.getInputStream());
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                ImageIO.write(bufferedImage, "jpeg", byteArrayOutputStream);
+
+                Photo photo = new Photo();
+                photo.setBytes(photoFile.getBytes());
+                newEntry.getPhotos().add(photo);
+            }
+        }
 
         if (measurements != null && !measurements.isEmpty()) {
             newEntry.setMeasurements(measurements);
@@ -96,28 +116,6 @@ public class DiaryEntryController {
         mav.addObject("date", date);
         return mav;
     }
-
-//    @PostMapping("/diary/entryWithPhoto")
-//    public ModelAndView postDiaryEntry(Principal principal, @ModelAttribute("newEntry") DiaryEntry newEntry,
-//                                       @RequestParam("photo") MultipartFile photo,
-//                                       @RequestParam(value = "selectedExercises", required = false) List<Long> selectedExercises) throws IOException {
-//        if (!photo.isEmpty()) {
-//            String directory = "/uploads/diary_photos/";
-//            String filename = photo.getOriginalFilename();
-//            Path filePath = Paths.get(directory, filename);
-//            Files.createDirectories(filePath.getParent());
-//            Files.copy(photo.getInputStream(), filePath);
-//
-//            //newEntry.setPhotoUrl(filePath.toString());
-//        }
-//
-//        Long result = diaryEntryService.createDiaryEntry(newEntry);
-//        if(result == null) return new ModelAndView("redirect:/diary/entryError");
-//
-//        return new ModelAndView("redirect:/diary/entrySuccess");
-//    }
-
-
 
 
 
