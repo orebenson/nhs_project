@@ -60,6 +60,12 @@ public class SecurityConfig {
             "/account/**",
             "/taskhub",
             "/taskhub/**",
+            "/services",
+            "/services/**",
+            "/support",
+            "/support/**",
+            "/information",
+            "/information/**",
             "/api/**"
     };
 
