@@ -58,8 +58,6 @@ public class SecurityConfig {
             "/register/**",
             "/account",
             "/account/**",
-            "/taskhub",
-            "/taskhub/**",
             "/photo",
             "/photo/**",
             "/services",
@@ -74,7 +72,9 @@ public class SecurityConfig {
     public static final String[] USER_WHITELIST = {
             "/logout",
             "/diary",
-            "/diary/**"
+            "/diary/**",
+            "/questionnaires",
+            "/questionnaires/**"
     };
 
     @Bean

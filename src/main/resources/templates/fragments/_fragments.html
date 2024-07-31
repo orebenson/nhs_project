@@ -79,23 +79,23 @@
                     </a>
                 </li>
                 <li class="nhsuk-header__navigation-item">
-                    <a class="nhsuk-header__navigation-link" th:href="@{/services}">
+                    <a class="nhsuk-header__navigation-link" href="#">
                         Our Services
                     </a>
                 </li>
 
                 <li class="nhsuk-header__navigation-item">
-                    <a class="nhsuk-header__navigation-link" th:href="@{/support}">
+                    <a class="nhsuk-header__navigation-link" href="#">
                         Support
                     </a>
                 </li>
                 <li class="nhsuk-header__navigation-item">
-                    <a class="nhsuk-header__navigation-link" th:href="@{/information}">
-                        Information
+                    <a class="nhsuk-header__navigation-link" href="#">
+                        Leg Lymphoedema
                     </a>
                 </li>
                 <li class="nhsuk-header__navigation-item" th:if="${#authorization.expression('isAuthenticated()') and #authorization.expression('hasRole(''USER'')')}">
-                    <a class="nhsuk-header__navigation-link" th:href="@{/taskhub}">
+                    <a class="nhsuk-header__navigation-link" th:href="@{/questionnaires}">
                         Questionnaires
                     </a>
                 </li>
@@ -150,6 +150,9 @@
             <div class="nhsuk-footer">
 
                 <ul class="nhsuk-footer__list">
+                    <li class="nhsuk-footer__list-item nhsuk-footer-default__list-item">
+                        <a class="nhsuk-footer__list-item-link" href="#">NHS sites</a>
+                    </li>
                     <li class="nhsuk-footer__list-item nhsuk-footer-default__list-item">
                         <a class="nhsuk-footer__list-item-link" href="#">About us</a>
                     </li>

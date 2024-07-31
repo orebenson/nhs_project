@@ -98,3 +98,9 @@ VALUES (1, 1),
        (2, 5),
        (2, 6);
 
+INSERT INTO qol_activity_score_key_table (choice, score)
+VALUES ('not_at_all', 1),
+       ('a_little', 2),
+       ('quite_a_bit', 3),
+       ('a_lot', 4),
+       ('n_a', 0);
