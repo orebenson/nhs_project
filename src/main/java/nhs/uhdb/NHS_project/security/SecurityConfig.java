@@ -58,6 +58,8 @@ public class SecurityConfig {
             "/register/**",
             "/account",
             "/account/**",
+            "/photo",
+            "/photo/**",
             "/services",
             "/services/**",
             "/support",

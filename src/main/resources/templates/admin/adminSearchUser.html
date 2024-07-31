@@ -50,10 +50,26 @@
 
                 <div class="nhsuk-form-group">
                     <label class="nhsuk-label" for="email">
-                        Patient email:
+                        Email:
                     </label>
-                    <input class="nhsuk-input nhsuk-u-width-two-thirds" type="email" id="email" name="email"
+                    <input class="nhsuk-input nhsuk-u-width-one-third" type="email" id="email" name="email"
                            th:field="*{email}"/>
+                </div>
+
+                <div class="nhsuk-form-group">
+                    <label class="nhsuk-label" for="firstname">
+                        First name:
+                    </label>
+                    <input class="nhsuk-input nhsuk-u-width-one-third" type="text" id="firstname"
+                           />
+                </div>
+
+                <div class="nhsuk-form-group">
+                    <label class="nhsuk-label" for="lastname">
+                        Last name:
+                    </label>
+                    <input class="nhsuk-input nhsuk-u-width-one-third" type="text" id="lastname"
+                           />
                 </div>
 
             </fieldset>
