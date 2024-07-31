@@ -79,19 +79,19 @@
                     </a>
                 </li>
                 <li class="nhsuk-header__navigation-item">
-                    <a class="nhsuk-header__navigation-link" href="#">
+                    <a class="nhsuk-header__navigation-link" th:href="@{/services}">
                         Our Services
                     </a>
                 </li>
 
                 <li class="nhsuk-header__navigation-item">
-                    <a class="nhsuk-header__navigation-link" href="#">
+                    <a class="nhsuk-header__navigation-link" th:href="@{/support}">
                         Support
                     </a>
                 </li>
                 <li class="nhsuk-header__navigation-item">
-                    <a class="nhsuk-header__navigation-link" href="#">
-                        Leg Lymphoedema
+                    <a class="nhsuk-header__navigation-link" th:href="@{/information}">
+                        Information
                     </a>
                 </li>
                 <li class="nhsuk-header__navigation-item" th:if="${#authorization.expression('isAuthenticated()') and #authorization.expression('hasRole(''USER'')')}">
