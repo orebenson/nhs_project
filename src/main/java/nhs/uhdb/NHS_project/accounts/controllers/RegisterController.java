@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -39,5 +40,25 @@ public class RegisterController {
     @GetMapping("/register/error")
     public ModelAndView registerError() {
         return new ModelAndView("account/registerError");
+    }
+
+    @GetMapping("/register/consent")
+    public ModelAndView registerConsent() {
+        return new ModelAndView("account/registrationConsent");
+    }
+
+    @GetMapping("/register/consent/error")
+    public ModelAndView consentError() {
+        return new ModelAndView("account/consentError");
+    }
+
+    @PostMapping("/register/consent")
+    public ModelAndView postConsentForm(@RequestParam(name = "photo-consent", defaultValue = "false") Boolean photoConsent,
+                                        @RequestParam(name = "info-consent", defaultValue = "false") Boolean infoConsent
+    ) {
+        boolean consentAccepted = photoConsent && infoConsent;
+
+        if (!consentAccepted) return new ModelAndView("redirect:/register/consent/error");
+        return new ModelAndView("redirect:/register");
     }
 }
