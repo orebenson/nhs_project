@@ -53,12 +53,24 @@ public class RegisterController {
     }
 
     @PostMapping("/register/consent")
-    public ModelAndView postConsentForm(@RequestParam(name = "photo-consent", defaultValue = "false") Boolean photoConsent,
-                                        @RequestParam(name = "info-consent", defaultValue = "false") Boolean infoConsent
+    public ModelAndView postConsentForm(
+            @RequestParam(name = "photo-consent", defaultValue = "false") Boolean photoConsent,
+            @RequestParam(name = "info-consent", defaultValue = "false") Boolean infoConsent,
+            @RequestParam(name = "forgotten-history-consent", defaultValue = "false") Boolean forgottenHistoryConsent,
+            @RequestParam(name = "abnormal-results-consent", defaultValue = "false") Boolean abnormalResultsConsent,
+            @RequestParam(name = "share-information-consent", defaultValue = "false") Boolean shareInformationConsent,
+            @RequestParam(name = "coercion-consent", defaultValue = "false") Boolean coercionConsent,
+            @RequestParam(name = "misunderstood-information-consent", defaultValue = "false") Boolean misunderstoodInformationConsent,
+            @RequestParam(name = "info-about-others-consent", defaultValue = "false") Boolean infoAboutOthersConsent,
+            @RequestParam(name = "proxy-access-consent", defaultValue = "false") Boolean proxyAccessConsent
     ) {
-        boolean consentAccepted = photoConsent && infoConsent;
+        boolean consentAccepted = photoConsent || infoConsent || forgottenHistoryConsent ||
+                abnormalResultsConsent || shareInformationConsent || coercionConsent ||
+                misunderstoodInformationConsent || infoAboutOthersConsent || proxyAccessConsent;
 
         if (!consentAccepted) return new ModelAndView("redirect:/register/consent/error");
+
         return new ModelAndView("redirect:/register");
     }
+
 }
