@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
+
+
+    <title>Leg Lymphoedema Information</title>
+
+    <!--    add any extra javascript file references here-->
+
+</head>
+<body>
+<script th:replace="~{fragments/_fragments :: pagescript}"></script>
+<header th:replace="~{fragments/_fragments :: header}"></header>
+<div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+
+        <nav class="nhsuk-breadcrumb" aria-label="Breadcrumb">
+            <div class="nhsuk-width-container">
+                <ol class="nhsuk-breadcrumb__list">
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/information}">Information</a></li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Leg lymphoedema</a>
+                    </li>
+
+                </ol>
+                <p class="nhsuk-breadcrumb__back">
+                    <a class="nhsuk-breadcrumb__backlink" th:href="@{/information}">
+                        <span class="nhsuk-u-visually-hidden">Go back &nbsp;</span>
+                        Information
+                    </a>
+                </p>
+            </div>
+        </nav>
+
+        <h1>Leg lymphoedema</h1>
+
+        <h2>Information</h2>
+
+
+        <h2>Guides</h2>
+        <h3>Taking Measurements</h3>
+        <h3>Taking Photos</h3>
+        <h3>Performing exercises</h3>
+        <h3>Donning and doffing</h3>
+        <h3>Using compression garments</h3>
+
+    </main>
+</div>
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
+</body>
+</html>
