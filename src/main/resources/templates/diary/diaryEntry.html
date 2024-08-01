@@ -40,6 +40,12 @@
             </div>
         </div>
 
+        <div class="nhsuk-inset-text">
+            <span class="nhsuk-u-visually-hidden">Information: </span>
+
+            <p>You can find information and guidance on measurements, photos, exercises, and more on the relevant <a th:href="@{/information}" target="_blank">information page</a>.</p>
+        </div>
+
         <h1>
             Enter progress for <span th:text="${#temporals.format(date, 'dd/MM/yyyy')}"></span>
         </h1>
@@ -64,7 +70,7 @@
 
                 <div th:each="measurement, iterStat : ${newEntry.measurements}" class="nhsuk-form-group">
                     <label class="nhsuk-label" th:for="'measurement-' + ${measurement.id}"
-                           th:text="${measurement.measurementType.name} + ' - ' + ${measurement.measurementType.description} + ' - (' + ${measurement.measurementType.unit} + ')'">
+                           th:text="${measurement.measurementType.name} + ' - (' + ${measurement.measurementType.unit} + ')'">
                         Measurement Info
                     </label>
                     <input class="nhsuk-input nhsuk-input--width-4" type="number"
