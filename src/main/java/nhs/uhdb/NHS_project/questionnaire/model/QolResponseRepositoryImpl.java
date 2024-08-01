@@ -84,7 +84,6 @@ public class QolResponseRepositoryImpl implements QolResponseRepository{
         }
     }
 
-
     //Method to save a new QolResponse to the database and return its ID
     public Long saveResponse(QolResponse qolResponse) {
         String createQolResponseSql = "INSERT INTO qol_questionnaire_responses "
@@ -133,6 +132,16 @@ public class QolResponseRepositoryImpl implements QolResponseRepository{
             return qolResponseId;
 
 
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public QolResponse getResponseById(Long id) {
+        String sql = "SELECT * FROM qol_questionnaire_responses WHERE qol_questionnaire_response_id = ?";
+        try {
+            return jdbc.queryForObject(sql, qolResponseRowMapper, id);
         } catch (EmptyResultDataAccessException e) {
             return null;
         }

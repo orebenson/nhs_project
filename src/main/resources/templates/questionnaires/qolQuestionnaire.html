@@ -38,66 +38,74 @@
                 <table>
                     <tr>
                         <th>Activity</th>
+                        <th>N/A</th>
                         <th>Not at all</th>
                         <th>A little</th>
                         <th>Quite a bit</th>
                         <th>A lot</th>
-                        <th>N/A</th>
                     </tr>
                     <tr>
                         <td>a) Your walking</td>
+                        <td><input type="radio" th:field="*{walking}" value="0"></td>
                         <td><input type="radio" th:field="*{walking}" value="1"></td>
                         <td><input type="radio" th:field="*{walking}" value="2"></td>
                         <td><input type="radio" th:field="*{walking}" value="3"></td>
                         <td><input type="radio" th:field="*{walking}" value="4"></td>
-                        <td><input type="radio" th:field="*{walking}" value="0"></td>
+
                     </tr>
 
                     <tr>
                         <td>b) Your ability to bend, e.g. to tie shoelaces or cut toenails</td>
+                        <td><input type="radio" th:field="*{bending}" value="0"></td>
                         <td><input type="radio" th:field="*{bending}" value="1"></td>
                         <td><input type="radio" th:field="*{bending}" value="2"></td>
                         <td><input type="radio" th:field="*{bending}" value="3"></td>
                         <td><input type="radio" th:field="*{bending}" value="4"></td>
-                        <td><input type="radio" th:field="*{bending}" value="0"></td>
+
                     </tr>
                     <tr>
                         <td>c) Your ability to stand</td>
+                        <td><input type="radio" th:field="*{standing}" value="0"></td>
                         <td><input type="radio" th:field="*{standing}" value="1"></td>
                         <td><input type="radio" th:field="*{standing}" value="2"></td>
                         <td><input type="radio" th:field="*{standing}" value="3"></td>
                         <td><input type="radio" th:field="*{standing}" value="4"></td>
-                        <td><input type="radio" th:field="*{standing}" value="0"></td>
+
                     </tr>
                     <tr>
                         <td>d) Your ability to get up from a chair</td>
+                        <td><input type="radio" th:field="*{gettingUp}" value="0"></td>
                         <td><input type="radio" th:field="*{gettingUp}" value="1"></td>
                         <td><input type="radio" th:field="*{gettingUp}" value="2"></td>
                         <td><input type="radio" th:field="*{gettingUp}" value="3"></td>
                         <td><input type="radio" th:field="*{gettingUp}" value="4"></td>
-                        <td><input type="radio" th:field="*{gettingUp}" value="0"></td>
+
                     </tr>
                     <tr>
                         <td>e) Your occupation</td>
+                        <td><input type="radio" th:field="*{occupation}" value="0"></td>
                         <td><input type="radio" th:field="*{occupation}" value="1"></td>
                         <td><input type="radio" th:field="*{occupation}" value="2"></td>
                         <td><input type="radio" th:field="*{occupation}" value="3"></td>
                         <td><input type="radio" th:field="*{occupation}" value="4"></td>
-                        <td><input type="radio" th:field="*{occupation}" value="0"></td>
+
                     </tr>
                     <tr>
                         <td>f) Your ability to do housework</td>
+                        <td><input type="radio" th:field="*{housework}" value="0"></td>
                         <td><input type="radio" th:field="*{housework}" value="1"></td>
                         <td><input type="radio" th:field="*{housework}" value="2"></td>
                         <td><input type="radio" th:field="*{housework}" value="3"></td>
                         <td><input type="radio" th:field="*{housework}" value="4"></td>
-                        <td><input type="radio" th:field="*{housework}" value="0"></td>
+
                     </tr>
                 </table>
 
                 <p><strong>(Q2) Does the swelling affect your leisure activities/social life?</strong></p>
                 <table>
                     <tr>
+                        <td>N/A</td>
+                        <td><input type="radio" th:field="*{leisureActivities}" value="0"></td>
                         <td>Not at all</td>
                         <td><input type="radio" th:field="*{leisureActivities}" value="1"></td>
                         <td>A little</td>
@@ -106,8 +114,7 @@
                         <td><input type="radio" th:field="*{leisureActivities}" value="3"></td>
                         <td>A lot</td>
                         <td><input type="radio" th:field="*{leisureActivities}" value="4"></td>
-                        <td>N/A</td>
-                        <td><input type="radio" th:field="*{leisureActivities}" value="0"></td>
+
                     </tr>
                 </table>
                 <label for="leisureExamples">Please give examples:</label> <br>
@@ -117,116 +124,130 @@
                 <table>
                     <tr>
                         <th>Questions</th>
+                        <th>N/A</th>
                         <th>Not at all</th>
                         <th>A little</th>
                         <th>Quite a bit</th>
                         <th>A lot</th>
-                        <th>N/A</th>
+
                     </tr>
                     <tr>
                         <td><strong>(Q3) How much do you have to depend on other people?</strong></td>
+                        <td><input type="radio" th:field="*{dependency}" value="0"></td>
                         <td><input type="radio" th:field="*{dependency}" value="1"></td>
                         <td><input type="radio" th:field="*{dependency}" value="2"></td>
                         <td><input type="radio" th:field="*{dependency}" value="3"></td>
                         <td><input type="radio" th:field="*{dependency}" value="4"></td>
-                        <td><input type="radio" th:field="*{dependency}" value="0"></td>
+
                     </tr>
 
                     <tr>
                         <td><strong>(Q4) How much do you feel the swelling affects your appearance?</strong></td>
+                        <td><input type="radio" th:field="*{appearance}" value="0"></td>
                         <td><input type="radio" th:field="*{appearance}" value="1"></td>
                         <td><input type="radio" th:field="*{appearance}" value="2"></td>
                         <td><input type="radio" th:field="*{appearance}" value="3"></td>
                         <td><input type="radio" th:field="*{appearance}" value="4"></td>
-                        <td><input type="radio" th:field="*{appearance}" value="0"></td>
+
                     </tr>
                     <tr>
                         <td><strong>(Q5) How much difficulty do you have finding clothes to fit?</strong></td>
+                        <td><input type="radio" th:field="*{clothesFitDifficulty}" value="0"></td>
                         <td><input type="radio" th:field="*{clothesFitDifficulty}" value="1"></td>
                         <td><input type="radio" th:field="*{clothesFitDifficulty}" value="2"></td>
                         <td><input type="radio" th:field="*{clothesFitDifficulty}" value="3"></td>
                         <td><input type="radio" th:field="*{clothesFitDifficulty}" value="4"></td>
-                        <td><input type="radio" th:field="*{clothesFitDifficulty}" value="0"></td>
+
                     </tr>
                     <tr>
                         <td><strong>(Q6) How much difficulty do you have finding clothes you would like to wear?</strong></td>
+                        <td><input type="radio" th:field="*{clothesPreferenceDifficulty}" value="0"></td>
                         <td><input type="radio" th:field="*{clothesPreferenceDifficulty}" value="1"></td>
                         <td><input type="radio" th:field="*{clothesPreferenceDifficulty}" value="2"></td>
                         <td><input type="radio" th:field="*{clothesPreferenceDifficulty}" value="3"></td>
                         <td><input type="radio" th:field="*{clothesPreferenceDifficulty}" value="4"></td>
-                        <td><input type="radio" th:field="*{clothesPreferenceDifficulty}" value="0"></td>
+
                     </tr>
                     <tr>
                         <td><strong>(Q7) Do you have difficulty finding shoes to fit?</strong></td>
+                        <td><input type="radio" th:field="*{shoesFitDifficulty}" value="0"></td>
                         <td><input type="radio" th:field="*{shoesFitDifficulty}" value="1"></td>
                         <td><input type="radio" th:field="*{shoesFitDifficulty}" value="2"></td>
                         <td><input type="radio" th:field="*{shoesFitDifficulty}" value="3"></td>
                         <td><input type="radio" th:field="*{shoesFitDifficulty}" value="4"></td>
-                        <td><input type="radio" th:field="*{shoesFitDifficulty}" value="0"></td>
+
                     </tr>
                     <tr>
                         <td><strong>(Q8) Do you have difficulty finding socks/tights/stockings to fit?</strong></td>
+                        <td><input type="radio" th:field="*{socksFitDifficulty}" value="0"></td>
                         <td><input type="radio" th:field="*{socksFitDifficulty}" value="1"></td>
                         <td><input type="radio" th:field="*{socksFitDifficulty}" value="2"></td>
                         <td><input type="radio" th:field="*{socksFitDifficulty}" value="3"></td>
                         <td><input type="radio" th:field="*{socksFitDifficulty}" value="4"></td>
-                        <td><input type="radio" th:field="*{socksFitDifficulty}" value="0"></td>
+
                     </tr>
                     <tr>
                         <td><strong>(Q9) Does the swelling affect how you feel about yourself?</strong></td>
+                        <td><input type="radio" th:field="*{selfPerception}" value="0"></td>
                         <td><input type="radio" th:field="*{selfPerception}" value="1"></td>
                         <td><input type="radio" th:field="*{selfPerception}" value="2"></td>
                         <td><input type="radio" th:field="*{selfPerception}" value="3"></td>
                         <td><input type="radio" th:field="*{selfPerception}" value="4"></td>
-                        <td><input type="radio" th:field="*{selfPerception}" value="0"></td>
+
                     </tr>
                     <tr>
                         <td><strong>(Q10) Does it affect your relationships with other people?</strong></td>
+                        <td><input type="radio" th:field="*{relationshipImpact}" value="0"></td>
                         <td><input type="radio" th:field="*{relationshipImpact}" value="1"></td>
                         <td><input type="radio" th:field="*{relationshipImpact}" value="2"></td>
                         <td><input type="radio" th:field="*{relationshipImpact}" value="3"></td>
                         <td><input type="radio" th:field="*{relationshipImpact}" value="4"></td>
-                        <td><input type="radio" th:field="*{relationshipImpact}" value="0"></td>
+
                     </tr>
                     <tr>
                         <td><strong>(Q11) Does your lymphoedema cause you pain?</strong></td>
+                        <td><input type="radio" th:field="*{pain}" value="0"></td>
                         <td><input type="radio" th:field="*{pain}" value="1"></td>
                         <td><input type="radio" th:field="*{pain}" value="2"></td>
                         <td><input type="radio" th:field="*{pain}" value="3"></td>
                         <td><input type="radio" th:field="*{pain}" value="4"></td>
-                        <td><input type="radio" th:field="*{pain}" value="0"></td>
+
                     </tr>
                     <tr>
                         <td><strong>(Q12) Do you have any numbness in your swollen leg(s)?</strong></td>
+                        <td><input type="radio" th:field="*{numbness}" value="0"></td>
                         <td><input type="radio" th:field="*{numbness}" value="1"></td>
                         <td><input type="radio" th:field="*{numbness}" value="2"></td>
                         <td><input type="radio" th:field="*{numbness}" value="3"></td>
                         <td><input type="radio" th:field="*{numbness}" value="4"></td>
-                        <td><input type="radio" th:field="*{numbness}" value="0"></td>
+
                     </tr>
                     <tr>
                         <td><strong>(Q13) Do you have any feelings of 'pins & needles' or tingling in your swollen leg(s)?</strong></td>
+                        <td><input type="radio" th:field="*{pinsNeedles}" value="0"></td>
                         <td><input type="radio" th:field="*{pinsNeedles}" value="1"></td>
                         <td><input type="radio" th:field="*{pinsNeedles}" value="2"></td>
                         <td><input type="radio" th:field="*{pinsNeedles}" value="3"></td>
                         <td><input type="radio" th:field="*{pinsNeedles}" value="4"></td>
-                        <td><input type="radio" th:field="*{pinsNeedles}" value="0"></td>
+
                     </tr>
                     <tr>
                         <td><strong>(Q14) Does (do) your swollen leg(s) feel weak?</strong></td>
+                        <td><input type="radio" th:field="*{legWeakness}" value="0"></td>
                         <td><input type="radio" th:field="*{legWeakness}" value="1"></td>
                         <td><input type="radio" th:field="*{legWeakness}" value="2"></td>
                         <td><input type="radio" th:field="*{legWeakness}" value="3"></td>
                         <td><input type="radio" th:field="*{legWeakness}" value="4"></td>
-                        <td><input type="radio" th:field="*{legWeakness}" value="0"></td>
+
                     </tr>
                     <tr>
                         <td><strong>(Q15) Does (do) your swollen leg(s) feel heavy?</strong></td>
+                        <td><input type="radio" th:field="*{legHeaviness}" value="0"></td>
                         <td><input type="radio" th:field="*{legHeaviness}" value="1"></td>
                         <td><input type="radio" th:field="*{legHeaviness}" value="2"></td>
                         <td><input type="radio" th:field="*{legHeaviness}" value="3"></td>
                         <td><input type="radio" th:field="*{legHeaviness}" value="4"></td>
-                        <td><input type="radio" th:field="*{legHeaviness}" value="0"></td>
+
                     </tr>
                 </table>
 
@@ -234,59 +255,66 @@
                 <table>
                     <tr>
                         <th>Questions</th>
+                        <th>N/A</th>
                         <th>Not at all</th>
                         <th>A little</th>
                         <th>Quite a bit</th>
                         <th>A lot</th>
-                        <th>N/A</th>
+
                     </tr>
                     <tr>
                         <td><strong>(Q16) Have you had trouble sleeping?</strong></td>
+                        <td><input type="radio" th:field="*{sleepTrouble}" value="0"></td>
                         <td><input type="radio" th:field="*{sleepTrouble}" value="1"></td>
                         <td><input type="radio" th:field="*{sleepTrouble}" value="2"></td>
                         <td><input type="radio" th:field="*{sleepTrouble}" value="3"></td>
                         <td><input type="radio" th:field="*{sleepTrouble}" value="4"></td>
-                        <td><input type="radio" th:field="*{sleepTrouble}" value="0"></td>
+
                     </tr>
                     <tr>
                         <td><strong>(Q17) Have you had difficulty concentrating on things, e.g. reading?</strong></td>
+                        <td><input type="radio" th:field="*{difficultyConcentrating}" value="0"></td>
                         <td><input type="radio" th:field="*{difficultyConcentrating}" value="1"></td>
                         <td><input type="radio" th:field="*{difficultyConcentrating}" value="2"></td>
                         <td><input type="radio" th:field="*{difficultyConcentrating}" value="3"></td>
                         <td><input type="radio" th:field="*{difficultyConcentrating}" value="4"></td>
-                        <td><input type="radio" th:field="*{difficultyConcentrating}" value="0"></td>
+
                     </tr>
                     <tr>
                         <td><strong>(Q18) Have you felt tense?</strong></td>
+                        <td><input type="radio" th:field="*{feelingTense}" value="0"></td>
                         <td><input type="radio" th:field="*{feelingTense}" value="1"></td>
                         <td><input type="radio" th:field="*{feelingTense}" value="2"></td>
                         <td><input type="radio" th:field="*{feelingTense}" value="3"></td>
                         <td><input type="radio" th:field="*{feelingTense}" value="4"></td>
-                        <td><input type="radio" th:field="*{feelingTense}" value="0"></td>
+
                     </tr>
                     <tr>
                         <td><strong>(Q19) Have you felt worried?</strong></td>
+                        <td><input type="radio" th:field="*{feelingWorried}" value="0"></td>
                         <td><input type="radio" th:field="*{feelingWorried}" value="1"></td>
                         <td><input type="radio" th:field="*{feelingWorried}" value="2"></td>
                         <td><input type="radio" th:field="*{feelingWorried}" value="3"></td>
                         <td><input type="radio" th:field="*{feelingWorried}" value="4"></td>
-                        <td><input type="radio" th:field="*{feelingWorried}" value="0"></td>
+
                     </tr>
                     <tr>
                         <td><strong>(Q20) Have you felt irritable?</strong></td>
+                        <td><input type="radio" th:field="*{feelingIrritable}" value="0"></td>
                         <td><input type="radio" th:field="*{feelingIrritable}" value="1"></td>
                         <td><input type="radio" th:field="*{feelingIrritable}" value="2"></td>
                         <td><input type="radio" th:field="*{feelingIrritable}" value="3"></td>
                         <td><input type="radio" th:field="*{feelingIrritable}" value="4"></td>
-                        <td><input type="radio" th:field="*{feelingIrritable}" value="0"></td>
+
                     </tr>
                     <tr>
                         <td><strong>(Q21) Have you felt depressed?</strong></td>
+                        <td><input type="radio" th:field="*{feelingDepressed}" value="0"></td>
                         <td><input type="radio" th:field="*{feelingDepressed}" value="1"></td>
                         <td><input type="radio" th:field="*{feelingDepressed}" value="2"></td>
                         <td><input type="radio" th:field="*{feelingDepressed}" value="3"></td>
                         <td><input type="radio" th:field="*{feelingDepressed}" value="4"></td>
-                        <td><input type="radio" th:field="*{feelingDepressed}" value="0"></td>
+
                     </tr>
                 </table>
             </fieldset>

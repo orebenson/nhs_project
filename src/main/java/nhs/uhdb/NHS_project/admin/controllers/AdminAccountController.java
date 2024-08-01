@@ -9,9 +9,10 @@ import nhs.uhdb.NHS_project.admin.service.TreatmentPlanService;
 import nhs.uhdb.NHS_project.diary.controllers.ImageUtil;
 import nhs.uhdb.NHS_project.diary.model.DiaryEntry;
 import nhs.uhdb.NHS_project.diary.services.DiaryEntryService;
-import nhs.uhdb.NHS_project.questionnaire.model.CellulitisIncident;
 import nhs.uhdb.NHS_project.questionnaire.model.PreappointmentResponse;
+import nhs.uhdb.NHS_project.questionnaire.model.QolResponse;
 import nhs.uhdb.NHS_project.questionnaire.service.PreappointmentResponseService;
+import nhs.uhdb.NHS_project.questionnaire.service.QolResponseService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,13 +34,15 @@ public class AdminAccountController {
     private LymphoedemaTypeService lymphoedemaTypeService;
     private DiaryEntryService diaryEntryService;
     private PreappointmentResponseService preappointmentResponseService;
+    private QolResponseService qolResponseService;
 
-    public AdminAccountController(UserService userService, TreatmentPlanService treatmentPlanService, LymphoedemaTypeService lymphoedemaTypeService, DiaryEntryService diaryEntryService, PreappointmentResponseService preappointmentResponseService) {
+    public AdminAccountController(UserService userService, TreatmentPlanService treatmentPlanService, LymphoedemaTypeService lymphoedemaTypeService, DiaryEntryService diaryEntryService, PreappointmentResponseService preappointmentResponseService, QolResponseService qolResponseService) {
         this.userService = userService;
         this.treatmentPlanService = treatmentPlanService;
         this.lymphoedemaTypeService = lymphoedemaTypeService;
         this.diaryEntryService = diaryEntryService;
         this.preappointmentResponseService = preappointmentResponseService;
+        this.qolResponseService =  qolResponseService;
     }
 
     @GetMapping("/admin")
@@ -112,11 +115,14 @@ public class AdminAccountController {
 
         List<PreappointmentResponse> questionnaires = preappointmentResponseService.getResponsesByUserId(id);
 
+        List<QolResponse> qolQuestionnaires = qolResponseService.getResponsesByUserId(id);
+
         mav.addObject("entryDates", userDiaryEntries);
         mav.addObject("userPlan", userPlan);
         mav.addObject("userLymphoedemaType", userLymphoedemaType);
         mav.addObject("user", user);
         mav.addObject("questionnaires", questionnaires);
+        mav.addObject("qolQuestionnaires", qolQuestionnaires);
         return mav;
     }
 
@@ -150,6 +156,26 @@ public class AdminAccountController {
         String formattedDate = response.getCreatedAt().format(formatter);
 
         mav.addObject("preappointmentQuestionnaireForm", response);
+        mav.addObject("formattedDate", formattedDate);
+        mav.addObject("user", user);
+
+        return mav;
+    }
+
+    @GetMapping("/admin/{userId}/qol-questionnaire/{qolQuestionnaireId}")
+    public ModelAndView getUserQolQuestionnaireHistory(@PathVariable Long userId, @PathVariable Long qolQuestionnaireId) {
+        ModelAndView mav = new ModelAndView("questionnaires/viewQolQuestionnaire");
+
+        User user = userService.getUserByUserId(userId);
+        if (user == null) return new ModelAndView("admin/adminSearchUserError");
+
+        QolResponse qolResponse = qolResponseService.getResponseById(qolQuestionnaireId);
+        if (qolResponse == null) return new ModelAndView("admin/adminSearchUserError");
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String formattedDate = qolResponse.getCreatedAt().format(formatter);
+
+        mav.addObject("qolQuestionnaireForm", qolResponse);
         mav.addObject("formattedDate", formattedDate);
         mav.addObject("user", user);
 

@@ -123,6 +123,28 @@
             </details>
         </div>
 
+        <div>
+            <details class="nhsuk-details nhsuk-expander">
+                <summary class="nhsuk-details__summary">
+                    <span class="nhsuk-details__summary-text">
+                      Patient Quality of Life Questionnaire Submissions
+                    </span>
+                </summary>
+                <div class="nhsuk-details__text">
+                    <div th:if="${#lists.isEmpty(qolQuestionnaires)}">
+                        <p>This patient has not submitted any questionnaires.</p>
+                    </div>
+                    <ul class="nhsuk-list nhsuk-list--bullet" th:unless="${#lists.isEmpty(qolQuestionnaires)}">
+                        <li th:each="questionnaire : ${qolQuestionnaires}">
+                            <a th:href="@{/admin/{userId}/qol-questionnaire/{questionnaireId}(userId=${user.user_id}, questionnaireId=${questionnaire.id})}">
+                                Questionnaire submitted on <span th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+
 
         <div class="nhsuk-action-link">
             <a class="nhsuk-action-link__link" th:href="@{/admin/{userId}/plan(userId=${user.user_id})}">
