@@ -99,5 +99,5 @@ VALUES (1, 1),
        (2, 6);
 
 -- add admin goal settings
-INSERT INTO admin_goal_setting (goal_id, user_id, goal_weight, goal_measurement)
-VALUES (1, 2, 100, 100);
+INSERT INTO admin_goal_setting (goal_id, user_id, goal_weight, goal_deadline)
+VALUES (1, 2, 100, '2024-07-10');

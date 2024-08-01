@@ -148,6 +148,6 @@ create table if not exists diary_entry_measurements (
 create table if not exists admin_goal_setting (
     goal_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     user_id BIGINT NOT NULL,
-    goal_weight INT,
-    goal_measure_value BIGINT
+    goal_weight INT NOT NULL,
+    goal_deadline DATE NOT NULL
 ) engine = InnoDB;
