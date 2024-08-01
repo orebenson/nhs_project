@@ -2,7 +2,6 @@ package nhs.uhdb.NHS_project.admin.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
@@ -11,12 +10,18 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class Goal {
     private Long id;
-    private int weight;
+    private String goal_part;
+    private String goal_description;
+    private int goal_measurement;
+    private String goal_unit;
     private LocalDate deadline;
 
     public Goal() {
     this.id = null;
-    this.weight = 0;
+    this.goal_part = "";
+    this.goal_description = "";
+    this.goal_measurement = 0;
+    this.goal_unit = "";
     this.deadline = null;
     }
 

@@ -22,7 +22,10 @@ public class GoalRepositoryImpl {
         this.GoalMapper = (resultset, i) -> {
             Goal goal = new Goal();
             goal.setId(resultset.getLong("id"));
-            goal.setWeight(resultset.getInt("weight"));
+            goal.setGoal_part(resultset.getString("part"));
+            goal.setGoal_description(resultset.getString("description"));
+            goal.setGoal_measurement(resultset.getInt("measurement"));
+            goal.setGoal_unit(resultset.getString("unit"));
             goal.setDeadline(resultset.getObject("end_date", LocalDate.class));
             return goal;
         };
