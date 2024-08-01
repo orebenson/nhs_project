@@ -16,6 +16,7 @@ drop table if exists diary_entry_measurements;
 drop table if exists measurement_types;
 drop table if exists lymphoedema_type_measurements;
 drop table if exists diary_entry_photos;
+drop table if exists admin_goal_setting;
 
 
 create table if not exists user_table

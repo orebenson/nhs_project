@@ -26,6 +26,5 @@ public class GoalRepositoryImpl {
             goal.setDeadline(resultset.getObject("end_date", LocalDate.class));
             return goal;
         };
-
     }
 }
