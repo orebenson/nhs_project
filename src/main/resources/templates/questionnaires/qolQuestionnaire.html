@@ -118,7 +118,7 @@
                     </tr>
                 </table>
                 <label for="leisureExamples">Please give examples:</label> <br>
-                <textarea id="leisureExamples" th:field="*{leisureExamples}" rows="4" cols="50"></textarea>
+                <textarea id="leisureExamples" th:field="*{leisureExamples}" rows="6" cols="150"></textarea>
                 <br>
 
                 <table>
@@ -316,6 +316,34 @@
                         <td><input type="radio" th:field="*{feelingDepressed}" value="4"></td>
 
                     </tr>
+                </table>
+
+                    <p><strong>(Q22) Overall, how would you rate your quality of life at present? </strong></p>
+                <table>
+                <tr>
+                    <td>(Poor) 0</td>
+                    <td><input type="radio" th:field="*{qualityOfLife}" value="0"></td>
+                    <td>1</td>
+                    <td><input type="radio" th:field="*{qualityOfLife}" value="1"></td>
+                    <td>2</td>
+                    <td><input type="radio" th:field="*{qualityOfLife}" value="2"></td>
+                    <td>3</td>
+                    <td><input type="radio" th:field="*{qualityOfLife}" value="3"></td>
+                    <td>4</td>
+                    <td><input type="radio" th:field="*{qualityOfLife}" value="4"></td>
+                    <td>5</td>
+                    <td><input type="radio" th:field="*{qualityOfLife}" value="5"></td>
+                    <td>6</td>
+                    <td><input type="radio" th:field="*{qualityOfLife}" value="6"></td>
+                    <td>7</td>
+                    <td><input type="radio" th:field="*{qualityOfLife}" value="7"></td>
+                    <td>8</td>
+                    <td><input type="radio" th:field="*{qualityOfLife}" value="8"></td>
+                    <td>9</td>
+                    <td><input type="radio" th:field="*{qualityOfLife}" value="9"></td>
+                    <td><input type="radio" th:field="*{qualityOfLife}" value="10"></td>
+                    <td>10 (Excellent)</td>
+                </tr>
                 </table>
             </fieldset>
             <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
