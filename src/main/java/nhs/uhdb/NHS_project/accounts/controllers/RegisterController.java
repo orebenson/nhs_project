@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -40,4 +41,35 @@ public class RegisterController {
     public ModelAndView registerError() {
         return new ModelAndView("account/registerError");
     }
+
+    @GetMapping("/register/consent")
+    public ModelAndView registerConsent() {
+        return new ModelAndView("account/registrationConsent");
+    }
+
+    @GetMapping("/register/consent/error")
+    public ModelAndView consentError() {
+        return new ModelAndView("account/consentError");
+    }
+
+    @PostMapping("/register/consent")
+    public ModelAndView postConsentForm(
+            @RequestParam(name = "personal-info-consent", defaultValue = "false") Boolean personalInfoConsent,
+            @RequestParam(name = "info-sharing-consent", defaultValue = "false") Boolean infoSharingConsent,
+            @RequestParam(name = "voluntary-consent", defaultValue = "false") Boolean voluntaryConsent,
+            @RequestParam(name = "coercion-consent", defaultValue = "false") Boolean coercionConsent,
+            @RequestParam(name = "info-about-others-consent", defaultValue = "false") Boolean infoAboutOthersConsent
+    ) {
+
+        boolean consentAccepted = personalInfoConsent && infoSharingConsent &&
+                voluntaryConsent && coercionConsent && infoAboutOthersConsent;
+
+        if (!consentAccepted) {
+            return new ModelAndView("redirect:/register/consent/error");
+        }
+
+        return new ModelAndView("redirect:/register");
+    }
+
+
 }
