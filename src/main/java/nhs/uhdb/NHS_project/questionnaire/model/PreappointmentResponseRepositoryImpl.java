@@ -87,5 +87,15 @@ public class PreappointmentResponseRepositoryImpl implements PreappointmentRespo
         }
     }
 
+    @Override
+    public PreappointmentResponse getResponseById(Long id) {
+        String sql = "SELECT * FROM preappointment_questionnaire_responses WHERE preappointment_questionnaire_response_id = ?";
+        try {
+            return jdbc.queryForObject(sql, preappointmentResponseRowMapper, id);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
 
 }

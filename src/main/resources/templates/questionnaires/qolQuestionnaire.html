@@ -297,5 +297,21 @@
     </main>
 </div>
 <footer th:replace="~{fragments/_fragments :: footer}"></footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        //Function to display confirmation dialog
+        function confirmSubmission(event) {
+            if (!confirm("Please check your answers before submitting your Quality of Life questionnaire.\n\nAre you sure you want to submit?")) {
+                event.preventDefault();
+            }
+        }
+
+        //Attaches the submit event listener to the form
+        const form = document.getElementById('qol-form');
+        form.addEventListener('submit', confirmSubmission);
+    });
+</script>
+
 </body>
 </html>

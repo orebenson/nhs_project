@@ -8,8 +8,12 @@ import nhs.uhdb.NHS_project.questionnaire.model.PreappointmentResponseRepository
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @Service
 public class PreappointmentResponseServiceImpl implements PreappointmentResponseService {
@@ -45,11 +49,41 @@ public class PreappointmentResponseServiceImpl implements PreappointmentResponse
         return responseId;
     }
 
-    //Method to retrieve all PreappointmentResponses by user ID
+    //Method to retrieve all PreappointmentResponses by user ID and sort the list in descending date format
     @Override
-    public List<PreappointmentResponse> getResponsesByUserId(Long user_id) {
-        return preappointmentResponseRepository.getResponsesByUserId(user_id);
+    public List<PreappointmentResponse> getResponsesByUserId(Long userId) {
+        List<PreappointmentResponse> responses = preappointmentResponseRepository.getResponsesByUserId(userId);
+
+//        //Debugging: Print responses before sorting
+//        System.out.println("Responses before sorting:");
+//        responses.forEach(response -> System.out.println(response.getCreatedAt()));
+
+        //Sorting the responses into another stream using Java Streams API.
+        //The sorted list returns a new sorted stream which is then collected back into the list, leaving the original list unchanged,thereby preserving it.
+        List<PreappointmentResponse> sortedResponses = responses.stream()
+                .sorted(Comparator.comparing(PreappointmentResponse::getCreatedAt).reversed())
+                .collect(Collectors.toList());
+
+//        //Debugging: Print responses after sorting
+//        System.out.println("Responses after sorting:");
+//        sortedResponses.forEach(response -> System.out.println(response.getCreatedAt()));
+
+        return sortedResponses;
     }
 
+    @Override
+    public PreappointmentResponse getResponseById(Long id) {
+        PreappointmentResponse response = preappointmentResponseRepository.getResponseById(id);
+        if (response != null) {
+            List<CellulitisIncident> incidents = cellulitisIncidentRepository.findByResponseId(id);
+            response.setEpisodes(incidents);
+        }
+        return response;
+    }
+
+    @Override
+    public List<CellulitisIncident> getCellulitisIncidentsByResponseId(Long responseId) {
+        return cellulitisIncidentRepository.findByResponseId(responseId);
+    }
 
 }

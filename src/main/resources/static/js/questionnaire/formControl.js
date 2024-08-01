@@ -6,3 +6,17 @@ function toggleInput(show) {
         inputDiv.style.display = 'none';
     }
 }
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    //Function to display confirmation dialog
+    function confirmSubmission(event) {
+        if (!confirm("Please check over your answers before submitting your Pre-Appointment Questionnaire.\n\nAre you sure you want to submit?")) {
+            event.preventDefault();
+        }
+    }
+
+    //Attaches the submit event listener to the form
+    const form = document.getElementById('preappointment-form');
+    form.addEventListener('submit', confirmSubmission);
+});

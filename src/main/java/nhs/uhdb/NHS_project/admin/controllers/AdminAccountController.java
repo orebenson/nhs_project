@@ -9,6 +9,9 @@ import nhs.uhdb.NHS_project.admin.service.TreatmentPlanService;
 import nhs.uhdb.NHS_project.diary.controllers.ImageUtil;
 import nhs.uhdb.NHS_project.diary.model.DiaryEntry;
 import nhs.uhdb.NHS_project.diary.services.DiaryEntryService;
+import nhs.uhdb.NHS_project.questionnaire.model.CellulitisIncident;
+import nhs.uhdb.NHS_project.questionnaire.model.PreappointmentResponse;
+import nhs.uhdb.NHS_project.questionnaire.service.PreappointmentResponseService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -28,12 +32,14 @@ public class AdminAccountController {
     private TreatmentPlanService treatmentPlanService;
     private LymphoedemaTypeService lymphoedemaTypeService;
     private DiaryEntryService diaryEntryService;
+    private PreappointmentResponseService preappointmentResponseService;
 
-    public AdminAccountController(UserService userService, TreatmentPlanService treatmentPlanService, LymphoedemaTypeService lymphoedemaTypeService, DiaryEntryService diaryEntryService) {
+    public AdminAccountController(UserService userService, TreatmentPlanService treatmentPlanService, LymphoedemaTypeService lymphoedemaTypeService, DiaryEntryService diaryEntryService, PreappointmentResponseService preappointmentResponseService) {
         this.userService = userService;
         this.treatmentPlanService = treatmentPlanService;
         this.lymphoedemaTypeService = lymphoedemaTypeService;
         this.diaryEntryService = diaryEntryService;
+        this.preappointmentResponseService = preappointmentResponseService;
     }
 
     @GetMapping("/admin")
@@ -91,23 +97,26 @@ public class AdminAccountController {
         if (user == null) return new ModelAndView("admin/adminSearchUserError");
 
         TreatmentPlan userPlan = treatmentPlanService.getTreatmentPlanByUserId(id);
-        if(userPlan == null) {
+        if (userPlan == null) {
             userPlan = new TreatmentPlan();
             userPlan.setName("None");
         }
 
         LymphoedemaType userLymphoedemaType = lymphoedemaTypeService.getLymphoedemaTypeByUserId(id);
-        if(userLymphoedemaType == null) {
+        if (userLymphoedemaType == null) {
             userLymphoedemaType = new LymphoedemaType();
             userLymphoedemaType.setName("None");
         }
 
         List<String> userDiaryEntries = diaryEntryService.getFormattedDiaryEntryDatesByUserId(id);
 
-        mav.addObject("entryDates",userDiaryEntries);
+        List<PreappointmentResponse> questionnaires = preappointmentResponseService.getResponsesByUserId(id);
+
+        mav.addObject("entryDates", userDiaryEntries);
         mav.addObject("userPlan", userPlan);
         mav.addObject("userLymphoedemaType", userLymphoedemaType);
         mav.addObject("user", user);
+        mav.addObject("questionnaires", questionnaires);
         return mav;
     }
 
@@ -126,4 +135,26 @@ public class AdminAccountController {
         mav.addObject("imgUtil", new ImageUtil());
         return mav;
     }
+
+    @GetMapping("/admin/{userId}/preappointment-questionnaire/{questionnaireId}")
+    public ModelAndView getUserPreQuestionnaireHistory(@PathVariable Long userId, @PathVariable Long questionnaireId) {
+        ModelAndView mav = new ModelAndView("questionnaires/viewPreappointmentQuestionnaire");
+
+        User user = userService.getUserByUserId(userId);
+        if (user == null) return new ModelAndView("admin/adminSearchUserError");
+
+        PreappointmentResponse response = preappointmentResponseService.getResponseById(questionnaireId);
+        if (response == null) return new ModelAndView("admin/adminSearchUserError");
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String formattedDate = response.getCreatedAt().format(formatter);
+
+        mav.addObject("preappointmentQuestionnaireForm", response);
+        mav.addObject("formattedDate", formattedDate);
+        mav.addObject("user", user);
+
+        return mav;
+    }
+
+
 }
