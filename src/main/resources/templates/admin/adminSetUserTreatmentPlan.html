@@ -69,11 +69,15 @@
                         Exercises
                     </dt>
                     <dd class="nhsuk-summary-list__value">
-                        <div th:each="exercise : ${plan.getExercises()}">
+                        <ul>
+
+                        <li th:each="exercise : ${plan.getExercises()}">
                             <span th:text="${exercise.getName()}">Exercise Name</span>
+                            <span> - </span>
                             <span>(<a th:text="${exercise.getVideoLink()}" th:href="${exercise.getVideoLink()}">Link</a>)</span>
                             <br>
-                        </div>
+                        </li>
+                        </ul>
 
                     </dd>
                 </div>
