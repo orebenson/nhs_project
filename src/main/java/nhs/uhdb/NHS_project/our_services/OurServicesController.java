@@ -8,4 +8,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class OurServicesController {
     @GetMapping("/services")
     public ModelAndView getServicesPage() { return new ModelAndView("our_services/services"); }
+    @GetMapping("/services/first-consultation")
+    public ModelAndView getFirstConsultationPage() { return new ModelAndView("our_services/1stConsultation"); }
+    @GetMapping("/services/second-consultation")
+    public ModelAndView getSecondConsultationPage() { return new ModelAndView("our_services/followConsultation"); }
 }

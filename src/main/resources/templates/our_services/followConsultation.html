@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
+    <title>First Consultation Instructions</title>
+</head>
+<body>
+<script th:replace="~{fragments/_fragments :: pagescript}"></script>
+<header th:replace="~{fragments/_fragments :: header}"></header>
+
+<div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+
+        <div class="nhsuk-back-link">
+
+            <a class="nhsuk-back-link__link" th:href="@{/services}">
+                <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+                    <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+                </svg>
+                Go back</a>
+        </div>
+
+        <h1>Your Follow up Appointment - What to Expect</h1>
+
+        <p>When you arrive at the clinic, please book in at the reception desk. You may be asked to complete a repeat questionnaire. Please let the team know if you require any assistance completing the questionnaire.</p>
+        <p>A lymphoedema therapist will call you from the waiting room to measure your weight. You will then be taken into one of the clinical rooms. You are welcome to bring a family member, friend or carer into the appointment if you wish.</p>
+        <p>It is useful to bring a list of your most recent medications in case there have been any changes.</p>
+        <p>The therapist will review how you have been since the previous visit. This may include discussing any changes to your health; any concerns regarding your lymphoedema; any episodes of cellulitis; and any issues with your treatment plan.</p>
+        <p>If you are attending with leg swelling or arm swelling, the lymphoedema therapist will re-measure your limb using a Perometer. This machine calculates the volume of your limb using photosensors and LEDs within a frame. The measurements are not invasive and will not hurt. You will be required to maintain a static position for a few moments. If you require assistance, the therapist will help you to position yourself accordingly.</p>
+        <p>In order to use the Perometer your limb will need to be free of clothing. If you are attending with leg swelling you will be asked to remove your shoes and socks and may be asked to remove your trousers so that the whole leg can be measured. Some people choose to wear loose clothing such as shorts or a skirt that can be pulled up. </p>
+        <p>If you are attending with arm swelling, you will be asked to remove any watches and bracelets. You may be asked to remove your clothing so that the whole arm and chest can be examined. </p>
+        <p>Your privacy and dignity will be maintained at all times. If you require any assistance with undressing, the therapist can help you. </p>
+        <p>If you are not able to use the Perometer safely, the lymphoedema therapist will use a tape measure to calculate your limb volume. This involves using a water-based pen to mark your skin at 4cm intervals. A circumference measurement is then taken at each mark using a tape measure.</p>
+        <p>If you are attending with leg swelling, it may be necessary for the lymphoedema therapist to listen to the pulses in your foot and ankle again using a small, ultrasound device. This involves a small amount of gel being applied to your foot and ankle and a probe being placed against your skin. It is not an invasive test and will not hurt, however the gel may be slightly cold. </p>
+        <p>During the assessment the therapist will examine the condition of your skin looking for dryness, skin changes and wounds. The therapist will look for the presence of fluid by applying a small amount of pressure to the skin by pressing with a fingertip (this should not hurt but can sometimes feel tender). The therapist will explain the examination to you and ask for your consent beforehand. </p>
+        <p>It may be necessary to take photographs. Your consent will be obtained prior to this. </p>
+        <p>At each follow up assessment, the therapist will evaluate your treatment plan and make changes if necessary. This may include making amendments to your compression garments. </p>
+        <p>If a further appointment is required a letter will be sent to you with the appointment details. </p>
+    </main>
+</div>
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
+</body>
