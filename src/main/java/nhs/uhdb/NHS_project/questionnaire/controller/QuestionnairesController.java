@@ -13,4 +13,9 @@ public class QuestionnairesController {
         return new ModelAndView("questionnaires/taskHubPage");
     }
 
+    @GetMapping("/questionnaires/success")
+    public ModelAndView questionnaireSuccess() {
+        return new ModelAndView("questionnaires/submissionSuccess");
+    }
+
 }

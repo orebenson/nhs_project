@@ -64,7 +64,7 @@ public class PreappointmentQuestionnaireController {
         LOGGER.info("Saved PreappointmentResponse with ID: " + responseID);
 
         //Return the success view
-        return new ModelAndView("/questionnaires/submissionSuccess");
+        return new ModelAndView("redirect:/questionnaires/success");
     }
 
 

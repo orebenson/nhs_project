@@ -66,7 +66,9 @@ public class SecurityConfig {
             "/support/**",
             "/information",
             "/information/**",
-            "/api/**"
+            "/api/**",
+            "/static",
+            "/static/**",
     };
 
     public static final String[] USER_WHITELIST = {

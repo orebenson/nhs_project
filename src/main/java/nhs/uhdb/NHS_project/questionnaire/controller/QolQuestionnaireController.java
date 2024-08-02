@@ -51,7 +51,7 @@ public class QolQuestionnaireController {
         Long id = qolResponseService.saveResponse(form);
 
         //Return the success view
-        return new ModelAndView("/questionnaires/submissionSuccess");
+        return new ModelAndView("redirect:/questionnaires/success");
     }
 
 }
