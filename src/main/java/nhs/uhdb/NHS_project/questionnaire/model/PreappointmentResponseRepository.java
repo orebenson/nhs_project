@@ -7,5 +7,5 @@ public interface PreappointmentResponseRepository {
     PreappointmentResponse getResponseByUserIdAndDate (Long user_id, LocalDate date);
     Long saveResponse(PreappointmentResponse preappointmentResponse);
     List<PreappointmentResponse> getResponsesByUserId(Long user_id);
-
+    PreappointmentResponse getResponseById(Long id);
 }

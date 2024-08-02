@@ -86,4 +86,17 @@ public class CellulitisIncidentRepositoryImpl implements CellulitisIncidentRepos
         }
     }
 
+    @Override
+    public List<CellulitisIncident> findByResponseId(Long responseId) {
+        String sql = "SELECT c.* FROM cellulitis_incident_responses c " +
+                "JOIN preappointment_cellulitis_incident_responses pc ON c.cellulitis_incident_response_id = pc.cellulitis_incident_response_id " +
+                "WHERE pc.preappointment_questionnaire_response_id = ?";
+        try {
+            return jdbc.query(sql, cellulitisIncidentRowMapper, responseId);
+        } catch (EmptyResultDataAccessException e) {
+            LOGGER.severe("EmptyResultDataAccessException: " + e.getMessage());
+            return null;
+        }
+    }
+
 }

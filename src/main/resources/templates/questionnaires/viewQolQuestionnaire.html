@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
+    <title>Pre-appointment Questionnaire Details</title>
+</head>
+<body>
+<script th:replace="~{fragments/_fragments :: pagescript}"></script>
+<header th:replace="~{fragments/_fragments :: header}"></header>
+<div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+
+        <nav class="nhsuk-breadcrumb" aria-label="Breadcrumb">
+            <div class="nhsuk-width-container">
+                <ol class="nhsuk-breadcrumb__list">
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/admin}">Admin
+                        area</a></li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/admin/search}">Search
+                        patients</a></li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link"
+                                                          th:href="@{/admin/search/{userId}(userId=${user.user_id})}">Patient
+                        details</a></li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Quality of Life
+                        Questionnaire Details</a></li>
+                </ol>
+            </div>
+        </nav>
+
+        <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+            <h1 class="nhsuk-fieldset__heading">
+                Quality of Life Questionnaire Details
+            </h1>
+        </legend>
+
+        <div>
+            <p><strong>Date of Submission:</strong> <span th:text="${formattedDate}"></span></p>
+        </div>
+
+        <dl class="nhsuk-summary-list">
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q1) How much does your swollen leg affect the following activities?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <dl class="nhsuk-summary-list">
+                        <div class="nhsuk-summary-list__row">
+                            <dt class="nhsuk-summary-list__key">a) Your walking</dt>
+                            <dd class="nhsuk-summary-list__value">
+                                <p th:text="${qolQuestionnaireForm.walking}"></p>
+                            </dd>
+                        </div>
+                        <div class="nhsuk-summary-list__row">
+                            <dt class="nhsuk-summary-list__key">b) Your ability to bend, e.g. to tie shoelaces or cut toenails</dt>
+                            <dd class="nhsuk-summary-list__value">
+                                <p th:text="${qolQuestionnaireForm.bending}"></p>
+                            </dd>
+                        </div>
+                        <div class="nhsuk-summary-list__row">
+                            <dt class="nhsuk-summary-list__key">c) Your ability to stand</dt>
+                            <dd class="nhsuk-summary-list__value">
+                                <p th:text="${qolQuestionnaireForm.standing}"></p>
+                            </dd>
+                        </div>
+                        <div class="nhsuk-summary-list__row">
+                            <dt class="nhsuk-summary-list__key">d) Your ability to get up from a chair</dt>
+                            <dd class="nhsuk-summary-list__value">
+                                <p th:text="${qolQuestionnaireForm.gettingUp}"></p>
+                            </dd>
+                        </div>
+                        <div class="nhsuk-summary-list__row">
+                            <dt class="nhsuk-summary-list__key">e) Your occupation</dt>
+                            <dd class="nhsuk-summary-list__value">
+                                <p th:text="${qolQuestionnaireForm.occupation}"></p>
+                            </dd>
+                        </div>
+                        <div class="nhsuk-summary-list__row">
+                            <dt class="nhsuk-summary-list__key">f) Your ability to do housework</dt>
+                            <dd class="nhsuk-summary-list__value">
+                                <p th:text="${qolQuestionnaireForm.housework}"></p>
+                            </dd>
+                        </div>
+                    </dl>
+                </dd>
+            </div>
+
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q2) Does the swelling affect your leisure activities/social life?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireForm.leisureActivities}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q2) Leisure Examples</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${#strings.isEmpty(qolQuestionnaireForm.leisureExamples) ? '(N/A - Patient left empty)' : qolQuestionnaireForm.leisureExamples}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q3) How much do you have to depend on other people?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireForm.dependency}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q4) How much do you feel the swelling affects your appearance?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireForm.appearance}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q5) How much difficulty do you have finding clothes to fit?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireForm.clothesFitDifficulty}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q6) How much difficulty do you have finding clothes you would like to wear?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireForm.clothesPreferenceDifficulty}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q7) Do you have difficulty finding shoes to fit?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireForm.shoesFitDifficulty}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q8) Do you have difficulty finding socks/tights/stockings to fit?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireForm.socksFitDifficulty}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q9) Does the swelling affect how you feel about yourself?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireForm.selfPerception}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q10) Does it affect your relationships with other people?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireForm.relationshipImpact}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q11) Does your lymphoedema cause you pain?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireForm.pain}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q12) Do you have any numbness in your swollen leg(s)?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireForm.numbness}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q13) Do you have any feelings of "pins & needles" or tingling in your swollen leg(s)?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireForm.pinsNeedles}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q14) Does (do) your swollen leg(s) feel weak?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireForm.legWeakness}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q15) Does (do) your swollen leg(s) feel heavy?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireForm.legHeaviness}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q16) Have you had trouble sleeping?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireForm.sleepTrouble}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q17) Have you had difficulty concentrating on things, e.g. reading?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireForm.difficultyConcentrating}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q18) Have you felt tense?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireForm.feelingTense}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q19) Have you felt worried?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireForm.feelingWorried}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q20) Have you felt irritable?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireForm.feelingIrritable}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q21) Have you felt depressed?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireForm.feelingDepressed}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q22) Overall, how would you rate your quality of life at present?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireForm.qualityOfLife}"></p>
+                </dd>
+            </div>
+        </dl>
+
+    </main>
+</div>
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
+</body>
+</html>

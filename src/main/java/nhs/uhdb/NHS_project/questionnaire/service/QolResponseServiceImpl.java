@@ -7,7 +7,9 @@ import nhs.uhdb.NHS_project.questionnaire.model.QolResponseRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class QolResponseServiceImpl implements QolResponseService {
@@ -33,8 +35,18 @@ public class QolResponseServiceImpl implements QolResponseService {
 
     //Method to retrieve all QolResponses by user ID
     @Override
-    public List<QolResponse> getResponsesByUserId(Long user_id) {
-        return qolResponseRepository.getResponsesByUserId(user_id);
+
+    public List<QolResponse> getResponsesByUserId(Long userId) {
+        List<QolResponse> responses = qolResponseRepository.getResponsesByUserId(userId);
+
+        return responses.stream()
+                .sorted(Comparator.comparing(QolResponse::getCreatedAt).reversed())
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public QolResponse getResponseById(Long id) {
+        return qolResponseRepository.getResponseById(id);
     }
 
 

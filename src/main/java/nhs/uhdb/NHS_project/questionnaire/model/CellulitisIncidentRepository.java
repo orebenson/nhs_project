@@ -6,4 +6,5 @@ public interface CellulitisIncidentRepository {
 
     List<CellulitisIncident> getAllCellulitisIncident();
     Long saveIncident(CellulitisIncident incident, Long responseId);
+    List<CellulitisIncident> findByResponseId(Long responseId);
 }
