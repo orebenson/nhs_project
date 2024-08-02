@@ -23,6 +23,12 @@
                     <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Quality of Life
                         Questionnaire Details</a></li>
                 </ol>
+                <p class="nhsuk-breadcrumb__back">
+                    <a class="nhsuk-breadcrumb__backlink" th:href="@{/admin/search/{userId}(userId=${user.user_id})}">
+                        <span class="nhsuk-u-visually-hidden">Go back &nbsp;</span>
+                        Patient details
+                    </a>
+                </p>
             </div>
         </nav>
 
