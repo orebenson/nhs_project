@@ -65,7 +65,10 @@ public class TreatmentPlanRepositoryImpl implements TreatmentPlanRepository {
     public Boolean deleteTreatmentPlanById(Long id) {
         String sqlDeleteExercises = "DELETE FROM treatment_plan_exercises WHERE treatment_plan_id = ?";
         int rowsAffected = jdbc.update(sqlDeleteExercises, id);
-        return rowsAffected == 0;
+        String sqlDeleteTreatmentPlan = "DELETE FROM treatment_plans WHERE treatment_plan_id = ?";
+        int rowsAffected2 = jdbc.update(sqlDeleteTreatmentPlan, id);
+
+        return rowsAffected == 0 && rowsAffected2 == 0;
     }
 
     @Override

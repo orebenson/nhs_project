@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
+    <title>Admin Area</title>
+    <!-- Add any extra JavaScript file references here -->
+</head>
+<body>
+<script th:replace="~{fragments/_fragments :: pagescript}"></script>
+<header th:replace="~{fragments/_fragments :: header}"></header>
+<div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+        <nav class="nhsuk-breadcrumb" aria-label="Breadcrumb">
+            <div class="nhsuk-width-container">
+                <ol class="nhsuk-breadcrumb__list">
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/admin}">Admin
+                        area</a></li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/admin/search}">Search
+                        patients</a></li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link"
+                                                          th:href="@{/admin/search/{userId}(userId=${user.user_id})}">Patient
+                        details</a></li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Set lymphoedema
+                        type</a>
+                    </li>
+                </ol>
+                <p class="nhsuk-breadcrumb__back">
+                    <a class="nhsuk-breadcrumb__backlink" th:href="@{/admin/search/{userId}(userId=${user.user_id})}">
+                        <span class="nhsuk-u-visually-hidden">Go back &nbsp;</span>
+                        Patient details
+                    </a>
+                </p>
+            </div>
+        </nav>
+
+        <h2>Set lymphoedema type for user <span
+                th:text="${user.getFirstname() + ' ' + user.getLastname()}">User Name</span></h2>
+        <form th:method="post" th:action="@{/admin/{user_id}/lymphoedema(user_id=${user.user_id})}"
+              th:object="${selectedLymphoedemaType}"
+              id="admin-set-user-lymphoedema-type-form">
+            <div class="nhsuk-form-group">
+                <label class="nhsuk-label" for="select-1">
+                    Lymphoedema types
+                </label>
+                <select class="nhsuk-select" id="select-1" name="selectedLymphoedemaTypeId" th:field="*{id}">
+                    <option th:each="lymphoedemaType : ${lyphoedemaTypes}" th:value="${lymphoedemaType.getId()}"
+                            th:text="${lymphoedemaType.getName()}">Lymphoedema Type Name
+                    </option>
+                </select>
+            </div>
+
+            <div th:each="lymphoedemaType : ${lyphoedemaTypes}" th:id="'type-details-' + ${lymphoedemaType.getId()}"
+                 class="nhsuk-summary-list nhsuk-u-visually-hidden">
+                <div class="nhsuk-summary-list__row">
+                    <dt class="nhsuk-summary-list__key">
+                        Name
+                    </dt>
+                    <dd class="nhsuk-summary-list__value">
+                        <span th:text="${lymphoedemaType.getName()}"></span>
+                    </dd>
+                </div>
+                <div class="nhsuk-summary-list__row">
+                    <dt class="nhsuk-summary-list__key">
+                        Description
+                    </dt>
+                    <dd class="nhsuk-summary-list__value">
+                        <p th:text="${lymphoedemaType.getDescription()}"></p>
+                    </dd>
+                </div>
+                <div class="nhsuk-summary-list__row">
+                    <dt class="nhsuk-summary-list__key">
+                        Measurements
+                    </dt>
+                    <dd class="nhsuk-summary-list__value">
+                        <ul>
+                            <li th:each="measurement : ${lymphoedemaType.getMeasurements()}">
+                                <span th:text="${measurement.getName()}">Measurement Name</span>
+                                <span> - </span>
+                                <span th:text="${measurement.getDescription()}">Measurement Description</span>
+                                <span> - </span>
+                                <span th:text="${measurement.getUnit()}">Measurement Unit</span>
+                                <br>
+                            </li>
+                        </ul>
+
+                    </dd>
+                </div>
+            </div>
+
+            <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+                Set lymphoedema type
+            </button>
+        </form>
+    </main>
+</div>
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
+
+<script>
+    function toggleTypeDetails(typeDetails, select) {
+        let selectedId = 'type-details-' + select.value;
+
+        for (let i = 0; i < typeDetails.length; i++) {
+            if (typeDetails[i].id === selectedId) {
+                typeDetails[i].classList.remove('nhsuk-u-visually-hidden');
+            } else {
+                typeDetails[i].classList.add('nhsuk-u-visually-hidden');
+            }
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const select = document.getElementById('select-1');
+        const typeDetails = document.querySelectorAll('.nhsuk-summary-list');
+        toggleTypeDetails(typeDetails, select);
+        select.addEventListener('change', () => {
+            toggleTypeDetails(typeDetails, select)
+        })
+    });
+</script>
+
+</body>
+</html>

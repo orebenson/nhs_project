@@ -16,9 +16,12 @@
         <nav class="nhsuk-breadcrumb" aria-label="Breadcrumb">
             <div class="nhsuk-width-container">
                 <ol class="nhsuk-breadcrumb__list">
-                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/admin}">Admin area</a></li>
-                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/admin/search}">Search patients</a></li>
-                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Patient details</a></li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/admin}">Admin
+                        area</a></li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/admin/search}">Search
+                        patients</a></li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Patient details</a>
+                    </li>
 
                 </ol>
                 <p class="nhsuk-breadcrumb__back">
@@ -75,7 +78,78 @@
                 </dd>
             </div>
 
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">
+                    Lymphoedema Type
+                </dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${userLymphoedemaType.getName()}">None</p>
+                </dd>
+            </div>
+
         </dl>
+
+        <details class="nhsuk-details nhsuk-expander nhsuk-u-width-two-thirds">
+            <summary class="nhsuk-details__summary">
+                <span class="nhsuk-details__summary-text">
+                  Patient diary entries
+                </span>
+            </summary>
+            <div class="nhsuk-details__text" th:if="${entryDates.size() < 1}">
+                <p>This patient does not have any diary entries</p>
+            </div>
+            <div class="nhsuk-details__text" th:if="${entryDates.size() > 0}">
+                <p th:each="date : ${entryDates}">
+                    <a th:href="@{/admin/{id}/diary/history/{date}(id=${user.user_id}, date=${date})}"
+                       th:text="${date}"></a>
+                </p>
+            </div>
+        </details>
+
+        <div>
+            <details class="nhsuk-details nhsuk-expander">
+                <summary class="nhsuk-details__summary">
+                    <span class="nhsuk-details__summary-text">
+                      Patient Pre-Appointment Questionnaire Submissions
+                    </span>
+                </summary>
+                <div class="nhsuk-details__text">
+                    <div th:if="${#lists.isEmpty(questionnaires)}">
+                        <p>This patient has not submitted any questionnaires.</p>
+                    </div>
+                    <ul class="nhsuk-list nhsuk-list--bullet" th:unless="${#lists.isEmpty(questionnaires)}">
+                        <li th:each="questionnaire : ${questionnaires}">
+                            <a th:href="@{/admin/{userId}/preappointment-questionnaire/{questionnaireId}(userId=${user.user_id}, questionnaireId=${questionnaire.id})}">
+                                Questionnaire submitted on <span th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+
+        <div>
+            <details class="nhsuk-details nhsuk-expander">
+                <summary class="nhsuk-details__summary">
+                    <span class="nhsuk-details__summary-text">
+                      Patient Quality of Life Questionnaire Submissions
+                    </span>
+                </summary>
+                <div class="nhsuk-details__text">
+                    <div th:if="${#lists.isEmpty(qolQuestionnaires)}">
+                        <p>This patient has not submitted any questionnaires.</p>
+                    </div>
+                    <ul class="nhsuk-list nhsuk-list--bullet" th:unless="${#lists.isEmpty(qolQuestionnaires)}">
+                        <li th:each="questionnaire : ${qolQuestionnaires}">
+                            <a th:href="@{/admin/{userId}/qol-questionnaire/{questionnaireId}(userId=${user.user_id}, questionnaireId=${questionnaire.id})}">
+                                Questionnaire submitted on <span th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </details>
+        </div>
+
 
         <div class="nhsuk-action-link">
             <a class="nhsuk-action-link__link" th:href="@{/admin/{userId}/plan(userId=${user.user_id})}">
@@ -88,6 +162,16 @@
             </a>
         </div>
 
+        <div class="nhsuk-action-link">
+            <a class="nhsuk-action-link__link" th:href="@{/admin/{userId}/lymphoedema(userId=${user.user_id})}">
+                <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
+                    <path d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
+                </svg>
+                <span class="nhsuk-action-link__text">Change patient lymphoedema type</span>
+            </a>
+        </div>
 
 
         <div th:unless="${#authorization.expression('isAuthenticated()') and #authorization.expression('hasRole(''ADMIN'')')}">

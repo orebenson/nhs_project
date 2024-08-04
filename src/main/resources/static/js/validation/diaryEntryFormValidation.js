@@ -7,9 +7,24 @@ const diaryEntryFormConfig = {
             rules: (value) => value !== ''
         },
         {
-            fieldId: 'wellnessScore',
-            errorMessage: 'Enter your wellness score',
+            fieldId: 'weight',
+            errorMessage: 'Enter your weight',
             rules: (value) => value !== ''
+        },
+        {
+            fieldId: 'photoFile0',
+            errorMessage: 'Photo must be less than 5MB',
+            rules: (value) => value.files[0].size < 5 * 1024 * 1024
+        },
+        {
+            fieldId: 'photoFile1',
+            errorMessage: 'Photo must be less than 5MB',
+            rules: (value) => value.files[0].size < 5 * 1024 * 1024
+        },
+        {
+            fieldId: 'photoFile2',
+            errorMessage: 'Photo must be less than 5MB',
+            rules: (value) => value.files[0].size < 5 * 1024 * 1024
         },
         {
             fieldId: 'qualityOfLifeScore',

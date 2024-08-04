@@ -4,7 +4,7 @@
     <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
 
 
-    <title>Questionnaire Task Hub</title>
+    <title>Questionnaires</title>
 
     <!--    add any extra javascript file references here-->
 
@@ -15,18 +15,11 @@
 <div class="nhsuk-width-container">
     <main class="nhsuk-main-wrapper" id="maincontent" role="main">
 
-        <h1>Questionnaire TaskHub</h1>
-        <div th:if="${tasksEmpty}">
-            <p>Great! You have no tasks remaining.</p>
-        </div>
-        <div th:unless="${tasksEmpty}">
-            <p>Please note you have outstanding tasks that need to be completed before your next appointment, please
-                click on each of the individual questionnaires.</p>
-            <h2>Tasks Remaining:</h2>
-            <br>
+        <h1>Questionnaires</h1>
+        <div>
 
             <div class="nhsuk-action-link">
-                <a class="nhsuk-action-link__link" th:href="@{/taskhub/preappointment-questionnaire}">
+                <a class="nhsuk-action-link__link" th:href="@{/questionnaires/preappointment-questionnaire}">
                     <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg"
                          viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
                         <path d="M0 0h24v24H0z" fill="none"></path>
@@ -37,7 +30,7 @@
             </div>
 
             <div class="nhsuk-action-link">
-                <a class="nhsuk-action-link__link" th:href="@{/taskhub/qol-questionnaire}">
+                <a class="nhsuk-action-link__link" th:href="@{/questionnaires/qol-questionnaire}">
                     <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg"
                          viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
                         <path d="M0 0h24v24H0z" fill="none"></path>
@@ -47,14 +40,6 @@
                 </a>
             </div>
 
-
-            <ul>
-                <li th:each="task : ${tasks}" th:text="${task.name}">Task Name</li>
-            </ul>
-            <div th:each="task : ${tasks}">
-                <a th:href="@{/completeTask/{id}(id=${task.id})}" th:text="'Complete ' + ${task.name}">Complete Task</a>
-            </div>
-            <br>
         </div>
 
         <a class="nhsuk-button nhsuk-button--secondary" data-module="nhsuk-button" href="/">

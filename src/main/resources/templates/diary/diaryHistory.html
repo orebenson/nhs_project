@@ -48,6 +48,25 @@
 
                 <div class="nhsuk-summary-list__row">
                     <dt class="nhsuk-summary-list__key">
+                        Measurements
+                    </dt>
+                    <dd class="nhsuk-summary-list__value">
+                        <div th:if="${entry.measurements.size() < 1}">
+                            N/A
+                        </div>
+                        <div th:if="${entry.measurements.size() > 0}">
+                            <ul>
+                                <li th:each="measurement : ${entry.measurements}" >
+                                    <span th:if="${measurement.value > 0}"  th:text="${measurement.measurementType.name} + ' - ' + ${measurement.value} + ' ' + ${measurement.measurementType.unit}"></span>
+                                    <span th:if="${measurement.value < 1}" th:text="${measurement.measurementType.name} + ' - N/A'"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </dd>
+                </div>
+
+                <div class="nhsuk-summary-list__row">
+                    <dt class="nhsuk-summary-list__key">
                         Cellulitis Details
                     </dt>
                     <dd class="nhsuk-summary-list__value"
@@ -101,6 +120,26 @@
                         </div>
                     </dd>
                 </div>
+
+                <div class="nhsuk-summary-list__row">
+                    <dt class="nhsuk-summary-list__key">
+                        Photos
+                    </dt>
+                    <dd class="nhsuk-summary-list__value">
+                        <div th:if="${entry.photos.size() < 1}">
+                            N/A
+                        </div>
+                        <div th:if="${entry.photos.size() > 0}">
+
+                            <figure th:each="photo : ${entry.photos}" class="nhsuk-image">
+                                <img class="nhsuk-image__img" th:alt="'Photo: ' + ${photo.id}"  th:src="'data:image/jpeg;base64,' + ${imgUtil.getImgData(photo.getBytes())}"/>
+                            </figure>
+
+                        </div>
+                    </dd>
+                </div>
+
+
 
             </dl>
 
