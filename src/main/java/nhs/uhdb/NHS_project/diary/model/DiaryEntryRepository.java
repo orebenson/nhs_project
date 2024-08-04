@@ -7,4 +7,5 @@ public interface DiaryEntryRepository {
     Long createDiaryEntry(DiaryEntry diaryEntry);
     DiaryEntry getDiaryEntryByUserIdAndDate(Long user_id, LocalDate date);
     List<DiaryEntry> getDiaryEntriesByUserId(Long user_id);
+    
 }
