@@ -20,7 +20,8 @@
                     <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link"
                                                           th:href="@{/admin/search/{userId}(userId=${user.user_id})}">Patient
                         details</a></li>
-                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Set lymphoedema type</a>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Set lymphoedema
+                        type</a>
                     </li>
                 </ol>
                 <p class="nhsuk-breadcrumb__back">
@@ -34,14 +35,16 @@
 
         <h2>Set lymphoedema type for user <span
                 th:text="${user.getFirstname() + ' ' + user.getLastname()}">User Name</span></h2>
-        <form th:method="post" th:action="@{/admin/{user_id}/lymphoedema(user_id=${user.user_id})}" th:object="${selectedLymphoedemaType}"
+        <form th:method="post" th:action="@{/admin/{user_id}/lymphoedema(user_id=${user.user_id})}"
+              th:object="${selectedLymphoedemaType}"
               id="admin-set-user-lymphoedema-type-form">
             <div class="nhsuk-form-group">
                 <label class="nhsuk-label" for="select-1">
                     Lymphoedema types
                 </label>
                 <select class="nhsuk-select" id="select-1" name="selectedLymphoedemaTypeId" th:field="*{id}">
-                    <option th:each="lymphoedemaType : ${lyphoedemaTypes}" th:value="${lymphoedemaType.getId()}" th:text="${lymphoedemaType.getName()}">Lymphoedema Type Name
+                    <option th:each="lymphoedemaType : ${lyphoedemaTypes}" th:value="${lymphoedemaType.getId()}"
+                            th:text="${lymphoedemaType.getName()}">Lymphoedema Type Name
                     </option>
                 </select>
             </div>
@@ -69,12 +72,16 @@
                         Measurements
                     </dt>
                     <dd class="nhsuk-summary-list__value">
-                        <div th:each="measurement : ${lymphoedemaType.getMeasurements()}">
-                            <span th:text="${measurement.getName()}">Measurement Name</span>
-                            <span th:text="${measurement.getDescription()}">Measurement Description</span>
-                            <span th:text="${measurement.getUnit()}">Measurement Unit</span>
-                            <br>
-                        </div>
+                        <ul>
+                            <li th:each="measurement : ${lymphoedemaType.getMeasurements()}">
+                                <span th:text="${measurement.getName()}">Measurement Name</span>
+                                <span> - </span>
+                                <span th:text="${measurement.getDescription()}">Measurement Description</span>
+                                <span> - </span>
+                                <span th:text="${measurement.getUnit()}">Measurement Unit</span>
+                                <br>
+                            </li>
+                        </ul>
 
                     </dd>
                 </div>

@@ -19,10 +19,13 @@ public class DiaryEntryRepositoryImpl implements DiaryEntryRepository {
     private ExerciseRepository exerciseRepository;
     private MeasurementRepository measurementRepository;
 
-    public DiaryEntryRepositoryImpl(JdbcTemplate aJdbc, ExerciseRepository exerciseRepository, MeasurementRepository measurementRepository) {
+    private PhotoRepository photoRepository;
+
+    public DiaryEntryRepositoryImpl(JdbcTemplate aJdbc, ExerciseRepository exerciseRepository, MeasurementRepository measurementRepository, PhotoRepository photoRepository) {
         this.jdbc = aJdbc;
         this.exerciseRepository = exerciseRepository;
         this.measurementRepository = measurementRepository;
+        this.photoRepository = photoRepository;
         setDiaryEntryRowMapper();
     }
 
@@ -40,6 +43,7 @@ public class DiaryEntryRepositoryImpl implements DiaryEntryRepository {
             diaryEntry.setWellnessScore(resultSet.getInt("wellnessScore"));
             diaryEntry.setCompletedExercises(exerciseRepository.getCompletedExercisesByDiaryEntryId(resultSet.getLong("diary_entry_id")));
             diaryEntry.setMeasurements(measurementRepository.getMeasurementsByDiaryEntryId(resultSet.getLong("diary_entry_id")));
+            diaryEntry.setPhotos(photoRepository.getPhotosByDiaryEntryId(resultSet.getLong("diary_entry_id")));
             return diaryEntry;
         };
     }
@@ -66,6 +70,7 @@ public class DiaryEntryRepositoryImpl implements DiaryEntryRepository {
                 jdbc.update(insertExerciseSql, diaryEntryId, exercise.getId());
             }
             measurementRepository.submitMeasurementsForDiaryEntry(diaryEntry.getMeasurements(), diaryEntryId);
+            photoRepository.submitPhotosForDiaryEntryId(diaryEntry.getPhotos(), diaryEntryId);
 
             return diaryEntryId;
         } catch (EmptyResultDataAccessException e) {
@@ -76,9 +81,15 @@ public class DiaryEntryRepositoryImpl implements DiaryEntryRepository {
 
     private void deleteDiaryEntryIfExists(Long userId, LocalDate createdAt) {
         String removeExistingExercisesSql = "DELETE FROM diary_entry_exercises WHERE diary_entry_id = (SELECT diary_entry_id FROM diary_entries WHERE user_id = ? AND createdAt = ?)";
+        String removeExistingMeasurementsSql = "DELETE FROM diary_entry_measurements WHERE diary_entry_id = (SELECT diary_entry_id FROM diary_entries WHERE user_id = ? AND createdAt = ?)";
+        String removeExistingPhotosSql = "DELETE FROM diary_entry_photos WHERE diary_entry_id = (SELECT diary_entry_id FROM diary_entries WHERE user_id = ? AND createdAt = ?)";
+        String removeExistingPhotosSql2 = "DELETE FROM photos WHERE photo_id = (SELECT photo_id FROM diary_entry_photos WHERE diary_entry_id = (SELECT diary_entry_id FROM diary_entries WHERE user_id = ? AND createdAt = ?))";
         String removeExistingEntrySql = "DELETE FROM diary_entries WHERE user_id = ? AND createdAt = ?";
 
         jdbc.update(removeExistingExercisesSql, userId, Date.valueOf(createdAt));
+        jdbc.update(removeExistingPhotosSql, userId, Date.valueOf(createdAt));
+        jdbc.update(removeExistingPhotosSql2, userId, Date.valueOf(createdAt));
+        jdbc.update(removeExistingMeasurementsSql, userId, Date.valueOf(createdAt));
         jdbc.update(removeExistingEntrySql, userId, Date.valueOf(createdAt));
     }
 

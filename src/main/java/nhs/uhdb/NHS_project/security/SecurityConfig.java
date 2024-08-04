@@ -58,21 +58,25 @@ public class SecurityConfig {
             "/register/**",
             "/account",
             "/account/**",
-            "/taskhub",
-            "/taskhub/**",
+            "/photo",
+            "/photo/**",
             "/services",
             "/services/**",
             "/support",
             "/support/**",
             "/information",
             "/information/**",
-            "/api/**"
+            "/api/**",
+            "/static",
+            "/static/**",
     };
 
     public static final String[] USER_WHITELIST = {
             "/logout",
             "/diary",
             "/diary/**",
+            "/questionnaires",
+            "/questionnaires/**"
     };
 
     @Bean

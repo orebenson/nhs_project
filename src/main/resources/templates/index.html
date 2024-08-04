@@ -7,13 +7,34 @@
 <body>
 <script th:replace="~{fragments/_fragments :: pagescript}"></script>
 <header th:replace="~{fragments/_fragments :: header}"></header>
+<img th:src="@{assets/hospital_banner.jpg}" alt="Home image" style="width: 100%"/>
 <div class="nhsuk-width-container">
     <main class="nhsuk-main-wrapper" id="maincontent" role="main">
 
 
         <h2>Welcome to our dedicated service for lymphoedema patients.</h2>
-        <p>Here, you can manage your treatment plans, schedule appointments, and find helpful tips on managing
-            lymphoedema.</p>
+
+        <p>We are here for you. This service allows you to find detailed information about lymphoedema, and manage treatment and progress.</p>
+
+        <div class="nhsuk-action-link">
+            <a class="nhsuk-action-link__link" th:href="@{/landing}">
+                <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
+                    <path d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
+                </svg>
+                <span class="nhsuk-action-link__text">Information about Lymphoedema</span>
+            </a>
+        </div>
+
+        <div class="nhsuk-action-link">
+            <a class="nhsuk-action-link__link" th:href="@{/ContactUs}">
+                <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
+                    <path d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
+                </svg>
+                <span class="nhsuk-action-link__text">Find our services</span>
+            </a>
+        </div>
 
 
     </main>

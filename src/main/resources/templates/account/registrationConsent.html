@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
+    <script src="/js/validation/_formValidatorUtil.js" defer></script>
+    <script src="/js/validation/consentFormValidation.js" defer></script>
+    <title>Register</title>
+</head>
+<body>
+<script th:replace="~{fragments/_fragments :: pagescript}"></script>
+<header th:replace="~{fragments/_fragments :: header}"></header>
+<div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+
+        <div class="nhsuk-back-link">
+            <a class="nhsuk-back-link__link" th:href="@{/login}">
+                <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                     aria-hidden="true" height="24" width="24">
+                    <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+                </svg>
+                Go back</a>
+        </div>
+
+        <div class="nhsuk-error-summary nhsuk-u-visually-hidden" aria-labelledby="error-summary-title" role="alert"
+             tabindex="-1">
+            <h2 class="nhsuk-error-summary__title" id="error-summary-title">
+                There is a problem
+            </h2>
+            <div class="nhsuk-error-summary__body">
+                <ul class="nhsuk-list nhsuk-error-summary__list" role="list" id="error-summary-list"></ul>
+            </div>
+        </div>
+
+        <form th:method="post" th:action="@{/register/consent}" id="consent-form">
+
+            <div class="nhsuk-form-group">
+
+                <fieldset class="nhsuk-fieldset" aria-describedby="example-hint">
+                    <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                        <h1 class="nhsuk-fieldset__heading">
+                            Data and privacy
+                        </h1>
+                    </legend>
+
+                    <div class="nhsuk-hint" id="example-hint">
+                        Select all options that are relevant to you.
+                    </div>
+
+                    <div class="nhsuk-checkboxes">
+
+                        <div class="nhsuk-checkboxes__item">
+                            <input class="nhsuk-checkboxes__input" id="personal-info-consent" type="checkbox" name="personal-info-consent">
+                            <label class="nhsuk-label nhsuk-checkboxes__label" for="personal-info-consent">
+                                I understand that personal information is held about me.
+                            </label>
+                        </div>
+
+                        <div class="nhsuk-checkboxes__item">
+                            <input class="nhsuk-checkboxes__input" id="info-sharing-consent" type="checkbox" name="info-sharing-consent">
+                            <label class="nhsuk-label nhsuk-checkboxes__label" for="info-sharing-consent">
+                                I agree to my information being shared and gathered between services.
+                            </label>
+                        </div>
+
+                        <div class="nhsuk-checkboxes__item">
+                            <input class="nhsuk-checkboxes__input" id="voluntary-consent" type="checkbox" name="voluntary-consent">
+                            <label class="nhsuk-label nhsuk-checkboxes__label" for="voluntary-consent">
+                                I understand that my consent to share personal information is entirely voluntary and I may withdraw my consent at any time.
+                            </label>
+                        </div>
+
+                        <div class="nhsuk-checkboxes__item">
+                            <input class="nhsuk-checkboxes__input" id="coercion-consent" type="checkbox" name="coercion-consent">
+                            <label class="nhsuk-label nhsuk-checkboxes__label" for="coercion-consent">
+                                I understand that I should not register for access if I feel pressured into revealing details from my patient record against my will.
+                            </label>
+                        </div>
+
+                        <div class="nhsuk-checkboxes__item">
+                            <input class="nhsuk-checkboxes__input" id="info-about-others-consent" type="checkbox" name="info-about-others-consent">
+                            <label class="nhsuk-label nhsuk-checkboxes__label" for="info-about-others-consent">
+                                I understand that if I spot something in my record that is not about me, I should log out and contact the practice immediately.
+                            </label>
+                        </div>
+
+                    </div>
+
+                </fieldset>
+
+            </div>
+
+            <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+                Submit and continue
+            </button>
+
+        </form>
+
+    </main>
+</div>
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
+</body>
+</html>
