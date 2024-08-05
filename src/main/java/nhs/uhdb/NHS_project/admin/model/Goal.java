@@ -2,27 +2,28 @@ package nhs.uhdb.NHS_project.admin.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
-
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
 public class Goal {
-    private Long id;
-    private String goal_part;
-    private String goal_description;
-    private int goal_measurement;
-    private String goal_unit;
-    private LocalDate deadline;
+    private Long goalId;
+    private Long userId;
+    private String goalPart;
+    private String goalDescription;
+    private Integer goalMeasurement;
+    private String goalUnit;
+    private Date goalDeadline;
 
     public Goal() {
-    this.id = null;
-    this.goal_part = "";
-    this.goal_description = "";
-    this.goal_measurement = 0;
-    this.goal_unit = "";
-    this.deadline = null;
+        this.goalId = null;
+        this.userId = null;
+        this.goalPart = "";
+        this.goalDescription = "";
+        this.goalMeasurement = null;
+        this.goalUnit = "";
+        this.goalDeadline = null;
     }
-
 }

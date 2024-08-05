@@ -1,105 +1,85 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
-    <title>Admin Area - Add Patient Goals</title>
+    <title>Admin Goal Setting</title>
+    <!-- Add any extra JavaScript file references here -->
 </head>
 <body>
 <script th:replace="~{fragments/_fragments :: pagescript}"></script>
 <header th:replace="~{fragments/_fragments :: header}"></header>
 <div class="nhsuk-width-container">
     <main class="nhsuk-main-wrapper" id="maincontent" role="main">
-
         <nav class="nhsuk-breadcrumb" aria-label="Breadcrumb">
             <div class="nhsuk-width-container">
                 <ol class="nhsuk-breadcrumb__list">
-                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/admin}">Admin area</a></li>
-                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Add Patient Goals</a></li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/admin}">Admin
+                        area</a></li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/admin/goals}">Goal
+                        Management</a></li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Set Goal</a>
+                    </li>
                 </ol>
                 <p class="nhsuk-breadcrumb__back">
-                    <a class="nhsuk-breadcrumb__backlink" th:href="@{/admin}">
+                    <a class="nhsuk-breadcrumb__backlink" th:href="@{/admin/goals}">
                         <span class="nhsuk-u-visually-hidden">Go back &nbsp;</span>
-                        Admin area
+                        Goal Management
                     </a>
                 </p>
             </div>
         </nav>
 
-        <div class="nhsuk-error-summary nhsuk-u-visually-hidden" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
-            <h2 class="nhsuk-error-summary__title" id="error-summary-title">
-                There is a problem
-            </h2>
-            <div class="nhsuk-error-summary__body">
-                <ul class="nhsuk-list nhsuk-error-summary__list" role="list" id="error-summary-list"></ul>
+        <h2>Set Goal for User <span
+                th:text="${user.getFirstname() + ' ' + user.getLastname()}">User Name</span></h2>
+        <form th:action="@{/admin/{userId}/goal(userId=${user.user_id})}" th:object="${goal}" th:method="post">
+            <div class="nhsuk-form-group">
+                <label class="nhsuk-label" for="goal_part">Part:</label>
+                <input class="nhsuk-input" type="text" id="goal_part" name="goal_part" required>
             </div>
-        </div>
-
-        <form th:method="post" th:action="@{/admin/patient/goals/add}" th:object="${patientGoals}" id="admin-add-patient-goals-form">
-            <fieldset class="nhsuk-fieldset">
-                <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
-                    <h1 class="nhsuk-fieldset__heading">
-                        Add Patient Goals
-                    </h1>
-                </legend>
-
-                <div class="nhsuk-form-group">
-                    <label class="nhsuk-label" for="patient-id">
-                        Patient ID:
-                    </label>
-                    <input class="nhsuk-input nhsuk-u-width-two-thirds" type="text" id="patient-id" name="patientId" th:field="*{patientId}"/>
-                </div>
-
-                <div class="nhsuk-form-group">
-                    <label class="nhsuk-label" for="target-date">
-                        Target Date:
-                    </label>
-                    <input class="nhsuk-input nhsuk-u-width-two-thirds" type="date" id="target-date" name="targetDate" th:field="*{targetDate}"/>
-                </div>
-            </fieldset>
-
-            <div id="goals-container">
-                <fieldset class="nhsuk-fieldset goal-fieldset">
-                    <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--m">
-                        <h1 class="nhsuk-fieldset__heading">
-                            Goal 1 details
-                        </h1>
-                    </legend>
-
-                    <div class="nhsuk-form-group">
-                        <label class="nhsuk-label" for="goal-0-type">
-                            Type:
-                        </label>
-                        <select class="nhsuk-select" id="goal-0-type" name="goals[0].type">
-                            <option value="weight">Weight</option>
-                            <option value="leg-circumference">Leg Circumference</option>
-                        </select>
-                    </div>
-
-                    <div class="nhsuk-form-group">
-                        <label class="nhsuk-label" for="goal-0-value">
-                            Target Value:
-                        </label>
-                        <input class="nhsuk-input nhsuk-u-width-two-thirds" type="number" id="goal-0-value" name="goals[0].value" step="0.1"/>
-                    </div>
-                </fieldset>
+            <div class="nhsuk-form-group">
+                <label class="nhsuk-label" for="goal_description">Description:</label>
+                <input class="nhsuk-input" type="text" id="goal_description" name="goal_description">
             </div>
-
-            <button class="nhsuk-button nhsuk-button--secondary" type="button" id="add-goal-button">
-                Add another goal
-            </button>
-
-            <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
-                Save goals
-            </button>
+            <div class="nhsuk-form-group">
+                <label class="nhsuk-label" for="goal_measurement">Measurement:</label>
+                <input class="nhsuk-input" type="number" id="goal_measurement" name="goal_measurement" required>
+            </div>
+            <div class="nhsuk-form-group">
+                <label class="nhsuk-label" for="goal_unit">Unit:</label>
+                <input class="nhsuk-input" type="text" id="goal_unit" name="goal_unit" required>
+            </div>
+            <div class="nhsuk-form-group">
+                <label class="nhsuk-label" for="goal_deadline">Deadline:</label>
+                <input class="nhsuk-input" type="date" id="goal_deadline" name="goal_deadline" required>
+            </div>
+            <button class="nhsuk-button" data-module="nhsuk-button" type="submit">Set Goal</button>
         </form>
-
-        <div th:unless="${#authorization.expression('isAuthenticated()') and #authorization.expression('hasRole(''ADMIN'')')}">
-            <script th:inline="javascript">
-                window.location.href = '/login';
-            </script>
-        </div>
-
     </main>
 </div>
 <footer th:replace="~{fragments/_fragments :: footer}"></footer>
+
+<script>
+    function toggleGoalDetails(goalDetails, select) {
+        let selectedId = 'goal-details-' + select.value;
+
+        for (let i = 0; i < goalDetails.length; i++) {
+            if (goalDetails[i].id === selectedId) {
+                goalDetails[i].classList.remove('nhsuk-u-visually-hidden');
+            } else {
+                goalDetails[i].classList.add('nhsuk-u-visually-hidden');
+            }
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const select = document.getElementById('select-goal');
+        const goalDetails = document.querySelectorAll('.nhsuk-summary-list');
+        toggleGoalDetails(goalDetails, select);
+        select.addEventListener('change', () => {
+            toggleGoalDetails(goalDetails, select)
+        })
+    });
+</script>
+
 </body>
 </html>

@@ -1,8 +1,10 @@
-package nhs.uhdb.NHS_project.admin.model;
+package nhs.uhdb.NHS_project.admin.service;
+
+import nhs.uhdb.NHS_project.admin.model.Goal;
 
 import java.util.List;
 
-public interface GoalRepository {
+public interface GoalService {
     Long createGoal(Goal goal);
     Boolean deleteGoalById(Long goalId);
     List<Goal> getAllGoals();
