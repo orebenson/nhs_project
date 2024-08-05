@@ -3,8 +3,11 @@
 <head>
     <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
     <title>Admin Area</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/js/progress_chart/AdminChart.js"></script>
+
 </head>
-<body>
+<body th:data-userid="${user.user_id}">
 <script th:replace="~{fragments/_fragments :: pagescript}"></script>
 <header th:replace="~{fragments/_fragments :: header}"></header>
 <div class="nhsuk-width-container">
@@ -31,6 +34,8 @@
         </nav>
 
         <h2>Patient details</h2>
+
+
 
         <dl class="nhsuk-summary-list">
 
@@ -173,6 +178,32 @@
             <script th:inline="javascript">
                 window.location.href = '/login';
             </script>
+        </div>
+
+        <h2>Progress</h2>
+
+        <label class="nhsuk-label" for="progress-dropdown">Select metric:</label>
+        <select class="nhsuk-select" id="progress-dropdown" name="progress-dropdown" >
+            <option value="weight">Weight</option>
+            <option value="wellnessScore">Wellness Score</option>
+            <option value="qualityOfLifeScore">Quality Of Life Score</option>
+            <option value="swelling">Swelling Measurement</option>
+        </select>
+        <div id="progress-chart">
+            <canvas id="chartCanvas"></canvas>
+            <!-- Placeholder for the progress chart -->
+            <style>
+                #progress-chart {
+                    min-height: 400px;
+                    background-color: #fff;
+                }
+                canvas {
+                    display: block;
+                    width: 100% !important;
+                    height: 400px !important;
+                }
+            </style>
+
         </div>
 
     </main>
