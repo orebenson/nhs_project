@@ -158,7 +158,7 @@ create table if not exists admin_goal_setting (
     goal_description VARCHAR(500),
     goal_measurement INT,
     goal_unit VARCHAR(100) NOT NULL,
-    goal_deadline DATE
+    goal_deadline VARCHAR(10)
 ) engine = InnoDB;
 
 create table if not exists preappointment_questionnaire_responses

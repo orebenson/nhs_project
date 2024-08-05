@@ -5,6 +5,7 @@ import nhs.uhdb.NHS_project.accounts.service.UserService;
 import nhs.uhdb.NHS_project.admin.model.Goal;
 import nhs.uhdb.NHS_project.admin.service.GoalService;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,12 +39,15 @@ public class AdminGoalSettingController {
 
     // Handle form submission to create a new goal for a user
     @PostMapping("/admin/{user_id}/goal")
-    public ModelAndView adminPostSetUserGoal(@PathVariable Long user_id, @ModelAttribute Goal goal) {
+    public ModelAndView adminPostSetUserGoal(@PathVariable Long user_id, @ModelAttribute("goal") Goal goal) {
+        System.out.println("Received goal: " + goal);
+        goal.setUserId(user_id);
+        Long goalId = goalService.createGoal(goal);
+        goal.setUserId(user_id);
         User user = userService.getUserByUserId(user_id);
         if (user == null) {return new ModelAndView("admin/adminSearchUserError");}
 
-        goal.setUserId(user_id); // Assuming your Goal model includes a userId field to link the goal to the user
-        Long goalId = goalService.createGoal(goal);
+
         if (goalId == null) {return new ModelAndView("admin/adminSetUserGoalError").addObject("user", user);}
         return new ModelAndView("admin/adminSetUserGoalSuccess").addObject("user", user);
     }

@@ -27,7 +27,7 @@ public class GoalRepositoryImpl implements GoalRepository {
             goal.setGoalDescription(resultSet.getString("goal_description"));
             goal.setGoalMeasurement(resultSet.getInt("goal_measurement"));
             goal.setGoalUnit(resultSet.getString("goal_unit"));
-            goal.setGoalDeadline(resultSet.getDate("goal_deadline"));
+            goal.setGoalDeadline(resultSet.getString("goal_deadline"));
             return goal;
         };
     }
