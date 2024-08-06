@@ -4,6 +4,8 @@ import nhs.uhdb.NHS_project.accounts.model.User;
 import nhs.uhdb.NHS_project.accounts.service.UserService;
 import nhs.uhdb.NHS_project.admin.model.LymphoedemaType;
 import nhs.uhdb.NHS_project.admin.model.TreatmentPlan;
+import nhs.uhdb.NHS_project.admin.model.Goal;
+import nhs.uhdb.NHS_project.admin.service.GoalService;
 import nhs.uhdb.NHS_project.admin.service.LymphoedemaTypeService;
 import nhs.uhdb.NHS_project.admin.service.TreatmentPlanService;
 import nhs.uhdb.NHS_project.diary.controllers.ImageUtil;
@@ -35,14 +37,16 @@ public class AdminAccountController {
     private DiaryEntryService diaryEntryService;
     private PreappointmentResponseService preappointmentResponseService;
     private QolResponseService qolResponseService;
+    private GoalService goalService;
 
-    public AdminAccountController(UserService userService, TreatmentPlanService treatmentPlanService, LymphoedemaTypeService lymphoedemaTypeService, DiaryEntryService diaryEntryService, PreappointmentResponseService preappointmentResponseService, QolResponseService qolResponseService) {
+    public AdminAccountController(UserService userService, TreatmentPlanService treatmentPlanService, LymphoedemaTypeService lymphoedemaTypeService, DiaryEntryService diaryEntryService, PreappointmentResponseService preappointmentResponseService, QolResponseService qolResponseService, GoalService goalService) {
         this.userService = userService;
         this.treatmentPlanService = treatmentPlanService;
         this.lymphoedemaTypeService = lymphoedemaTypeService;
         this.diaryEntryService = diaryEntryService;
         this.preappointmentResponseService = preappointmentResponseService;
         this.qolResponseService =  qolResponseService;
+        this.goalService = goalService;
     }
 
     @GetMapping("/admin")
@@ -117,12 +121,15 @@ public class AdminAccountController {
 
         List<QolResponse> qolQuestionnaires = qolResponseService.getResponsesByUserId(id);
 
+        List<Goal> goals = goalService.getGoalByUserId(id);
+
         mav.addObject("entryDates", userDiaryEntries);
         mav.addObject("userPlan", userPlan);
         mav.addObject("userLymphoedemaType", userLymphoedemaType);
         mav.addObject("user", user);
         mav.addObject("questionnaires", questionnaires);
         mav.addObject("qolQuestionnaires", qolQuestionnaires);
+        mav.addObject("goals", goals);
         return mav;
     }
 

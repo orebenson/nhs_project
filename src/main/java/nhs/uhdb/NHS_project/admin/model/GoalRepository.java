@@ -7,6 +7,5 @@ public interface GoalRepository {
     Boolean deleteGoalById(Long goalId);
     List<Goal> getAllGoals();
     Boolean setUserGoal(Long userId, Long goalId);
-    Goal getGoalByUserId(Long userId);
-    Goal getGoalByUserEmail(String email);
+    List<Goal> getGoalByUserId(Long userId);
 }

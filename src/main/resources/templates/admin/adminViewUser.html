@@ -145,6 +145,27 @@
             </details>
         </div>
 
+        <div>
+            <details class="nhsuk-details nhsuk-expander">
+                <summary class="nhsuk-details__summary">
+                    <span class="nhsuk-details__summary-text">
+                        Patient Goals
+                    </span>
+                </summary>
+                    <div class="nhsuk-details__text">
+                        <div th:if="${#lists.isEmpty(goals)}">
+                            <p>This patient does not have any goals set.</p>
+                        </div>
+                        <ul class="nhsuk-list nhsuk-list--bullet" th:unless="${#lists.isEmpty(goals)}">
+                            <li th:each="goal : ${goals}">
+                                <span th:text="${goal.getGoalPart + ': ' + goal.getGoalDescription + ' - ' + goal.getGoalMeasurement + ' ' + goal.getGoalUnit}"></span>
+                                <span th:text="${' (Deadline: ' + goal.getGoalDeadline + ')'}"></span>
+                            </li>
+                        </ul>
+                    </div>
+            </details>
+        </div>
+
 
         <div class="nhsuk-action-link">
             <a class="nhsuk-action-link__link" th:href="@{/admin/{userId}/plan(userId=${user.user_id})}">

@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -87,27 +88,14 @@ public class GoalRepositoryImpl implements GoalRepository {
     }
 
     @Override
-    public Goal getGoalByUserId(Long userId) {
+    public List<Goal> getGoalByUserId(Long userId) {
         String sql = "SELECT g.* FROM admin_goal_setting g " +
-                "JOIN user_goals ug ON g.goal_id = ug.goal_id " +
-                "WHERE ug.user_id = ?";
+                "WHERE g.user_id = ?";
         try {
-            return jdbc.queryForObject(sql, goalRowMapper, userId);
+            return jdbc.query(sql, goalRowMapper, userId);
         } catch (EmptyResultDataAccessException e) {
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    @Override
-    public Goal getGoalByUserEmail(String email) {
-        String sql = "SELECT g.* FROM admin_goal_setting g " +
-                "JOIN user_goals ug ON g.goal_id = ug.goal_id " +
-                "JOIN user_table u ON ug.user_id = u.user_id " +
-                "WHERE u.email = ?";
-        try {
-            return jdbc.queryForObject(sql, goalRowMapper, email);
-        } catch (EmptyResultDataAccessException e) {
-            return null;
-        }
-    }
 }

@@ -36,12 +36,9 @@ public class GoalServiceImpl implements GoalService {
     }
 
     @Override
-    public Goal getGoalByUserId(Long userId) {
+    public List<Goal> getGoalByUserId(Long userId) {
+
         return goalRepository.getGoalByUserId(userId);
     }
 
-    @Override
-    public Goal getGoalByUserEmail(String email) {
-        return goalRepository.getGoalByUserEmail(email);
-    }
 }
