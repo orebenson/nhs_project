@@ -152,17 +152,23 @@
                         Patient Goals
                     </span>
                 </summary>
-                    <div class="nhsuk-details__text">
+                <div class="nhsuk-details__text">
+                    <p class="nhsuk-details__text">
                         <div th:if="${#lists.isEmpty(goals)}">
                             <p>This patient does not have any goals set.</p>
                         </div>
                         <ul class="nhsuk-list nhsuk-list--bullet" th:unless="${#lists.isEmpty(goals)}">
                             <li th:each="goal : ${goals}">
-                                <span th:text="${goal.getGoalPart + ': ' + goal.getGoalDescription + ' - ' + goal.getGoalMeasurement + ' ' + goal.getGoalUnit}"></span>
-                                <span th:text="${' (Deadline: ' + goal.getGoalDeadline + ')'}"></span>
+                                    <span th:text="${goal.getGoalPart + ': ' + goal.getGoalDescription + ' - ' + goal.getGoalMeasurement + ' ' + goal.getGoalUnit}"></span>
+                                    <span th:text="${' (Deadline: ' + goal.getGoalDeadline + ')'}"></span>
+                                    <form th:action="@{/admin/{userId}/goal/{goalId}/delete(userId=${user.user_id},goalId=${goal.goalId})}" th:method="post">
+                                        <button type="submit" class="nhsuk-button nhsuk-button--secondary nhsuk-button--small">
+                                            Achieved
+                                        </button>
+                                    </form>
                             </li>
                         </ul>
-                    </div>
+                </div>
             </details>
         </div>
 

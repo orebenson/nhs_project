@@ -51,5 +51,11 @@ public class AdminGoalSettingController {
         if (goalId == null) {return new ModelAndView("admin/adminSetUserGoalError").addObject("user", user);}
         return new ModelAndView("admin/adminSetUserGoalSuccess").addObject("user", user);
     }
+
+    @PostMapping("/admin/{userId}/goal/{goalId}/delete")
+    public String deleteGoal(@PathVariable Long userId, @PathVariable Long goalId) {
+        goalService.deleteGoalById(goalId);
+        return "redirect:/admin/search/" + userId;
+    }
 }
 
