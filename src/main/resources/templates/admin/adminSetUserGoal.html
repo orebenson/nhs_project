@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
+    <title>Admin Goal Setting</title>
+    <!-- Add any extra JavaScript file references here -->
+</head>
+<body>
+<script th:replace="~{fragments/_fragments :: pagescript}"></script>
+<header th:replace="~{fragments/_fragments :: header}"></header>
+<div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+        <nav class="nhsuk-breadcrumb" aria-label="Breadcrumb">
+            <div class="nhsuk-width-container">
+                <ol class="nhsuk-breadcrumb__list">
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/admin}">Admin
+                        area</a></li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/admin/goals}">Goal
+                        Management</a></li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Set Goal</a>
+                    </li>
+                </ol>
+                <p class="nhsuk-breadcrumb__back">
+                    <a class="nhsuk-breadcrumb__backlink" th:href="@{/admin/goals}">
+                        <span class="nhsuk-u-visually-hidden">Go back &nbsp;</span>
+                        Goal Management
+                    </a>
+                </p>
+            </div>
+        </nav>
+
+        <h2>Set Goal for User <span
+                th:text="${user.getFirstname() + ' ' + user.getLastname()}">User Name</span></h2>
+        <form th:action="@{/admin/{userId}/goal(userId=${user.user_id})}" th:object="${goal}" th:method="post">
+            <div class="nhsuk-form-group">
+                <label class="nhsuk-label" for="goal_part">Part:</label>
+                <input class="nhsuk-input" type="text" id="goal_part" name="goal_part" th:field="*{goalPart}" required>
+            </div>
+            <div class="nhsuk-form-group">
+                <label class="nhsuk-label" for="goal_description">Description:</label>
+                <input class="nhsuk-input" type="text" id="goal_description" name="goal_description" th:field="*{goalDescription}">
+            </div>
+            <div class="nhsuk-form-group">
+                <label class="nhsuk-label" for="goal_measurement">Measurement:</label>
+                <input class="nhsuk-input" type="number" id="goal_measurement" name="goal_measurement" th:field="*{goalMeasurement}" required>
+            </div>
+            <div class="nhsuk-form-group">
+                <label class="nhsuk-label" for="goal_unit">Unit:</label>
+                <input class="nhsuk-input" type="text" id="goal_unit" name="goal_unit" th:field="*{goalUnit}" required>
+            </div>
+            <div class="nhsuk-form-group">
+                <label class="nhsuk-label" for="goal_deadline">Deadline:</label>
+                <input class="nhsuk-input" type="date" id="goal_deadline" name="goal_deadline" th:field="*{goalDeadline}" required>
+            </div>
+            <button class="nhsuk-button" data-module="nhsuk-button" type="submit">Set Goal</button>
+        </form>
+    </main>
+</div>
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
+
+<script>
+    function toggleGoalDetails(goalDetails, select) {
+        let selectedId = 'goal-details-' + select.value;
+
+        for (let i = 0; i < goalDetails.length; i++) {
+            if (goalDetails[i].id === selectedId) {
+                goalDetails[i].classList.remove('nhsuk-u-visually-hidden');
+            } else {
+                goalDetails[i].classList.add('nhsuk-u-visually-hidden');
+            }
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const select = document.getElementById('select-goal');
+        const goalDetails = document.querySelectorAll('.nhsuk-summary-list');
+        toggleGoalDetails(goalDetails, select);
+        select.addEventListener('change', () => {
+            toggleGoalDetails(goalDetails, select)
+        })
+    });
+</script>
+
+</body>
+</html>

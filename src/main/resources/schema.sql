@@ -16,6 +16,8 @@ drop table if exists diary_entry_measurements;
 drop table if exists measurement_types;
 drop table if exists lymphoedema_type_measurements;
 drop table if exists diary_entry_photos;
+drop table if exists admin_goal_setting;
+
 drop table if exists preappointment_questionnaire_responses;
 drop table if exists qol_activity_score_key_table;
 drop table if exists qol_questionnaire_responses;
@@ -147,6 +149,16 @@ create table if not exists diary_entry_measurements (
     diary_entry_id BIGINT NOT NULL,
     measurement_type_id BIGINT NOT NULL,
     measurement_value BIGINT
+) engine = InnoDB;
+
+create table if not exists admin_goal_setting (
+    goal_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    user_id BIGINT NOT NULL,
+    goal_part VARCHAR(500) NOT NULL,
+    goal_description VARCHAR(500),
+    goal_measurement INT,
+    goal_unit VARCHAR(100) NOT NULL,
+    goal_deadline VARCHAR(10)
 ) engine = InnoDB;
 
 create table if not exists preappointment_questionnaire_responses
