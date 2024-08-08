@@ -37,7 +37,8 @@ create table if not exists user_table
     address1  VARCHAR(500),
     address2  VARCHAR(500),
     city      VARCHAR(50),
-    postcode  VARCHAR(10)
+    postcode  VARCHAR(10),
+    clinic VARCHAR(500)
 ) engine = InnoDB;
 
 create table if not exists roles_table
