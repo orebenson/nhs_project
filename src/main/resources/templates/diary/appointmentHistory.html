@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
+
+
+  <title>Appointment history</title>
+
+  <!--    add any extra javascript file references here-->
+
+</head>
+<body>
+<script th:replace="~{fragments/_fragments :: pagescript}"></script>
+<header th:replace="~{fragments/_fragments :: header}"></header>
+<div class="nhsuk-width-container">
+  <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+    <nav class="nhsuk-breadcrumb" aria-label="Breadcrumb">
+      <div class="nhsuk-width-container">
+        <ol class="nhsuk-breadcrumb__list">
+          <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/diary}">Diary</a>
+          </li>
+          <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Appointment details</a>
+          </li>
+
+        </ol>
+        <p class="nhsuk-breadcrumb__back">
+          <a class="nhsuk-breadcrumb__backlink" th:href="@{/diary}">
+            <span class="nhsuk-u-visually-hidden">Go back &nbsp;</span>
+            Diary
+          </a>
+        </p>
+      </div>
+    </nav>
+
+    <h2>Appointment details</h2>
+
+
+    <dl class="nhsuk-summary-list">
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          Date
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          <span th:text="${appointment.date}"></span>
+        </dd>
+
+      </div>
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          Type
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          <span th:text="${appointment.type}"></span>
+        </dd>
+
+      </div>
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          Description
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          <span th:text="${appointment.description}"></span>
+        </dd>
+
+      </div>
+
+    </dl>
+
+
+  </main>
+</div>
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
+</body>
+</html>
