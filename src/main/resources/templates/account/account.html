@@ -1,106 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
-  <title>Account</title>
+    <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
+    <title>Account</title>
 </head>
+
 <body>
-<script th:replace="~{fragments/_fragments :: pagescript}"></script>
-<header th:replace="~{fragments/_fragments :: header}"></header>
-<div class="nhsuk-width-container">
-  <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+    <script th:replace="~{fragments/_fragments :: pagescript}"></script>
+    <header th:replace="~{fragments/_fragments :: header}"></header>
+    <div class="nhsuk-width-container">
+        <main class="nhsuk-main-wrapper" id="maincontent" role="main">
 
-    <h1>My Account Details</h1>
+            <h1>My Account Details</h1>
 
-    <dl class="nhsuk-summary-list">
+            <dl class="nhsuk-summary-list">
 
-      <div class="nhsuk-summary-list__row">
-        <dt class="nhsuk-summary-list__key">
-          Clinic
-        </dt>
-        <dd class="nhsuk-summary-list__value">
-          <span th:text="${user.clinic}"></span>
-        </dd>
-      </div>
+                <div class="nhsuk-summary-list__row">
+                    <dt class="nhsuk-summary-list__key">
+                        Clinic
+                    </dt>
+                    <dd class="nhsuk-summary-list__value">
+                        <span th:text="${user.clinic}"></span>
+                    </dd>
+                </div>
 
-      <div class="nhsuk-summary-list__row">
-        <dt class="nhsuk-summary-list__key">
-          Name
-        </dt>
-        <dd class="nhsuk-summary-list__value">
-          <span th:text="${user.firstname} + ' ' + ${user.lastname}"></span>
-        </dd>
-      </div>
+                <div class="nhsuk-summary-list__row">
+                    <dt class="nhsuk-summary-list__key">
+                        Name
+                    </dt>
+                    <dd class="nhsuk-summary-list__value">
+                        <span th:text="${user.firstname} + ' ' + ${user.lastname}"></span>
+                    </dd>
+                </div>
+                <div class="nhsuk-summary-list__row">
+                    <dt class="nhsuk-summary-list__key">
+                        Name
+                    </dt>
+                    <dd class="nhsuk-summary-list__value">
+                        <span th:text="${user.firstname} + ' ' + ${user.lastname}"></span>
+                    </dd>
+                </div>
 
-      <div class="nhsuk-summary-list__row">
-        <dt class="nhsuk-summary-list__key">
-          Address information
-        </dt>
-        <dd class="nhsuk-summary-list__value">
-          <span th:text="${user.address1}"></span><br>
-          <span th:text="${user.address2}"></span><br>
-          <span th:text="${user.city}"></span><br>
-          <span th:text="${user.postcode}"></span>
-        </dd>
-      </div>
+                <div class="nhsuk-summary-list__row">
+                    <dt class="nhsuk-summary-list__key">
+                        Address information
+                    </dt>
+                    <dd class="nhsuk-summary-list__value">
+                        <span th:text="${user.address1}"></span><br>
+                        <span th:text="${user.address2}"></span><br>
+                        <span th:text="${user.city}"></span><br>
+                        <span th:text="${user.postcode}"></span>
+                    </dd>
+                </div>
 
-      <div class="nhsuk-summary-list__row">
-        <dt class="nhsuk-summary-list__key">
-          Contact details
-        </dt>
-        <dd class="nhsuk-summary-list__value">
-          <p th:text="${user.email}">karen.francis@example.com</p>
-        </dd>
-      </div>
+                <div class="nhsuk-summary-list__row">
+                    <dt class="nhsuk-summary-list__key">
+                        Contact details
+                    </dt>
+                    <dd class="nhsuk-summary-list__value">
+                        <p th:text="${user.email}">karen.francis@example.com</p>
+                    </dd>
+                </div>
 
-    </dl>
+            </dl>
 
-    <!-- Notification Settings -->
-    <h2>Notification settings</h2>
-    <form th:method="post" th:action="@{/submit-notifications}" id="notification-settings-form">
-      <fieldset class="nhsuk-fieldset">
-        <div class="nhsuk-checkboxes">
+            <details class="nhsuk-details nhsuk-expander nhsuk-u-width-two-thirds">
+                <summary class="nhsuk-details__summary">
+                    <span class="nhsuk-details__summary-text">
+                Notification settings
+              </span>
+                </summary>
+                <div class="nhsuk-details__text">
 
-          <div class="nhsuk-checkboxes__item">
-            <input class="nhsuk-checkboxes__input" id="daily-reminders" name="daily-reminders"
-                   type="checkbox"
-                   value="daily-reminders">
-            <label class="nhsuk-label nhsuk-checkboxes__label" for="daily-reminders">
-              Daily reminders:
-            </label>
-          </div>
+                    <!-- Notification Settings -->
+                    <h2>Notification settings</h2>
+                    <form th:method="post" th:action="@{/submit-notifications}" id="notification-settings-form">
+                        <fieldset class="nhsuk-fieldset">
+                            <div class="nhsuk-checkboxes">
 
-          <div class="nhsuk-checkboxes__item">
-            <input class="nhsuk-checkboxes__input" id="pre-appointment-reminders"
-                   name="pre-appointment-reminders" type="checkbox" value="pre-appointment-reminders">
-            <label class="nhsuk-label nhsuk-checkboxes__label" for="pre-appointment-reminders">
-              Pre-appointment questionnaire reminders:
-            </label>
-          </div>
+                                <div class="nhsuk-checkboxes__item">
+                                    <input class="nhsuk-checkboxes__input" id="daily-reminders" name="daily-reminders"
+                                       type="checkbox"
+                                       value="daily-reminders">
+                                    <label class="nhsuk-label nhsuk-checkboxes__label" for="daily-reminders">
+                                    Daily reminders:
+                                </label>
+                                </div>
 
-        </div>
-      </fieldset>
-      <br>
-      <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
-        Save settings
-      </button>
+                                <div class="nhsuk-checkboxes__item">
+                                    <input class="nhsuk-checkboxes__input" id="pre-appointment-reminders"
+                                       name="pre-appointment-reminders" type="checkbox"
+                                       value="pre-appointment-reminders">
+                                    <label class="nhsuk-label nhsuk-checkboxes__label" for="pre-appointment-reminders">
+                                    Pre-appointment questionnaire reminders:
+                                </label>
+                                </div>
 
-    </form>
+                            </div>
+                        </fieldset>
+                        <br>
+                        <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+                        Save settings
+                    </button>
 
-    <form th:method="post" th:action="@{/logout}">
-      <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
-        Logout
-      </button>
-    </form>
+                    </form>
 
-    <div th:unless="${#authorization.expression('isAuthenticated()')}">
-      <script th:inline="javascript">
-        window.location.href = '/login';
-      </script>
+
+                </div>
+            </details>
+
+
+            <form th:method="post" th:action="@{/logout}">
+                <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+                Logout
+            </button>
+            </form>
+
+            <div th:unless="${#authorization.expression('isAuthenticated()')}">
+                <script th:inline="javascript">
+                    window.location.href = '/login';
+                </script>
+            </div>
+
+        </main>
     </div>
-
-  </main>
-</div>
-<footer th:replace="~{fragments/_fragments :: footer}"></footer>
+    <footer th:replace="~{fragments/_fragments :: footer}"></footer>
 </body>
+
 </html>
