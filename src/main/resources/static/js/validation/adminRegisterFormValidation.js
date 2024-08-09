@@ -20,21 +20,6 @@ const adminRegisterFormConfig = {
             fieldId: 'password',
             errorMessage: 'Enter your password',
             rules: (value) => value !== '' && value.length > 3
-        },
-        {
-            fieldId: 'address1',
-            errorMessage: 'Enter your address',
-            rules: (value) => value !== ''
-        },
-        {
-            fieldId: 'city',
-            errorMessage: 'Enter your city',
-            rules: (value) => value !== ''
-        },
-        {
-            fieldId: 'postcode',
-            errorMessage: 'Enter your postcode',
-            rules: (value) => value !== ''
         }
     ]
 };
