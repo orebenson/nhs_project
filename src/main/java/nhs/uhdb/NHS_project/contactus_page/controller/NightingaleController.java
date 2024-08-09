@@ -6,6 +6,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class NightingaleController {
-    @GetMapping("/ContactUs/Nightingale")
+    @GetMapping("/contact-us/Nightingale")
     public ModelAndView getLandingPage() { return new ModelAndView("contactus/Nightingale");}
 }

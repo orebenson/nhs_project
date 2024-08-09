@@ -49,8 +49,8 @@ public class SecurityConfig {
             "/404",
             "/500",
             "/landing",
-            "/ContactUs",
-            "/ContactUs/**",
+            "/contact-us",
+            "/contact-us/**",
             "/login",
             "/login/**",
             "/logout",
@@ -69,6 +69,16 @@ public class SecurityConfig {
             "/api/**",
             "/static",
             "/static/**",
+            "/about-us",
+            "/about-us/**",
+            "/site-map",
+            "/site-map/**",
+            "/accessibility",
+            "/accessibility/**",
+            "/policies",
+            "/policies/**",
+            "/cookies",
+            "/cookies/**",
     };
 
     public static final String[] USER_WHITELIST = {
