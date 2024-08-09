@@ -224,4 +224,4 @@ VALUES (@leg_plan_id, @first_exercise_id),
 
 -- add admin goal settings
 INSERT INTO admin_goal_setting (goal_id, user_id, goal_part, goal_description, goal_measurement, goal_unit, goal_deadline)
-VALUES (1, 2, 'Ankle', '', 0, 'cm', '2024-07-10');
+VALUES (1, 2, 'Ankle', 'Circumference', 0, 'cm', '2024-07-10');
