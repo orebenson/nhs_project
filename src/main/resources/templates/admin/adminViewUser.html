@@ -79,6 +79,15 @@
 
                     <div class="nhsuk-summary-list__row">
                         <dt class="nhsuk-summary-list__key">
+                            Clinic
+                        </dt>
+                        <dd class="nhsuk-summary-list__value">
+                            <span th:text="${user.clinic}"></span>
+                        </dd>
+                    </div>
+
+                    <div class="nhsuk-summary-list__row">
+                        <dt class="nhsuk-summary-list__key">
                             Name
                         </dt>
                         <dd class="nhsuk-summary-list__value">
@@ -174,12 +183,13 @@
             </div>
 
             <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="entries">
+                <h2>Diary entries</h2>
 
-                <details class="nhsuk-details nhsuk-expander nhsuk-u-width-two-thirds">
+                <details class="nhsuk-details">
                     <summary class="nhsuk-details__summary">
-                <span class="nhsuk-details__summary-text">
-                  Patient diary entries
-                </span>
+                        <span class="nhsuk-details__summary-text">
+                          Patient diary entries
+                        </span>
                     </summary>
                     <div class="nhsuk-details__text" th:if="${entryDates.size() < 1}">
                         <p>This patient does not have any diary entries</p>
@@ -196,11 +206,11 @@
             <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="questionnaires">
                 <h2>Submitted questionnaires</h2>
                 <div>
-                    <details class="nhsuk-details nhsuk-expander">
+                    <details class="nhsuk-details">
                         <summary class="nhsuk-details__summary">
-                    <span class="nhsuk-details__summary-text">
-                      Patient Pre-Appointment Questionnaire Submissions
-                    </span>
+                            <span class="nhsuk-details__summary-text">
+                              Patient Pre-Appointment Questionnaire Submissions
+                            </span>
                         </summary>
                         <div class="nhsuk-details__text">
                             <div th:if="${#lists.isEmpty(questionnaires)}">
@@ -219,11 +229,11 @@
                 </div>
 
                 <div>
-                    <details class="nhsuk-details nhsuk-expander">
+                    <details class="nhsuk-details">
                         <summary class="nhsuk-details__summary">
-                    <span class="nhsuk-details__summary-text">
-                      Patient Quality of Life Questionnaire Submissions
-                    </span>
+                            <span class="nhsuk-details__summary-text">
+                              Patient Quality of Life Questionnaire Submissions
+                            </span>
                         </summary>
                         <div class="nhsuk-details__text">
                             <div th:if="${#lists.isEmpty(qolQuestionnaires)}">
@@ -243,35 +253,7 @@
             </div>
 
             <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="goals">
-
-                <div>
-                    <details class="nhsuk-details nhsuk-expander">
-                        <summary class="nhsuk-details__summary">
-                    <span class="nhsuk-details__summary-text">
-                        Patient Goals
-                    </span>
-                        </summary>
-                        <div class="nhsuk-details__text">
-                            <p class="nhsuk-details__text">
-                            <div th:if="${#lists.isEmpty(goals)}">
-                                <p>This patient does not have any goals set.</p>
-                            </div>
-                            <ul class="nhsuk-list nhsuk-list--bullet" th:unless="${#lists.isEmpty(goals)}">
-                                <li th:each="goal : ${goals}">
-                                    <span th:text="${goal.getGoalPart + ': ' + goal.getGoalDescription + ' - ' + goal.getGoalMeasurement + ' ' + goal.getGoalUnit}"></span>
-                                    <span th:text="${' (Deadline: ' + goal.getGoalDeadline + ')'}"></span>
-                                    <form th:action="@{/admin/{userId}/goal/{goalId}/delete(userId=${user.user_id},goalId=${goal.goalId})}"
-                                          th:method="post">
-                                        <button type="submit"
-                                                class="nhsuk-button nhsuk-button--secondary nhsuk-button--small">
-                                            Achieved
-                                        </button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
-                    </details>
-                </div>
+                <h2>Patient goals</h2>
 
                 <div class="nhsuk-action-link">
                     <a class="nhsuk-action-link__link" th:href="@{/admin/{userId}/goal(userId=${user.user_id})}">
@@ -280,9 +262,58 @@
                             <path d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
                         </svg>
-                        <span class="nhsuk-action-link__text">Set patient goals</span>
+                        <span class="nhsuk-action-link__text">Set patient goal</span>
                     </a>
                 </div>
+
+                <div th:if="${#lists.isEmpty(goals)}">
+                    <p>This patient does not have any goals set.</p>
+                </div>
+
+                <table class="nhsuk-table" th:unless="${#lists.isEmpty(goals)}">
+                    <thead role="rowgroup" class="nhsuk-table__head">
+                    <tr role="row">
+                        <th role="columnheader" class="" scope="col">
+                            Description
+                        </th>
+                        <th role="columnheader" class="" scope="col">
+                            Value
+                        </th>
+                        <th role="columnheader" class="" scope="col">
+                            Deadline
+                        </th>
+                        <th role="columnheader" class="" scope="col">
+
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody class="nhsuk-table__body">
+                    <tr th:each="goal : ${goals}" role="row"
+                        class="nhsuk-table__row">
+                        <td class="nhsuk-table__cell"
+                            th:text="${goal.getGoalPart} + ' - ' + ${goal.getGoalDescription}">
+                            Goal Description
+                        </td>
+                        <td class="nhsuk-table__cell"
+                            th:text="${goal.getGoalMeasurement} + ' ' + ${goal.getGoalUnit}">
+                            Goal Value
+                        </td>
+                        <td class="nhsuk-table__cell"
+                            th:text="${goal.getGoalDeadline}">
+                            Goal Deadline
+                        </td>
+                        <td class="nhsuk-table__cell">
+                            <form th:action="@{/admin/{userId}/goal/{goalId}/delete(userId=${user.user_id},goalId=${goal.goalId})}"
+                                  th:method="post">
+                                <button type="submit"
+                                        class="nhsuk-button nhsuk-button--secondary nhsuk-button--small">
+                                    Achieved
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
 
         </div>

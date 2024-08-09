@@ -30,6 +30,7 @@ public class UserRepositoryImpl implements UserRepository {
             user.setAddress2(resultSet.getString("address2"));
             user.setCity(resultSet.getString("city"));
             user.setPostcode(resultSet.getString("postcode"));
+            user.setClinic(resultSet.getString("clinic"));
             return user;
         };
     }
@@ -77,8 +78,8 @@ public class UserRepositoryImpl implements UserRepository {
         } catch (EmptyResultDataAccessException e) {}
 
         String encodedPassword = passwordEncoder.encode(user.getPassword());
-        String sql = "INSERT INTO user_table (email, firstname, lastname, password, enabled, address1, address2, city, postcode) VALUES (?,?,?,?,?,?,?,?,?) RETURNING user_id";
-        Long user_id = jdbc.queryForObject(sql, Long.class, user.getEmail(), user.getFirstname(), user.getLastname(), encodedPassword, true, user.getAddress1(), user.getAddress2(), user.getCity(), user.getPostcode());
+        String sql = "INSERT INTO user_table (email, firstname, lastname, password, enabled, address1, address2, city, postcode, clinic) VALUES (?,?,?,?,?,?,?,?,?, ?) RETURNING user_id";
+        Long user_id = jdbc.queryForObject(sql, Long.class, user.getEmail(), user.getFirstname(), user.getLastname(), encodedPassword, true, user.getAddress1(), user.getAddress2(), user.getCity(), user.getPostcode(), user.getClinic());
         String roles_sql = "insert into users_roles (user_id, role_id) values (?, 2) RETURNING user_id";
         jdbc.queryForObject(roles_sql, Long.class, user_id);
         return user_id;
@@ -93,8 +94,8 @@ public class UserRepositoryImpl implements UserRepository {
         } catch (EmptyResultDataAccessException e) {}
 
         String encodedPassword = passwordEncoder.encode(user.getPassword());
-        String sql = "INSERT INTO user_table (email, firstname, lastname, password, enabled, address1, address2, city, postcode) VALUES (?,?,?,?,?,?,?,?,?) RETURNING user_id";
-        Long user_id = jdbc.queryForObject(sql, Long.class, user.getEmail(), user.getFirstname(), user.getLastname(), encodedPassword, true, user.getAddress1(), user.getAddress2(), user.getCity(), user.getPostcode());
+        String sql = "INSERT INTO user_table (email, firstname, lastname, password, enabled, address1, address2, city, postcode, clinic) VALUES (?,?,?,?,?,?,?,?,?,?) RETURNING user_id";
+        Long user_id = jdbc.queryForObject(sql, Long.class, user.getEmail(), user.getFirstname(), user.getLastname(), encodedPassword, true, user.getAddress1(), user.getAddress2(), user.getCity(), user.getPostcode(),user.getClinic());
         String roles_sql = "insert into users_roles (user_id, role_id) values (?, 1) RETURNING user_id";
         jdbc.queryForObject(roles_sql, Long.class, user_id);
         return user_id;

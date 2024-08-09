@@ -48,6 +48,18 @@
         </legend>
 
         <div class="nhsuk-form-group">
+          <label class="nhsuk-label" for="clinic">
+            Clinic:
+          </label>
+          <select class="nhsuk-select nhsuk-input--width-10" id="clinic" name="clinic" th:field="*{clinic}">
+            <option value="">Select a clinic</option>
+            <option value="Kings Mill Hospital">Nightingale Community Hospital</option>
+            <option value="Long Eaton Health Centre">Long Eaton Health Centre</option>
+            <option value="Kings Mill Hospital">Kings Mill Hospital</option>
+          </select>
+        </div>
+
+        <div class="nhsuk-form-group">
           <label class="nhsuk-label" for="email">
             Email:
           </label>
