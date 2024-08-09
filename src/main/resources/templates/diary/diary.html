@@ -17,20 +17,7 @@
         <!-- Diary Landing Page -->
         <h1 class="nhsuk-heading-xl">My Diary</h1>
 
-        <!--        enter for today-->
-        <form th:method="get" th:action="@{/diary/entry}">
-            <div th:if="${todayEntered == null}">
-                <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
-                    Add today's diary entry
-                </button>
-            </div>
 
-            <div th:unless="${todayEntered == null}">
-                <button class="nhsuk-button nhsuk-button--secondary" data-module="nhsuk-button" type="submit">
-                    Update today's diary entry
-                </button>
-            </div>
-        </form>
 
         <div class="nhsuk-tabs" data-module="nhsuk-tabs">
             <h2 class="nhsuk-tabs__title">
@@ -55,6 +42,20 @@
 
             <div class="nhsuk-tabs__panel" id="entries">
                 <h2>Diary entries</h2>
+                <!--        enter for today-->
+                <form th:method="get" th:action="@{/diary/entry}">
+                    <div th:if="${todayEntered == null}">
+                        <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+                            Add today's diary entry
+                        </button>
+                    </div>
+
+                    <div th:unless="${todayEntered == null}">
+                        <button class="nhsuk-button nhsuk-button--secondary" data-module="nhsuk-button" type="submit">
+                            Update today's diary entry
+                        </button>
+                    </div>
+                </form>
                 <details class="nhsuk-details">
                     <summary class="nhsuk-details__summary">
                 <span class="nhsuk-details__summary-text">
