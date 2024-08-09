@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
+
+
+    <title>Site map</title>
+
+    <!--    add any extra javascript file references here-->
+
+</head>
+<body>
+<script th:replace="~{fragments/_fragments :: pagescript}"></script>
+<header th:replace="~{fragments/_fragments :: header}"></header>
+<div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+
+
+
+        <h2> Site map</h2>
+        <ul>
+            <li><a href="">test</a></li>
+            <li>
+                <a href="">test</a>
+                <ul class="nhsuk-u-nested-list">
+                    <li><a href="">test</a></li>
+                    <li><a href="">test</a></li>
+                    <li>
+                        <a href="">test</a>
+                        <ul class="nhsuk-u-nested-list">
+                            <li><a href="">test</a></li>
+                            <li><a href="">test</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+
+
+    </main>
+</div>
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
+</body>
+</html>
