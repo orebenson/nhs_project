@@ -38,6 +38,12 @@
                     </a>
                 </li>
 
+                <li class="nhsuk-tabs__list-item">
+                    <a class="nhsuk-tabs__tab" href="#appointments">
+                        Appointments
+                    </a>
+                </li>
+
             </ul>
 
             <div class="nhsuk-tabs__panel" id="entries">
@@ -100,6 +106,33 @@
                     </style>
 
                 </div>
+
+            </div>
+
+            <div class="nhsuk-tabs__panel" id="appointments">
+                <h2>Appointments</h2>
+
+                <form th:method="get" th:action="@{/diary/appointment/entry}">
+                    <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+                        Add an appointment
+                    </button>
+                </form>
+
+                <details class="nhsuk-details">
+                    <summary class="nhsuk-details__summary">
+                <span class="nhsuk-details__summary-text">
+                  Scheduled appointments
+                </span>
+                    </summary>
+                    <div class="nhsuk-details__text" th:if="${userAppointments.size() < 1}">
+                        <p>You do not have any appointments</p>
+                    </div>
+                    <div class="nhsuk-details__text" th:if="${userAppointments.size() > 0}">
+                        <p th:each="appointment : ${userAppointments}">
+                            <a th:href="@{/diary/appointment/{id}(id=${appointment.id})}" th:text="${appointment.date} + ' - ' + ${appointment.type}"></a>
+                        </p>
+                    </div>
+                </details>
 
             </div>
 

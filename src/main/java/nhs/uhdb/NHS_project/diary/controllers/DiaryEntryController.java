@@ -8,6 +8,7 @@ import nhs.uhdb.NHS_project.diary.model.DiaryEntry;
 import nhs.uhdb.NHS_project.diary.model.Photo;
 import nhs.uhdb.NHS_project.diary.model.ProgressData;
 import nhs.uhdb.NHS_project.diary.model.Measurement;
+import nhs.uhdb.NHS_project.diary.services.AppointmentService;
 import nhs.uhdb.NHS_project.diary.services.DiaryEntryService;
 import nhs.uhdb.NHS_project.diary.services.MeasurementService;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -40,11 +41,13 @@ public class DiaryEntryController {
     private DiaryEntryService diaryEntryService;
     private MeasurementService measurementService;
 
+
     public DiaryEntryController(UserService userService, ExerciseService exerciseService, DiaryEntryService diaryEntryService, MeasurementService measurementService) {
         this.userService = userService;
         this.exerciseService = exerciseService;
         this.diaryEntryService = diaryEntryService;
         this.measurementService = measurementService;
+
     }
 
     @GetMapping("/diary/entry")
