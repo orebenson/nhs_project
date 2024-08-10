@@ -16,49 +16,92 @@
 
     <h1>Admin Area</h1>
 
-    <div class="nhsuk-action-link">
-      <a class="nhsuk-action-link__link" th:href="@{/admin/search}">
-        <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg"
-             viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
-          <path d="M0 0h24v24H0z" fill="none"></path>
-          <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
-        </svg>
-        <span class="nhsuk-action-link__text">Search patients</span>
-      </a>
-    </div>
+    <ul class="nhsuk-grid-row nhsuk-card-group">
+      <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
 
-    <div class="nhsuk-action-link">
-      <a class="nhsuk-action-link__link" th:href="@{/admin/register}">
-        <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg"
-             viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
-          <path d="M0 0h24v24H0z" fill="none"></path>
-          <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
-        </svg>
-        <span class="nhsuk-action-link__text">Register a new admin</span>
-      </a>
-    </div>
+        <div class="nhsuk-card nhsuk-card--clickable">
+          <div class="nhsuk-card__content nhsuk-card__content--primary">
+            <h2 class="nhsuk-card__heading nhsuk-heading-m">
+              <a class="nhsuk-card__link" th:href="@{/admin/search}">Search patients</a>
+            </h2>
+            <p class="nhsuk-card__description">View patient information, and manage patient treatment.</p>
 
-    <div class="nhsuk-action-link">
-      <a class="nhsuk-action-link__link" th:href="@{/admin/plans/add}">
-        <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg"
-             viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
-          <path d="M0 0h24v24H0z" fill="none"></path>
-          <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
-        </svg>
-        <span class="nhsuk-action-link__text">Create a treatment plan</span>
-      </a>
-    </div>
+            <svg class="nhsuk-icon" xmlns="http://www.w3.org/2000/svg" width="27" height="27" aria-hidden="true" focusable="false">
+              <circle cx="13.333" cy="13.333" r="13.333" fill="" />
+              <g data-name="Group 1" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2.667">
+                <path d="M15.438 13l-3.771 3.771" />
+                <path data-name="Path" d="M11.667 9.229L15.438 13" />
+              </g>
+            </svg>
 
-    <div class="nhsuk-action-link">
-      <a class="nhsuk-action-link__link" th:href="@{/admin/lymphoedema/add}">
-        <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg"
-             viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
-          <path d="M0 0h24v24H0z" fill="none"></path>
-          <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
-        </svg>
-        <span class="nhsuk-action-link__text">Add a lymphoedema type</span>
-      </a>
-    </div>
+          </div>
+        </div>
+
+      </li>
+      <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+
+        <div class="nhsuk-card nhsuk-card--clickable">
+          <div class="nhsuk-card__content nhsuk-card__content--primary">
+            <h2 class="nhsuk-card__heading nhsuk-heading-m">
+              <a class="nhsuk-card__link" th:href="@{/admin/register}">Register a new admin</a>
+            </h2>
+            <p class="nhsuk-card__description">Register a healthcare professional or other admin.</p>
+
+            <svg class="nhsuk-icon" xmlns="http://www.w3.org/2000/svg" width="27" height="27" aria-hidden="true" focusable="false">
+              <circle cx="13.333" cy="13.333" r="13.333" fill="" />
+              <g data-name="Group 1" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2.667">
+                <path d="M15.438 13l-3.771 3.771" />
+                <path data-name="Path" d="M11.667 9.229L15.438 13" />
+              </g>
+            </svg>
+
+          </div>
+        </div>
+
+      </li>
+      <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+
+        <div class="nhsuk-card nhsuk-card--clickable">
+          <div class="nhsuk-card__content nhsuk-card__content--primary">
+            <h2 class="nhsuk-card__heading nhsuk-heading-m">
+              <a class="nhsuk-card__link" th:href="@{/admin/plans/add}">Create a treatment plan</a>
+            </h2>
+            <p class="nhsuk-card__description">Create a custom treatment plan for a patient, or add to the existing defaults.</p>
+
+            <svg class="nhsuk-icon" xmlns="http://www.w3.org/2000/svg" width="27" height="27" aria-hidden="true" focusable="false">
+              <circle cx="13.333" cy="13.333" r="13.333" fill="" />
+              <g data-name="Group 1" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2.667">
+                <path d="M15.438 13l-3.771 3.771" />
+                <path data-name="Path" d="M11.667 9.229L15.438 13" />
+              </g>
+            </svg>
+
+          </div>
+        </div>
+
+      </li>
+      <li class="nhsuk-grid-column-one-half nhsuk-card-group__item">
+
+        <div class="nhsuk-card nhsuk-card--clickable">
+          <div class="nhsuk-card__content nhsuk-card__content--primary">
+            <h2 class="nhsuk-card__heading nhsuk-heading-m">
+              <a class="nhsuk-card__link" th:href="@{/admin/lymphoedema/add}">Add a lymphoedema type</a>
+            </h2>
+            <p class="nhsuk-card__description">Add a different type of lymphoedema, for a specific body part.</p>
+
+            <svg class="nhsuk-icon" xmlns="http://www.w3.org/2000/svg" width="27" height="27" aria-hidden="true" focusable="false">
+              <circle cx="13.333" cy="13.333" r="13.333" fill="" />
+              <g data-name="Group 1" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2.667">
+                <path d="M15.438 13l-3.771 3.771" />
+                <path data-name="Path" d="M11.667 9.229L15.438 13" />
+              </g>
+            </svg>
+
+          </div>
+        </div>
+
+      </li>
+    </ul>
 
     <form th:method="post" th:action="@{/logout}">
       <button class="nhsuk-button" data-module="nhsuk-button" type="submit">

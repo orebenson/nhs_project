@@ -1,7 +1,7 @@
 package nhs.uhdb.NHS_project.notifications.service;
 
-import nhs.uhdb.NHS_project.notifications.model.NotificationSettings;
 import nhs.uhdb.NHS_project.accounts.model.User;
+import nhs.uhdb.NHS_project.notifications.model.NotificationSettings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -14,13 +14,23 @@ public class NotificationService {
     private JavaMailSender mailSender;
 
     public void sendNotifications(User user, NotificationSettings notificationSettings) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(user.getEmail());
+
         if (notificationSettings.isDailyReminders()) {
-            sendEmail(user.getEmail(), "Daily Reminder", "This is your daily reminder.");
+            message.setSubject("Daily Reminder");
+            message.setText("This is your daily reminder.");
+            mailSender.send(message);
         }
+
         if (notificationSettings.isAppointmentReminders()) {
-            sendEmail(user.getEmail(), "Appointment Reminder", "This is your appointment reminder.");
+            message.setSubject("Appointment Reminder");
+            message.setText("This is your appointment reminder.");
+            mailSender.send(message);
         }
     }
+
+
 
     private void sendEmail(String to, String subject, String text) {
         SimpleMailMessage message = new SimpleMailMessage();

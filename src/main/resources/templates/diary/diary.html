@@ -17,63 +17,128 @@
         <!-- Diary Landing Page -->
         <h1 class="nhsuk-heading-xl">My Diary</h1>
 
-        <!--        enter for today-->
-        <form th:method="get" th:action="@{/diary/entry}">
-            <div th:if="${todayEntered == null}">
-                <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
-                    Add today's diary entry
-                </button>
-            </div>
 
-            <div th:unless="${todayEntered == null}">
-                <button class="nhsuk-button nhsuk-button--secondary" data-module="nhsuk-button" type="submit">
-                    Update today's diary entry
-                </button>
-            </div>
-        </form>
 
-        <!--        previous diary entries-->
-        <details class="nhsuk-details nhsuk-expander nhsuk-u-width-two-thirds">
-            <summary class="nhsuk-details__summary">
+        <div class="nhsuk-tabs" data-module="nhsuk-tabs">
+            <h2 class="nhsuk-tabs__title">
+                Contents
+            </h2>
+
+            <ul class="nhsuk-tabs__list">
+
+                <li class="nhsuk-tabs__list-item nhsuk-tabs__list-item--selected">
+                    <a class="nhsuk-tabs__tab" href="#entries">
+                        Entries
+                    </a>
+                </li>
+
+                <li class="nhsuk-tabs__list-item">
+                    <a class="nhsuk-tabs__tab" href="#progress">
+                        Progress
+                    </a>
+                </li>
+
+                <li class="nhsuk-tabs__list-item">
+                    <a class="nhsuk-tabs__tab" href="#appointments">
+                        Appointments
+                    </a>
+                </li>
+
+            </ul>
+
+            <div class="nhsuk-tabs__panel" id="entries">
+                <h2>Diary entries</h2>
+                <!--        enter for today-->
+                <form th:method="get" th:action="@{/diary/entry}">
+                    <div th:if="${todayEntered == null}">
+                        <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+                            Add today's diary entry
+                        </button>
+                    </div>
+
+                    <div th:unless="${todayEntered == null}">
+                        <button class="nhsuk-button nhsuk-button--secondary" data-module="nhsuk-button" type="submit">
+                            Update today's diary entry
+                        </button>
+                    </div>
+                </form>
+                <details class="nhsuk-details">
+                    <summary class="nhsuk-details__summary">
                 <span class="nhsuk-details__summary-text">
                   Previous entries
                 </span>
-            </summary>
-            <div class="nhsuk-details__text" th:if="${entryDates.size() < 1}">
-                <p>You do not have any diary entries</p>
-            </div>
-            <div class="nhsuk-details__text" th:if="${entryDates.size() > 0}">
-                <p th:each="date : ${entryDates}">
-                    <a th:href="@{/diary/history/{date}(date=${date})}" th:text="${date}"></a>
-                </p>
-            </div>
-        </details>
+                    </summary>
+                    <div class="nhsuk-details__text" th:if="${entryDates.size() < 1}">
+                        <p>You do not have any diary entries</p>
+                    </div>
+                    <div class="nhsuk-details__text" th:if="${entryDates.size() > 0}">
+                        <p th:each="date : ${entryDates}">
+                            <a th:href="@{/diary/history/{date}(date=${date})}" th:text="${date}"></a>
+                        </p>
+                    </div>
+                </details>
 
-        <!-- View Progress Page -->
-        <h2>Progress</h2>
-        <label class="nhsuk-label" for="progress-dropdown">Select metric:</label>
-        <select class="nhsuk-select" id="progress-dropdown" name="progress-dropdown">
-            <option value="weight">Weight</option>
-            <option value="wellnessScore">Wellness Score</option>
-            <option value="qualityOfLifeScore">Quality Of Life Score</option>
-            <option value="swelling">Swelling Measurement</option>
-        </select>
-        <div id="progress-chart">
-            <canvas id="chartCanvas"></canvas>
-            <!-- Placeholder for the progress chart -->
-            <style>
-                #progress-chart {
-                    min-height: 400px; /* Set a minimum height */
-                    background-color: #fff; /* Ensure it has a contrasting background */
-                }
-                canvas {
-                    display: block;
-                    width: 100% !important;
-                    height: 400px !important; /* Set a fixed height for testing */
-                }
-            </style>
+            </div>
+
+            <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="progress">
+                <!-- View Progress Page -->
+                <h2>Progress</h2>
+                <label class="nhsuk-label" for="progress-dropdown">Select metric:</label>
+                <select class="nhsuk-select" id="progress-dropdown" name="progress-dropdown">
+                    <option value="weight">Weight</option>
+                    <option value="wellnessScore">Wellness Score</option>
+                    <option value="qualityOfLifeScore">Quality Of Life Score</option>
+                </select>
+                <div id="progress-chart">
+                    <canvas id="chartCanvas"></canvas>
+                    <!-- Placeholder for the progress chart -->
+                    <style>
+                        #progress-chart {
+                            min-height: 400px; /* Set a minimum height */
+                            background-color: #fff; /* Ensure it has a contrasting background */
+                        }
+
+                        canvas {
+                            display: block;
+                            width: 100% !important;
+                            height: 400px !important; /* Set a fixed height for testing */
+                        }
+                    </style>
+
+                </div>
+
+            </div>
+
+            <div class="nhsuk-tabs__panel" id="appointments">
+                <h2>Appointments</h2>
+
+                <form th:method="get" th:action="@{/diary/appointment/entry}">
+                    <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+                        Add an appointment
+                    </button>
+                </form>
+
+                <details class="nhsuk-details">
+                    <summary class="nhsuk-details__summary">
+                <span class="nhsuk-details__summary-text">
+                  Scheduled appointments
+                </span>
+                    </summary>
+                    <div class="nhsuk-details__text" th:if="${userAppointments.size() < 1}">
+                        <p>You do not have any appointments</p>
+                    </div>
+                    <div class="nhsuk-details__text" th:if="${userAppointments.size() > 0}">
+                        <p th:each="appointment : ${userAppointments}">
+                            <a th:href="@{/diary/appointment/{id}(id=${appointment.id})}" th:text="${appointment.date} + ' - ' + ${appointment.type}"></a>
+                        </p>
+                    </div>
+                </details>
+
+            </div>
 
         </div>
+
+
     </main>
 </div>
 <footer th:replace="~{fragments/_fragments :: footer}"></footer>

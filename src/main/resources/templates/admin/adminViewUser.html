@@ -5,6 +5,7 @@
     <title>Admin Area</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/js/progress_chart/AdminChart.js"></script>
+    <script src="/js/notifications/notification.js" defer></script>
 
 </head>
 <body th:data-userid="${user.user_id}">
@@ -33,184 +34,495 @@
             </div>
         </nav>
 
-        <h2>Patient details</h2>
 
+        <div class="nhsuk-tabs" data-module="nhsuk-tabs">
+            <h2 class="nhsuk-tabs__title">
+                Contents
+            </h2>
 
+            <ul class="nhsuk-tabs__list">
 
-        <dl class="nhsuk-summary-list">
+                <li class="nhsuk-tabs__list-item nhsuk-tabs__list-item--selected">
+                    <a class="nhsuk-tabs__tab" href="#details">
+                        Details
+                    </a>
+                </li>
 
-            <div class="nhsuk-summary-list__row">
-                <dt class="nhsuk-summary-list__key">
-                    Name
-                </dt>
-                <dd class="nhsuk-summary-list__value">
-                    <span th:text="${user.firstname} + ' ' + ${user.lastname}"></span>
-                </dd>
-            </div>
+                <li class="nhsuk-tabs__list-item">
+                    <a class="nhsuk-tabs__tab" href="#progress">
+                        Progress
+                    </a>
+                </li>
 
-            <div class="nhsuk-summary-list__row">
-                <dt class="nhsuk-summary-list__key">
-                    Address information
-                </dt>
-                <dd class="nhsuk-summary-list__value">
-                    <span th:text="${user.address1}"></span><br>
-                    <span th:text="${user.address2}"></span><br>
-                    <span th:text="${user.city}"></span><br>
-                    <span th:text="${user.postcode}"></span>
-                </dd>
-            </div>
+                <li class="nhsuk-tabs__list-item">
+                    <a class="nhsuk-tabs__tab" href="#entries">
+                        Diary Entries
+                    </a>
+                </li>
 
-            <div class="nhsuk-summary-list__row">
-                <dt class="nhsuk-summary-list__key">
-                    Contact details
-                </dt>
-                <dd class="nhsuk-summary-list__value">
-                    <p th:text="${user.email}">karen.francis@example.com</p>
-                </dd>
-            </div>
+                <li class="nhsuk-tabs__list-item">
+                    <a class="nhsuk-tabs__tab" href="#questionnaires">
+                        Questionnaires
+                    </a>
+                </li>
 
-            <div class="nhsuk-summary-list__row">
-                <dt class="nhsuk-summary-list__key">
-                    Treatment plan
-                </dt>
-                <dd class="nhsuk-summary-list__value">
-                    <p th:text="${userPlan.getName()}">None</p>
-                </dd>
-            </div>
+                <li class="nhsuk-tabs__list-item">
+                    <a class="nhsuk-tabs__tab" href="#goals">
+                        Goals
+                    </a>
+                </li>
 
-            <div class="nhsuk-summary-list__row">
-                <dt class="nhsuk-summary-list__key">
-                    Lymphoedema Type
-                </dt>
-                <dd class="nhsuk-summary-list__value">
-                    <p th:text="${userLymphoedemaType.getName()}">None</p>
-                </dd>
-            </div>
+                <li class="nhsuk-tabs__list-item">
+                    <a class="nhsuk-tabs__tab" href="#notifications">Notifications</a>
+                </li>
 
-        </dl>
+            </ul>
 
-        <details class="nhsuk-details nhsuk-expander nhsuk-u-width-two-thirds">
-            <summary class="nhsuk-details__summary">
-                <span class="nhsuk-details__summary-text">
-                  Patient diary entries
-                </span>
-            </summary>
-            <div class="nhsuk-details__text" th:if="${entryDates.size() < 1}">
-                <p>This patient does not have any diary entries</p>
-            </div>
-            <div class="nhsuk-details__text" th:if="${entryDates.size() > 0}">
-                <p th:each="date : ${entryDates}">
-                    <a th:href="@{/admin/{id}/diary/history/{date}(id=${user.user_id}, date=${date})}"
-                       th:text="${date}"></a>
-                </p>
-            </div>
-        </details>
+            <div class="nhsuk-tabs__panel" id="details">
+                <h2>Patient details</h2>
+                <dl class="nhsuk-summary-list">
 
-        <div>
-            <details class="nhsuk-details nhsuk-expander">
-                <summary class="nhsuk-details__summary">
-                    <span class="nhsuk-details__summary-text">
-                      Patient Pre-Appointment Questionnaire Submissions
-                    </span>
-                </summary>
-                <div class="nhsuk-details__text">
-                    <div th:if="${#lists.isEmpty(questionnaires)}">
-                        <p>This patient has not submitted any questionnaires.</p>
+                    <div class="nhsuk-summary-list__row">
+                        <dt class="nhsuk-summary-list__key">
+                            Clinic
+                        </dt>
+                        <dd class="nhsuk-summary-list__value">
+                            <span th:text="${user.clinic}"></span>
+                        </dd>
                     </div>
-                    <ul class="nhsuk-list nhsuk-list--bullet" th:unless="${#lists.isEmpty(questionnaires)}">
-                        <li th:each="questionnaire : ${questionnaires}">
-                            <a th:href="@{/admin/{userId}/preappointment-questionnaire/{questionnaireId}(userId=${user.user_id}, questionnaireId=${questionnaire.id})}">
-                                Questionnaire submitted on <span th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </details>
-        </div>
 
-        <div>
-            <details class="nhsuk-details nhsuk-expander">
-                <summary class="nhsuk-details__summary">
-                    <span class="nhsuk-details__summary-text">
-                      Patient Quality of Life Questionnaire Submissions
-                    </span>
-                </summary>
-                <div class="nhsuk-details__text">
-                    <div th:if="${#lists.isEmpty(qolQuestionnaires)}">
-                        <p>This patient has not submitted any questionnaires.</p>
+                    <div class="nhsuk-summary-list__row">
+                        <dt class="nhsuk-summary-list__key">
+                            Name
+                        </dt>
+                        <dd class="nhsuk-summary-list__value">
+                            <span th:text="${user.firstname} + ' ' + ${user.lastname}"></span>
+                        </dd>
                     </div>
-                    <ul class="nhsuk-list nhsuk-list--bullet" th:unless="${#lists.isEmpty(qolQuestionnaires)}">
-                        <li th:each="questionnaire : ${qolQuestionnaires}">
-                            <a th:href="@{/admin/{userId}/qol-questionnaire/{questionnaireId}(userId=${user.user_id}, questionnaireId=${questionnaire.id})}">
-                                Questionnaire submitted on <span th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </details>
-        </div>
 
-        <div>
-            <details class="nhsuk-details nhsuk-expander">
-                <summary class="nhsuk-details__summary">
-                    <span class="nhsuk-details__summary-text">
-                        Patient Goals
-                    </span>
-                </summary>
-                <div class="nhsuk-details__text">
-                    <p class="nhsuk-details__text">
-                        <div th:if="${#lists.isEmpty(goals)}">
-                            <p>This patient does not have any goals set.</p>
+                    <div class="nhsuk-summary-list__row">
+                        <dt class="nhsuk-summary-list__key">
+                            Address information
+                        </dt>
+                        <dd class="nhsuk-summary-list__value">
+                            <span th:text="${user.address1}"></span><br>
+                            <span th:text="${user.address2}"></span><br>
+                            <span th:text="${user.city}"></span><br>
+                            <span th:text="${user.postcode}"></span>
+                        </dd>
+                    </div>
+
+                    <div class="nhsuk-summary-list__row">
+                        <dt class="nhsuk-summary-list__key">
+                            Contact details
+                        </dt>
+                        <dd class="nhsuk-summary-list__value">
+                            <p th:text="${user.email}">karen.francis@example.com</p>
+                        </dd>
+                    </div>
+
+                    <div class="nhsuk-summary-list__row">
+                        <dt class="nhsuk-summary-list__key">
+                            Treatment plan
+                        </dt>
+                        <dd class="nhsuk-summary-list__value">
+                            <p th:text="${userPlan.getName()}">None</p>
+                        </dd>
+                        <dd class="nhsuk-summary-list__actions">
+
+                            <a th:href="@{/admin/{userId}/plan(userId=${user.user_id})}">
+                                Change<span class="nhsuk-u-visually-hidden"> name</span>
+                            </a>
+
+                        </dd>
+                    </div>
+
+                    <div class="nhsuk-summary-list__row">
+                        <dt class="nhsuk-summary-list__key">
+                            Lymphoedema Type
+                        </dt>
+                        <dd class="nhsuk-summary-list__value">
+                            <p th:text="${userLymphoedemaType.getName()}">None</p>
+                        </dd>
+                        <dd class="nhsuk-summary-list__actions">
+
+                            <a th:href="@{/admin/{userId}/lymphoedema(userId=${user.user_id})}">
+                                Change<span class="nhsuk-u-visually-hidden"> name</span>
+                            </a>
+
+                        </dd>
+                    </div>
+
+                </dl>
+
+            </div>
+
+            <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="progress">
+
+                <h2>Progress</h2>
+
+                <label class="nhsuk-label" for="progress-dropdown">Select metric:</label>
+                <select class="nhsuk-select" id="progress-dropdown" name="progress-dropdown">
+                    <option value="weight">Weight</option>
+                    <option value="wellnessScore">Wellness Score</option>
+                    <option value="qualityOfLifeScore">Quality Of Life Score</option>
+                </select>
+                <div id="progress-chart">
+                    <canvas id="chartCanvas"></canvas>
+                    <!-- Placeholder for the progress chart -->
+                    <style>
+                        #progress-chart {
+                            min-height: 400px;
+                            background-color: #fff;
+                        }
+
+                        canvas {
+                            display: block;
+                            width: 100% !important;
+                            height: 400px !important;
+                        }
+                    </style>
+
+                </div>
+
+            </div>
+
+            <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="entries">
+                <h2>Diary entries</h2>
+
+                <details class="nhsuk-details">
+                    <summary class="nhsuk-details__summary">
+                        <span class="nhsuk-details__summary-text">
+                          Patient diary entries
+                        </span>
+                    </summary>
+                    <div class="nhsuk-details__text" th:if="${entryDates.size() < 1}">
+                        <p>This patient does not have any diary entries</p>
+                    </div>
+                    <div class="nhsuk-details__text" th:if="${entryDates.size() > 0}">
+                        <p th:each="date : ${entryDates}">
+                            <a th:href="@{/admin/{id}/diary/history/{date}(id=${user.user_id}, date=${date})}"
+                               th:text="${date}"></a>
+                        </p>
+                    </div>
+                </details>
+            </div>
+
+            <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="questionnaires">
+                <h2>Submitted questionnaires</h2>
+                <div>
+                    <details class="nhsuk-details">
+                        <summary class="nhsuk-details__summary">
+                            <span class="nhsuk-details__summary-text">
+                              Patient Pre-Appointment Questionnaire Submissions
+                            </span>
+                        </summary>
+                        <div class="nhsuk-details__text">
+                            <div th:if="${#lists.isEmpty(questionnaires)}">
+                                <p>This patient has not submitted any questionnaires.</p>
+                            </div>
+                            <ul class="nhsuk-list nhsuk-list--bullet" th:unless="${#lists.isEmpty(questionnaires)}">
+                                <li th:each="questionnaire : ${questionnaires}">
+                                    <a th:href="@{/admin/{userId}/preappointment-questionnaire/{questionnaireId}(userId=${user.user_id}, questionnaireId=${questionnaire.id})}">
+                                        Questionnaire submitted on <span
+                                            th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span>
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
-                        <ul class="nhsuk-list nhsuk-list--bullet" th:unless="${#lists.isEmpty(goals)}">
-                            <li th:each="goal : ${goals}">
-                                    <span th:text="${goal.getGoalPart + ': ' + goal.getGoalDescription + ' - ' + goal.getGoalMeasurement + ' ' + goal.getGoalUnit}"></span>
-                                    <span th:text="${' (Deadline: ' + goal.getGoalDeadline + ')'}"></span>
-                                    <form th:action="@{/admin/{userId}/goal/{goalId}/delete(userId=${user.user_id},goalId=${goal.goalId})}" th:method="post">
-                                        <button type="submit" class="nhsuk-button nhsuk-button--secondary nhsuk-button--small">
-                                            Achieved
-                                        </button>
-                                    </form>
-                            </li>
-                        </ul>
+                    </details>
                 </div>
-            </details>
+
+                <div>
+                    <details class="nhsuk-details">
+                        <summary class="nhsuk-details__summary">
+                            <span class="nhsuk-details__summary-text">
+                              Patient Quality of Life Questionnaire Submissions
+                            </span>
+                        </summary>
+                        <div class="nhsuk-details__text">
+                            <div th:if="${#lists.isEmpty(qolQuestionnaires)}">
+                                <p>This patient has not submitted any questionnaires.</p>
+                            </div>
+                            <ul class="nhsuk-list nhsuk-list--bullet" th:unless="${#lists.isEmpty(qolQuestionnaires)}">
+                                <li th:each="questionnaire : ${qolQuestionnaires}">
+                                    <a th:href="@{/admin/{userId}/qol-questionnaire/{questionnaireId}(userId=${user.user_id}, questionnaireId=${questionnaire.id})}">
+                                        Questionnaire submitted on <span
+                                            th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="goals">
+                <h2>Patient goals</h2>
+
+                <div class="nhsuk-action-link">
+                    <a class="nhsuk-action-link__link" th:href="@{/admin/{userId}/goal(userId=${user.user_id})}">
+                        <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
+                            <path d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
+                        </svg>
+                        <span class="nhsuk-action-link__text">Set patient goal</span>
+                    </a>
+                </div>
+
+                <div th:if="${#lists.isEmpty(goals)}">
+                    <p>This patient does not have any goals set.</p>
+                </div>
+
+                <table class="nhsuk-table" th:unless="${#lists.isEmpty(goals)}">
+                    <thead role="rowgroup" class="nhsuk-table__head">
+                    <tr role="row">
+                        <th role="columnheader" class="" scope="col">
+                            Description
+                        </th>
+                        <th role="columnheader" class="" scope="col">
+                            Value
+                        </th>
+                        <th role="columnheader" class="" scope="col">
+                            Deadline
+                        </th>
+                        <th role="columnheader" class="" scope="col">
+
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody class="nhsuk-table__body">
+                    <tr th:each="goal : ${goals}" role="row"
+                        class="nhsuk-table__row">
+                        <td class="nhsuk-table__cell"
+                            th:text="${goal.getGoalPart} + ' - ' + ${goal.getGoalDescription}">
+                            Goal Description
+                        </td>
+                        <td class="nhsuk-table__cell"
+                            th:text="${goal.getGoalMeasurement} + ' ' + ${goal.getGoalUnit}">
+                            Goal Value
+                        </td>
+                        <td class="nhsuk-table__cell"
+                            th:text="${goal.getGoalDeadline}">
+                            Goal Deadline
+                        </td>
+                        <td class="nhsuk-table__cell">
+                            <form th:action="@{/admin/{userId}/goal/{goalId}/delete(userId=${user.user_id},goalId=${goal.goalId})}"
+                                  th:method="post">
+                                <button type="submit"
+                                        class="nhsuk-button nhsuk-button--secondary nhsuk-button--small">
+                                    Achieved
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Notifications Tab -->
+            <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="notifications">
+                <h2>Send Notifications</h2>
+                <form th:action="@{/admin/notify/{userId}(userId=${user.user_id})}" method="post" id="notification-form">
+                    <div class="nhsuk-form-group">
+                        <label class="nhsuk-label" for="notification-checkboxes">Select notifications to send:</label>
+                        <div id="notification-checkboxes">
+                            <div class="nhsuk-checkboxes__item">
+                                <input class="nhsuk-checkboxes__input" id="notify-progress" name="notifications" value="progress" type="checkbox">
+                                <label class="nhsuk-label nhsuk-checkboxes__label" for="notify-progress">Progress Update</label>
+                            </div>
+                            <div class="nhsuk-checkboxes__item">
+                                <input class="nhsuk-checkboxes__input" id="notify-goal" name="notifications" value="goal" type="checkbox">
+                                <label class="nhsuk-label nhsuk-checkboxes__label" for="notify-goal">Goal Reminder</label>
+                            </div>
+                            <div class="nhsuk-checkboxes__item">
+                                <input class="nhsuk-checkboxes__input" id="notify-diary" name="notifications" value="diary" type="checkbox">
+                                <label class="nhsuk-label nhsuk-checkboxes__label" for="notify-diary">Diary Entry Reminder</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="nhsuk-button nhsuk-button--secondary">Send Notifications</button>
+                </form>
+            </div>
         </div>
 
 
-        <div class="nhsuk-action-link">
-            <a class="nhsuk-action-link__link" th:href="@{/admin/{userId}/plan(userId=${user.user_id})}">
-                <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg"
-                     viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
-                    <path d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
-                </svg>
-                <span class="nhsuk-action-link__text">Change patient treatment plan</span>
-            </a>
-        </div>
+        <!--        <h2>Patient details</h2>-->
+        <!--        <dl class="nhsuk-summary-list">-->
 
-        <div class="nhsuk-action-link">
-            <a class="nhsuk-action-link__link" th:href="@{/admin/{userId}/lymphoedema(userId=${user.user_id})}">
-                <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg"
-                     viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
-                    <path d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
-                </svg>
-                <span class="nhsuk-action-link__text">Change patient lymphoedema type</span>
-            </a>
-        </div>
+        <!--            <div class="nhsuk-summary-list__row">-->
+        <!--                <dt class="nhsuk-summary-list__key">-->
+        <!--                    Name-->
+        <!--                </dt>-->
+        <!--                <dd class="nhsuk-summary-list__value">-->
+        <!--                    <span th:text="${user.firstname} + ' ' + ${user.lastname}"></span>-->
+        <!--                </dd>-->
+        <!--            </div>-->
 
-        <div class="nhsuk-action-link">
-            <a class="nhsuk-action-link__link" th:href="@{/admin/{userId}/goal(userId=${user.user_id})}">
-                <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg"
-                     viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">
-                    <path d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
-                </svg>
-                <span class="nhsuk-action-link__text">Set patient goals</span>
-            </a>
-        </div>
+        <!--            <div class="nhsuk-summary-list__row">-->
+        <!--                <dt class="nhsuk-summary-list__key">-->
+        <!--                    Address information-->
+        <!--                </dt>-->
+        <!--                <dd class="nhsuk-summary-list__value">-->
+        <!--                    <span th:text="${user.address1}"></span><br>-->
+        <!--                    <span th:text="${user.address2}"></span><br>-->
+        <!--                    <span th:text="${user.city}"></span><br>-->
+        <!--                    <span th:text="${user.postcode}"></span>-->
+        <!--                </dd>-->
+        <!--            </div>-->
 
+        <!--            <div class="nhsuk-summary-list__row">-->
+        <!--                <dt class="nhsuk-summary-list__key">-->
+        <!--                    Contact details-->
+        <!--                </dt>-->
+        <!--                <dd class="nhsuk-summary-list__value">-->
+        <!--                    <p th:text="${user.email}">karen.francis@example.com</p>-->
+        <!--                </dd>-->
+        <!--            </div>-->
+
+        <!--            <div class="nhsuk-summary-list__row">-->
+        <!--                <dt class="nhsuk-summary-list__key">-->
+        <!--                    Treatment plan-->
+        <!--                </dt>-->
+        <!--                <dd class="nhsuk-summary-list__value">-->
+        <!--                    <p th:text="${userPlan.getName()}">None</p>-->
+        <!--                </dd>-->
+        <!--                <dd class="nhsuk-summary-list__actions">-->
+
+        <!--                    <a th:href="@{/admin/{userId}/plan(userId=${user.user_id})}">-->
+        <!--                        Change<span class="nhsuk-u-visually-hidden"> name</span>-->
+        <!--                    </a>-->
+
+        <!--                </dd>-->
+        <!--            </div>-->
+
+        <!--            <div class="nhsuk-summary-list__row">-->
+        <!--                <dt class="nhsuk-summary-list__key">-->
+        <!--                    Lymphoedema Type-->
+        <!--                </dt>-->
+        <!--                <dd class="nhsuk-summary-list__value">-->
+        <!--                    <p th:text="${userLymphoedemaType.getName()}">None</p>-->
+        <!--                </dd>-->
+        <!--                <dd class="nhsuk-summary-list__actions">-->
+
+        <!--                    <a th:href="@{/admin/{userId}/lymphoedema(userId=${user.user_id})}">-->
+        <!--                        Change<span class="nhsuk-u-visually-hidden"> name</span>-->
+        <!--                    </a>-->
+
+        <!--                </dd>-->
+        <!--            </div>-->
+
+        <!--        </dl>-->
+
+
+        <!--        <div>-->
+        <!--            <details class="nhsuk-details nhsuk-expander">-->
+        <!--                <summary class="nhsuk-details__summary">-->
+        <!--                    <span class="nhsuk-details__summary-text">-->
+        <!--                      Patient Pre-Appointment Questionnaire Submissions-->
+        <!--                    </span>-->
+        <!--                </summary>-->
+        <!--                <div class="nhsuk-details__text">-->
+        <!--                    <div th:if="${#lists.isEmpty(questionnaires)}">-->
+        <!--                        <p>This patient has not submitted any questionnaires.</p>-->
+        <!--                    </div>-->
+        <!--                    <ul class="nhsuk-list nhsuk-list&#45;&#45;bullet" th:unless="${#lists.isEmpty(questionnaires)}">-->
+        <!--                        <li th:each="questionnaire : ${questionnaires}">-->
+        <!--                            <a th:href="@{/admin/{userId}/preappointment-questionnaire/{questionnaireId}(userId=${user.user_id}, questionnaireId=${questionnaire.id})}">-->
+        <!--                                Questionnaire submitted on <span th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span>-->
+        <!--                            </a>-->
+        <!--                        </li>-->
+        <!--                    </ul>-->
+        <!--                </div>-->
+        <!--            </details>-->
+        <!--        </div>-->
+
+        <!--        <div>-->
+        <!--            <details class="nhsuk-details nhsuk-expander">-->
+        <!--                <summary class="nhsuk-details__summary">-->
+        <!--                    <span class="nhsuk-details__summary-text">-->
+        <!--                      Patient Quality of Life Questionnaire Submissions-->
+        <!--                    </span>-->
+        <!--                </summary>-->
+        <!--                <div class="nhsuk-details__text">-->
+        <!--                    <div th:if="${#lists.isEmpty(qolQuestionnaires)}">-->
+        <!--                        <p>This patient has not submitted any questionnaires.</p>-->
+        <!--                    </div>-->
+        <!--                    <ul class="nhsuk-list nhsuk-list&#45;&#45;bullet" th:unless="${#lists.isEmpty(qolQuestionnaires)}">-->
+        <!--                        <li th:each="questionnaire : ${qolQuestionnaires}">-->
+        <!--                            <a th:href="@{/admin/{userId}/qol-questionnaire/{questionnaireId}(userId=${user.user_id}, questionnaireId=${questionnaire.id})}">-->
+        <!--                                Questionnaire submitted on <span th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span>-->
+        <!--                            </a>-->
+        <!--                        </li>-->
+        <!--                    </ul>-->
+        <!--                </div>-->
+        <!--            </details>-->
+        <!--        </div>-->
+
+        <!--        <div>-->
+        <!--            <details class="nhsuk-details nhsuk-expander">-->
+        <!--                <summary class="nhsuk-details__summary">-->
+        <!--                    <span class="nhsuk-details__summary-text">-->
+        <!--                        Patient Goals-->
+        <!--                    </span>-->
+        <!--                </summary>-->
+        <!--                <div class="nhsuk-details__text">-->
+        <!--                    <p class="nhsuk-details__text">-->
+        <!--                        <div th:if="${#lists.isEmpty(goals)}">-->
+        <!--                            <p>This patient does not have any goals set.</p>-->
+        <!--                        </div>-->
+        <!--                        <ul class="nhsuk-list nhsuk-list&#45;&#45;bullet" th:unless="${#lists.isEmpty(goals)}">-->
+        <!--                            <li th:each="goal : ${goals}">-->
+        <!--                                    <span th:text="${goal.getGoalPart + ': ' + goal.getGoalDescription + ' - ' + goal.getGoalMeasurement + ' ' + goal.getGoalUnit}"></span>-->
+        <!--                                    <span th:text="${' (Deadline: ' + goal.getGoalDeadline + ')'}"></span>-->
+        <!--                                    <form th:action="@{/admin/{userId}/goal/{goalId}/delete(userId=${user.user_id},goalId=${goal.goalId})}" th:method="post">-->
+        <!--                                        <button type="submit" class="nhsuk-button nhsuk-button&#45;&#45;secondary nhsuk-button&#45;&#45;small">-->
+        <!--                                            Achieved-->
+        <!--                                        </button>-->
+        <!--                                    </form>-->
+        <!--                            </li>-->
+        <!--                        </ul>-->
+        <!--                </div>-->
+        <!--            </details>-->
+        <!--        </div>-->
+
+        <!--        <div class="nhsuk-action-link">-->
+        <!--            <a class="nhsuk-action-link__link" th:href="@{/admin/{userId}/goal(userId=${user.user_id})}">-->
+        <!--                <svg class="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg"-->
+        <!--                     viewBox="0 0 24 24" aria-hidden="true" width="36" height="36">-->
+        <!--                    <path d="M0 0h24v24H0z" fill="none"></path>-->
+        <!--                    <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>-->
+        <!--                </svg>-->
+        <!--                <span class="nhsuk-action-link__text">Set patient goals</span>-->
+        <!--            </a>-->
+        <!--        </div>-->
+
+
+        <!--        <h2>Progress</h2>-->
+
+        <!--        <label class="nhsuk-label" for="progress-dropdown">Select metric:</label>-->
+        <!--        <select class="nhsuk-select" id="progress-dropdown" name="progress-dropdown" >-->
+        <!--            <option value="weight">Weight</option>-->
+        <!--            <option value="wellnessScore">Wellness Score</option>-->
+        <!--            <option value="qualityOfLifeScore">Quality Of Life Score</option>-->
+        <!--        </select>-->
+        <!--        <div id="progress-chart">-->
+        <!--            <canvas id="chartCanvas"></canvas>-->
+        <!--            &lt;!&ndash; Placeholder for the progress chart &ndash;&gt;-->
+        <!--            <style>-->
+        <!--                #progress-chart {-->
+        <!--                    min-height: 400px;-->
+        <!--                    background-color: #fff;-->
+        <!--                }-->
+        <!--                canvas {-->
+        <!--                    display: block;-->
+        <!--                    width: 100% !important;-->
+        <!--                    height: 400px !important;-->
+        <!--                }-->
+        <!--            </style>-->
+
+        <!--        </div>-->
 
         <div th:unless="${#authorization.expression('isAuthenticated()') and #authorization.expression('hasRole(''ADMIN'')')}">
             <script th:inline="javascript">
@@ -218,62 +530,6 @@
             </script>
         </div>
 
-        <h2>Progress</h2>
-
-        <label class="nhsuk-label" for="progress-dropdown">Select metric:</label>
-        <select class="nhsuk-select" id="progress-dropdown" name="progress-dropdown" >
-            <option value="weight">Weight</option>
-            <option value="wellnessScore">Wellness Score</option>
-            <option value="qualityOfLifeScore">Quality Of Life Score</option>
-            <option value="swelling">Swelling Measurement</option>
-        </select>
-        <div id="progress-chart">
-            <canvas id="chartCanvas"></canvas>
-            <!-- Placeholder for the progress chart -->
-            <style>
-                #progress-chart {
-                    min-height: 400px;
-                    background-color: #fff;
-                }
-                canvas {
-                    display: block;
-                    width: 100% !important;
-                    height: 400px !important;
-                }
-            </style>
-        </div>
-
-        <!-- Notification Settings -->
-        <h2>Notification settings</h2>
-        <form th:method="post" th:action="@{/submit-notifications}" id="notification-settings-form">
-            <fieldset class="nhsuk-fieldset">
-                <div class="nhsuk-checkboxes">
-
-                    <div class="nhsuk-checkboxes__item">
-                        <input class="nhsuk-checkboxes__input" id="daily-reminders" name="daily-reminders"
-                               type="checkbox"
-                               value="daily-reminders">
-                        <label class="nhsuk-label nhsuk-checkboxes__label" for="daily-reminders">
-                            Daily reminders:
-                        </label>
-                    </div>
-
-                    <div class="nhsuk-checkboxes__item">
-                        <input class="nhsuk-checkboxes__input" id="pre-appointment-reminders"
-                               name="pre-appointment-reminders" type="checkbox" value="pre-appointment-reminders">
-                        <label class="nhsuk-label nhsuk-checkboxes__label" for="pre-appointment-reminders">
-                            Pre-appointment questionnaire reminders:
-                        </label>
-                    </div>
-
-                </div>
-            </fieldset>
-            <br>
-            <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
-                Save settings
-            </button>
-
-        </form>
     </main>
 </div>
 <footer th:replace="~{fragments/_fragments :: footer}"></footer>
