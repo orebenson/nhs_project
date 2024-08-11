@@ -1,6 +1,8 @@
 package nhs.uhdb.NHS_project.diary.controllers;
 
 import nhs.uhdb.NHS_project.accounts.service.UserService;
+import nhs.uhdb.NHS_project.admin.model.Goal;
+import nhs.uhdb.NHS_project.admin.service.GoalService;
 import nhs.uhdb.NHS_project.admin.service.TreatmentPlanService;
 import nhs.uhdb.NHS_project.diary.model.DiaryEntry;
 import nhs.uhdb.NHS_project.diary.model.ProgressData;
@@ -21,11 +23,13 @@ public class DiaryController {
     private UserService userService;
     private DiaryEntryService diaryEntryService;
     private TreatmentPlanService treatmentPlanService;
+    private GoalService goalService;
 
-    public DiaryController(UserService userService, DiaryEntryService diaryEntryService, TreatmentPlanService treatmentPlanService) {
+    public DiaryController(UserService userService, DiaryEntryService diaryEntryService, TreatmentPlanService treatmentPlanService, GoalService goalService) {
         this.userService = userService;
         this.diaryEntryService = diaryEntryService;
         this.treatmentPlanService = treatmentPlanService;
+        this.goalService = goalService;
     }
 
     @GetMapping("/diaryview")
@@ -49,8 +53,10 @@ public class DiaryController {
 
         DiaryEntry todayEntered = diaryEntryService.getDiaryEntryByUserIdAndDate(user_id, LocalDate.now());
         List<String> userDiaryEntries = diaryEntryService.getFormattedDiaryEntryDatesByUserId(user_id);
+        List<Goal> goals = goalService.getGoalByUserId(user_id);
         mav.addObject("todayEntered",todayEntered);
         mav.addObject("entryDates",userDiaryEntries);
+        mav.addObject("goals", goals);
         return mav;
     }
 
