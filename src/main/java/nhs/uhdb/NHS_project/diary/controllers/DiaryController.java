@@ -4,8 +4,10 @@ import nhs.uhdb.NHS_project.accounts.service.UserService;
 import nhs.uhdb.NHS_project.admin.model.Goal;
 import nhs.uhdb.NHS_project.admin.service.GoalService;
 import nhs.uhdb.NHS_project.admin.service.TreatmentPlanService;
+import nhs.uhdb.NHS_project.diary.model.Appointment;
 import nhs.uhdb.NHS_project.diary.model.DiaryEntry;
 import nhs.uhdb.NHS_project.diary.model.ProgressData;
+import nhs.uhdb.NHS_project.diary.services.AppointmentService;
 import nhs.uhdb.NHS_project.diary.services.DiaryEntryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -24,12 +26,16 @@ public class DiaryController {
     private DiaryEntryService diaryEntryService;
     private TreatmentPlanService treatmentPlanService;
     private GoalService goalService;
+    private AppointmentService appointmentService;
 
     public DiaryController(UserService userService, DiaryEntryService diaryEntryService, TreatmentPlanService treatmentPlanService, GoalService goalService) {
+
+    public DiaryController(UserService userService, DiaryEntryService diaryEntryService, TreatmentPlanService treatmentPlanService, AppointmentService appointmentService) {
         this.userService = userService;
         this.diaryEntryService = diaryEntryService;
         this.treatmentPlanService = treatmentPlanService;
         this.goalService = goalService;
+        this.appointmentService = appointmentService;
     }
 
     @GetMapping("/diaryview")
@@ -53,9 +59,13 @@ public class DiaryController {
 
         DiaryEntry todayEntered = diaryEntryService.getDiaryEntryByUserIdAndDate(user_id, LocalDate.now());
         List<String> userDiaryEntries = diaryEntryService.getFormattedDiaryEntryDatesByUserId(user_id);
+        List<String> userAppointmentDates = appointmentService.getFormattedAppointmentDatesByUserId(user_id);
+        List<Appointment> userAppointments = appointmentService.getAppointmentsByUserId(user_id);
         List<Goal> goals = goalService.getGoalByUserId(user_id);
         mav.addObject("todayEntered",todayEntered);
         mav.addObject("entryDates",userDiaryEntries);
+        mav.addObject("appointmentDates",userAppointmentDates);
+        mav.addObject("userAppointments",userAppointments);
         mav.addObject("goals", goals);
         return mav;
     }

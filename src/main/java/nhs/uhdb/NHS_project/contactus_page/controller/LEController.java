@@ -6,6 +6,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class LEController {
-    @GetMapping("/ContactUs/LongEaton")
+    @GetMapping("/contact-us/LongEaton")
     public ModelAndView getLandingPage() { return new ModelAndView("contactus/LongEaton");}
 }

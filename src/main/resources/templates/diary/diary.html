@@ -17,20 +17,7 @@
         <!-- Diary Landing Page -->
         <h1 class="nhsuk-heading-xl">My Diary</h1>
 
-        <!--        enter for today-->
-        <form th:method="get" th:action="@{/diary/entry}">
-            <div th:if="${todayEntered == null}">
-                <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
-                    Add today's diary entry
-                </button>
-            </div>
 
-            <div th:unless="${todayEntered == null}">
-                <button class="nhsuk-button nhsuk-button--secondary" data-module="nhsuk-button" type="submit">
-                    Update today's diary entry
-                </button>
-            </div>
-        </form>
 
         <div class="nhsuk-tabs" data-module="nhsuk-tabs">
             <h2 class="nhsuk-tabs__title">
@@ -52,6 +39,12 @@
                 </li>
 
                 <li class="nhsuk-tabs__list-item">
+                    <a class="nhsuk-tabs__tab" href="#appointments">
+                        Appointments
+                    </a>
+                </li>
+
+                <li class="nhsuk-tabs__list-item">
                     <a class="nhsuk-tabs__tab" href="#goals">
                         Goals
                     </a>
@@ -61,6 +54,20 @@
 
             <div class="nhsuk-tabs__panel" id="entries">
                 <h2>Diary entries</h2>
+                <!--        enter for today-->
+                <form th:method="get" th:action="@{/diary/entry}">
+                    <div th:if="${todayEntered == null}">
+                        <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+                            Add today's diary entry
+                        </button>
+                    </div>
+
+                    <div th:unless="${todayEntered == null}">
+                        <button class="nhsuk-button nhsuk-button--secondary" data-module="nhsuk-button" type="submit">
+                            Update today's diary entry
+                        </button>
+                    </div>
+                </form>
                 <details class="nhsuk-details">
                     <summary class="nhsuk-details__summary">
                 <span class="nhsuk-details__summary-text">
@@ -105,6 +112,33 @@
                     </style>
 
                 </div>
+
+            </div>
+
+            <div class="nhsuk-tabs__panel" id="appointments">
+                <h2>Appointments</h2>
+
+                <form th:method="get" th:action="@{/diary/appointment/entry}">
+                    <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+                        Add an appointment
+                    </button>
+                </form>
+
+                <details class="nhsuk-details">
+                    <summary class="nhsuk-details__summary">
+                <span class="nhsuk-details__summary-text">
+                  Scheduled appointments
+                </span>
+                    </summary>
+                    <div class="nhsuk-details__text" th:if="${userAppointments.size() < 1}">
+                        <p>You do not have any appointments</p>
+                    </div>
+                    <div class="nhsuk-details__text" th:if="${userAppointments.size() > 0}">
+                        <p th:each="appointment : ${userAppointments}">
+                            <a th:href="@{/diary/appointment/{id}(id=${appointment.id})}" th:text="${appointment.date} + ' - ' + ${appointment.type}"></a>
+                        </p>
+                    </div>
+                </details>
 
             </div>
 

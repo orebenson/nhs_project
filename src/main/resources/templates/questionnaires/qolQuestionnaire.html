@@ -2,353 +2,1019 @@
 <html lang="en">
 <head>
     <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
-
-
     <title>Quality of Life Questionnaire</title>
-
-    <!--    add any extra javascript file references here-->
-
 </head>
 <body>
 <script th:replace="~{fragments/_fragments :: pagescript}"></script>
 <header th:replace="~{fragments/_fragments :: header}"></header>
 <div class="nhsuk-width-container">
     <main class="nhsuk-main-wrapper" id="maincontent" role="main">
-
         <div class="nhsuk-back-link">
-
             <a class="nhsuk-back-link__link" th:href="@{/questionnaires}">
                 <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                      aria-hidden="true" height="24" width="24">
                     <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
                 </svg>
-                Go back</a>
+                Go back
+            </a>
         </div>
 
-        <form th:object="${qolQuestionnaireForm}" th:action="@{/questionnaires/qol-questionnaire}" th:method="post" id="qol-form">
-            <fieldset class="nhsuk-fieldset">
-                <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
-                    <h1 class="nhsuk-fieldset__heading">
-                        Quality of Life Questionnaire
-                    </h1>
-                </legend>
-                <strong><p>If any of the questions are not applicable to you, please write N/A in the relevant answer
-                    box(es)</p></strong>
-                <p><strong>(Q1) How much does your swollen leg affect the following activities?</strong></p>
-                <table>
-                    <tr>
-                        <th>Activity</th>
-                        <th>N/A</th>
-                        <th>Not at all</th>
-                        <th>A little</th>
-                        <th>Quite a bit</th>
-                        <th>A lot</th>
+
+        <form th:object="${qolQuestionnaireForm}" th:action="@{/questionnaires/qol-questionnaire}" th:method="post"
+              id="qol-form">
+
+            <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                <h1 class="nhsuk-fieldset__heading">Quality of Life Questionnaire - Leg Lymphoedema</h1>
+            </legend>
+
+            <p><strong>If any of the questions are not applicable to you, please select N/A.</strong></p>
+
+            <p><strong>(Q1) How much does your swollen leg affect the following activities?</strong></p>
+                <table role="table" class="nhsuk-table-responsive">
+                    <thead role="rowgroup" class="nhsuk-table__head">
+                    <tr role="row">
+                        <th role="columnheader" class="nhsuk-table__header" scope="col">Activity</th>
+                        <th role="columnheader" class="nhsuk-table__header" scope="col"></th>
+                        <th role="columnheader" class="nhsuk-table__header" scope="col"></th>
+                        <th role="columnheader" class="nhsuk-table__header" scope="col"></th>
+                        <th role="columnheader" class="nhsuk-table__header" scope="col"></th>
+                        <th role="columnheader" class="nhsuk-table__header" scope="col"></th>
                     </tr>
-                    <tr>
-                        <td>a) Your walking</td>
-                        <td><input type="radio" th:field="*{walking}" value="0"></td>
-                        <td><input type="radio" th:field="*{walking}" value="1"></td>
-                        <td><input type="radio" th:field="*{walking}" value="2"></td>
-                        <td><input type="radio" th:field="*{walking}" value="3"></td>
-                        <td><input type="radio" th:field="*{walking}" value="4"></td>
+                    </thead>
+                    <tbody class="nhsuk-table__body">
+                    <tr role="row" class="nhsuk-table__row">
+                        <th class="nhsuk-table__header" scope="row"><span>a) Your walking</span></th>
+
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="walking-na" name="walking" type="radio"
+                                       th:field="*{walking}" value="0">
+                                <label class="nhsuk-label nhsuk-radios__label" for="walking-na">N/A</label>
+                            </div>
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="walking-not-at-all" name="walking" type="radio"
+                                       th:field="*{walking}" value="1">
+                                <label class="nhsuk-label nhsuk-radios__label" for="walking-not-at-all">Not at
+                                    all</label>
+                            </div>
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="walking-a-little" name="walking" type="radio"
+                                       th:field="*{walking}" value="2">
+                                <label class="nhsuk-label nhsuk-radios__label" for="walking-a-little">A little</label>
+                            </div>
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="walking-quite-a-bit" name="walking" type="radio"
+                                       th:field="*{walking}" value="3">
+                                <label class="nhsuk-label nhsuk-radios__label" for="walking-quite-a-bit">Quite a
+                                    bit</label>
+                            </div>
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="walking-a-lot" name="walking" type="radio"
+                                       th:field="*{walking}" value="4">
+                                <label class="nhsuk-label nhsuk-radios__label" for="walking-a-lot">A lot</label>
+                            </div>
+                        </td>
 
                     </tr>
-
-                    <tr>
-                        <td>b) Your ability to bend, e.g. to tie shoelaces or cut toenails</td>
-                        <td><input type="radio" th:field="*{bending}" value="0"></td>
-                        <td><input type="radio" th:field="*{bending}" value="1"></td>
-                        <td><input type="radio" th:field="*{bending}" value="2"></td>
-                        <td><input type="radio" th:field="*{bending}" value="3"></td>
-                        <td><input type="radio" th:field="*{bending}" value="4"></td>
-
+                    <tr role="row" class="nhsuk-table__row">
+                        <th class="nhsuk-table__header" scope="row">b) Your ability to bend, e.g. to tie shoelaces</th>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="bending-na" name="bending" type="radio"
+                                       th:field="*{bending}" value="0">
+                                <label class="nhsuk-label nhsuk-radios__label" for="bending-na">N/A</label>
+                            </div>
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="bending-not-at-all" name="bending" type="radio"
+                                       th:field="*{bending}" value="1">
+                                <label class="nhsuk-label nhsuk-radios__label" for="bending-not-at-all">Not at
+                                    all</label>
+                            </div>
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="bending-a-little" name="bending" type="radio"
+                                       th:field="*{bending}" value="2">
+                                <label class="nhsuk-label nhsuk-radios__label" for="bending-a-little">A little</label>
+                            </div>
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="bending-quite-a-bit" name="bending" type="radio"
+                                       th:field="*{bending}" value="3">
+                                <label class="nhsuk-label nhsuk-radios__label" for="bending-quite-a-bit">Quite a
+                                    bit</label>
+                            </div>
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="bending-a-lot" name="bending" type="radio"
+                                       th:field="*{bending}" value="4">
+                                <label class="nhsuk-label nhsuk-radios__label" for="bending-a-lot">A lot</label>
+                            </div>
+                        </td>
                     </tr>
-                    <tr>
-                        <td>c) Your ability to stand</td>
-                        <td><input type="radio" th:field="*{standing}" value="0"></td>
-                        <td><input type="radio" th:field="*{standing}" value="1"></td>
-                        <td><input type="radio" th:field="*{standing}" value="2"></td>
-                        <td><input type="radio" th:field="*{standing}" value="3"></td>
-                        <td><input type="radio" th:field="*{standing}" value="4"></td>
 
+                    <tr role="row" class="nhsuk-table__row">
+                        <th class="nhsuk-table__header" scope="row">c) Your ability to stand</th>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="standing-na" name="standing" type="radio"
+                                       th:field="*{standing}" value="0">
+                                <label class="nhsuk-label nhsuk-radios__label" for="standing-na">N/A</label>
+                            </div>
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="standing-not-at-all" name="standing" type="radio"
+                                       th:field="*{standing}" value="1">
+                                <label class="nhsuk-label nhsuk-radios__label" for="standing-not-at-all">Not at
+                                    all</label>
+                            </div>
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="standing-a-little" name="standing" type="radio"
+                                       th:field="*{standing}" value="2">
+                                <label class="nhsuk-label nhsuk-radios__label" for="standing-a-little">A little</label>
+                            </div>
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="standing-quite-a-bit" name="standing"
+                                       type="radio" th:field="*{standing}" value="3">
+                                <label class="nhsuk-label nhsuk-radios__label" for="standing-quite-a-bit">Quite a
+                                    bit</label>
+                            </div>
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="standing-a-lot" name="standing" type="radio"
+                                       th:field="*{standing}" value="4">
+                                <label class="nhsuk-label nhsuk-radios__label" for="standing-a-lot">A lot</label>
+                            </div>
+                        </td>
                     </tr>
-                    <tr>
-                        <td>d) Your ability to get up from a chair</td>
-                        <td><input type="radio" th:field="*{gettingUp}" value="0"></td>
-                        <td><input type="radio" th:field="*{gettingUp}" value="1"></td>
-                        <td><input type="radio" th:field="*{gettingUp}" value="2"></td>
-                        <td><input type="radio" th:field="*{gettingUp}" value="3"></td>
-                        <td><input type="radio" th:field="*{gettingUp}" value="4"></td>
 
+                    <tr role="row" class="nhsuk-table__row">
+                        <th class="nhsuk-table__header" scope="row">d) Your ability to get up from a chair</th>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="gettingUp-na" name="gettingUp" type="radio"
+                                       th:field="*{gettingUp}" value="0">
+                                <label class="nhsuk-label nhsuk-radios__label" for="gettingUp-na">N/A</label>
+                            </div>
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="gettingUp-not-at-all" name="gettingUp"
+                                       type="radio" th:field="*{gettingUp}" value="1">
+                                <label class="nhsuk-label nhsuk-radios__label" for="gettingUp-not-at-all">Not at
+                                    all</label>
+                            </div>
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="gettingUp-a-little" name="gettingUp" type="radio"
+                                       th:field="*{gettingUp}" value="2">
+                                <label class="nhsuk-label nhsuk-radios__label" for="gettingUp-a-little">A little</label>
+                            </div>
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="gettingUp-quite-a-bit" name="gettingUp"
+                                       type="radio" th:field="*{gettingUp}" value="3">
+                                <label class="nhsuk-label nhsuk-radios__label" for="gettingUp-quite-a-bit">Quite a
+                                    bit</label>
+                            </div>
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="gettingUp-a-lot" name="gettingUp" type="radio"
+                                       th:field="*{gettingUp}" value="4">
+                                <label class="nhsuk-label nhsuk-radios__label" for="gettingUp-a-lot">A lot</label>
+                            </div>
+                        </td>
                     </tr>
-                    <tr>
-                        <td>e) Your occupation</td>
-                        <td><input type="radio" th:field="*{occupation}" value="0"></td>
-                        <td><input type="radio" th:field="*{occupation}" value="1"></td>
-                        <td><input type="radio" th:field="*{occupation}" value="2"></td>
-                        <td><input type="radio" th:field="*{occupation}" value="3"></td>
-                        <td><input type="radio" th:field="*{occupation}" value="4"></td>
 
+                    <tr role="row" class="nhsuk-table__row">
+                        <th class="nhsuk-table__header" scope="row">e) Your occupation</th>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="occupation-na" name="occupation" type="radio"
+                                       th:field="*{occupation}" value="0">
+                                <label class="nhsuk-label nhsuk-radios__label" for="occupation-na">N/A</label>
+                            </div>
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="occupation-not-at-all" name="occupation"
+                                       type="radio" th:field="*{occupation}" value="1">
+                                <label class="nhsuk-label nhsuk-radios__label" for="occupation-not-at-all">Not at
+                                    all</label>
+                            </div>
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="occupation-a-little" name="occupation"
+                                       type="radio" th:field="*{occupation}" value="2">
+                                <label class="nhsuk-label nhsuk-radios__label" for="occupation-a-little">A
+                                    little</label>
+                            </div>
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="occupation-quite-a-bit" name="occupation"
+                                       type="radio" th:field="*{occupation}" value="3">
+                                <label class="nhsuk-label nhsuk-radios__label" for="occupation-quite-a-bit">Quite a
+                                    bit</label>
+                            </div>
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="occupation-a-lot" name="occupation" type="radio"
+                                       th:field="*{occupation}" value="4">
+                                <label class="nhsuk-label nhsuk-radios__label" for="occupation-a-lot">A lot</label>
+                            </div>
+                        </td>
                     </tr>
-                    <tr>
-                        <td>f) Your ability to do housework</td>
-                        <td><input type="radio" th:field="*{housework}" value="0"></td>
-                        <td><input type="radio" th:field="*{housework}" value="1"></td>
-                        <td><input type="radio" th:field="*{housework}" value="2"></td>
-                        <td><input type="radio" th:field="*{housework}" value="3"></td>
-                        <td><input type="radio" th:field="*{housework}" value="4"></td>
 
+                    <tr role="row" class="nhsuk-table__row">
+                        <th class="nhsuk-table__header" scope="row">f) Your ability to do housework</th>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="housework-na" name="housework" type="radio"
+                                       th:field="*{housework}" value="0">
+                                <label class="nhsuk-label nhsuk-radios__label" for="housework-na">N/A</label>
+                            </div>
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="housework-not-at-all" name="housework"
+                                       type="radio" th:field="*{housework}" value="1">
+                                <label class="nhsuk-label nhsuk-radios__label" for="housework-not-at-all">Not at
+                                    all</label>
+                            </div>
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="housework-a-little" name="housework" type="radio"
+                                       th:field="*{housework}" value="2">
+                                <label class="nhsuk-label nhsuk-radios__label" for="housework-a-little">A little</label>
+                            </div>
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="housework-quite-a-bit" name="housework"
+                                       type="radio" th:field="*{housework}" value="3">
+                                <label class="nhsuk-label nhsuk-radios__label" for="housework-quite-a-bit">Quite a
+                                    bit</label>
+                            </div>
+                        </td>
+                        <td role="cell" class="nhsuk-table__cell">
+                            <div class="nhsuk-radios__item">
+                                <input class="nhsuk-radios__input" id="housework-a-lot" name="housework" type="radio"
+                                       th:field="*{housework}" value="4">
+                                <label class="nhsuk-label nhsuk-radios__label" for="housework-a-lot">A lot</label>
+                            </div>
+                        </td>
                     </tr>
                 </table>
 
+                <br>
                 <p><strong>(Q2) Does the swelling affect your leisure activities/social life?</strong></p>
-                <table>
-                    <tr>
-                        <td>N/A</td>
-                        <td><input type="radio" th:field="*{leisureActivities}" value="0"></td>
-                        <td>Not at all</td>
-                        <td><input type="radio" th:field="*{leisureActivities}" value="1"></td>
-                        <td>A little</td>
-                        <td><input type="radio" th:field="*{leisureActivities}" value="2"></td>
-                        <td>Quite a bit</td>
-                        <td><input type="radio" th:field="*{leisureActivities}" value="3"></td>
-                        <td>A lot</td>
-                        <td><input type="radio" th:field="*{leisureActivities}" value="4"></td>
-
-                    </tr>
-                </table>
-                <label for="leisureExamples">Please give examples:</label> <br>
-                <textarea id="leisureExamples" th:field="*{leisureExamples}" rows="6" cols="150"></textarea>
+                <div>
+                    <table role="table" class="nhsuk-table-responsive">
+                        <tbody class="nhsuk-table__body">
+                        <tr role="row" class="nhsuk-table__row">
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="leisureActivities-na" name="leisureActivities" type="radio" th:field="*{leisureActivities}" value="0">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="leisureActivities-na">N/A</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="leisureActivities-not-at-all" name="leisureActivities" type="radio" th:field="*{leisureActivities}" value="1">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="leisureActivities-not-at-all">Not at all</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="leisureActivities-a-little" name="leisureActivities" type="radio" th:field="*{leisureActivities}" value="2">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="leisureActivities-a-little">A little</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="leisureActivities-quite-a-bit" name="leisureActivities" type="radio" th:field="*{leisureActivities}" value="3">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="leisureActivities-quite-a-bit">Quite a bit</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="leisureActivities-a-lot" name="leisureActivities" type="radio" th:field="*{leisureActivities}" value="4">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="leisureActivities-a-lot">A lot</label>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <label for="leisureExamples">Please give examples:</label><br>
+                    <textarea id="leisureExamples" th:field="*{leisureExamples}" class="nhsuk-textarea" rows="3"></textarea>
+                </div>
                 <br>
 
-                <table>
-                    <tr>
-                        <th>Questions</th>
-                        <th>N/A</th>
-                        <th>Not at all</th>
-                        <th>A little</th>
-                        <th>Quite a bit</th>
-                        <th>A lot</th>
+                <div>
+                    <table role="table" class="nhsuk-table-responsive">
+                        <thead role="rowgroup" class="nhsuk-table__head">
+                        <tr role="row">
+                            <th role="columnheader" scope="col"></th>
+                            <th role="columnheader" scope="col"></th>
+                            <th role="columnheader" scope="col"></th>
+                            <th role="columnheader" scope="col"></th>
+                            <th role="columnheader" scope="col"></th>
+                            <th role="columnheader" scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody class="nhsuk-table__body">
+                        <tr role="row" class="nhsuk-table__row">
+                            <th class="nhsuk-table__header" scope="row">(Q3) How much do you have to depend on other people?</th>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="dependency-na" name="dependency" type="radio" th:field="*{dependency}" value="0">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="dependency-na">N/A</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="dependency-not-at-all" name="dependency" type="radio" th:field="*{dependency}" value="1">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="dependency-not-at-all">Not at all</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="dependency-a-little" name="dependency" type="radio" th:field="*{dependency}" value="2">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="dependency-a-little">A little</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="dependency-quite-a-bit" name="dependency" type="radio" th:field="*{dependency}" value="3">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="dependency-quite-a-bit">Quite a bit</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="dependency-a-lot" name="dependency" type="radio" th:field="*{dependency}" value="4">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="dependency-a-lot">A lot</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr role="row" class="nhsuk-table__row">
+                            <th class="nhsuk-table__header" scope="row"><strong>(Q4) How much do you feel the swelling affects your appearance?</strong></th>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="appearance-na" name="appearance" type="radio" th:field="*{appearance}" value="0">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="appearance-na">N/A</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="appearance-not-at-all" name="appearance" type="radio" th:field="*{appearance}" value="1">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="appearance-not-at-all">Not at all</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="appearance-a-little" name="appearance" type="radio" th:field="*{appearance}" value="2">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="appearance-a-little">A little</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="appearance-quite-a-bit" name="appearance" type="radio" th:field="*{appearance}" value="3">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="appearance-quite-a-bit">Quite a bit</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="appearance-a-lot" name="appearance" type="radio" th:field="*{appearance}" value="4">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="appearance-a-lot">A lot</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr role="row" class="nhsuk-table__row">
+                            <th class="nhsuk-table__header" scope="row"><strong>(Q5) How much difficulty do you have finding clothes to fit?</strong></th>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="clothesFitDifficulty-na" name="clothesFitDifficulty" type="radio" th:field="*{clothesFitDifficulty}" value="0">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="clothesFitDifficulty-na">N/A</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="clothesFitDifficulty-not-at-all" name="clothesFitDifficulty" type="radio" th:field="*{clothesFitDifficulty}" value="1">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="clothesFitDifficulty-not-at-all">Not at all</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="clothesFitDifficulty-a-little" name="clothesFitDifficulty" type="radio" th:field="*{clothesFitDifficulty}" value="2">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="clothesFitDifficulty-a-little">A little</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="clothesFitDifficulty-quite-a-bit" name="clothesFitDifficulty" type="radio" th:field="*{clothesFitDifficulty}" value="3">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="clothesFitDifficulty-quite-a-bit">Quite a bit</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="clothesFitDifficulty-a-lot" name="clothesFitDifficulty" type="radio" th:field="*{clothesFitDifficulty}" value="4">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="clothesFitDifficulty-a-lot">A lot</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr role="row" class="nhsuk-table__row">
+                            <th class="nhsuk-table__header" scope="row"><strong>(Q6) How much difficulty do you have finding clothes you would like to wear?</strong></th>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="clothesPreferenceDifficulty-na" name="clothesPreferenceDifficulty" type="radio" th:field="*{clothesPreferenceDifficulty}" value="0">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="clothesPreferenceDifficulty-na">N/A</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="clothesPreferenceDifficulty-not-at-all" name="clothesPreferenceDifficulty" type="radio" th:field="*{clothesPreferenceDifficulty}" value="1">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="clothesPreferenceDifficulty-not-at-all">Not at all</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="clothesPreferenceDifficulty-a-little" name="clothesPreferenceDifficulty" type="radio" th:field="*{clothesPreferenceDifficulty}" value="2">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="clothesPreferenceDifficulty-a-little">A little</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="clothesPreferenceDifficulty-quite-a-bit" name="clothesPreferenceDifficulty" type="radio" th:field="*{clothesPreferenceDifficulty}" value="3">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="clothesPreferenceDifficulty-quite-a-bit">Quite a bit</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="clothesPreferenceDifficulty-a-lot" name="clothesPreferenceDifficulty" type="radio" th:field="*{clothesPreferenceDifficulty}" value="4">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="clothesPreferenceDifficulty-a-lot">A lot</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr role="row" class="nhsuk-table__row">
+                            <th class="nhsuk-table__header" scope="row"><strong>(Q7) Do you have difficulty finding shoes to fit?</strong></th>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="shoesFitDifficulty-na" name="shoesFitDifficulty" type="radio" th:field="*{shoesFitDifficulty}" value="0">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="shoesFitDifficulty-na">N/A</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="shoesFitDifficulty-not-at-all" name="shoesFitDifficulty" type="radio" th:field="*{shoesFitDifficulty}" value="1">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="shoesFitDifficulty-not-at-all">Not at all</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="shoesFitDifficulty-a-little" name="shoesFitDifficulty" type="radio" th:field="*{shoesFitDifficulty}" value="2">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="shoesFitDifficulty-a-little">A little</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="shoesFitDifficulty-quite-a-bit" name="shoesFitDifficulty" type="radio" th:field="*{shoesFitDifficulty}" value="3">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="shoesFitDifficulty-quite-a-bit">Quite a bit</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="shoesFitDifficulty-a-lot" name="shoesFitDifficulty" type="radio" th:field="*{shoesFitDifficulty}" value="4">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="shoesFitDifficulty-a-lot">A lot</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr role="row" class="nhsuk-table__row">
+                            <th class="nhsuk-table__header" scope="row"><strong>(Q8) Do you have difficulty finding socks/ tights/stockings to fit?</strong></th>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="socksFitDifficulty-na" name="socksFitDifficulty" type="radio" th:field="*{socksFitDifficulty}" value="0">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="socksFitDifficulty-na">N/A</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="socksFitDifficulty-not-at-all" name="socksFitDifficulty" type="radio" th:field="*{socksFitDifficulty}" value="1">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="socksFitDifficulty-not-at-all">Not at all</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="socksFitDifficulty-a-little" name="socksFitDifficulty" type="radio" th:field="*{socksFitDifficulty}" value="2">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="socksFitDifficulty-a-little">A little</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="socksFitDifficulty-quite-a-bit" name="socksFitDifficulty" type="radio" th:field="*{socksFitDifficulty}" value="3">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="socksFitDifficulty-quite-a-bit">Quite a bit</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="socksFitDifficulty-a-lot" name="socksFitDifficulty" type="radio" th:field="*{socksFitDifficulty}" value="4">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="socksFitDifficulty-a-lot">A lot</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr role="row" class="nhsuk-table__row">
+                            <th class="nhsuk-table__header" scope="row"><strong>(Q9) Does the swelling affect how you feel about yourself?</strong></th>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="selfPerception-na" name="selfPerception" type="radio" th:field="*{selfPerception}" value="0">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="selfPerception-na">N/A</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="selfPerception-not-at-all" name="selfPerception" type="radio" th:field="*{selfPerception}" value="1">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="selfPerception-not-at-all">Not at all</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="selfPerception-a-little" name="selfPerception" type="radio" th:field="*{selfPerception}" value="2">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="selfPerception-a-little">A little</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="selfPerception-quite-a-bit" name="selfPerception" type="radio" th:field="*{selfPerception}" value="3">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="selfPerception-quite-a-bit">Quite a bit</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="selfPerception-a-lot" name="selfPerception" type="radio" th:field="*{selfPerception}" value="4">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="selfPerception-a-lot">A lot</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr role="row" class="nhsuk-table__row">
+                            <th class="nhsuk-table__header" scope="row"><strong>(Q10) Does it affect your relationships with other people?</strong></th>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="relationshipImpact-na" name="relationshipImpact" type="radio" th:field="*{relationshipImpact}" value="0">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="relationshipImpact-na">N/A</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="relationshipImpact-not-at-all" name="relationshipImpact" type="radio" th:field="*{relationshipImpact}" value="1">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="relationshipImpact-not-at-all">Not at all</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="relationshipImpact-a-little" name="relationshipImpact" type="radio" th:field="*{relationshipImpact}" value="2">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="relationshipImpact-a-little">A little</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="relationshipImpact-quite-a-bit" name="relationshipImpact" type="radio" th:field="*{relationshipImpact}" value="3">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="relationshipImpact-quite-a-bit">Quite a bit</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="relationshipImpact-a-lot" name="relationshipImpact" type="radio" th:field="*{relationshipImpact}" value="4">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="relationshipImpact-a-lot">A lot</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr role="row" class="nhsuk-table__row">
+                            <th class="nhsuk-table__header" scope="row"><strong>(Q11) Does your lymphoedema cause you pain?</strong></th>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="pain-na" name="pain" type="radio" th:field="*{pain}" value="0">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="pain-na">N/A</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="pain-not-at-all" name="pain" type="radio" th:field="*{pain}" value="1">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="pain-not-at-all">Not at all</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="pain-a-little" name="pain" type="radio" th:field="*{pain}" value="2">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="pain-a-little">A little</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="pain-quite-a-bit" name="pain" type="radio" th:field="*{pain}" value="3">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="pain-quite-a-bit">Quite a bit</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="pain-a-lot" name="pain" type="radio" th:field="*{pain}" value="4">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="pain-a-lot">A lot</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr role="row" class="nhsuk-table__row">
+                            <th class="nhsuk-table__header" scope="row"><strong>(Q12) Do you have any numbness in your swollen leg(s)?</strong></th>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="numbness-na" name="numbness" type="radio" th:field="*{numbness}" value="0">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="numbness-na">N/A</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="numbness-not-at-all" name="numbness" type="radio" th:field="*{numbness}" value="1">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="numbness-not-at-all">Not at all</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="numbness-a-little" name="numbness" type="radio" th:field="*{numbness}" value="2">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="numbness-a-little">A little</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="numbness-quite-a-bit" name="numbness" type="radio" th:field="*{numbness}" value="3">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="numbness-quite-a-bit">Quite a bit</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="numbness-a-lot" name="numbness" type="radio" th:field="*{numbness}" value="4">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="numbness-a-lot">A lot</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr role="row" class="nhsuk-table__row">
+                            <th class="nhsuk-table__header" scope="row"><strong>(Q13) Do you have any feelings of 'pins & needles' or tingling in your swollen leg(s)?</strong></th>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="pinsNeedles-na" name="pinsNeedles" type="radio" th:field="*{pinsNeedles}" value="0">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="pinsNeedles-na">N/A</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="pinsNeedles-not-at-all" name="pinsNeedles" type="radio" th:field="*{pinsNeedles}" value="1">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="pinsNeedles-not-at-all">Not at all</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="pinsNeedles-a-little" name="pinsNeedles" type="radio" th:field="*{pinsNeedles}" value="2">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="pinsNeedles-a-little">A little</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="pinsNeedles-quite-a-bit" name="pinsNeedles" type="radio" th:field="*{pinsNeedles}" value="3">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="pinsNeedles-quite-a-bit">Quite a bit</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="pinsNeedles-a-lot" name="pinsNeedles" type="radio" th:field="*{pinsNeedles}" value="4">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="pinsNeedles-a-lot">A lot</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr role="row" class="nhsuk-table__row">
+                            <th class="nhsuk-table__header" scope="row"><strong>(Q14) Does (do) your swollen leg(s) feel weak?</strong></th>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="legWeakness-na" name="legWeakness" type="radio" th:field="*{legWeakness}" value="0">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="legWeakness-na">N/A</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="legWeakness-not-at-all" name="legWeakness" type="radio" th:field="*{legWeakness}" value="1">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="legWeakness-not-at-all">Not at all</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="legWeakness-a-little" name="legWeakness" type="radio" th:field="*{legWeakness}" value="2">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="legWeakness-a-little">A little</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="legWeakness-quite-a-bit" name="legWeakness" type="radio" th:field="*{legWeakness}" value="3">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="legWeakness-quite-a-bit">Quite a bit</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="legWeakness-a-lot" name="legWeakness" type="radio" th:field="*{legWeakness}" value="4">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="legWeakness-a-lot">A lot</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr role="row" class="nhsuk-table__row">
+                            <th class="nhsuk-table__header" scope="row"><strong>(Q15) Does (do) your swollen leg(s) feel heavy?</strong></th>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="legHeaviness-na" name="legHeaviness" type="radio" th:field="*{legHeaviness}" value="0">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="legHeaviness-na">N/A</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="legHeaviness-not-at-all" name="legHeaviness" type="radio" th:field="*{legHeaviness}" value="1">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="legHeaviness-not-at-all">Not at all</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="legHeaviness-a-little" name="legHeaviness" type="radio" th:field="*{legHeaviness}" value="2">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="legHeaviness-a-little">A little</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="legHeaviness-quite-a-bit" name="legHeaviness" type="radio" th:field="*{legHeaviness}" value="3">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="legHeaviness-quite-a-bit">Quite a bit</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="legHeaviness-a-lot" name="legHeaviness" type="radio" th:field="*{legHeaviness}" value="4">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="legHeaviness-a-lot">A lot</label>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <h2>In the past week...</h2>
+                <div>
+                    <table role="table" class="nhsuk-table-responsive">
+                        <thead role="rowgroup" class="nhsuk-table__head">
+                        <tr role="row">
+                            <th role="columnheader" scope="col"></th>
+                            <th role="columnheader" scope="col"></th>
+                            <th role="columnheader" scope="col"></th>
+                            <th role="columnheader" scope="col"></th>
+                            <th role="columnheader" scope="col"></th>
+                            <th role="columnheader" scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody class="nhsuk-table__body">
+                        <tr role="row" class="nhsuk-table__row">
+                            <th class="nhsuk-table__header" scope="row"><strong>(Q16) Have you had trouble sleeping?</strong></th>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="sleepTrouble-na" name="sleepTrouble" type="radio" th:field="*{sleepTrouble}" value="0">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="sleepTrouble-na">N/A</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="sleepTrouble-not-at-all" name="sleepTrouble" type="radio" th:field="*{sleepTrouble}" value="1">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="sleepTrouble-not-at-all">Not at all</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="sleepTrouble-a-little" name="sleepTrouble" type="radio" th:field="*{sleepTrouble}" value="2">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="sleepTrouble-a-little">A little</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="sleepTrouble-quite-a-bit" name="sleepTrouble" type="radio" th:field="*{sleepTrouble}" value="3">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="sleepTrouble-quite-a-bit">Quite a bit</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="sleepTrouble-a-lot" name="sleepTrouble" type="radio" th:field="*{sleepTrouble}" value="4">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="sleepTrouble-a-lot">A lot</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr role="row" class="nhsuk-table__row">
+                            <th class="nhsuk-table__header" scope="row"><strong>(Q17) Have you had difficulty concentrating on things, e.g. reading?</strong></th>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="difficultyConcentrating-na" name="difficultyConcentrating" type="radio" th:field="*{difficultyConcentrating}" value="0">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="difficultyConcentrating-na">N/A</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="difficultyConcentrating-not-at-all" name="difficultyConcentrating" type="radio" th:field="*{difficultyConcentrating}" value="1">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="difficultyConcentrating-not-at-all">Not at all</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="difficultyConcentrating-a-little" name="difficultyConcentrating" type="radio" th:field="*{difficultyConcentrating}" value="2">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="difficultyConcentrating-a-little">A little</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="difficultyConcentrating-quite-a-bit" name="difficultyConcentrating" type="radio" th:field="*{difficultyConcentrating}" value="3">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="difficultyConcentrating-quite-a-bit">Quite a bit</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="difficultyConcentrating-a-lot" name="difficultyConcentrating" type="radio" th:field="*{difficultyConcentrating}" value="4">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="difficultyConcentrating-a-lot">A lot</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr role="row" class="nhsuk-table__row">
+                            <th class="nhsuk-table__header" scope="row"><strong>(Q18) Have you felt tense?</strong></th>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="feelingTense-na" name="feelingTense" type="radio" th:field="*{feelingTense}" value="0">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="feelingTense-na">N/A</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="feelingTense-not-at-all" name="feelingTense" type="radio" th:field="*{feelingTense}" value="1">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="feelingTense-not-at-all">Not at all</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="feelingTense-a-little" name="feelingTense" type="radio" th:field="*{feelingTense}" value="2">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="feelingTense-a-little">A little</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="feelingTense-quite-a-bit" name="feelingTense" type="radio" th:field="*{feelingTense}" value="3">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="feelingTense-quite-a-bit">Quite a bit</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="feelingTense-a-lot" name="feelingTense" type="radio" th:field="*{feelingTense}" value="4">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="feelingTense-a-lot">A lot</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr role="row" class="nhsuk-table__row">
+                            <th class="nhsuk-table__header" scope="row"><strong>(Q19) Have you felt worried?</strong></th>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="feelingWorried-na" name="feelingWorried" type="radio" th:field="*{feelingWorried}" value="0">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="feelingWorried-na">N/A</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="feelingWorried-not-at-all" name="feelingWorried" type="radio" th:field="*{feelingWorried}" value="1">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="feelingWorried-not-at-all">Not at all</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="feelingWorried-a-little" name="feelingWorried" type="radio" th:field="*{feelingWorried}" value="2">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="feelingWorried-a-little">A little</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="feelingWorried-quite-a-bit" name="feelingWorried" type="radio" th:field="*{feelingWorried}" value="3">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="feelingWorried-quite-a-bit">Quite a bit</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="feelingWorried-a-lot" name="feelingWorried" type="radio" th:field="*{feelingWorried}" value="4">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="feelingWorried-a-lot">A lot</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr role="row" class="nhsuk-table__row">
+                            <th class="nhsuk-table__header" scope="row"><strong>(Q20) Have you felt irritable?</strong></th>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="feelingIrritable-na" name="feelingIrritable" type="radio" th:field="*{feelingIrritable}" value="0">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="feelingIrritable-na">N/A</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="feelingIrritable-not-at-all" name="feelingIrritable" type="radio" th:field="*{feelingIrritable}" value="1">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="feelingIrritable-not-at-all">Not at all</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="feelingIrritable-a-little" name="feelingIrritable" type="radio" th:field="*{feelingIrritable}" value="2">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="feelingIrritable-a-little">A little</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="feelingIrritable-quite-a-bit" name="feelingIrritable" type="radio" th:field="*{feelingIrritable}" value="3">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="feelingIrritable-quite-a-bit">Quite a bit</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="feelingIrritable-a-lot" name="feelingIrritable" type="radio" th:field="*{feelingIrritable}" value="4">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="feelingIrritable-a-lot">A lot</label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr role="row" class="nhsuk-table__row">
+                            <th class="nhsuk-table__header" scope="row"><strong>(Q21) Have you felt depressed?</strong></th>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="feelingDepressed-na" name="feelingDepressed" type="radio" th:field="*{feelingDepressed}" value="0">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="feelingDepressed-na">N/A</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="feelingDepressed-not-at-all" name="feelingDepressed" type="radio" th:field="*{feelingDepressed}" value="1">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="feelingDepressed-not-at-all">Not at all</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="feelingDepressed-a-little" name="feelingDepressed" type="radio" th:field="*{feelingDepressed}" value="2">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="feelingDepressed-a-little">A little</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="feelingDepressed-quite-a-bit" name="feelingDepressed" type="radio" th:field="*{feelingDepressed}" value="3">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="feelingDepressed-quite-a-bit">Quite a bit</label>
+                                </div>
+                            </td>
+                            <td role="cell" class="nhsuk-table__cell">
+                                <div class="nhsuk-radios__item">
+                                    <input class="nhsuk-radios__input" id="feelingDepressed-a-lot" name="feelingDepressed" type="radio" th:field="*{feelingDepressed}" value="4">
+                                    <label class="nhsuk-label nhsuk-radios__label" for="feelingDepressed-a-lot">A lot</label>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            <br>
 
-                    </tr>
-                    <tr>
-                        <td><strong>(Q3) How much do you have to depend on other people?</strong></td>
-                        <td><input type="radio" th:field="*{dependency}" value="0"></td>
-                        <td><input type="radio" th:field="*{dependency}" value="1"></td>
-                        <td><input type="radio" th:field="*{dependency}" value="2"></td>
-                        <td><input type="radio" th:field="*{dependency}" value="3"></td>
-                        <td><input type="radio" th:field="*{dependency}" value="4"></td>
-
-                    </tr>
-
-                    <tr>
-                        <td><strong>(Q4) How much do you feel the swelling affects your appearance?</strong></td>
-                        <td><input type="radio" th:field="*{appearance}" value="0"></td>
-                        <td><input type="radio" th:field="*{appearance}" value="1"></td>
-                        <td><input type="radio" th:field="*{appearance}" value="2"></td>
-                        <td><input type="radio" th:field="*{appearance}" value="3"></td>
-                        <td><input type="radio" th:field="*{appearance}" value="4"></td>
-
-                    </tr>
-                    <tr>
-                        <td><strong>(Q5) How much difficulty do you have finding clothes to fit?</strong></td>
-                        <td><input type="radio" th:field="*{clothesFitDifficulty}" value="0"></td>
-                        <td><input type="radio" th:field="*{clothesFitDifficulty}" value="1"></td>
-                        <td><input type="radio" th:field="*{clothesFitDifficulty}" value="2"></td>
-                        <td><input type="radio" th:field="*{clothesFitDifficulty}" value="3"></td>
-                        <td><input type="radio" th:field="*{clothesFitDifficulty}" value="4"></td>
-
-                    </tr>
-                    <tr>
-                        <td><strong>(Q6) How much difficulty do you have finding clothes you would like to wear?</strong></td>
-                        <td><input type="radio" th:field="*{clothesPreferenceDifficulty}" value="0"></td>
-                        <td><input type="radio" th:field="*{clothesPreferenceDifficulty}" value="1"></td>
-                        <td><input type="radio" th:field="*{clothesPreferenceDifficulty}" value="2"></td>
-                        <td><input type="radio" th:field="*{clothesPreferenceDifficulty}" value="3"></td>
-                        <td><input type="radio" th:field="*{clothesPreferenceDifficulty}" value="4"></td>
-
-                    </tr>
-                    <tr>
-                        <td><strong>(Q7) Do you have difficulty finding shoes to fit?</strong></td>
-                        <td><input type="radio" th:field="*{shoesFitDifficulty}" value="0"></td>
-                        <td><input type="radio" th:field="*{shoesFitDifficulty}" value="1"></td>
-                        <td><input type="radio" th:field="*{shoesFitDifficulty}" value="2"></td>
-                        <td><input type="radio" th:field="*{shoesFitDifficulty}" value="3"></td>
-                        <td><input type="radio" th:field="*{shoesFitDifficulty}" value="4"></td>
-
-                    </tr>
-                    <tr>
-                        <td><strong>(Q8) Do you have difficulty finding socks/tights/stockings to fit?</strong></td>
-                        <td><input type="radio" th:field="*{socksFitDifficulty}" value="0"></td>
-                        <td><input type="radio" th:field="*{socksFitDifficulty}" value="1"></td>
-                        <td><input type="radio" th:field="*{socksFitDifficulty}" value="2"></td>
-                        <td><input type="radio" th:field="*{socksFitDifficulty}" value="3"></td>
-                        <td><input type="radio" th:field="*{socksFitDifficulty}" value="4"></td>
-
-                    </tr>
-                    <tr>
-                        <td><strong>(Q9) Does the swelling affect how you feel about yourself?</strong></td>
-                        <td><input type="radio" th:field="*{selfPerception}" value="0"></td>
-                        <td><input type="radio" th:field="*{selfPerception}" value="1"></td>
-                        <td><input type="radio" th:field="*{selfPerception}" value="2"></td>
-                        <td><input type="radio" th:field="*{selfPerception}" value="3"></td>
-                        <td><input type="radio" th:field="*{selfPerception}" value="4"></td>
-
-                    </tr>
-                    <tr>
-                        <td><strong>(Q10) Does it affect your relationships with other people?</strong></td>
-                        <td><input type="radio" th:field="*{relationshipImpact}" value="0"></td>
-                        <td><input type="radio" th:field="*{relationshipImpact}" value="1"></td>
-                        <td><input type="radio" th:field="*{relationshipImpact}" value="2"></td>
-                        <td><input type="radio" th:field="*{relationshipImpact}" value="3"></td>
-                        <td><input type="radio" th:field="*{relationshipImpact}" value="4"></td>
-
-                    </tr>
-                    <tr>
-                        <td><strong>(Q11) Does your lymphoedema cause you pain?</strong></td>
-                        <td><input type="radio" th:field="*{pain}" value="0"></td>
-                        <td><input type="radio" th:field="*{pain}" value="1"></td>
-                        <td><input type="radio" th:field="*{pain}" value="2"></td>
-                        <td><input type="radio" th:field="*{pain}" value="3"></td>
-                        <td><input type="radio" th:field="*{pain}" value="4"></td>
-
-                    </tr>
-                    <tr>
-                        <td><strong>(Q12) Do you have any numbness in your swollen leg(s)?</strong></td>
-                        <td><input type="radio" th:field="*{numbness}" value="0"></td>
-                        <td><input type="radio" th:field="*{numbness}" value="1"></td>
-                        <td><input type="radio" th:field="*{numbness}" value="2"></td>
-                        <td><input type="radio" th:field="*{numbness}" value="3"></td>
-                        <td><input type="radio" th:field="*{numbness}" value="4"></td>
-
-                    </tr>
-                    <tr>
-                        <td><strong>(Q13) Do you have any feelings of 'pins & needles' or tingling in your swollen leg(s)?</strong></td>
-                        <td><input type="radio" th:field="*{pinsNeedles}" value="0"></td>
-                        <td><input type="radio" th:field="*{pinsNeedles}" value="1"></td>
-                        <td><input type="radio" th:field="*{pinsNeedles}" value="2"></td>
-                        <td><input type="radio" th:field="*{pinsNeedles}" value="3"></td>
-                        <td><input type="radio" th:field="*{pinsNeedles}" value="4"></td>
-
-                    </tr>
-                    <tr>
-                        <td><strong>(Q14) Does (do) your swollen leg(s) feel weak?</strong></td>
-                        <td><input type="radio" th:field="*{legWeakness}" value="0"></td>
-                        <td><input type="radio" th:field="*{legWeakness}" value="1"></td>
-                        <td><input type="radio" th:field="*{legWeakness}" value="2"></td>
-                        <td><input type="radio" th:field="*{legWeakness}" value="3"></td>
-                        <td><input type="radio" th:field="*{legWeakness}" value="4"></td>
-
-                    </tr>
-                    <tr>
-                        <td><strong>(Q15) Does (do) your swollen leg(s) feel heavy?</strong></td>
-                        <td><input type="radio" th:field="*{legHeaviness}" value="0"></td>
-                        <td><input type="radio" th:field="*{legHeaviness}" value="1"></td>
-                        <td><input type="radio" th:field="*{legHeaviness}" value="2"></td>
-                        <td><input type="radio" th:field="*{legHeaviness}" value="3"></td>
-                        <td><input type="radio" th:field="*{legHeaviness}" value="4"></td>
-
-                    </tr>
-                </table>
-
-                    <h2>In the past week...</h2>
-                <table>
-                    <tr>
-                        <th>Questions</th>
-                        <th>N/A</th>
-                        <th>Not at all</th>
-                        <th>A little</th>
-                        <th>Quite a bit</th>
-                        <th>A lot</th>
-
-                    </tr>
-                    <tr>
-                        <td><strong>(Q16) Have you had trouble sleeping?</strong></td>
-                        <td><input type="radio" th:field="*{sleepTrouble}" value="0"></td>
-                        <td><input type="radio" th:field="*{sleepTrouble}" value="1"></td>
-                        <td><input type="radio" th:field="*{sleepTrouble}" value="2"></td>
-                        <td><input type="radio" th:field="*{sleepTrouble}" value="3"></td>
-                        <td><input type="radio" th:field="*{sleepTrouble}" value="4"></td>
-
-                    </tr>
-                    <tr>
-                        <td><strong>(Q17) Have you had difficulty concentrating on things, e.g. reading?</strong></td>
-                        <td><input type="radio" th:field="*{difficultyConcentrating}" value="0"></td>
-                        <td><input type="radio" th:field="*{difficultyConcentrating}" value="1"></td>
-                        <td><input type="radio" th:field="*{difficultyConcentrating}" value="2"></td>
-                        <td><input type="radio" th:field="*{difficultyConcentrating}" value="3"></td>
-                        <td><input type="radio" th:field="*{difficultyConcentrating}" value="4"></td>
-
-                    </tr>
-                    <tr>
-                        <td><strong>(Q18) Have you felt tense?</strong></td>
-                        <td><input type="radio" th:field="*{feelingTense}" value="0"></td>
-                        <td><input type="radio" th:field="*{feelingTense}" value="1"></td>
-                        <td><input type="radio" th:field="*{feelingTense}" value="2"></td>
-                        <td><input type="radio" th:field="*{feelingTense}" value="3"></td>
-                        <td><input type="radio" th:field="*{feelingTense}" value="4"></td>
-
-                    </tr>
-                    <tr>
-                        <td><strong>(Q19) Have you felt worried?</strong></td>
-                        <td><input type="radio" th:field="*{feelingWorried}" value="0"></td>
-                        <td><input type="radio" th:field="*{feelingWorried}" value="1"></td>
-                        <td><input type="radio" th:field="*{feelingWorried}" value="2"></td>
-                        <td><input type="radio" th:field="*{feelingWorried}" value="3"></td>
-                        <td><input type="radio" th:field="*{feelingWorried}" value="4"></td>
-
-                    </tr>
-                    <tr>
-                        <td><strong>(Q20) Have you felt irritable?</strong></td>
-                        <td><input type="radio" th:field="*{feelingIrritable}" value="0"></td>
-                        <td><input type="radio" th:field="*{feelingIrritable}" value="1"></td>
-                        <td><input type="radio" th:field="*{feelingIrritable}" value="2"></td>
-                        <td><input type="radio" th:field="*{feelingIrritable}" value="3"></td>
-                        <td><input type="radio" th:field="*{feelingIrritable}" value="4"></td>
-
-                    </tr>
-                    <tr>
-                        <td><strong>(Q21) Have you felt depressed?</strong></td>
-                        <td><input type="radio" th:field="*{feelingDepressed}" value="0"></td>
-                        <td><input type="radio" th:field="*{feelingDepressed}" value="1"></td>
-                        <td><input type="radio" th:field="*{feelingDepressed}" value="2"></td>
-                        <td><input type="radio" th:field="*{feelingDepressed}" value="3"></td>
-                        <td><input type="radio" th:field="*{feelingDepressed}" value="4"></td>
-
-                    </tr>
-                </table>
-
-                    <p><strong>(Q22) Overall, how would you rate your quality of life at present? </strong></p>
-                <table>
-                <tr>
-                    <td>(Poor) 0</td>
-                    <td><input type="radio" th:field="*{qualityOfLife}" value="0"></td>
-                    <td>1</td>
-                    <td><input type="radio" th:field="*{qualityOfLife}" value="1"></td>
-                    <td>2</td>
-                    <td><input type="radio" th:field="*{qualityOfLife}" value="2"></td>
-                    <td>3</td>
-                    <td><input type="radio" th:field="*{qualityOfLife}" value="3"></td>
-                    <td>4</td>
-                    <td><input type="radio" th:field="*{qualityOfLife}" value="4"></td>
-                    <td>5</td>
-                    <td><input type="radio" th:field="*{qualityOfLife}" value="5"></td>
-                    <td>6</td>
-                    <td><input type="radio" th:field="*{qualityOfLife}" value="6"></td>
-                    <td>7</td>
-                    <td><input type="radio" th:field="*{qualityOfLife}" value="7"></td>
-                    <td>8</td>
-                    <td><input type="radio" th:field="*{qualityOfLife}" value="8"></td>
-                    <td>9</td>
-                    <td><input type="radio" th:field="*{qualityOfLife}" value="9"></td>
-                    <td><input type="radio" th:field="*{qualityOfLife}" value="10"></td>
-                    <td>10 (Excellent)</td>
-                </tr>
-                </table>
-            </fieldset>
-            <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
-                Submit Quality of Life Questionnaire
-            </button>
+            <p><strong>(Q22) Overall, how would you rate your quality of life at present?</strong></p>
+            <div class="nhsuk-form-group">
+                <select class="nhsuk-select" id="qualityOfLife-select" name="qualityOfLife" th:field="*{qualityOfLife}">
+                    <option value="0">0 (Poor)</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10 (Excellent)</option>
+                </select>
+            </div>
+                <button class="nhsuk-button" data-module="nhsuk-button" type="submit">Submit Quality of Life Questionnaire</button>
         </form>
     </main>
 </div>
@@ -356,18 +1022,17 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        //Function to display confirmation dialog
+        // Function to display confirmation dialog
         function confirmSubmission(event) {
             if (!confirm("Please check your answers before submitting your Quality of Life questionnaire.\n\nAre you sure you want to submit?")) {
                 event.preventDefault();
             }
         }
 
-        //Attaches the submit event listener to the form
+        // Attaches the submit event listener to the form
         const form = document.getElementById('qol-form');
         form.addEventListener('submit', confirmSubmission);
     });
 </script>
-
 </body>
 </html>

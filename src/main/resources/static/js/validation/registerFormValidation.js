@@ -2,6 +2,11 @@ const registerFormConfig = {
     formElementId: 'register-form',
     validationRules: [
         {
+            fieldId: 'clinic',
+            errorMessage: 'Choose your clinic',
+            rules: (value) => value !== ''
+        },
+        {
             fieldId: 'email',
             errorMessage: 'Enter your email address',
             rules: (value) => value !== ''

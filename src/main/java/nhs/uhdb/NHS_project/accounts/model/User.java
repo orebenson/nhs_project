@@ -16,6 +16,8 @@ public class User {
     private String city;
     private String postcode;
 
+    private String clinic;
+
     public User() {
         this.user_id = null;
         this.email = "";
@@ -26,5 +28,6 @@ public class User {
         this.address2 = "";
         this.city = "";
         this.postcode = "";
+        this.clinic = "";
     }
 }
