@@ -44,6 +44,12 @@
                     </a>
                 </li>
 
+                <li class="nhsuk-tabs__list-item">
+                    <a class="nhsuk-tabs__tab" href="#goals">
+                        Goals
+                    </a>
+                </li>
+
             </ul>
 
             <div class="nhsuk-tabs__panel" id="entries">
@@ -134,6 +140,50 @@
                     </div>
                 </details>
 
+            </div>
+
+            <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="goals">
+                <h2>Patient goals</h2>
+
+                <div th:if="${#lists.isEmpty(goals)}">
+                    <p>This patient does not have any goals set.</p>
+                </div>
+
+                <table class="nhsuk-table" th:unless="${#lists.isEmpty(goals)}">
+                    <thead role="rowgroup" class="nhsuk-table__head">
+                    <tr role="row">
+                        <th role="columnheader" class="" scope="col">
+                            Description
+                        </th>
+                        <th role="columnheader" class="" scope="col">
+                            Value
+                        </th>
+                        <th role="columnheader" class="" scope="col">
+                            Deadline
+                        </th>
+                        <th role="columnheader" class="" scope="col">
+
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody class="nhsuk-table__body">
+                    <tr th:each="goal : ${goals}" role="row"
+                        class="nhsuk-table__row">
+                        <td class="nhsuk-table__cell"
+                            th:text="${goal.getGoalPart} + ' - ' + ${goal.getGoalDescription}">
+                            Goal Description
+                        </td>
+                        <td class="nhsuk-table__cell"
+                            th:text="${goal.getGoalMeasurement} + ' ' + ${goal.getGoalUnit}">
+                            Goal Value
+                        </td>
+                        <td class="nhsuk-table__cell"
+                            th:text="${goal.getGoalDeadline}">
+                            Goal Deadline
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
 
         </div>
