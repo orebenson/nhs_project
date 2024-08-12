@@ -10,20 +10,24 @@
 <header th:replace="~{fragments/_fragments :: header}"></header>
 <div class="nhsuk-width-container">
     <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+
         <nav class="nhsuk-breadcrumb" aria-label="Breadcrumb">
             <div class="nhsuk-width-container">
                 <ol class="nhsuk-breadcrumb__list">
                     <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/admin}">Admin
                         area</a></li>
-                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/admin/goals}">Goal
-                        Management</a></li>
-                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Set Goal</a>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/admin/search}">Search
+                        patients</a></li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link"
+                                                          th:href="@{/admin/search/{userId}(userId=${user.user_id})}">Patient
+                        details</a></li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Set goal</a>
                     </li>
                 </ol>
                 <p class="nhsuk-breadcrumb__back">
-                    <a class="nhsuk-breadcrumb__backlink" th:href="@{/admin/goals}">
+                    <a class="nhsuk-breadcrumb__backlink" th:href="@{/admin/search/{userId}(userId=${user.user_id})}">
                         <span class="nhsuk-u-visually-hidden">Go back &nbsp;</span>
-                        Goal Management
+                        Patient details
                     </a>
                 </p>
             </div>
@@ -33,7 +37,7 @@
                 th:text="${user.getFirstname() + ' ' + user.getLastname()}">User Name</span></h2>
         <form th:action="@{/admin/{userId}/goal(userId=${user.user_id})}" th:object="${goal}" th:method="post">
             <div class="nhsuk-form-group">
-                <label class="nhsuk-label" for="goal_part">Part:</label>
+                <label class="nhsuk-label" for="goal_part">Body Area:</label>
                 <input class="nhsuk-input" type="text" id="goal_part" name="goal_part" th:field="*{goalPart}" required>
             </div>
             <div class="nhsuk-form-group">
