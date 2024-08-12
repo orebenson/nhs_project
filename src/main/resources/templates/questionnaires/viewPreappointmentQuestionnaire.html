@@ -6,6 +6,8 @@
 </head>
 <body>
 <script th:replace="~{fragments/_fragments :: pagescript}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 <header th:replace="~{fragments/_fragments :: header}"></header>
 <div class="nhsuk-width-container">
     <main class="nhsuk-main-wrapper" id="maincontent" role="main">
@@ -38,9 +40,15 @@
             </h1>
         </legend>
 
+
+
         <div>
             <p><strong>Date of Submission:</strong> <span th:text="${formattedDate}"></span></p>
+            <p id="firstName"><strong>Name:</strong> <span th:text="${user.firstname}"></span></p>
+            <p id="lastName"><strong>Surname:</strong> <span th:text="${user.lastname}"></span></p>
         </div>
+
+
 
         <dl class="nhsuk-summary-list">
             <div class="nhsuk-summary-list__row">
@@ -48,7 +56,7 @@
                     1. Medications
                 </dt>
                 <dd class="nhsuk-summary-list__value">
-                    <p th:text="${#strings.isEmpty(preappointmentQuestionnaireForm.medications) ? '(N/A - Patient left empty)' : preappointmentQuestionnaireForm.medications}"></p>
+                    <p th:text="${#strings.isEmpty(preappointmentQuestionnaireForm.medications) ? '(N/A)' : preappointmentQuestionnaireForm.medications}"></p>
                 </dd>
             </div>
 
@@ -57,7 +65,7 @@
                     2. Any changes to health/new diagnoses
                 </dt>
                 <dd class="nhsuk-summary-list__value">
-                    <p th:text="${#strings.isEmpty(preappointmentQuestionnaireForm.changesToHealth) ? '(N/A - Patient left empty)' : preappointmentQuestionnaireForm.changesToHealth}"></p>
+                    <p th:text="${#strings.isEmpty(preappointmentQuestionnaireForm.changesToHealth) ? '(N/A)' : preappointmentQuestionnaireForm.changesToHealth}"></p>
                 </dd>
             </div>
 
@@ -66,7 +74,7 @@
                     3. Any concerns regarding swelling
                 </dt>
                 <dd class="nhsuk-summary-list__value">
-                    <p th:text="${#strings.isEmpty(preappointmentQuestionnaireForm.swellingConcerns) ? '(N/A - Patient left empty)' : preappointmentQuestionnaireForm.swellingConcerns}"></p>
+                    <p th:text="${#strings.isEmpty(preappointmentQuestionnaireForm.swellingConcerns) ? '(N/A)' : preappointmentQuestionnaireForm.swellingConcerns}"></p>
                 </dd>
             </div>
 
@@ -75,7 +83,7 @@
                     4. Any concerns regarding hosiery
                 </dt>
                 <dd class="nhsuk-summary-list__value">
-                    <p th:text="${#strings.isEmpty(preappointmentQuestionnaireForm.hosieryConcerns) ? '(N/A - Patient left empty)' : preappointmentQuestionnaireForm.hosieryConcerns}"></p>
+                    <p th:text="${#strings.isEmpty(preappointmentQuestionnaireForm.hosieryConcerns) ? '(N/A)' : preappointmentQuestionnaireForm.hosieryConcerns}"></p>
                 </dd>
             </div>
             <div class="nhsuk-summary-list__row">
@@ -106,104 +114,174 @@
                         <div class="nhsuk-summary-list__row">
                             <dt class="nhsuk-summary-list__key">What date did the cellulitis occur?</dt>
                             <dd class="nhsuk-summary-list__value">
-                                <p th:text="${#strings.isEmpty(episode.dateOfCellulitis) ? '(N/A - Patient left empty)' : episode.dateOfCellulitis}"></p>
+                                <p th:text="${#strings.isEmpty(episode.dateOfCellulitis) ? '(N/A)' : episode.dateOfCellulitis}"></p>
                             </dd>
                         </div>
                         <div class="nhsuk-summary-list__row">
                             <dt class="nhsuk-summary-list__key">What area was affected by the cellulitis?</dt>
                             <dd class="nhsuk-summary-list__value">
-                                <p th:text="${#strings.isEmpty(episode.areaAffected) ? '(N/A - Patient left empty)' : episode.areaAffected}"></p>
+                                <p th:text="${#strings.isEmpty(episode.areaAffected) ? '(N/A)' : episode.areaAffected}"></p>
                             </dd>
                         </div>
                         <div class="nhsuk-summary-list__row">
                             <dt class="nhsuk-summary-list__key">Was there any redness?</dt>
                             <dd class="nhsuk-summary-list__value">
-                                <p th:text="${#strings.isEmpty(episode.redness) ? '(N/A - Patient left empty)' : episode.redness}"></p>
+                                <p th:text="${#strings.isEmpty(episode.redness) ? '(N/A)' : episode.redness}"></p>
                             </dd>
                         </div>
                         <div class="nhsuk-summary-list__row">
                             <dt class="nhsuk-summary-list__key">Did you experience increased pain or discomfort?</dt>
                             <dd class="nhsuk-summary-list__value">
-                                <p th:text="${#strings.isEmpty(episode.painDiscomfort) ? '(N/A - Patient left empty)' : episode.painDiscomfort}"></p>
+                                <p th:text="${#strings.isEmpty(episode.painDiscomfort) ? '(N/A)' : episode.painDiscomfort}"></p>
                             </dd>
                         </div>
                         <div class="nhsuk-summary-list__row">
                             <dt class="nhsuk-summary-list__key">Was the affected area warm to touch?</dt>
                             <dd class="nhsuk-summary-list__value">
-                                <p th:text="${#strings.isEmpty(episode.warmTouch) ? '(N/A - Patient left empty)' : episode.warmTouch}"></p>
+                                <p th:text="${#strings.isEmpty(episode.warmTouch) ? '(N/A)' : episode.warmTouch}"></p>
                             </dd>
                         </div>
                         <div class="nhsuk-summary-list__row">
                             <dt class="nhsuk-summary-list__key">Did your swelling worsen?</dt>
                             <dd class="nhsuk-summary-list__value">
-                                <p th:text="${#strings.isEmpty(episode.swellingWorsen) ? '(N/A - Patient left empty)' : episode.swellingWorsen}"></p>
+                                <p th:text="${#strings.isEmpty(episode.swellingWorsen) ? '(N/A)' : episode.swellingWorsen}"></p>
                             </dd>
                         </div>
                         <div class="nhsuk-summary-list__row">
                             <dt class="nhsuk-summary-list__key">Did you develop any blisters?</dt>
                             <dd class="nhsuk-summary-list__value">
-                                <p th:text="${#strings.isEmpty(episode.blisters) ? '(N/A - Patient left empty)' : episode.blisters}"></p>
+                                <p th:text="${#strings.isEmpty(episode.blisters) ? '(N/A)' : episode.blisters}"></p>
                             </dd>
                         </div>
                         <div class="nhsuk-summary-list__row">
                             <dt class="nhsuk-summary-list__key">Did you have a raised temperature?</dt>
                             <dd class="nhsuk-summary-list__value">
-                                <p th:text="${#strings.isEmpty(episode.raisedTemperature) ? '(N/A - Patient left empty)' : episode.raisedTemperature}"></p>
+                                <p th:text="${#strings.isEmpty(episode.raisedTemperature) ? '(N/A)' : episode.raisedTemperature}"></p>
                             </dd>
                         </div>
                         <div class="nhsuk-summary-list__row">
                             <dt class="nhsuk-summary-list__key">Did you experience any flu like symptoms?</dt>
                             <dd class="nhsuk-summary-list__value">
-                                <p th:text="${#strings.isEmpty(episode.fluSymptoms) ? '(N/A - Patient left empty)' : episode.fluSymptoms}"></p>
+                                <p th:text="${#strings.isEmpty(episode.fluSymptoms) ? '(N/A)' : episode.fluSymptoms}"></p>
                             </dd>
                         </div>
                         <div class="nhsuk-summary-list__row">
                             <dt class="nhsuk-summary-list__key">Where did you visit/contact for advice/review?</dt>
                             <dd class="nhsuk-summary-list__value">
-                                <p th:text="${#strings.isEmpty(episode.adviceVisit) ? '(N/A - Patient left empty)' : episode.adviceVisit}"></p>
+                                <p th:text="${#strings.isEmpty(episode.adviceVisit) ? '(N/A)' : episode.adviceVisit}"></p>
                             </dd>
                         </div>
                         <div class="nhsuk-summary-list__row">
                             <dt class="nhsuk-summary-list__key">Were you prescribed oral antibiotics (tablets)?</dt>
                             <dd class="nhsuk-summary-list__value">
-                                <p th:text="${#strings.isEmpty(episode.oralAntibiotics) ? '(N/A - Patient left empty)' : episode.oralAntibiotics}"></p>
+                                <p th:text="${#strings.isEmpty(episode.oralAntibiotics) ? '(N/A)' : episode.oralAntibiotics}"></p>
                             </dd>
                         </div>
                         <div class="nhsuk-summary-list__row">
                             <dt class="nhsuk-summary-list__key">If yes, how long did this course last for?</dt>
                             <dd class="nhsuk-summary-list__value">
-                                <p th:text="${#strings.isEmpty(episode.courseDuration) ? '(N/A - Patient left empty)' : episode.courseDuration}"></p>
+                                <p th:text="${#strings.isEmpty(episode.courseDuration) ? '(N/A)' : episode.courseDuration}"></p>
                             </dd>
                         </div>
                         <div class="nhsuk-summary-list__row">
                             <dt class="nhsuk-summary-list__key">Did you require IV antibiotics (through a drip)?</dt>
                             <dd class="nhsuk-summary-list__value">
-                                <p th:text="${#strings.isEmpty(episode.ivAntibiotics) ? '(N/A - Patient left empty)' : episode.ivAntibiotics}"></p>
+                                <p th:text="${#strings.isEmpty(episode.ivAntibiotics) ? '(N/A)' : episode.ivAntibiotics}"></p>
                             </dd>
                         </div>
                         <div class="nhsuk-summary-list__row">
                             <dt class="nhsuk-summary-list__key">Did you require admission to hospital?</dt>
                             <dd class="nhsuk-summary-list__value">
-                                <p th:text="${#strings.isEmpty(episode.hospitalAdmission) ? '(N/A - Patient left empty)' : episode.hospitalAdmission}"></p>
+                                <p th:text="${#strings.isEmpty(episode.hospitalAdmission) ? '(N/A)' : episode.hospitalAdmission}"></p>
                             </dd>
                         </div>
                         <div class="nhsuk-summary-list__row">
                             <dt class="nhsuk-summary-list__key">Did you contact the Lymphoedema Clinic to inform them you’d had cellulitis?</dt>
                             <dd class="nhsuk-summary-list__value">
-                                <p th:text="${#strings.isEmpty(episode.lymphoedemaClinicContact) ? '(N/A - Patient left empty)' : episode.lymphoedemaClinicContact}"></p>
+                                <p th:text="${#strings.isEmpty(episode.lymphoedemaClinicContact) ? '(N/A)' : episode.lymphoedemaClinicContact}"></p>
                             </dd>
                         </div>
                         <div class="nhsuk-summary-list__row">
                             <dt class="nhsuk-summary-list__key">Comments</dt>
                             <dd class="nhsuk-summary-list__value">
-                                <p th:text="${#strings.isEmpty(episode.comments) ? '(N/A - Patient left empty)' : episode.comments}"></p>
+                                <p th:text="${#strings.isEmpty(episode.comments) ? '(N/A)' : episode.comments}"></p>
                             </dd>
                         </div>
                     </dl>
                 </div>
             </div>
+
+        <div style="display: flex; justify-content: flex-end;">
+            <button class="nhsuk-button" data-module="nhsuk-button" onclick="exportPDF()">Export to PDF file</button>
+        </div>
     </main>
 </div>
 <footer th:replace="~{fragments/_fragments :: footer}"></footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        window.exportPDF = function() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            const submissionDate = document.querySelector('p > span').textContent.trim();
+            const firstName = document.getElementById('firstName').querySelector('span').textContent.trim();
+            const lastName = document.getElementById('lastName').querySelector('span').textContent.trim();
+            const initials = firstName.charAt(0) + lastName.charAt(0);
+
+            //Header Information - Title and Submission Date
+            doc.setFontSize(16);
+            doc.text('Pre-Appointment Questionnaire Details', 10, 10);
+            doc.line(10, 12, 200, 12);
+
+            doc.setFontSize(12);
+            doc.text('Date of Submission: ' + submissionDate, 10, 20);
+            doc.text('Name: ' + firstName, 10, 30);
+            doc.text('Surname: ' + lastName, 10, 40);
+
+            //Printing form position beginning below the header information
+            let yPos = 50;
+
+            //Iterating the main summary list rows (excluding episodes)
+            document.querySelectorAll('.nhsuk-summary-list:not(.nhsuk-tabs__panel .nhsuk-summary-list) .nhsuk-summary-list__row').forEach(row => {
+                const key = row.querySelector('.nhsuk-summary-list__key').textContent.trim();
+                const value = row.querySelector('.nhsuk-summary-list__value p').textContent.trim();
+                doc.text(key + ': ' + value, 10, yPos);
+                yPos += 10;
+                if (yPos > 280) {
+                    doc.addPage();
+                    yPos = 10;
+                }
+            });
+
+            //Handling cellulitis episodes
+            const episodes = document.querySelectorAll('.nhsuk-tabs__panel');
+            episodes.forEach((panel, index) => {
+                //Placing the "Episode [number]" at the start of each episode's details
+                doc.setFontSize(12);
+                doc.setFont(undefined, 'bold');
+                doc.text(`Episode ${index + 1}`, 10, yPos);
+                doc.line(10, yPos + 2, 200, yPos + 2);
+                yPos += 10;
+                doc.setFont(undefined, 'normal');
+
+                panel.querySelectorAll('.nhsuk-summary-list__row').forEach(row => {
+                    const key = row.querySelector('.nhsuk-summary-list__key').textContent.trim();
+                    const value = row.querySelector('.nhsuk-summary-list__value p').textContent.trim();
+                    doc.text(key + ': ' + value, 10, yPos);
+                    yPos += 10;
+                    if (yPos > 280) {
+                        doc.addPage();
+                        yPos = 10;
+                    }
+                });
+            });
+
+            //Save the PDF
+            doc.save(`pre-appointment-questionnaire-${initials}-${submissionDate}.pdf`);
+        }
+    });
+</script>
+
 </body>
 </html>
