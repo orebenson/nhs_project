@@ -34,12 +34,16 @@
 
         <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
             <h1 class="nhsuk-fieldset__heading">
-                Quality of Life Questionnaire Details
+                Quality of Life Questionnaire Details - Leg Lymphoedema
             </h1>
         </legend>
 
+        <p><strong>Response Scale:</strong> N/A (0), Not at all (1), A little (2), Quite a bit (3), A lot (4)</p>
+
         <div>
             <p><strong>Date of Submission:</strong> <span th:text="${formattedDate}"></span></p>
+            <p id="firstName"><strong>Name:</strong> <span th:text="${user.firstname}"></span></p>
+            <p id="lastName"><strong>Surname:</strong> <span th:text="${user.lastname}"></span></p>
         </div>
 
         <dl class="nhsuk-summary-list">
@@ -221,8 +225,60 @@
             </div>
         </dl>
 
+        <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
+            <button class="nhsuk-button" data-module="nhsuk-button" onclick="exportPDF()">Export to PDF file</button>
+        </div>
+
     </main>
 </div>
 <footer th:replace="~{fragments/_fragments :: footer}"></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        window.exportPDF = function() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            const submissionDate = document.querySelector('p > span').textContent.trim();
+            const firstName = document.getElementById('firstName').querySelector('span').textContent.trim();
+            const lastName = document.getElementById('lastName').querySelector('span').textContent.trim();
+            const initials = firstName.charAt(0) + lastName.charAt(0);
+
+
+            //Header Information - Title, Response Scale, Submission Date, First name and Last name
+            doc.setFontSize(16);
+            doc.text('Quality of Life Questionnaire Details - Leg Lymphoedema', 10, 10);
+            doc.line(10, 12, 200, 12);
+
+            doc.setFontSize(12);
+            doc.text('Response Scale: N/A (0), Not at all (1), A little (2), Quite a bit (3), A lot (4)', 10, 20);
+
+            doc.setFontSize(12);
+            doc.text('Date of Submission: ' + submissionDate, 10, 30);
+            doc.text('Name: ' + firstName, 10, 35);
+            doc.text('Surname: ' + lastName, 10, 40);
+            doc.line(10, 12, 200, 12);
+
+            //Start printing form details below the header
+            let yPos = 50;
+
+            //Iterating over each question and its corresponding answer
+            document.querySelectorAll('.nhsuk-summary-list__row').forEach(row => {
+                const key = row.querySelector('.nhsuk-summary-list__key').textContent.trim();
+                const value = row.querySelector('.nhsuk-summary-list__value p').textContent.trim();
+                doc.text(key + ': ' + value, 10, yPos);
+                yPos += 10;
+                if (yPos > 270) {
+                    doc.addPage();
+                    yPos = 10;
+                }
+            });
+
+            //Save the PDF with title, initials and submission date
+            doc.save(`quality-of-life-questionnaire-${initials}-${submissionDate}.pdf`);
+        }
+    });
+</script>
 </body>
 </html>

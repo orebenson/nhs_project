@@ -40,15 +40,11 @@
             </h1>
         </legend>
 
-
-
         <div>
             <p><strong>Date of Submission:</strong> <span th:text="${formattedDate}"></span></p>
             <p id="firstName"><strong>Name:</strong> <span th:text="${user.firstname}"></span></p>
             <p id="lastName"><strong>Surname:</strong> <span th:text="${user.lastname}"></span></p>
         </div>
-
-
 
         <dl class="nhsuk-summary-list">
             <div class="nhsuk-summary-list__row">
@@ -87,18 +83,15 @@
                 </dd>
             </div>
             <div class="nhsuk-summary-list__row">
-                <dt class="nhsuk-summary-list__key">Cellulitis Episodes</dt>
+                <dt class="nhsuk-summary-list__key">5. Any episodes of cellulitis since last appointment</dt>
                 <dd class="nhsuk-summary-list__value">
                     <p th:text="${preappointmentQuestionnaireForm.cellulitisEpisodes}"></p>
                 </dd>
             </div>
         </dl>
 
-
-
-
             <div class="nhsuk-tabs" data-module="nhsuk-tabs">
-                <h2 class="nhsuk-tabs__title">Cellulitis Episodes Details</h2>
+                <h2 class="nhsuk-tabs__title">5.1 Cellulitis Episode Details</h2>
                 <ul class="nhsuk-tabs__list">
                     <li th:each="episode, iterStat : ${preappointmentQuestionnaireForm.episodes}"
                         class="nhsuk-tabs__list-item" th:classappend="${iterStat.index == 0} ? ' nhsuk-tabs__list-item--selected'">
@@ -229,25 +222,37 @@
             const lastName = document.getElementById('lastName').querySelector('span').textContent.trim();
             const initials = firstName.charAt(0) + lastName.charAt(0);
 
-            //Header Information - Title and Submission Date
+            //Header Information - Title, Submission Date, First name and Last name.
             doc.setFontSize(16);
             doc.text('Pre-Appointment Questionnaire Details', 10, 10);
             doc.line(10, 12, 200, 12);
 
             doc.setFontSize(12);
             doc.text('Date of Submission: ' + submissionDate, 10, 20);
-            doc.text('Name: ' + firstName, 10, 30);
-            doc.text('Surname: ' + lastName, 10, 40);
+            doc.text('Name: ' + firstName, 10, 25);
+            doc.text('Surname: ' + lastName, 10, 30);
 
-            //Printing form position beginning below the header information
-            let yPos = 50;
+
+            //Printing from position beginning below the header information
+            let yPos = 40;
 
             //Iterating the main summary list rows (excluding episodes)
             document.querySelectorAll('.nhsuk-summary-list:not(.nhsuk-tabs__panel .nhsuk-summary-list) .nhsuk-summary-list__row').forEach(row => {
                 const key = row.querySelector('.nhsuk-summary-list__key').textContent.trim();
                 const value = row.querySelector('.nhsuk-summary-list__value p').textContent.trim();
-                doc.text(key + ': ' + value, 10, yPos);
-                yPos += 10;
+
+                //Wrapping the text to fit within the page width
+                const wrappedText = doc.splitTextToSize(`${key}:`, 180);
+                doc.text(wrappedText, 10, yPos);
+                yPos += wrappedText.length * 5;
+
+                let wrappedAnswer = doc.splitTextToSize(value, 180);
+                doc.text(wrappedAnswer, 10, yPos);
+                yPos += wrappedAnswer.length * 5;
+
+                //Adding fixed space after each question and answer
+                yPos += 5;
+
                 if (yPos > 280) {
                     doc.addPage();
                     yPos = 10;
@@ -257,10 +262,11 @@
             //Handling cellulitis episodes
             const episodes = document.querySelectorAll('.nhsuk-tabs__panel');
             episodes.forEach((panel, index) => {
+
                 //Placing the "Episode [number]" at the start of each episode's details
                 doc.setFontSize(12);
                 doc.setFont(undefined, 'bold');
-                doc.text(`Episode ${index + 1}`, 10, yPos);
+                doc.text(`Cellulitis Episode ${index + 1}`, 10, yPos);
                 doc.line(10, yPos + 2, 200, yPos + 2);
                 yPos += 10;
                 doc.setFont(undefined, 'normal');
@@ -268,16 +274,22 @@
                 panel.querySelectorAll('.nhsuk-summary-list__row').forEach(row => {
                     const key = row.querySelector('.nhsuk-summary-list__key').textContent.trim();
                     const value = row.querySelector('.nhsuk-summary-list__value p').textContent.trim();
-                    doc.text(key + ': ' + value, 10, yPos);
-                    yPos += 10;
-                    if (yPos > 280) {
+
+                    //Wrapping the key and value text to fit within the page width
+                    const wrappedKey = doc.splitTextToSize(`${key}: ${value}`, 180);
+                    doc.text(wrappedKey, 10, yPos);
+                    yPos += wrappedKey.length * 5;
+
+                    //Adding a fixed space after each question and answer
+                    yPos += 5;
+                    if (yPos > 270) {
                         doc.addPage();
                         yPos = 10;
                     }
                 });
             });
 
-            //Save the PDF
+            //Save the PDF with title, initials and submission date
             doc.save(`pre-appointment-questionnaire-${initials}-${submissionDate}.pdf`);
         }
     });
