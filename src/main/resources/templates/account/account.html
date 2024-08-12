@@ -65,50 +65,50 @@
 
             </dl>
 
-            <details class="nhsuk-details nhsuk-expander nhsuk-u-width-two-thirds">
-                <summary class="nhsuk-details__summary">
-                    <span class="nhsuk-details__summary-text">
-                Notification settings
-              </span>
-                </summary>
-                <div class="nhsuk-details__text">
+<!--            <details class="nhsuk-details nhsuk-expander nhsuk-u-width-two-thirds">-->
+<!--                <summary class="nhsuk-details__summary">-->
+<!--                    <span class="nhsuk-details__summary-text">-->
+<!--                Notification settings-->
+<!--              </span>-->
+<!--                </summary>-->
+<!--                <div class="nhsuk-details__text">-->
 
-                    <!-- Notification Settings -->
-                    <h2>Notification settings</h2>
-                    <form th:method="post" th:action="@{/submit-notifications}" id="notification-settings-form">
-                        <fieldset class="nhsuk-fieldset">
-                            <div class="nhsuk-checkboxes">
+<!--                    &lt;!&ndash; Notification Settings &ndash;&gt;-->
+<!--                    <h2>Notification settings</h2>-->
+<!--                    <form th:method="post" th:action="@{/submit-notifications}" id="notification-settings-form">-->
+<!--                        <fieldset class="nhsuk-fieldset">-->
+<!--                            <div class="nhsuk-checkboxes">-->
 
-                                <div class="nhsuk-checkboxes__item">
-                                    <input class="nhsuk-checkboxes__input" id="daily-reminders" name="daily-reminders"
-                                       type="checkbox"
-                                       value="daily-reminders">
-                                    <label class="nhsuk-label nhsuk-checkboxes__label" for="daily-reminders">
-                                    Daily reminders:
-                                </label>
-                                </div>
+<!--                                <div class="nhsuk-checkboxes__item">-->
+<!--                                    <input class="nhsuk-checkboxes__input" id="daily-reminders" name="daily-reminders"-->
+<!--                                       type="checkbox"-->
+<!--                                       value="daily-reminders">-->
+<!--                                    <label class="nhsuk-label nhsuk-checkboxes__label" for="daily-reminders">-->
+<!--                                    Daily reminders:-->
+<!--                                </label>-->
+<!--                                </div>-->
 
-                                <div class="nhsuk-checkboxes__item">
-                                    <input class="nhsuk-checkboxes__input" id="pre-appointment-reminders"
-                                       name="pre-appointment-reminders" type="checkbox"
-                                       value="pre-appointment-reminders">
-                                    <label class="nhsuk-label nhsuk-checkboxes__label" for="pre-appointment-reminders">
-                                    Pre-appointment questionnaire reminders:
-                                </label>
-                                </div>
+<!--                                <div class="nhsuk-checkboxes__item">-->
+<!--                                    <input class="nhsuk-checkboxes__input" id="pre-appointment-reminders"-->
+<!--                                       name="pre-appointment-reminders" type="checkbox"-->
+<!--                                       value="pre-appointment-reminders">-->
+<!--                                    <label class="nhsuk-label nhsuk-checkboxes__label" for="pre-appointment-reminders">-->
+<!--                                    Pre-appointment questionnaire reminders:-->
+<!--                                </label>-->
+<!--                                </div>-->
 
-                            </div>
-                        </fieldset>
-                        <br>
-                        <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
-                        Save settings
-                    </button>
+<!--                            </div>-->
+<!--                        </fieldset>-->
+<!--                        <br>-->
+<!--                        <button class="nhsuk-button" data-module="nhsuk-button" type="submit">-->
+<!--                        Save settings-->
+<!--                    </button>-->
 
-                    </form>
+<!--                    </form>-->
 
 
-                </div>
-            </details>
+<!--                </div>-->
+<!--            </details>-->
 
 
             <form th:method="post" th:action="@{/logout}">
