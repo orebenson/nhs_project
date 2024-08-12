@@ -28,9 +28,7 @@ public class DiaryController {
     private GoalService goalService;
     private AppointmentService appointmentService;
 
-    public DiaryController(UserService userService, DiaryEntryService diaryEntryService, TreatmentPlanService treatmentPlanService, GoalService goalService) {
-
-    public DiaryController(UserService userService, DiaryEntryService diaryEntryService, TreatmentPlanService treatmentPlanService, AppointmentService appointmentService) {
+    public DiaryController(UserService userService, DiaryEntryService diaryEntryService, TreatmentPlanService treatmentPlanService, GoalService goalService, AppointmentService appointmentService) {
         this.userService = userService;
         this.diaryEntryService = diaryEntryService;
         this.treatmentPlanService = treatmentPlanService;
