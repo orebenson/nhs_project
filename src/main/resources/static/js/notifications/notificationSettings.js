@@ -1,17 +1,25 @@
 $(document).ready(function() {
-    $('#notification-settings-form').on('submit', function(event) {
-        event.preventDefault(); // Prevent default form submission
+    $('#notification-form').on('submit', function(e) {
+        e.preventDefault(); // Prevent the default form submission
+
+        // Create a FormData object if necessary
+        let formData = new FormData(this);
 
         $.ajax({
             type: 'POST',
-            url: $(this).attr('action'),
+            url: $('#notification-form').attr('action'),
             data: $(this).serialize(),
-            success: function(response) {
-                $('#notification-message').html('<p>Settings saved and notifications sent successfully!</p>');
+            success: function() {
+                // Extract userId dynamically from the body data attribute
+                var userId = $('body').data('userid');
+
+                // Construct the dynamic URL with the userId
+                window.location.href = "/admin/search/" + userId + "#details";
             },
-            error: function(error) {
-                $('#notification-message').html('<p>There was an error sending the notifications. Please try again.</p>');
+            error: function(response) {
+                console.log('Error sending notifications: ', response);
             }
         });
+
     });
 });

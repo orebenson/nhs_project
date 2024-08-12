@@ -3,11 +3,14 @@
 <head>
     <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
     <title>Admin Area</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/js/progress_chart/AdminChart.js"></script>
-    <script src="/js/notifications/notification.js" defer></script>
+    <script src="/js/notifications/notificationSettings.js"></script>
+
 
 </head>
+
 <body th:data-userid="${user.user_id}">
 <script th:replace="~{fragments/_fragments :: pagescript}"></script>
 <header th:replace="~{fragments/_fragments :: header}"></header>
@@ -323,29 +326,30 @@
 
             <!-- Notifications Tab -->
             <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="notifications">
-                <h2>Send Notifications</h2>
-                <form th:action="@{/admin/notify/{userId}(userId=${user.user_id})}" method="post" id="notification-form">
-                    <div class="nhsuk-form-group">
-                        <label class="nhsuk-label" for="notification-checkboxes">Select notifications to send:</label>
-                        <div id="notification-checkboxes">
-                            <div class="nhsuk-checkboxes__item">
-                                <input class="nhsuk-checkboxes__input" id="notify-progress" name="notifications" value="progress" type="checkbox">
-                                <label class="nhsuk-label nhsuk-checkboxes__label" for="notify-progress">Progress Update</label>
-                            </div>
-                            <div class="nhsuk-checkboxes__item">
-                                <input class="nhsuk-checkboxes__input" id="notify-goal" name="notifications" value="goal" type="checkbox">
-                                <label class="nhsuk-label nhsuk-checkboxes__label" for="notify-goal">Goal Reminder</label>
-                            </div>
-                            <div class="nhsuk-checkboxes__item">
-                                <input class="nhsuk-checkboxes__input" id="notify-diary" name="notifications" value="diary" type="checkbox">
-                                <label class="nhsuk-label nhsuk-checkboxes__label" for="notify-diary">Diary Entry Reminder</label>
-                            </div>
-                        </div>
+            <h2>Send Notifications</h2>
+            <form id="notification-form" th:action="@{/notifications/submit-notifications}" th:method="post">
+                <input type="hidden" name="userId" th:value="${user.user_id}" />
+                <div class="nhsuk-checkboxes">
+                    <label class="nhsuk-label" id="notification-checkboxes">
+                        Select notifications to send:
+                    </label>
+                    <div class="nhsuk-checkboxes__item">
+                        <input class="nhsuk-checkboxes__input" type="checkbox" id="dailyReminders" name="dailyReminders">
+                        <label class="nhsuk-label nhsuk-checkboxes__label" for="dailyReminders">Daily Reminders</label>
                     </div>
-                    <button type="submit" class="nhsuk-button nhsuk-button--secondary">Send Notifications</button>
-                </form>
-            </div>
+                    <div class="nhsuk-checkboxes__item">
+                        <input class="nhsuk-checkboxes__input" type="checkbox" id="appointmentReminders" name="appointmentReminders">
+                        <label class="nhsuk-label nhsuk-checkboxes__label" for="appointmentReminders">Appointment Reminders</label>
+                    </div>
+                </div>
+                <button class="nhsuk-button" type="submit">Send Notifications</button>
+            </form>
+                </div>
+
         </div>
+
+
+
 
 
         <!--        <h2>Patient details</h2>-->

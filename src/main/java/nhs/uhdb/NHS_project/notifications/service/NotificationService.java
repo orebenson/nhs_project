@@ -14,29 +14,22 @@ public class NotificationService {
     private JavaMailSender mailSender;
 
     public void sendNotifications(User user, NotificationSettings notificationSettings) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(user.getEmail());
-
         if (notificationSettings.isDailyReminders()) {
-            message.setSubject("Daily Reminder");
-            message.setText("This is your daily reminder.");
-            mailSender.send(message);
+            sendEmail(user.getEmail(), "Daily Reminder", "This is your daily reminder to update your diary.");
         }
 
         if (notificationSettings.isAppointmentReminders()) {
-            message.setSubject("Appointment Reminder");
-            message.setText("This is your appointment reminder.");
-            mailSender.send(message);
+            sendEmail(user.getEmail(), "Appointment Reminder", "This is your appointment reminder.");
         }
     }
-
-
 
     private void sendEmail(String to, String subject, String text) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to);
         message.setSubject(subject);
+        System.out.println("Sending email to: " + to);
         message.setText(text);
         mailSender.send(message);
+        System.out.println("Email sent successfully");
     }
 }
