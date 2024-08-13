@@ -105,7 +105,7 @@
                     </label>
                     <input th:field="*{cellulitisEpisodes}" class="nhsuk-input nhsuk-input--width-10"
                            id="cellulitisEpisodes" name="cellulitisEpisodes" type="text"
-                           aria-describedby="Number of cellulitis episodes" inputmode="numeric">
+                           aria-describedby="Number of cellulitis episodes" inputmode="numeric" value="">
                     <br><br>
                     <div id="cellulitisEpisodesContainer"></div>
 
@@ -139,6 +139,7 @@
                 <h3 class="nhsuk-label-wrapper">5.1. Cellulitis Incident Details (Episode ${i})</h3>
                                 <label class="nhsuk-label" for="episodes[${i-1}].dateOfCellulitis"><strong>What date did the cellulitis occur?</strong></label>
                 <input th:field="*{episodes[${i-1}].dateOfCellulitis}" type="date" class="nhsuk-input" id="episodes[${i-1}].dateOfCellulitis" name="episodes[${i-1}].dateOfCellulitis">
+                <span class="date-error-message" id="error-${i-1}" style="color: red; display: none;">Date must be in the past.</span>
 
                 <label class="nhsuk-label" for="episodes[${i-1}].areaAffected"><strong>What area was affected by the cellulitis?</strong></label>
                 <input th:field="*{episodes[${i-1}].areaAffected}" type="text" class="nhsuk-input" id="episodes[${i-1}].areaAffected" name="episodes[${i-1}].areaAffected">
@@ -307,6 +308,20 @@
                 <textarea th:field="*{episodes[${i-1}].comments}" class="nhsuk-textarea" id="episodes[${i-1}].comments" name="episodes[${i-1}].comments" rows="5" aria-describedby="comments"></textarea>
                 `;
                 container.appendChild(episodeDetails);
+
+                //Adding validation to the date input field so that users must choose a date in the past
+                document.getElementById(`episodes[${i-1}].dateOfCellulitis`).addEventListener('change', function() {
+                    let selectedDate = new Date(this.value);
+                    let today = new Date();
+                    today.setHours(0, 0, 0, 0);
+
+                    if (selectedDate.setHours(0,0,0,0) > today.getTime()) {
+                        this.value = ''; //Clears the invalid date
+                        document.getElementById(`error-${i-1}`).style.display = 'block';
+                    } else {
+                        document.getElementById(`error-${i-1}`).style.display = 'none';
+                    }
+                });
             }
         }
     });
