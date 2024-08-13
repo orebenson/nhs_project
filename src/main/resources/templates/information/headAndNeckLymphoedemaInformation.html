@@ -2,28 +2,24 @@
 <html lang="en">
 <head>
     <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
-
-
-    <title>Head and neck lymphoedema Information</title>
-
-    <!--    add any extra javascript file references here-->
-
+    <title>Head and Neck Lymphoedema Information</title>
+    <!-- Add any extra JavaScript file references here -->
 </head>
 <body>
 <script th:replace="~{fragments/_fragments :: pagescript}"></script>
 <header th:replace="~{fragments/_fragments :: header}"></header>
 <div class="nhsuk-width-container">
     <main class="nhsuk-main-wrapper" id="maincontent" role="main">
-        <!-- Sources Section -->
+
+        <!-- Information Sources -->
         <p>Information source: <a href="http://www.lymphoedema.org">The Lymphoedema Support Network (LSN)</a>, <a href="https://www.nhs.uk/conditions/lymphoedema/">NHS Health Guide</a>, <a href="https://www.thebls.com/">British Lymphology Society (BLS)</a>, <a href="https://www.macmillan.org.uk/">Macmillan Cancer Support</a>, <a href="https://www.uhdb.nhs.uk/service-lymphoedema">University Hospital of Derby and Burton - Lymphoedema Service Patient Information</a></p>
-        
+
+        <!-- Breadcrumb Navigation -->
         <nav class="nhsuk-breadcrumb" aria-label="Breadcrumb">
             <div class="nhsuk-width-container">
                 <ol class="nhsuk-breadcrumb__list">
                     <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/information}">Information</a></li>
-                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Head and neck lymphoedema</a>
-                    </li>
-
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Head and neck lymphoedema</a></li>
                 </ol>
                 <p class="nhsuk-breadcrumb__back">
                     <a class="nhsuk-breadcrumb__backlink" th:href="@{/information}">
@@ -34,33 +30,83 @@
             </div>
         </nav>
 
-        <h1>Head and neck lymphoedema</h1>
+        <!-- Page Title -->
+        <h1>Head and Neck Lymphoedema</h1>
+
+        <!-- Overview Section -->
         <section>
             <h2>What is Head and Neck Lymphoedema?</h2>
-            <p>Head and neck lymphoedema is a condition where swelling occurs in the soft tissues of the head and neck due to a malfunctioning lymphatic system. This often arises from treatments like surgery or radiation that impact lymph nodes.</p>
+            <p>Head and neck lymphoedema is a swelling that occurs in the soft tissues of the head and neck due to an impaired lymphatic system. This may result from treatments such as surgery or radiation that affect the lymph nodes, leading to fluid retention and tissue swelling. Understanding and managing this condition is crucial, especially for those who have undergone cancer treatments.</p>
         </section>
 
-        <h2>Information</h2>
+        <!-- Expandable Section: Detailed Explanation -->
+        <details class="nhsuk-details">
+            <summary class="nhsuk-details__summary">
+                <span class="nhsuk-details__summary-text">More about Head and Neck Lymphoedema</span>
+            </summary>
+            <div class="nhsuk-details__text">
+                <p>Lymphoedema can lead to a variety of symptoms including a feeling of heaviness, tightness in the skin, and decreased flexibility. In severe cases, it may also cause discomfort or pain. This condition requires ongoing management to prevent worsening and complications such as infections.</p>
+            </div>
+        </details>
 
-        <h2>Guides</h2>
-        <h3>Taking Measurements</h3>
-        <h3>Taking Photos</h3>
-        <h3>Performing exercises</h3>
-        <h3>Donning and doffing</h3>
-        <h3>Using compression garments</h3>
-
-        <!-- Sources Section -->
+        <!-- Causes Section -->
         <section>
-            <h2>Sources</h2>
-            <p>This information was adapted from the following sources:</p>
+            <h2>Causes</h2>
+            <p>Head and neck lymphoedema often occurs as a secondary condition following treatment for head and neck cancers. These treatments can damage the lymphatic system, impairing its ability to drain fluid effectively. Other causes may include infections, injuries, or congenital abnormalities that affect the lymphatic system.</p>
+        </section>
+
+        <!-- Symptoms Section -->
+        <section>
+            <h2>Symptoms</h2>
             <ul>
-                <li>The Lymphoedema Support Network (LSN)</li>
-                <li>NHS Health Guide</li>
-                <li>British Lymphology Society (BLS)</li>
-                <li>Macmillan Cancer Support</li>
-                <li>University Hospital of Derby and Burton - Lymphoedema Service Patient Information</li>
+                <li>Swelling in the face, neck, or around the eyes</li>
+                <li>A feeling of fullness or tightness in the affected areas</li>
+                <li>Changes in the texture of the skin</li>
+                <li>Reduced flexibility in the neck or jaw</li>
+                <li>Difficulty with daily activities due to discomfort or swelling</li>
             </ul>
         </section>
+
+        <!-- Treatment Section with Expandable Content -->
+        <section>
+            <h2>Treatment and Management</h2>
+            <details class="nhsuk-details nhsuk-expander">
+                <summary class="nhsuk-details__summary">
+                    <span class="nhsuk-details__summary-text">Skincare</span>
+                </summary>
+                <div class="nhsuk-details__text">
+                    <p>Maintaining proper skincare is vital in managing lymphoedema. The affected area is more prone to infections, so keeping the skin clean and moisturized is essential. Regular checks for any signs of infection, such as redness or increased warmth, should be conducted.</p>
+                </div>
+            </details>
+
+            <details class="nhsuk-details nhsuk-expander">
+                <summary class="nhsuk-details__summary">
+                    <span class="nhsuk-details__summary-text">Compression Garments</span>
+                </summary>
+                <div class="nhsuk-details__text">
+                    <p>Compression garments help reduce swelling by applying consistent pressure to the affected areas, promoting fluid drainage. Proper fitting and regular use of these garments are key components of managing lymphoedema.</p>
+                </div>
+            </details>
+
+            <details class="nhsuk-details nhsuk-expander">
+                <summary class="nhsuk-details__summary">
+                    <span class="nhsuk-details__summary-text">Exercise</span>
+                </summary>
+                <div class="nhsuk-details__text">
+                    <p>Gentle exercises can help stimulate lymph flow, reduce swelling, and maintain flexibility. Your healthcare provider can recommend specific exercises tailored to your condition.</p>
+                </div>
+            </details>
+
+            <details class="nhsuk-details nhsuk-expander">
+                <summary class="nhsuk-details__summary">
+                    <span class="nhsuk-details__summary-text">Manual Lymphatic Drainage (MLD)</span>
+                </summary>
+                <div class="nhsuk-details__text">
+                    <p>MLD is a specialized massage technique used to stimulate lymph flow and reduce swelling. It is often performed by trained therapists and can be an important part of your treatment plan.</p>
+                </div>
+            </details>
+        </section>
+
 
     </main>
 </div>
