@@ -31,7 +31,7 @@ public class PreappointmentResponse {
         this.changesToHealth = "";
         this.swellingConcerns = "";
         this.hosieryConcerns = "";
-        this.cellulitisEpisodes = 0;
+        this.cellulitisEpisodes = null;
         this.episodes = new ArrayList<>();
     }
 
