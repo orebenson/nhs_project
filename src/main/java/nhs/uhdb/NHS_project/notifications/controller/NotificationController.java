@@ -25,8 +25,9 @@ public class NotificationController {
     @PostMapping("/notifications/submit-notifications")
     public String submitNotificationSettings(
             @RequestParam("userId") Long userId,
-            @RequestParam(value = "dailyReminders", required = false) boolean dailyReminders,
-            @RequestParam(value = "appointmentReminders", required = false) boolean appointmentReminders) {
+            @RequestParam(value = "dailyReminders", required = false, defaultValue = "false") boolean dailyReminders,
+            @RequestParam(value = "appointmentReminders", required = false, defaultValue = "false") boolean appointmentReminders,
+            @RequestParam(value = "questionnaireReminders", required = false, defaultValue = "false") boolean questionnaireReminders) {
 
         User user = userService.getUserByUserId(userId); // Fetch user from the database
         if (user == null) {
@@ -37,6 +38,7 @@ public class NotificationController {
         NotificationSettings notificationSettings = new NotificationSettings();
         notificationSettings.setDailyReminders(dailyReminders);
         notificationSettings.setAppointmentReminders(appointmentReminders);
+        notificationSettings.setQuestionnaireReminders(questionnaireReminders);
 
         // Log the email to ensure it's being fetched correctly
         log.info("Sending notifications to email: {}", user.getEmail());
@@ -45,4 +47,5 @@ public class NotificationController {
 
         return "redirect:/admin/search/" + userId + "#details";
     }
+
 }
