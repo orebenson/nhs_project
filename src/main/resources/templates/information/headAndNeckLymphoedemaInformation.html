@@ -2,12 +2,8 @@
 <html lang="en">
 <head>
     <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
-
-
-    <title>Head and neck lymphoedema Information</title>
-
-    <!--    add any extra javascript file references here-->
-
+    <title>Head and Neck Lymphoedema Information</title>
+    <!-- Add any extra JavaScript file references here -->
 </head>
 <body>
 <script th:replace="~{fragments/_fragments :: pagescript}"></script>
@@ -15,13 +11,15 @@
 <div class="nhsuk-width-container">
     <main class="nhsuk-main-wrapper" id="maincontent" role="main">
 
+        <!-- Information Sources -->
+        <p>Information source: <a href="http://www.lymphoedema.org">The Lymphoedema Support Network (LSN)</a>, <a href="https://www.nhs.uk/conditions/lymphoedema/">NHS Health Guide</a>, <a href="https://www.thebls.com/">British Lymphology Society (BLS)</a>, <a href="https://www.macmillan.org.uk/">Macmillan Cancer Support</a>, <a href="https://www.uhdb.nhs.uk/service-lymphoedema">University Hospital of Derby and Burton - Lymphoedema Service Patient Information</a></p>
+
+        <!-- Breadcrumb Navigation -->
         <nav class="nhsuk-breadcrumb" aria-label="Breadcrumb">
             <div class="nhsuk-width-container">
                 <ol class="nhsuk-breadcrumb__list">
                     <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/information}">Information</a></li>
-                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Head and neck lymphoedema</a>
-                    </li>
-
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Head and Neck Lymphoedema</a></li>
                 </ol>
                 <p class="nhsuk-breadcrumb__back">
                     <a class="nhsuk-breadcrumb__backlink" th:href="@{/information}">
@@ -32,16 +30,123 @@
             </div>
         </nav>
 
-        <h1>Head and neck lymphoedema</h1>
+        <!-- Page Navigation -->
+        <nav class="nhsuk-nav-a">
+            <ul>
+                <li><a href="#what-is">What is Head and Neck Lymphoedema?</a></li>
+                <li><a href="#causes">Causes</a></li>
+                <li><a href="#symptoms">Symptoms</a></li>
+                <li><a href="#risk-factors">Risk Factors</a></li>
+                <li><a href="#diagnosis">Diagnosis</a></li>
+                <li><a href="#guides">Guides</a></li>
+                <li><a href="#treatment">Treatment</a></li>
+            </ul>
+        </nav>
 
-        <h2>Information</h2>
+        <!-- Page Title -->
+        <h1 id="what-is">What is Head and Neck Lymphoedema?</h1>
+        <section>
+            <p>Head and neck lymphoedema is a swelling that occurs in the soft tissues of the head and neck due to an impaired lymphatic system. This may result from treatments such as surgery or radiation that affect the lymph nodes, leading to fluid retention and tissue swelling. Understanding and managing this condition is crucial, especially for those who have undergone cancer treatments.</p>
+        </section>
 
-        <h2>Guides</h2>
-        <h3>Taking Measurements</h3>
-        <h3>Taking Photos</h3>
-        <h3>Performing exercises</h3>
-        <h3>Donning and doffing</h3>
-        <h3>Using compression garments</h3>
+        <!-- Causes Section -->
+        <section id="causes">
+            <h2>Causes</h2>
+            <p>Head and neck lymphoedema often occurs as a secondary condition following treatment for head and neck cancers. These treatments can damage the lymphatic system, impairing its ability to drain fluid effectively. Other causes may include infections, injuries, or congenital abnormalities that affect the lymphatic system.</p>
+        </section>
+
+        <!-- Symptoms Section -->
+        <section id="symptoms">
+            <h2>Symptoms</h2>
+            <ul>
+                <li>Swelling in the face, neck, or around the eyes</li>
+                <li>A feeling of fullness or tightness in the affected areas</li>
+                <li>Changes in the texture of the skin</li>
+                <li>Reduced flexibility in the neck or jaw</li>
+                <li>Difficulty with daily activities due to discomfort or swelling</li>
+            </ul>
+        </section>
+
+        <!-- Risk Factors Section -->
+        <section id="risk-factors">
+            <h2>Risk Factors</h2>
+            <p>Several factors can increase the risk of developing head and neck lymphoedema, including:</p>
+            <ul>
+                <li>Extensive surgery or radiation therapy in the head and neck region</li>
+                <li>Obesity or being overweight</li>
+                <li>Infection or injury to the lymphatic system</li>
+                <li>Pre-existing venous conditions</li>
+                <li>Lack of physical activity or movement post-surgery</li>
+            </ul>
+        </section>
+
+        <!-- Diagnosis Section -->
+        <section id="diagnosis">
+            <h2>Diagnosis</h2>
+            <p>Diagnosis of head and neck lymphoedema is typically made through a combination of physical examination and imaging techniques such as lymphoscintigraphy, which helps visualize the lymphatic system. Your healthcare provider may also use measurements and patient history to assess the extent and impact of the swelling.</p>
+        </section>
+
+        <!-- Guides Section -->
+        <section id="guides">
+            <h2>Guides</h2>
+
+            <details class="nhsuk-details nhsuk-expander">
+                <summary class="nhsuk-details__summary">
+                    <span class="nhsuk-details__summary-text">Taking Measurements</span>
+                </summary>
+                <div class="nhsuk-details__text">
+                    <p>Accurate measurement of swelling is essential for tracking the progression and management of lymphoedema. Measurements should be taken at consistent points over time, using a flexible tape measure to gauge the circumference of the affected areas. It is important to measure the same points each time, such as specific landmarks on the neck or jaw, to monitor any changes effectively.</p>
+                    <p>Make sure to document these measurements regularly and share them with your healthcare provider to help adjust your treatment plan as needed.</p>
+                </div>
+            </details>
+
+            <details class="nhsuk-details nhsuk-expander">
+                <summary class="nhsuk-details__summary">
+                    <span class="nhsuk-details__summary-text">Taking Photos</span>
+                </summary>
+                <div class="nhsuk-details__text">
+                    <p>Photographic documentation helps to visually track changes in swelling and other symptoms over time. To take effective photos, use the same lighting and angles for consistency, and photograph the affected areas at regular intervals, such as weekly or monthly.</p>
+                    <p>This visual record can be a valuable tool in assessing the effectiveness of your treatment and can provide clear evidence of changes to share with your healthcare provider.</p>
+                </div>
+            </details>
+
+            <details class="nhsuk-details nhsuk-expander">
+                <summary class="nhsuk-details__summary">
+                    <span class="nhsuk-details__summary-text">Performing Exercises</span>
+                </summary>
+                <div class="nhsuk-details__text">
+                    <p>Specific exercises designed for head and neck lymphoedema can help improve lymph circulation, reduce swelling, and maintain or improve range of motion. These exercises may include gentle neck stretches, shoulder shrugs, and facial exercises.</p>
+                    <p>Consistency is key to seeing benefits from these exercises, so it’s recommended to perform them daily. Your healthcare provider can provide a tailored exercise routine suited to your needs.</p>
+                </div>
+            </details>
+
+            <details class="nhsuk-details nhsuk-expander">
+                <summary class="nhsuk-details__summary">
+                    <span class="nhsuk-details__summary-text">Donning and Doffing</span>
+                </summary>
+                <div class="nhsuk-details__text">
+                    <p>Proper techniques for donning (putting on) and doffing (taking off) compression garments are vital to ensure they are effective without causing additional discomfort or damage to the skin. Use gentle, steady motions to avoid stretching or damaging the garment.</p>
+                    <p>It may help to use donning aids such as gloves or special devices designed to assist in the application of compression garments, particularly when dealing with delicate areas like the head and neck.</p>
+                </div>
+            </details>
+
+            <details class="nhsuk-details nhsuk-expander">
+                <summary class="nhsuk-details__summary">
+                    <span class="nhsuk-details__summary-text">Using Compression Garments</span>
+                </summary>
+                <div class="nhsuk-details__text">
+                    <p>Compression garments for the head and neck are designed to apply consistent pressure to the swollen area, helping to manage swelling and prevent further accumulation of fluid. These garments should be worn as directed by your healthcare provider, typically for most of the day, but they should be removed at night unless otherwise instructed.</p>
+                    <p>It is important to regularly check the fit of these garments, as changes in swelling can affect how well they work. Regular washing and proper care will also prolong their effectiveness.</p>
+                </div>
+            </details>
+        </section>
+
+        <!-- Treatment Section -->
+        <section id="treatment">
+            <h2>Treatment</h2>
+            <p>Treatment for head and neck lymphoedema typically involves a combination of physical therapy, compression garments, and exercises. In some cases, specialized massage techniques such as Manual Lymphatic Drainage (MLD) may be recommended to help stimulate lymph flow and reduce swelling.</p>
+            <p>It's important to follow a comprehensive treatment plan tailored to your specific condition, as early and consistent management can significantly improve outcomes and quality of life.</p>
+        </section>
 
     </main>
 </div>
