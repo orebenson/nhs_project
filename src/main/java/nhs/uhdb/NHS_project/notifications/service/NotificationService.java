@@ -21,6 +21,10 @@ public class NotificationService {
         if (notificationSettings.isAppointmentReminders()) {
             sendEmail(user.getEmail(), "Appointment Reminder", "This is your appointment reminder.");
         }
+
+        if (notificationSettings.isQuestionnaireReminders()) {
+            sendEmail(user.getEmail(), "Questionnaire Reminder", "Please remember to complete your pending questionnaire.");
+        }
     }
 
     private void sendEmail(String to, String subject, String text) {
