@@ -220,8 +220,114 @@ VALUES (@leg_plan_id, @first_exercise_id),
        (@midline_genitals_plan_id, @first_exercise_id + 4);
 
 
-
-
 -- add admin goal settings
 INSERT INTO admin_goal_setting (goal_id, user_id, goal_part, goal_description, goal_measurement, goal_unit, goal_deadline)
 VALUES (1, 2, 'Ankle', 'Circumference', 0, 'cm', '2024-07-10');
+
+-- add diary entries
+INSERT INTO diary_entries (user_id, createdAt, weight, cellulitisDetails, mobilityDetails, discomfortDetails, wellnessScore, qualityOfLifeScore)
+VALUES
+    (2, '2023-07-01', 70, 'No cellulitis symptoms', 'Able to walk with minimal discomfort', 'Mild discomfort in the morning',4, 4),
+    (2, '2023-07-02', 82, 'No cellulitis symptoms', 'Limited mobility due to knee pain', 'Discomfort in the knee',3, 4),
+    (2, '2023-07-15', 71, 'Redness and mild swelling observed', 'Slightly difficult to walk', 'Moderate discomfort',2, 5),
+    (2, '2023-07-20', 81, 'Minor redness in the lower leg', 'Mobility slightly improved', 'Mild discomfort',1, 2),
+    (2, '2023-08-01', 70, 'Cellulitis symptoms subsided', 'Mobility back to normal', 'Minimal discomfort',2, 3),
+    (2, '2023-08-05', 80, 'No cellulitis symptoms', 'Able to walk longer distances', 'No discomfort',3, 3),
+    (2, '2023-08-15', 69, 'No cellulitis symptoms', 'Walking is normal', 'No discomfort', 3, 4),
+    (2, '2023-08-20', 80, 'No cellulitis symptoms', 'Fully mobile', 'No discomfort', 5, 4),
+    (2, '2023-08-21', 80, 'No cellulitis symptoms', 'Fully mobile', 'Some discomfort', 5, 4),
+    (2, '2023-08-22', 80, 'No cellulitis symptoms', 'Fully mobile', 'No discomfort', 5, 5);
+
+INSERT INTO diary_entry_exercises (diary_entry_id, exercise_id)
+VALUES
+    (1, 1),
+    (1, 3),
+    (2, 1),
+    (2, 4),
+    (3, 1),
+    (3, 4),
+    (3, 4),
+    (4, 1),
+    (4, 3),
+    (4, 2),
+    (5, 3),
+    (5, 2),
+    (6, 2),
+    (6, 1),
+    (7, 3),
+    (8, 4),
+    (8, 3),
+    (9, 5),
+    (10, 4),
+    (10, 3);
+
+INSERT INTO diary_entry_measurements (diary_entry_id, measurement_type_id, measurement_value)
+VALUES
+    (1, 1, 13),
+    (1, 2, 13),
+    (1, 3, 13),
+    (1, 4, 13),
+    (1, 5, 13),
+    (1, 6, 13),
+    (1, 7, 13),
+    (1, 8, 13),
+    (1, 9, 13),
+    (1, 10, 13),
+    (1, 11, 13),
+    (1, 12, 13),
+    (1, 13, 13),
+    (1, 14, 13),
+    (1, 15, 13),
+    (1, 16, 13),
+    (1, 17, 13),
+    (1, 18, 13),
+    (1, 19, 13),
+    (1, 20, 13),
+    (1, 21, 13),
+    (1, 22, 13),
+
+    (2, 1, 13),
+    (2, 2, 13),
+    (2, 3, 13),
+    (2, 4, 13),
+    (2, 5, 13),
+    (2, 6, 13),
+    (2, 7, 13),
+    (2, 8, 13),
+    (2, 9, 13),
+    (2, 10, 13),
+    (2, 11, 13),
+    (2, 12, 13),
+    (2, 13, 13),
+    (2, 14, 13),
+    (2, 15, 13),
+    (2, 16, 13),
+    (2, 17, 13),
+    (2, 18, 13),
+    (2, 19, 13),
+    (2, 20, 13),
+    (2, 21, 13),
+    (2, 22, 13),
+
+    (3, 1, 13),
+    (3, 2, 13),
+    (3, 3, 13),
+    (3, 4, 13),
+    (3, 5, 13),
+    (3, 6, 13),
+    (3, 7, 13),
+    (3, 8, 13),
+    (3, 9, 13),
+    (3, 10, 13),
+    (3, 11, 13),
+    (3, 12, 13),
+    (3, 13, 13),
+    (3, 14, 13),
+    (3, 15, 13),
+    (3, 16, 13),
+    (3, 17, 13),
+    (3, 18, 13),
+    (3, 19, 13),
+    (3, 20, 13),
+    (3, 21, 13),
+    (3, 22, 13);
