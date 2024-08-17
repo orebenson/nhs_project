@@ -40,6 +40,7 @@
             </div>
         </div>
 
+        <!-- Information block for extra guidance -->
         <div class="nhsuk-inset-text">
             <span class="nhsuk-u-visually-hidden">Information: </span>
 
@@ -47,13 +48,15 @@
                     th:href="@{/information}" target="_blank">information page</a>.</p>
         </div>
 
+        <!-- Main heading with dynamic date -->
         <h1>
             Enter progress for <span th:text="${#temporals.format(date, 'dd/MM/yyyy')}"></span>
         </h1>
 
+        <!-- Diary entry form -->
         <form th:method="post" th:action="@{/diary/entry}" th:object="${newEntry}" id="diary-entry-form"
               enctype="multipart/form-data">
-
+            <!-- Daily measurements -->
             <fieldset class="nhsuk-fieldset">
 
                 <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
@@ -194,6 +197,8 @@
             </fieldset>
 
             <br>
+
+            <!--Photo Upload Option -->
             <fieldset class="nhsuk-fieldset">
                 <div class="nhsuk-form-group">
                     <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
@@ -297,6 +302,8 @@
     </main>
 </div>
 <footer th:replace="~{fragments/_fragments :: footer}"></footer>
+
+<!--Photo upload javascript-->
 <script>
     function validateFileUpload(element) {
         const selectedFile = element.files[0];
