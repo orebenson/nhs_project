@@ -8,10 +8,10 @@ public class QuestionnairesController {
 
 
     //Method to handle GET requests for the questionnaires task hub page
-    @GetMapping("/questionnaires")
-    public ModelAndView questionnaires() {
-        return new ModelAndView("questionnaires/taskHubPage");
-    }
+//    @GetMapping("/questionnaires")
+//    public ModelAndView questionnaires() {
+//        return new ModelAndView("questionnaires/taskHubPage");
+//    }
 
     @GetMapping("/questionnaires/success")
     public ModelAndView questionnaireSuccess() {

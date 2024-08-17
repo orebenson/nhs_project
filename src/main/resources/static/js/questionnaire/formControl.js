@@ -11,7 +11,7 @@ function toggleInput(show) {
 document.addEventListener('DOMContentLoaded', function() {
     //Function to display confirmation dialog
     function confirmSubmission(event) {
-        if (!confirm("Please check over your answers before submitting your Pre-Appointment Questionnaire.\n\nAre you sure you want to submit?")) {
+        if (!confirm("\nPlease check through your answers before submitting your Pre-Appointment Questionnaire.\n\nAre you sure you want to submit?")) {
             event.preventDefault();
         }
     }
