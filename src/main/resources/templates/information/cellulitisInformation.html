@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
+
+
+    <title>Cellulitis Information</title>
+
+    <!--    add any extra javascript file references here-->
+
+</head>
+<body>
+<script th:replace="~{fragments/_fragments :: pagescript}"></script>
+<header th:replace="~{fragments/_fragments :: header}"></header>
+<div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+
+        <!-- Information Sources -->
+        <p>Information source: <a href="http://www.lymphoedema.org">The Lymphoedema Support Network (LSN)</a>, <a
+                href="https://www.nhs.uk/conditions/lymphoedema/">NHS Health Guide</a>, <a
+                href="https://www.thebls.com/">British Lymphology Society (BLS)</a>, <a
+                href="https://www.macmillan.org.uk/">Macmillan Cancer Support</a>, <a
+                href="https://www.uhdb.nhs.uk/service-lymphoedema">University Hospital of Derby and Burton - Lymphoedema
+            Service Patient Information</a></p>
+
+        <!-- Back -->
+        <div class="nhsuk-back-link">
+            <a class="nhsuk-back-link__link" th:href="@{/information}">
+                <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true" height="24" width="24">
+                    <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+                </svg>
+                Go back
+            </a>
+        </div>
+
+
+        <!-- Page Navigation -->
+        <nav class="nhsuk-nav-a">
+            <ul>
+                <li><a href="#what-is">What is cellulitis?</a></li>
+                <li><a href="#observtion">How will I know if I have cellulitis?</a></li>
+                <li><a href="#action">What do I do if I think I have cellulitis?</a></li>
+                <li><a href="#protection">How can I protect myself from developing cellulitis?</a></li>
+                <li><a href="#else">Is there anything else?</a></li>
+            </ul>
+        </nav>
+
+        <h1 id="cellulitis">Cellulitis: information for patients living with chronic oedema / lymphoedema</h1>
+
+        <section>
+            <h2 id="what-is">What is cellulitis?</h2>
+            <p class="nhsuk-body-l">Cellulitis is an infection of the skin or tissues under the skin caused by bacteria (germs).
+                People with oedema/swelling are prone to cellulitis because their lymphatic system does
+                not work normally. Cellulitis may occur after damage to the skin, such as an insect bite, cut,
+                scratch or athlete’s foot. It can sometimes occur without an obvious cause.
+                Early treatment with antibiotics is very important. If an infection is not controlled quickly, a
+                person may require hospital treatment with intravenous antibiotics (antibiotics given
+                through a drip). There is a risk that cellulitis can damage the lymphatic system and make
+                swelling worse. Occasionally, cellulitis infections can be life-threatening.
+            </p>
+        </section>
+
+
+        <section>
+            <h2 id="observation">How will I know if I have cellulitis?</h2>
+            <p class="nhsuk-body">Your normal swelling may be unusually hot, tender and red. The red colour may spread
+                over a short number of hours. Your swelling may be larger than normal. You may feel
+                unwell with ‘flu-like’ symptoms (fever, shivers, muscle aches, headache, nausea). The
+                lymph nodes near the swollen area may be tender (if you have arm swelling your armpit
+                may feel sore; if you have leg swelling your groin may be sore).
+                Some people often have red, tender swelling which may be due to causes other than
+                infection. In these cases it is more difficult to diagnose cellulitis.
+            </p>
+        </section>
+
+        <section>
+            <h2 id="action">What do I do if I think I have cellulitis?</h2>
+            <ul class="nhsuk-list nhsuk-list--bullet">
+                <li>
+                    Contact your doctor immediately. If it is ‘out of hours’, contact an out of hours medical
+                    service. The doctor may find it helpful to see a photograph of what your swelling looks like
+                    normally.
+                </li>
+                <li>
+                    If the doctor confirms you have cellulitis, you should start treatment with antibiotics as
+                    soon as possible.
+                </li>
+                <li>
+                    Rest as much as you need to.
+                </li>
+                <li>
+                    If you need a painkiller, regular paracetamol is recommended.
+                </li>
+                <li>
+                    You may need to remove compression garments from the infected area if they are too tight and
+                    uncomfortable. Some patients choose to wear an old, looser garment.
+                </li>
+                <li>
+                    If you usually do lymphatic drainage massage, stop until the cellulitis is better.
+                </li>
+                <li>
+                    Ideally, you should return to wearing your normal compression garments as soon as possible.
+                    You may need a new garment if your limb remains more swollen after the infection gets
+                    better.
+                </li>
+                <li>
+                    Let your lymphoedema team know each time you’ve had an episode of cellulitis. Tell them if
+                    your garment does not fit well after an infection.
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 id="protection">How can I protect myself from developing cellulitis?</h2>
+            <ul class="nhsuk-list nhsuk-list--bullet">
+                <li>Take good care of your skin.</li>
+                <li>Use a moisturiser every day.</li>
+                <li>Try to avoid cuts, insect bites, and other injuries to the affected part of your body:
+                    <ul class="nhsuk-list nhsuk-list--bullet">
+                        <li>Avoid walking barefoot if you have swollen feet.</li>
+                        <li>Use an electric razor to reduce the risk of cutting your skin while shaving, or
+                            don’t shave at all!
+                        </li>
+                        <li>Take care when cutting your nails.</li>
+                        <li>Wear comfortable, well-fitting shoes.</li>
+                        <li>Wear gloves while gardening if you have oedema in your arms.</li>
+                    </ul>
+                </li>
+                <li>If your skin gets broken: clean the area, apply an antiseptic, and monitor. Seek
+                    professional advice if the wound is not healing.
+                </li>
+                <li>Treat athlete’s foot as soon as possible.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 id="else">Is there anything else?</h2>
+            <p>If you have had cellulitis before, your doctor may choose to prescribe you a ‘just in case’
+                course of antibiotics, so that if you think you are getting cellulitis you can start treatment
+                quickly. This is particularly important if you are travelling to an area where immediate
+                medical help may not be available.
+            </p>
+
+            <h3>
+                You should always seek medical attention as soon as possible if you have started taking
+                antibiotics for a possible cellulitis.
+            </h3>
+            <p>
+                If you are prone to infections - if you have had several episodes of cellulitis - you may need
+                long-term antibiotics (the doctor calls this ‘antibiotic prophylaxis’). You should contact the
+                lymphoedema clinic who will discuss this further with you.
+            </p>
+        </section>
+    </main>
+</div>
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
+</body>
+</html>

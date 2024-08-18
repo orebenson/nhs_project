@@ -18,6 +18,6 @@ public class InformationController {
     public ModelAndView getLegLymphoedemaInformationPage() { return new ModelAndView("information/legLymphoedemaInformation"); }
     @GetMapping("/information/midline_and_genital_lymphoedema")
     public ModelAndView getMidlineAndGenitalLymphoedemaInformationPage() { return new ModelAndView("information/midlineAndGenitalLymphoedemaInformation"); }
-
-
+    @GetMapping("/information/cellulitis")
+    public ModelAndView getCellulitisInformationPage() { return new ModelAndView("information/cellulitisInformation"); }
 }
