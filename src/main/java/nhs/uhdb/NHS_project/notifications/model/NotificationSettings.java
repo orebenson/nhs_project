@@ -20,4 +20,16 @@ public class NotificationSettings {
     public void setAppointmentReminders(boolean appointmentReminders) {
         this.appointmentReminders = appointmentReminders;
     }
+
+    private boolean questionnaireReminders;
+
+    // Getter and Setter
+    public boolean isQuestionnaireReminders() {
+        return questionnaireReminders;
+    }
+
+    public void setQuestionnaireReminders(boolean questionnaireReminders) {
+        this.questionnaireReminders = questionnaireReminders;
+    }
+
 }
