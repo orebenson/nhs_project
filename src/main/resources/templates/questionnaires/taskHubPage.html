@@ -17,7 +17,8 @@
 
         <h1>Questionnaires</h1>
 
-        <p class="nhsuk-body-l"><strong>Please complete the relevant questionnaires below before your next appointment.</strong></p><br>
+        <p><strong>Please complete all relevant questionnaires before your next appointment.</strong></p>
+        <br>
 
         <div>
             <div class="nhsuk-action-link">
@@ -41,8 +42,83 @@
                     <span class="nhsuk-action-link__text">Quality of Life Questionnaire - Leg Lymphoedema</span>
                 </a>
             </div>
-
         </div>
+        <br>
+        <h3>Your Previously Submitted Questionnaires:</h3>
+
+        <div class="nhsuk-tabs" data-module="nhsuk-tabs">
+            <h2 class="nhsuk-tabs__title">
+                Contents
+            </h2>
+
+            <ul class="nhsuk-tabs__list">
+
+                <li class="nhsuk-tabs__list-item nhsuk-tabs__list-item--selected">
+                    <a class="nhsuk-tabs__tab" href="#preappointment">
+                        Pre-Appointment
+                    </a>
+                </li>
+
+                <li class="nhsuk-tabs__list-item">
+                    <a class="nhsuk-tabs__tab" href="#quality-of-life">
+                        Quality of Life
+                    </a>
+                </li>
+
+            </ul>
+
+            <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="preappointment">
+                <div>
+                    <details class="nhsuk-details">
+                        <summary class="nhsuk-details__summary">
+                            <span class="nhsuk-details__summary-text">
+                              Your Pre-Appointment Questionnaire Submissions
+                            </span>
+                        </summary>
+                        <div class="nhsuk-details__text">
+                            <div th:if="${#lists.isEmpty(questionnaires)}">
+                                <p>You have not submitted any questionnaires.</p>
+                            </div>
+                            <ul class="nhsuk-list nhsuk-list" th:unless="${#lists.isEmpty(questionnaires)}">
+                                <li th:each="questionnaire : ${questionnaires}">
+                                    <a th:href="@{/questionnaires/preappointment-questionnaire/{questionnaireId}(questionnaireId=${questionnaire.id})}">
+                                        Questionnaire submitted on <span
+                                            th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="nhsuk-tabs__panel nhsuk-tabs__panel--hidden" id="quality-of-life">
+                <div>
+                    <details class="nhsuk-details">
+                        <summary class="nhsuk-details__summary">
+                            <span class="nhsuk-details__summary-text">
+                              Your Quality of Life Questionnaire Submissions
+                            </span>
+                        </summary>
+                        <div class="nhsuk-details__text">
+                            <div th:if="${#lists.isEmpty(qolQuestionnaires)}">
+                                <p>You have not submitted any questionnaires.</p>
+                            </div>
+                            <ul class="nhsuk-list nhsuk-list"
+                                th:unless="${#lists.isEmpty(qolQuestionnaires)}">
+                                <li th:each="questionnaire : ${qolQuestionnaires}">
+                                    <a th:href="@{questionnaires/qol-questionnaire/{questionnaireId}(questionnaireId=${questionnaire.id})}">
+                                        Questionnaire submitted on <span
+                                            th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </div>
+
 
         <a class="nhsuk-button nhsuk-button--secondary" data-module="nhsuk-button" href="/">
             Exit and Complete later
