@@ -22,4 +22,6 @@ public class InformationController {
     public ModelAndView getCellulitisInformationPage() { return new ModelAndView("information/cellulitisInformation"); }
     @GetMapping("/information/healthy_eating")
     public ModelAndView getHealthyEatingInformationPage() { return new ModelAndView("information/healthyEating"); }
+    @GetMapping("/information/photo_guidance")
+    public ModelAndView getPhotoGuidanceInformationPage() { return new ModelAndView("information/photoGuidance"); }
 }
