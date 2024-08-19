@@ -71,7 +71,7 @@
             <div class="nhsuk-summary-list__row">
                 <dt class="nhsuk-summary-list__key">Examples of how it affects your leisure activities/social life:</dt>
                 <dd class="nhsuk-summary-list__value">
-                    <p th:text="${qolResponseBreast.leisure_examples}"></p>
+                    <p th:text="${ #strings.isEmpty(qolResponseBreast.leisure_examples) ? '(N/A)' : qolResponseBreast.leisure_examples}">N/A</p>
                 </dd>
             </div>
             <div class="nhsuk-summary-list__row">

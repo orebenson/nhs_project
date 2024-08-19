@@ -256,19 +256,19 @@
                                 <li th:each="questionnaire : ${qolQuestionnaires}" th:unless="${#lists.isEmpty(qolQuestionnaires)}">
                                     <a th:href="@{/admin/{userId}/qol-questionnaire/{questionnaireId}(userId=${user.user_id}, questionnaireId=${questionnaire.id})}">
                                         Questionnaire submitted on <span
-                                            th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span>
+                                            th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span> - Leg
                                     </a>
                                 </li>
                                 <li th:each="questionnaire : ${qolArmQuestionnaires}" th:unless="${#lists.isEmpty(qolArmQuestionnaires)}">
                                     <a th:href="@{/admin/{userId}/qol-questionnaire-arm/{questionnaireId}(userId=${user.user_id}, questionnaireId=${questionnaire.id})}">
                                         Questionnaire submitted on <span
-                                            th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span>
+                                            th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span> - Arm
                                     </a>
                                 </li>
                                 <li th:each="questionnaire : ${qolBreastQuestionnaires}" th:unless="${#lists.isEmpty(qolBreastQuestionnaires)}">
                                     <a th:href="@{/admin/{userId}/qol-questionnaire-breast/{questionnaireId}(userId=${user.user_id}, questionnaireId=${questionnaire.id})}">
                                         Questionnaire submitted on <span
-                                            th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span>
+                                            th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span> - Breast
                                     </a>
                                 </li>
 

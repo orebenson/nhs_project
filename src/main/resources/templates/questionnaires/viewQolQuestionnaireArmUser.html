@@ -88,11 +88,15 @@
             </div>
             <div class="nhsuk-summary-list__row">
                 <dt class="nhsuk-summary-list__key">Q2) How much does it affect your leisure activities/social life?
-                    Please give examples of this.
                 </dt>
                 <dd class="nhsuk-summary-list__value">
-                    <p th:text="${qolQuestionnaireArm.leisure}"></p><br>
-                    <p th:text="${qolQuestionnaireArm.leisure_examples}"></p>
+                    <p th:text="${qolQuestionnaireArm.leisure}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Examples of how it affects your leisure activities/social life:</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${#strings.isEmpty(qolQuestionnaireArm.leisure_examples) ? '(N/A)' : qolQuestionnaireArm.leisure_examples}"></p>
                 </dd>
             </div>
             <div class="nhsuk-summary-list__row">

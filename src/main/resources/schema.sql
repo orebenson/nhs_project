@@ -279,7 +279,7 @@ create table if not exists qol_questionnaire_responses_arm
     washing                            INT,
     cleaning_teeth                     INT,
     leisure                            INT,
-    leisure_examples                   INT,
+    leisure_examples                   TEXT,
     depend_on_people                   INT,
     appearance                         INT,
     difficulty_finding_fitting_clothes INT,
