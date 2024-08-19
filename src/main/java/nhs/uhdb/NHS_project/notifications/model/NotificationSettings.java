@@ -23,13 +23,20 @@ public class NotificationSettings {
 
     private boolean questionnaireReminders;
 
-    // Getter and Setter
     public boolean isQuestionnaireReminders() {
         return questionnaireReminders;
     }
 
     public void setQuestionnaireReminders(boolean questionnaireReminders) {
         this.questionnaireReminders = questionnaireReminders;
+    }
+
+    public boolean isGoalReminders() {
+        return goalReminders;
+    }
+
+    public void setGoalReminders(boolean goalReminders) {
+        this.goalReminders = goalReminders;
     }
 
 }

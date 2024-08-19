@@ -25,6 +25,10 @@ public class NotificationService {
         if (notificationSettings.isQuestionnaireReminders()) {
             sendEmail(user.getEmail(), "Questionnaire Reminder", "Please remember to complete your pending questionnaire.");
         }
+
+        if (notificationSettings.isGoalReminders()) {
+            sendEmail(user.getEmail(), "Goal Reminder", "This is a reminder to work on your goals.");
+        }
     }
 
     private void sendEmail(String to, String subject, String text) {
