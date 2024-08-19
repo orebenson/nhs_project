@@ -249,7 +249,7 @@
                             </span>
                         </summary>
                         <div class="nhsuk-details__text">
-                            <div th:if="${#lists.isEmpty(qolQuestionnaires) && #lists.isEmpty(qolArmQuestionnaires)}">
+                            <div th:if="${#lists.isEmpty(qolQuestionnaires) && #lists.isEmpty(qolArmQuestionnaires) && #lists.isEmpty(qolBreastQuestionnaires)}">
                                 <p>This patient has not submitted any questionnaires.</p>
                             </div>
                             <ul class="nhsuk-list nhsuk-list" >
@@ -265,6 +265,13 @@
                                             th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span>
                                     </a>
                                 </li>
+                                <li th:each="questionnaire : ${qolBreastQuestionnaires}" th:unless="${#lists.isEmpty(qolBreastQuestionnaires)}">
+                                    <a th:href="@{/admin/{userId}/qol-questionnaire-breast/{questionnaireId}(userId=${user.user_id}, questionnaireId=${questionnaire.id})}">
+                                        Questionnaire submitted on <span
+                                            th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span>
+                                    </a>
+                                </li>
+
                             </ul>
                         </div>
                     </details>

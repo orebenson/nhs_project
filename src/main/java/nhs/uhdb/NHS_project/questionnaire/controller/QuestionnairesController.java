@@ -4,8 +4,10 @@ import nhs.uhdb.NHS_project.accounts.service.UserService;
 import nhs.uhdb.NHS_project.questionnaire.model.PreappointmentResponse;
 import nhs.uhdb.NHS_project.questionnaire.model.QolResponse;
 import nhs.uhdb.NHS_project.questionnaire.model.QolResponseArm;
+import nhs.uhdb.NHS_project.questionnaire.model.QolResponseBreast;
 import nhs.uhdb.NHS_project.questionnaire.service.PreappointmentResponseService;
 import nhs.uhdb.NHS_project.questionnaire.service.QolResponseArmService;
+import nhs.uhdb.NHS_project.questionnaire.service.QolResponseBreastService;
 import nhs.uhdb.NHS_project.questionnaire.service.QolResponseService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,12 +26,14 @@ public class QuestionnairesController {
     private UserService userService;
 
     private QolResponseArmService qolResponseArmService;
+    private QolResponseBreastService qolResponseBreastService;
 
-    public QuestionnairesController(UserService userService, QolResponseArmService qolResponseArmService, PreappointmentResponseService preappointmentResponseService, QolResponseService qolResponseService) {
+    public QuestionnairesController(UserService userService, QolResponseBreastService qolResponseBreastService, QolResponseArmService qolResponseArmService, PreappointmentResponseService preappointmentResponseService, QolResponseService qolResponseService) {
         this.preappointmentResponseService = preappointmentResponseService;
         this.qolResponseService = qolResponseService;
         this.userService = userService;
         this.qolResponseArmService = qolResponseArmService;
+        this.qolResponseBreastService = qolResponseBreastService;
     }
 
 
@@ -43,13 +47,15 @@ public class QuestionnairesController {
 
         List<PreappointmentResponse> questionnaires = preappointmentResponseService.getResponsesByUserId(userId);
         List<QolResponse> qolQuestionnaires = qolResponseService.getResponsesByUserId(userId);
-        List<QolResponseArm> qolResponsesArm = qolResponseArmService.getResponsesByUserId(userId);
+        List<QolResponseArm> qolArmQuestionnaires = qolResponseArmService.getResponsesByUserId(userId);
+        List<QolResponseBreast> qolBreastQuestionnaires = qolResponseBreastService.getResponsesByUserId(userId);
 
         mav.addObject("name", loggedInUser.getFirstname() + ' ' + loggedInUser.getLastname());
         mav.addObject("user", loggedInUser);
         mav.addObject("questionnaires", questionnaires);
         mav.addObject("qolQuestionnaires", qolQuestionnaires);
-        mav.addObject("qolArmQuestionnaires", qolResponsesArm);
+        mav.addObject("qolArmQuestionnaires", qolArmQuestionnaires);
+        mav.addObject("qolBreastQuestionnaires", qolBreastQuestionnaires);
 
         return mav;
     }
@@ -104,6 +110,21 @@ public class QuestionnairesController {
         String formattedDate = qolResponseArm.getCreatedAt().format(formatter);
 
         mav.addObject("qolQuestionnaireArm", qolResponseArm);
+        mav.addObject("formattedDate", formattedDate);
+
+        return mav;
+    }
+
+    @GetMapping("/questionnaires/qol-questionnaire-breast/{id}")
+    public ModelAndView qolQuestionnaireBreastHistory(@PathVariable Long id) {
+        ModelAndView mav = new ModelAndView("questionnaires/viewQolQuestionnaireBreastUser");
+
+        QolResponseBreast qolResponseBreast = qolResponseBreastService.getResponseById(id);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String formattedDate = qolResponseBreast.getCreatedAt().format(formatter);
+
+        mav.addObject("qolResponseBreast", qolResponseBreast);
         mav.addObject("formattedDate", formattedDate);
 
         return mav;

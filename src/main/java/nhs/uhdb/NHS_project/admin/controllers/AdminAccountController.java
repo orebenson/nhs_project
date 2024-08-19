@@ -14,8 +14,10 @@ import nhs.uhdb.NHS_project.diary.services.DiaryEntryService;
 import nhs.uhdb.NHS_project.questionnaire.model.PreappointmentResponse;
 import nhs.uhdb.NHS_project.questionnaire.model.QolResponse;
 import nhs.uhdb.NHS_project.questionnaire.model.QolResponseArm;
+import nhs.uhdb.NHS_project.questionnaire.model.QolResponseBreast;
 import nhs.uhdb.NHS_project.questionnaire.service.PreappointmentResponseService;
 import nhs.uhdb.NHS_project.questionnaire.service.QolResponseArmService;
+import nhs.uhdb.NHS_project.questionnaire.service.QolResponseBreastService;
 import nhs.uhdb.NHS_project.questionnaire.service.QolResponseService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -41,9 +43,11 @@ public class AdminAccountController {
     private QolResponseService qolResponseService;
 
     private QolResponseArmService qolResponseArmService;
+
+    private QolResponseBreastService qolResponseBreastService;
     private GoalService goalService;
 
-    public AdminAccountController(UserService userService,QolResponseArmService qolResponseArmService, TreatmentPlanService treatmentPlanService, LymphoedemaTypeService lymphoedemaTypeService, DiaryEntryService diaryEntryService, PreappointmentResponseService preappointmentResponseService, QolResponseService qolResponseService, GoalService goalService) {
+    public AdminAccountController(UserService userService, QolResponseBreastService qolResponseBreastService, QolResponseArmService qolResponseArmService, TreatmentPlanService treatmentPlanService, LymphoedemaTypeService lymphoedemaTypeService, DiaryEntryService diaryEntryService, PreappointmentResponseService preappointmentResponseService, QolResponseService qolResponseService, GoalService goalService) {
         this.userService = userService;
         this.treatmentPlanService = treatmentPlanService;
         this.lymphoedemaTypeService = lymphoedemaTypeService;
@@ -52,6 +56,7 @@ public class AdminAccountController {
         this.qolResponseService =  qolResponseService;
         this.goalService = goalService;
         this.qolResponseArmService = qolResponseArmService;
+        this.qolResponseBreastService = qolResponseBreastService;
     }
 
     @GetMapping("/admin")
@@ -126,6 +131,7 @@ public class AdminAccountController {
 
         List<QolResponse> qolQuestionnaires = qolResponseService.getResponsesByUserId(id);
         List<QolResponseArm> qolArmQuestionnaires = qolResponseArmService.getResponsesByUserId(id);
+        List<QolResponseBreast> qolBreastQuestionnaires = qolResponseBreastService.getResponsesByUserId(id);
 
         List<Goal> goals = goalService.getGoalByUserId(id);
 
@@ -136,6 +142,7 @@ public class AdminAccountController {
         mav.addObject("questionnaires", questionnaires);
         mav.addObject("qolQuestionnaires", qolQuestionnaires);
         mav.addObject("qolArmQuestionnaires", qolArmQuestionnaires);
+        mav.addObject("qolBreastQuestionnaires", qolBreastQuestionnaires);
         mav.addObject("goals", goals);
         return mav;
     }
@@ -210,6 +217,26 @@ public class AdminAccountController {
         String formattedDate = qolResponseArm.getCreatedAt().format(formatter);
 
         mav.addObject("qolQuestionnaireArm", qolResponseArm);
+        mav.addObject("formattedDate", formattedDate);
+        mav.addObject("user", user);
+
+        return mav;
+    }
+
+    @GetMapping("/admin/{userId}/qol-questionnaire-breast/{qol_breast_id}")
+    public ModelAndView getUserQolQuestionnaireBreastHistory(@PathVariable Long userId, @PathVariable Long qol_breast_id) {
+        ModelAndView mav = new ModelAndView("admin/adminViewUserQolQuestionnaireBreast");
+
+        User user = userService.getUserByUserId(userId);
+        if (user == null) return new ModelAndView("admin/adminSearchUserError");
+
+        QolResponseBreast qolResponseBreast = qolResponseBreastService.getResponseById(qol_breast_id);
+        if (qolResponseBreast == null) return new ModelAndView("admin/adminSearchUserError");
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String formattedDate = qolResponseBreast.getCreatedAt().format(formatter);
+
+        mav.addObject("qolResponseBreast", qolResponseBreast);
         mav.addObject("formattedDate", formattedDate);
         mav.addObject("user", user);
 
