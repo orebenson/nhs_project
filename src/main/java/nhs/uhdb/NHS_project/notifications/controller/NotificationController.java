@@ -24,11 +24,11 @@ public class NotificationController {
 
     @PostMapping("/notifications/submit-notifications")
     public String submitNotificationSettings(
-            //Parameters
+            // Parameters
             @RequestParam("userId") Long userId,
             @RequestParam(value = "dailyReminders", required = false, defaultValue = "false") boolean dailyReminders,
             @RequestParam(value = "appointmentReminders", required = false, defaultValue = "false") boolean appointmentReminders,
-            @RequestParam(value = "questionnaireReminders", required = false, defaultValue = "false") boolean questionnaireReminders),
+            @RequestParam(value = "questionnaireReminders", required = false, defaultValue = "false") boolean questionnaireReminders,
             @RequestParam(value = "goalReminders", required = false, defaultValue = "false") boolean goalReminders) {
 
         User user = userService.getUserByUserId(userId); // Fetch user from the database
