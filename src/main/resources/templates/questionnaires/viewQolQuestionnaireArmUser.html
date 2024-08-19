@@ -1,34 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
+    <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
 
 
-  <title>Quality of life Questionnaire Details</title>
+    <title>Quality of life Questionnaire Details</title>
 
 </head>
 <body>
 <script th:replace="~{fragments/_fragments :: pagescript}"></script>
 <header th:replace="~{fragments/_fragments :: header}"></header>
 <div class="nhsuk-width-container">
-  <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+    <main class="nhsuk-main-wrapper" id="maincontent" role="main">
 
 
+        <div class="nhsuk-back-link">
 
-    <div class="nhsuk-back-link">
+            <a class="nhsuk-back-link__link" th:href="@{/questionnaires}">
+                <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                     aria-hidden="true" height="24" width="24">
+                    <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+                </svg>
+                Go back</a>
+        </div>
 
-      <a class="nhsuk-back-link__link" th:href="@{/questionnaires}">
-        <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-             aria-hidden="true" height="24" width="24">
-          <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
-        </svg>
-        Go back</a>
-    </div>
+        <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+            <h1 class="nhsuk-fieldset__heading">
+                Quality of Life Questionnaire Details - Leg Lymphoedema
+            </h1>
+        </legend>
 
-<!--    add data here-->
+        <p><strong>Response Scale:</strong> N/A (0), Not at all (1), A little (2), Quite a bit (3), A lot (4)</p>
+
+        <div>
+            <p><strong>Date of Submission:</strong> <span th:text="${formattedDate}"></span></p>
+        </div>
 
 
-  </main>
+        <dl class="nhsuk-summary-list">
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q1a) How much does your swollen arm affect your occupation?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.occupation}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q1b) How much does your swollen arm affect your housework?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.housework}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q1c) How much does your swollen arm affect combing your hair?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.combing_hair}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q1d) How much does your swollen arm affect dressing?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.dressing}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q1e) How much does your swollen arm affect writing?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.writing}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q1f) How much does your swollen arm affect eating?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.eating}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q1g) How much does your swollen arm affect washing?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.washing}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q1h) How much does your swollen arm affect cleaning your teeth?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.cleaning_teeth}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q2) How much does it affect your leisure activities/social life?
+                    Please give examples of this.
+                </dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.leisure}"></p><br>
+                    <p th:text="${qolQuestionnaireArm.leisure_examples}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q3) How much do you have to depend on other people?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.depend_on_people}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q4) How much do you feel the swelling affects your appearance?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.appearance}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q5) How much difficulty do you have finding clothes to fit?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.difficulty_finding_fitting_clothes}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q6) How much difficulty do you have finding clothes you would like
+                    to wear?
+                </dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.difficulty_finding_liked_clothes}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q7) Does the swelling affect how you feel about yourself?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.feelings}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q8) Does it affect your relationships with other people?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.relationships}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q9) Does your lymphoedema cause you pain?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.pain}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q10) Do you have any numbness in your swollen arm?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.numbness}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q11) Do you have any feelings of "pins & needles" or tingling in
+                    your swollen arm?
+                </dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.pins_and_needles}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q12) Does your swollen arm feel weak?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.weak}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q13) Does your swollen arm feel heavy?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.heavy}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q14) Do you feel tired? In the past week…</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.tired}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q15) Have you had trouble sleeping?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.sleeping}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q16) Have you had difficulty concentrating on things, e.g.
+                    reading?
+                </dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.concentrating}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q17) Have you felt tense?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.tense}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q18) Have you felt worried?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.worried}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q19) Have you felt irritable?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.irritable}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q20) Have you felt depressed?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.depressed}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q21) Overall, how would you rate your quality of life at present?
+                </dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolQuestionnaireArm.overall}"></p>
+                </dd>
+            </div>
+        </dl>
+
+
+        <div style="display: flex; justify-content: flex-end;">
+            <a class="nhsuk-button nhsuk-button--secondary" data-module="nhsuk-button" th:href="@{/questionnaires}">
+                Return to Questionnaires Page
+            </a>
+        </div>
+
+
+    </main>
 </div>
 <footer th:replace="~{fragments/_fragments :: footer}"></footer>
 </body>

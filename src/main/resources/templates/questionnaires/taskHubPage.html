@@ -112,17 +112,26 @@
                             </span>
                         </summary>
                         <div class="nhsuk-details__text">
-                            <div th:if="${#lists.isEmpty(qolQuestionnaires)}">
+                            <div th:if="${#lists.isEmpty(qolQuestionnaires) && #lists.isEmpty(qolArmQuestionnaires)}">
                                 <p>You have not submitted any questionnaires.</p>
                             </div>
-                            <ul class="nhsuk-list nhsuk-list"
-                                th:unless="${#lists.isEmpty(qolQuestionnaires)}">
-                                <li th:each="questionnaire : ${qolQuestionnaires}">
+                            <ul class="nhsuk-list nhsuk-list">
+                                <li th:each="questionnaire : ${qolQuestionnaires}"
+                                    th:unless="${#lists.isEmpty(qolQuestionnaires)}">
                                     <a th:href="@{questionnaires/qol-questionnaire/{questionnaireId}(questionnaireId=${questionnaire.id})}">
                                         Questionnaire submitted on <span
                                             th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span>
                                     </a>
                                 </li>
+
+                                <li th:each="questionnaire : ${qolArmQuestionnaires}"
+                                    th:unless="${#lists.isEmpty(qolArmQuestionnaires)}">
+                                    <a th:href="@{questionnaires/qol-questionnaire-arm/{questionnaireId}(questionnaireId=${questionnaire.id})}">
+                                        Questionnaire submitted on <span
+                                            th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span>
+                                    </a>
+                                </li>
+
                             </ul>
                         </div>
                     </details>

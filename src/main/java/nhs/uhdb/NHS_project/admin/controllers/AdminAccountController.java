@@ -13,7 +13,9 @@ import nhs.uhdb.NHS_project.diary.model.DiaryEntry;
 import nhs.uhdb.NHS_project.diary.services.DiaryEntryService;
 import nhs.uhdb.NHS_project.questionnaire.model.PreappointmentResponse;
 import nhs.uhdb.NHS_project.questionnaire.model.QolResponse;
+import nhs.uhdb.NHS_project.questionnaire.model.QolResponseArm;
 import nhs.uhdb.NHS_project.questionnaire.service.PreappointmentResponseService;
+import nhs.uhdb.NHS_project.questionnaire.service.QolResponseArmService;
 import nhs.uhdb.NHS_project.questionnaire.service.QolResponseService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -37,9 +39,11 @@ public class AdminAccountController {
     private DiaryEntryService diaryEntryService;
     private PreappointmentResponseService preappointmentResponseService;
     private QolResponseService qolResponseService;
+
+    private QolResponseArmService qolResponseArmService;
     private GoalService goalService;
 
-    public AdminAccountController(UserService userService, TreatmentPlanService treatmentPlanService, LymphoedemaTypeService lymphoedemaTypeService, DiaryEntryService diaryEntryService, PreappointmentResponseService preappointmentResponseService, QolResponseService qolResponseService, GoalService goalService) {
+    public AdminAccountController(UserService userService,QolResponseArmService qolResponseArmService, TreatmentPlanService treatmentPlanService, LymphoedemaTypeService lymphoedemaTypeService, DiaryEntryService diaryEntryService, PreappointmentResponseService preappointmentResponseService, QolResponseService qolResponseService, GoalService goalService) {
         this.userService = userService;
         this.treatmentPlanService = treatmentPlanService;
         this.lymphoedemaTypeService = lymphoedemaTypeService;
@@ -47,6 +51,7 @@ public class AdminAccountController {
         this.preappointmentResponseService = preappointmentResponseService;
         this.qolResponseService =  qolResponseService;
         this.goalService = goalService;
+        this.qolResponseArmService = qolResponseArmService;
     }
 
     @GetMapping("/admin")
@@ -120,6 +125,7 @@ public class AdminAccountController {
         List<PreappointmentResponse> questionnaires = preappointmentResponseService.getResponsesByUserId(id);
 
         List<QolResponse> qolQuestionnaires = qolResponseService.getResponsesByUserId(id);
+        List<QolResponseArm> qolArmQuestionnaires = qolResponseArmService.getResponsesByUserId(id);
 
         List<Goal> goals = goalService.getGoalByUserId(id);
 
@@ -129,6 +135,7 @@ public class AdminAccountController {
         mav.addObject("user", user);
         mav.addObject("questionnaires", questionnaires);
         mav.addObject("qolQuestionnaires", qolQuestionnaires);
+        mav.addObject("qolArmQuestionnaires", qolArmQuestionnaires);
         mav.addObject("goals", goals);
         return mav;
     }
@@ -171,7 +178,7 @@ public class AdminAccountController {
 
     @GetMapping("/admin/{userId}/qol-questionnaire/{qolQuestionnaireId}")
     public ModelAndView getUserQolQuestionnaireHistory(@PathVariable Long userId, @PathVariable Long qolQuestionnaireId) {
-        ModelAndView mav = new ModelAndView("questionnaires/viewQolQuestionnaire");
+        ModelAndView mav = new ModelAndView("admin/adminViewUserQolQuestionnaireLeg");
 
         User user = userService.getUserByUserId(userId);
         if (user == null) return new ModelAndView("admin/adminSearchUserError");
@@ -183,6 +190,26 @@ public class AdminAccountController {
         String formattedDate = qolResponse.getCreatedAt().format(formatter);
 
         mav.addObject("qolQuestionnaireForm", qolResponse);
+        mav.addObject("formattedDate", formattedDate);
+        mav.addObject("user", user);
+
+        return mav;
+    }
+
+    @GetMapping("/admin/{userId}/qol-questionnaire-arm/{qol_arm_id}")
+    public ModelAndView getUserQolQuestionnaireArmHistory(@PathVariable Long userId, @PathVariable Long qol_arm_id) {
+        ModelAndView mav = new ModelAndView("admin/adminViewUserQolQuestionnaireArm");
+
+        User user = userService.getUserByUserId(userId);
+        if (user == null) return new ModelAndView("admin/adminSearchUserError");
+
+        QolResponseArm qolResponseArm = qolResponseArmService.getResponseById(qol_arm_id);
+        if (qolResponseArm == null) return new ModelAndView("admin/adminSearchUserError");
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String formattedDate = qolResponseArm.getCreatedAt().format(formatter);
+
+        mav.addObject("qolQuestionnaireArm", qolResponseArm);
         mav.addObject("formattedDate", formattedDate);
         mav.addObject("user", user);
 
