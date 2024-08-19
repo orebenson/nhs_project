@@ -1001,6 +1001,7 @@
             <p><strong>(Q22) Overall, how would you rate your quality of life at present?</strong></p>
             <div class="nhsuk-form-group">
                 <select class="nhsuk-select" id="qualityOfLife-select" name="qualityOfLife" th:field="*{qualityOfLife}">
+                    <option value="" disabled selected>Select a value...</option>
                     <option value="0">0 (Poor)</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -1022,16 +1023,23 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Function to display confirmation dialog
+
+        //Function to display confirmation dialog
         function confirmSubmission(event) {
-            if (!confirm("Please check your answers before submitting your Quality of Life questionnaire.\n\nAre you sure you want to submit?")) {
+            if (!confirm("\nPlease check through your answers before submitting your Quality of Life questionnaire.\n\nAre you sure you want to submit?")) {
                 event.preventDefault();
             }
         }
 
-        // Attaches the submit event listener to the form
+        //Attaches the submit event listener to the form
         const form = document.getElementById('qol-form');
         form.addEventListener('submit', confirmSubmission);
+
+        //Reset the quality of life select to placeholder if the value is "0"
+        const selectElement = document.getElementById('qualityOfLife-select');
+        if (selectElement.value === "0") {
+            selectElement.value = "";
+        }
     });
 </script>
 </body>
