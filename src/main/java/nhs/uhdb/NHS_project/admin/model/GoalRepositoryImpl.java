@@ -24,10 +24,10 @@ public class GoalRepositoryImpl implements GoalRepository {
             Goal goal = new Goal();
             goal.setGoalId(resultSet.getLong("goal_id"));
             goal.setUserId(resultSet.getLong("user_id"));
-            goal.setGoalPart(resultSet.getString("goal_part"));
+//            goal.setGoalPart(resultSet.getString("goal_part"));
             goal.setGoalDescription(resultSet.getString("goal_description"));
-            goal.setGoalMeasurement(resultSet.getInt("goal_measurement"));
-            goal.setGoalUnit(resultSet.getString("goal_unit"));
+//            goal.setGoalMeasurement(resultSet.getInt("goal_measurement"));
+//            goal.setGoalUnit(resultSet.getString("goal_unit"));
             goal.setGoalDeadline(resultSet.getString("goal_deadline"));
             return goal;
         };
@@ -39,9 +39,9 @@ public class GoalRepositoryImpl implements GoalRepository {
     }
 
     private Long insertGoal(Goal goal) {
-        String insertSql = "INSERT INTO admin_goal_setting (user_id, goal_part, goal_description, goal_measurement, goal_unit, goal_deadline) VALUES (?, ?, ?, ?, ?, ?) RETURNING goal_id";
+        String insertSql = "INSERT INTO admin_goal_setting (user_id, goal_description, goal_deadline) VALUES (?, ?, ?) RETURNING goal_id";
         try {
-            Long goalId = jdbc.queryForObject(insertSql, Long.class, goal.getUserId(), goal.getGoalPart(), goal.getGoalDescription(), goal.getGoalMeasurement(), goal.getGoalUnit(), goal.getGoalDeadline());
+            Long goalId = jdbc.queryForObject(insertSql, Long.class, goal.getUserId(), goal.getGoalDescription(), goal.getGoalDeadline());
             goal.setGoalId(goalId);
             return goalId;
         } catch (Error e) {
@@ -50,9 +50,9 @@ public class GoalRepositoryImpl implements GoalRepository {
     }
 
     private Long updateGoal(Goal goal) {
-        String updateSql = "UPDATE admin_goal_setting SET user_id = ?, goal_part = ?, goal_description = ?, goal_measurement = ?, goal_unit = ?, goal_deadline = ? WHERE goal_id = ?";
+        String updateSql = "UPDATE admin_goal_setting SET user_id = ?, goal_description = ?, goal_deadline = ? WHERE goal_id = ?";
         try {
-            jdbc.update(updateSql, goal.getUserId(), goal.getGoalPart(), goal.getGoalDescription(), goal.getGoalMeasurement(), goal.getGoalUnit(), goal.getGoalDeadline(), goal.getGoalId());
+            jdbc.update(updateSql, goal.getUserId(), goal.getGoalDescription(), goal.getGoalDeadline(), goal.getGoalId());
             return goal.getGoalId();
         } catch (EmptyResultDataAccessException e) {
             return null;

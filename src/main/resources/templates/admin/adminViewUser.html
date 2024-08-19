@@ -286,9 +286,9 @@
                         <th role="columnheader" class="" scope="col">
                             Description
                         </th>
-                        <th role="columnheader" class="" scope="col">
-                            Value
-                        </th>
+<!--                        <th role="columnheader" class="" scope="col">-->
+<!--                            Value-->
+<!--                        </th>-->
                         <th role="columnheader" class="" scope="col">
                             Deadline
                         </th>
@@ -301,13 +301,13 @@
                     <tr th:each="goal : ${goals}" role="row"
                         class="nhsuk-table__row">
                         <td class="nhsuk-table__cell"
-                            th:text="${goal.getGoalPart} + ' - ' + ${goal.getGoalDescription}">
+                            th:text="${goal.getGoalDescription}">
                             Goal Description
                         </td>
-                        <td class="nhsuk-table__cell"
-                            th:text="${goal.getGoalMeasurement} + ' ' + ${goal.getGoalUnit}">
-                            Goal Value
-                        </td>
+<!--                        <td class="nhsuk-table__cell"-->
+<!--                            th:text="${goal.getGoalMeasurement} + ' ' + ${goal.getGoalUnit}">-->
+<!--                            Goal Value-->
+<!--                        </td>-->
                         <td class="nhsuk-table__cell"
                             th:text="${goal.getGoalDeadline}">
                             Goal Deadline
