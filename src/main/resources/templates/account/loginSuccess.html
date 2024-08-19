@@ -10,6 +10,17 @@
 <div class="nhsuk-width-container">
     <main class="nhsuk-main-wrapper" id="maincontent" role="main">
 
+        <div th:if="${#authorization.expression('isAuthenticated()') and #authorization.expression('hasRole(''ADMIN'')')}">
+            <script th:inline="javascript">
+                window.location.href = '/admin';
+            </script>
+        </div>
+
+        <div th:if="${#authorization.expression('isAuthenticated()') and #authorization.expression('hasRole(''USER'')')}">
+            <script th:inline="javascript">
+                window.location.href = '/account';
+            </script>
+        </div>
 
         <h2>Login success</h2>
         <div class="nhsuk-action-link">
