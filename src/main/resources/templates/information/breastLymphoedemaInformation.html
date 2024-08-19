@@ -2,26 +2,19 @@
 <html lang="en">
 <head>
     <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
-
-
     <title>Breast Lymphoedema Information</title>
-
-    <!--    add any extra javascript file references here-->
-
+    <!-- Add any extra javascript file references here -->
 </head>
 <body>
 <script th:replace="~{fragments/_fragments :: pagescript}"></script>
 <header th:replace="~{fragments/_fragments :: header}"></header>
 <div class="nhsuk-width-container">
     <main class="nhsuk-main-wrapper" id="maincontent" role="main">
-
         <nav class="nhsuk-breadcrumb" aria-label="Breadcrumb">
             <div class="nhsuk-width-container">
                 <ol class="nhsuk-breadcrumb__list">
                     <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/information}">Information</a></li>
-                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Breast lymphoedema</a>
-                    </li>
-
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Breast lymphoedema</a></li>
                 </ol>
                 <p class="nhsuk-breadcrumb__back">
                     <a class="nhsuk-breadcrumb__backlink" th:href="@{/information}">
@@ -31,18 +24,73 @@
                 </p>
             </div>
         </nav>
+        <p>Information source: <a href="https://www.macmillan.org.uk/cancer-information-and-support/impacts-of-cancer/lymphoedema">Macmillan Cancer Support</a>, <a href="https://www.nhs.uk/conditions/lymphoedema/">NHS UK</a>, <a href="https://www.cancerresearchuk.org/about-cancer/breast-cancer/treatment/side-effects/lymphoedema">Cancer Research UK</a></p>
 
-        <h1>Breast lymphoedema</h1>
+        <nav class="nhsuk-contents-list" role="navigation" aria-label="Pages in this guide">
+            <h2 class="nhsuk-u-visually-hidden">Contents</h2>
+            <ol class="nhsuk-contents-list__list">
+                <li class="nhsuk-contents-list__item">
+                    <a class="nhsuk-contents-list__link" href="#info">General Information for Breast Lymphoedema</a>
+                </li>
+                <li class="nhsuk-contents-list__item">
+                    <a class="nhsuk-contents-list__link" href="#symptoms">Symptoms</a>
+                </li>
+                <li class="nhsuk-contents-list__item">
+                    <a class="nhsuk-contents-list__link" href="#diagnosis">Diagnosis</a>
+                </li>
+                <li class="nhsuk-contents-list__item">
+                    <a class="nhsuk-contents-list__link" href="#risk">Risk Factors</a>
+                </li>
+                <li class="nhsuk-contents-list__item">
+                    <a class="nhsuk-contents-list__link" href="#management">Management and Treatment</a>
+                </li>
+                <li class="nhsuk-contents-list__item">
+                    <a class="nhsuk-contents-list__link" href="#self-care">Self-Care and Exercises</a>
+                </li>
+            </ol>
+        </nav>
 
-        <h2>Information</h2>
+        <h1 id="info">Breast lymphoedema</h1>
+        <p>
+            <b>
+                Breast lymphoedema is a common condition that can develop after treatment for breast cancer. It is important to recognize the symptoms and seek early intervention to manage the condition effectively.
+            </b>
+        </p>
 
-        <h2>Guides</h2>
-        <h3>Taking Measurements</h3>
-        <h3>Taking Photos</h3>
-        <h3>Performing exercises</h3>
-        <h3>Donning and doffing</h3>
-        <h3>Using compression garments</h3>
+        <h2 id="symptoms">Symptoms</h2>
+        <p>Symptoms of breast lymphoedema include swelling, a feeling of heaviness or tightness in the breast, changes in the texture of the skin, and redness. These symptoms can develop gradually and may worsen over time if not managed properly.</p>
 
+        <h2 id="diagnosis">Diagnosis</h2>
+        <p>Breast lymphoedema is typically diagnosed through physical examination, patient history, and imaging tests such as lymphoscintigraphy. Healthcare providers may also use measurements of the affected area to assess the severity of the condition.</p>
+
+        <h2 id="risk">Risk Factors</h2>
+        <p>Risk factors for developing breast lymphoedema include:</p>
+        <ul>
+            <li>Extensive surgery or radiation therapy to the breast and lymph nodes</li>
+            <li>Infection or injury to the lymphatic system</li>
+            <li>Being overweight or obese</li>
+            <li>Lack of physical activity</li>
+            <li>Pre-existing venous conditions</li>
+        </ul>
+
+        <h2 id="management">Management and Treatment</h2>
+        <p>Management of breast lymphoedema includes manual lymphatic drainage (MLD), the use of compression garments, and regular exercise. In some cases, surgical options may be considered. Early intervention and consistent management are crucial in reducing the impact of the condition.</p>
+
+        <h2 id="self-care">Self-Care and Exercises</h2>
+        <details class="nhsuk-details nhsuk-expander" id="self-care-details">
+            <summary class="nhsuk-details__summary">
+                <span class="nhsuk-details__summary-text">Self-Care and Exercises</span>
+            </summary>
+            <div class="nhsuk-details__text">
+                <p>Engaging in regular self-care practices is essential in managing breast lymphoedema. This includes:</p>
+                <ul>
+                    <li>Performing daily exercises to encourage lymphatic flow</li>
+                    <li>Maintaining good skin care to prevent infections</li>
+                    <li>Wearing compression garments as prescribed by your healthcare provider</li>
+                    <li>Regular monitoring of the affected area for any changes</li>
+                </ul>
+            </div>
+        </details>
     </main>
 </div>
 <footer th:replace="~{fragments/_fragments :: footer}"></footer>
