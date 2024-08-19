@@ -40,6 +40,7 @@
             </div>
         </div>
 
+        <!-- Information block for extra guidance -->
         <div class="nhsuk-inset-text">
             <span class="nhsuk-u-visually-hidden">Information: </span>
 
@@ -47,13 +48,15 @@
                     th:href="@{/information}" target="_blank">information page</a>.</p>
         </div>
 
+        <!-- Main heading with dynamic date -->
         <h1>
             Enter progress for <span th:text="${#temporals.format(date, 'dd/MM/yyyy')}"></span>
         </h1>
 
+        <!-- Diary entry form -->
         <form th:method="post" th:action="@{/diary/entry}" th:object="${newEntry}" id="diary-entry-form"
               enctype="multipart/form-data">
-
+            <!-- Daily measurements -->
             <fieldset class="nhsuk-fieldset">
 
                 <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
@@ -134,11 +137,16 @@
                     </label>
                     <select class="nhsuk-select" id="wellnessScore" name="wellnessScore"
                             th:field="*{wellnessScore}">
-                        <option value="3" selected>3 - Average</option>
-                        <option value="1">1 - Very Poor</option>
-                        <option value="2">2 - Poor</option>
-                        <option value="4">4 - Good</option>
-                        <option value="5">5 - Excellent</option>
+                        <option value="1">1 - Poor</option>
+                        <option value="2">2 </option>
+                        <option value="3">3 </option>
+                        <option value="4">4 </option>
+                        <option value="5">5 </option>
+                        <option value="6">6 </option>
+                        <option value="7">7 </option>
+                        <option value="8">8 </option>
+                        <option value="9">9 </option>
+                        <option value="10">10 - Excellent</option>
                     </select>
                 </div>
 
@@ -148,11 +156,16 @@
                     </label>
                     <select class="nhsuk-select" id="qualityOfLifeScore" name="qualityOfLifeScore"
                             th:field="*{qualityOfLifeScore}">
-                        <option value="3" selected>3 - Average</option>
-                        <option value="1">1 - Very Poor</option>
-                        <option value="2">2 - Poor</option>
-                        <option value="4">4 - Good</option>
-                        <option value="5">5 - Excellent</option>
+                        <option value="1">1 - Poor</option>
+                        <option value="2">2 </option>
+                        <option value="3">3 </option>
+                        <option value="4">4 </option>
+                        <option value="5">5 </option>
+                        <option value="6">6 </option>
+                        <option value="7">7 </option>
+                        <option value="8">8 </option>
+                        <option value="9">9 </option>
+                        <option value="10">10 - Excellent</option>
                     </select>
                 </div>
             </fieldset>
@@ -184,6 +197,8 @@
             </fieldset>
 
             <br>
+
+            <!--Photo Upload Option -->
             <fieldset class="nhsuk-fieldset">
                 <div class="nhsuk-form-group">
                     <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
@@ -287,6 +302,8 @@
     </main>
 </div>
 <footer th:replace="~{fragments/_fragments :: footer}"></footer>
+
+<!--Photo upload javascript-->
 <script>
     function validateFileUpload(element) {
         const selectedFile = element.files[0];

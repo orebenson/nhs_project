@@ -122,7 +122,8 @@
                             Contact details
                         </dt>
                         <dd class="nhsuk-summary-list__value">
-                            <p th:text="${user.email}">karen.francis@example.com</p>
+                            <span th:text="${user.email}">karen.francis@example.com</span><br>
+                            <span th:text="${user.phone}">077777777777</span>
                         </dd>
                     </div>
 
@@ -355,6 +356,10 @@
                                 <label class="nhsuk-label nhsuk-checkboxes__label" for="questionnaireReminders">Questionnaire Reminders</label>
                             </div>
 
+                            <div class="nhsuk-checkboxes__item">
+                                <input class="nhsuk-checkboxes__input" type="checkbox" id="goalReminders" name="goalReminders"> <!-- Add this for goal reminders -->
+                                <label class="nhsuk-label nhsuk-checkboxes__label" for="goalReminders">Goal Reminders</label> <!-- Label for goal reminders -->
+                            </div>
 
                         </div>
                     </div>
