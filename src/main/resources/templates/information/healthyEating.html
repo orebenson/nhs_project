@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
+
+
+    <title>Healthy Eating and Lymphoedema</title>
+
+    <!--    add any extra javascript file references here-->
+
+</head>
+<body>
+<script th:replace="~{fragments/_fragments :: pagescript}"></script>
+<header th:replace="~{fragments/_fragments :: header}"></header>
+<div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+
+        <!-- Information Sources -->
+        <p>Information source: <a href="http://www.lymphoedema.org">The Lymphoedema Support Network (LSN)</a>, <a
+                href="https://www.nhs.uk/conditions/lymphoedema/">NHS Health Guide</a>, <a
+                href="https://www.uhdb.nhs.uk/service-lymphoedema">University Hospital of Derby and Burton - Lymphoedema
+            Service Patient Information</a></p>
+
+        <!-- Breadcrumb Navigation -->
+        <nav class="nhsuk-breadcrumb" aria-label="Breadcrumb">
+            <div class="nhsuk-width-container">
+                <ol class="nhsuk-breadcrumb__list">
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/information}">Information</a></li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Healthy Eating and Lymphoedema</a></li>
+                </ol>
+                <p class="nhsuk-breadcrumb__back">
+                    <a class="nhsuk-breadcrumb__backlink" th:href="@{/information}">
+                        <span class="nhsuk-u-visually-hidden">Go back &nbsp;</span>
+                        Information
+                    </a>
+                </p>
+            </div>
+        </nav>
+
+        <!-- Page Navigation -->
+        <nav class="nhsuk-contents-list" role="navigation" aria-label="Pages in this guide">
+            <h2 class="nhsuk-u-visually-hidden">Contents</h2>
+
+            <ol class="nhsuk-contents-list__list">
+                <li class="nhsuk-contents-list__item">
+                    <a class="nhsuk-contents-list__link" href="#introduction">Introduction</a>
+                </li>
+                <li class="nhsuk-contents-list__item">
+                    <a class="nhsuk-contents-list__link" href="#what-is">What is healthy eating?</a>
+                </li>
+                <li class="nhsuk-contents-list__item">
+                    <a class="nhsuk-contents-list__link" href="#guide">The Eatwell Guide</a>
+                </li>
+                <li class="nhsuk-contents-list__item">
+                    <a class="nhsuk-contents-list__link" href="#food-types">Food Types</a>
+                </li>
+                <li class="nhsuk-contents-list__item">
+                    <a class="nhsuk-contents-list__link" href="#fat-and-sugar">Fats and Sugars</a>
+                </li>
+            </ol>
+        </nav>
+
+        <h1 id="cellulitis">Healthy Eating and Lymphoedema</h1>
+
+        <section>
+            <h2 id="introduction"></h2>
+            <p class="nhsuk-body-l">Lymphoedema is a condition which is made worse by being overweight. Carrying excess
+                weight can also make treatment for lymphoedema less effective. Lymph nodes and a
+                complex network of lymphatic vessels are found directly under the skin’s surface. The
+                presence of excess fat impairs the normal functioning of the lymphatic vessels, probably by
+                reducing the effect of contracting muscles which help to push fluid through them.
+                Losing weight may not only have a beneficial effect on response to treatment but also
+                reduce your risk of other conditions related to being overweight, such as heart disease and
+                stroke. Weight loss may also reduce the volume of your limb, by reducing the fat in it, and
+                increase your energy levels.
+                If you have any queries regarding whether you should follow healthy eating and/or if you
+                should lose weight, then please talk to your lymphoedema nurse/therapist.
+            </p>
+        </section>
+
+        <section>
+            <h2 id="what-is">What is healthy eating?</h2>
+            <p class="nhsuk-body">Healthy eating should be seen as a long term change. It is not a ‘diet’ and there are no
+                quick fixes. Healthy eating can be followed by anyone regardless of age. Try to be realistic
+                about the changes that you make and alter your eating habits gradually. This ultimately
+                makes it easier for you to keep to the new pattern and improves results.
+            </p>
+        </section>
+
+        <section>
+            <h2 id="guide">The Eatwell Guide</h2>
+            <p class="nhsuk-body">
+                There are 5 food groups and choosing a variety of foods from each group will provide the
+                body with the nutrients it requires. Foods from the group containing fat and containing
+                sugar are not essential to a healthy diet and should form the smallest part of the diet.
+            </p>
+            <div style="display: flex; justify-content: center;">
+            <figure class="nhsuk-image" >
+                <img width="100%" height="auto" class="nhsuk-image__img" src="/assets/images/eatwellguide.png" alt="The Eatwell Guide">
+            </figure>
+            </div>
+        </section>
+
+        <section>
+            <h2 id="food-types">Food Types</h2>
+            <p class="nhsuk-u-font-weight-bold">Fruit and Vegetables</p>
+            <p class="nhsuk-body">
+                Aim to have at least 5 portions of fruit and vegetables a day. This can include fresh, tinned,
+                frozen, fresh juice or dried products.
+            </p>
+
+            <p class="nhsuk-u-font-weight-bold">Foods rich in carbohydrates and fibre</p>
+            <p class="nhsuk-body">
+                These include bread, potatoes, cereals, pasta and rice. Try to choose wholegrain products
+                where possible.
+            </p>
+
+            <p class="nhsuk-u-font-weight-bold">Foods containing protein</p>
+            <p class="nhsuk-body">
+                These include lean meat (red and white), fish e.g. cod, haddock (including oily fish
+                e.g. mackerel, salmon, sardines), eggs, beans and pulses.
+            </p>
+            <p class="nhsuk-u-font-weight-bold">Milk and dairy foods</p>
+            <p class="nhsuk-body">
+                Try to choose low fat options such as low fat cheese, semi-skimmed or skimmed milk, diet
+                yogurts.
+            </p>
+
+        </section>
+
+        <section>
+            <h2 id="fat-and-sugar">Foods containing fat and foods containing sugar</h2>
+            <p class="nhsuk-body">Fat is a source of calories, so it is important to reduce saturated fats such as those found in
+                cheese, butter, crisps as well as unsaturated fats found in vegetable oils, salad dressings.
+                Try to choose reduced fat spread, reduced fat salad dressings. Take care not to add
+                additional fat to foods during cooking e.g. frying in oil, adding butter/margarine, having rich
+                sauces.
+            </p>
+            <p>
+                Sugary foods also tend to be high in calories. Try to minimise your intake of sugary food
+                such as cakes, biscuits, chocolate, fizzy pop. Sweeteners can be used instead of sugar
+                and diet fizzy pop or reduced sugar varieties can be chosen instead.
+            </p>
+        </section>
+    </main>
+</div>
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
+</body>
+</html>

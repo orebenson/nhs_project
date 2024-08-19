@@ -20,4 +20,6 @@ public class InformationController {
     public ModelAndView getMidlineAndGenitalLymphoedemaInformationPage() { return new ModelAndView("information/midlineAndGenitalLymphoedemaInformation"); }
     @GetMapping("/information/cellulitis")
     public ModelAndView getCellulitisInformationPage() { return new ModelAndView("information/cellulitisInformation"); }
+    @GetMapping("/information/healthy_eating")
+    public ModelAndView getHealthyEatingInformationPage() { return new ModelAndView("information/healthyEating"); }
 }

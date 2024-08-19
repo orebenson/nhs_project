@@ -16,35 +16,48 @@
     <main class="nhsuk-main-wrapper" id="maincontent" role="main">
 
         <!-- Information Sources -->
-        <p>Information source: <a href="http://www.lymphoedema.org">The Lymphoedema Support Network (LSN)</a>, <a
+        <p>Information sources: <a href="http://www.lymphoedema.org">The Lymphoedema Support Network (LSN)</a>, <a
                 href="https://www.nhs.uk/conditions/lymphoedema/">NHS Health Guide</a>, <a
-                href="https://www.thebls.com/">British Lymphology Society (BLS)</a>, <a
-                href="https://www.macmillan.org.uk/">Macmillan Cancer Support</a>, <a
                 href="https://www.uhdb.nhs.uk/service-lymphoedema">University Hospital of Derby and Burton - Lymphoedema
             Service Patient Information</a></p>
 
-        <!-- Back -->
-        <div class="nhsuk-back-link">
-            <a class="nhsuk-back-link__link" th:href="@{/information}">
-                <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg"
-                     viewBox="0 0 24 24"
-                     aria-hidden="true" height="24" width="24">
-                    <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
-                </svg>
-                Go back
-            </a>
-        </div>
+        <!-- Breadcrumb Navigation -->
+        <nav class="nhsuk-breadcrumb" aria-label="Breadcrumb">
+            <div class="nhsuk-width-container">
+                <ol class="nhsuk-breadcrumb__list">
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/information}">Information</a></li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Cellulitis Information</a></li>
 
+                </ol>
+                <p class="nhsuk-breadcrumb__back">
+                    <a class="nhsuk-breadcrumb__backlink" th:href="@{/information}">
+                        <span class="nhsuk-u-visually-hidden">Go back &nbsp;</span>
+                        Information
+                    </a>
+                </p>
+            </div>
+        </nav>
 
         <!-- Page Navigation -->
-        <nav class="nhsuk-nav-a">
-            <ul>
-                <li><a href="#what-is">What is cellulitis?</a></li>
-                <li><a href="#observtion">How will I know if I have cellulitis?</a></li>
-                <li><a href="#action">What do I do if I think I have cellulitis?</a></li>
-                <li><a href="#protection">How can I protect myself from developing cellulitis?</a></li>
-                <li><a href="#else">Is there anything else?</a></li>
-            </ul>
+        <nav class="nhsuk-contents-list" role="navigation" aria-label="Pages in this guide">
+            <h2 class="nhsuk-u-visually-hidden">Contents</h2>
+            <ol class="nhsuk-contents-list__list">
+                <li class="nhsuk-contents-list__item">
+                    <a class="nhsuk-contents-list__link" href="#what-is">What is cellulitis?</a>
+                </li>
+                <li class="nhsuk-contents-list__item">
+                    <a class="nhsuk-contents-list__link" href="#observtion">How will I know if I have cellulitis?</a>
+                </li>
+                <li class="nhsuk-contents-list__item">
+                    <a class="nhsuk-contents-list__link" href="#action">What do I do if I think I have cellulitis?</a>
+                </li>
+                <li class="nhsuk-contents-list__item">
+                    <a class="nhsuk-contents-list__link" href="#protection">How can I protect myself from developing cellulitis?</a>
+                </li>
+                <li class="nhsuk-contents-list__item">
+                    <a class="nhsuk-contents-list__link" href="#else">Is there anything else?</a>
+                </li>
+            </ol>
         </nav>
 
         <h1 id="cellulitis">Cellulitis: information for patients living with chronic oedema / lymphoedema</h1>
@@ -61,7 +74,6 @@
                 swelling worse. Occasionally, cellulitis infections can be life-threatening.
             </p>
         </section>
-
 
         <section>
             <h2 id="observation">How will I know if I have cellulitis?</h2>
@@ -137,7 +149,7 @@
 
         <section>
             <h2 id="else">Is there anything else?</h2>
-            <p>If you have had cellulitis before, your doctor may choose to prescribe you a ‘just in case’
+            <p class="nhsuk-body">If you have had cellulitis before, your doctor may choose to prescribe you a ‘just in case’
                 course of antibiotics, so that if you think you are getting cellulitis you can start treatment
                 quickly. This is particularly important if you are travelling to an area where immediate
                 medical help may not be available.
@@ -147,7 +159,7 @@
                 You should always seek medical attention as soon as possible if you have started taking
                 antibiotics for a possible cellulitis.
             </h3>
-            <p>
+            <p class="nhsuk-body">
                 If you are prone to infections - if you have had several episodes of cellulitis - you may need
                 long-term antibiotics (the doctor calls this ‘antibiotic prophylaxis’). You should contact the
                 lymphoedema clinic who will discuss this further with you.

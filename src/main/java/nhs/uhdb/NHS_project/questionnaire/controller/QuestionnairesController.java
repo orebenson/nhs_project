@@ -12,6 +12,9 @@ public class QuestionnairesController {
 //    public ModelAndView questionnaires() {
 //        return new ModelAndView("questionnaires/taskHubPage");
 //    }
+    /**     The above GET request for the questionnaires page has been moved to AccountController
+     *      to keep consistency of the admin side, where it's in AdminAccountController.
+    */
 
     @GetMapping("/questionnaires/success")
     public ModelAndView questionnaireSuccess() {
