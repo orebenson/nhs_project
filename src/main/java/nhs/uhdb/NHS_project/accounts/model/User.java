@@ -11,6 +11,7 @@ public class User {
     private String firstname;
     private String lastname;
     private String password;
+    private String phone;
     private String address1;
     private String address2;
     private String city;
@@ -24,6 +25,7 @@ public class User {
         this.firstname = "";
         this.lastname = "";
         this.password = "";
+        this.phone = "";
         this.address1 = "";
         this.address2 = "";
         this.city = "";
