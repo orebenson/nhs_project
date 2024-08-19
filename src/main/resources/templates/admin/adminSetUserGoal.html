@@ -37,20 +37,8 @@
                 th:text="${user.getFirstname() + ' ' + user.getLastname()}">User Name</span></h2>
         <form th:action="@{/admin/{userId}/goal(userId=${user.user_id})}" th:object="${goal}" th:method="post">
             <div class="nhsuk-form-group">
-                <label class="nhsuk-label" for="goal_part">Body Area:</label>
-                <input class="nhsuk-input" type="text" id="goal_part" name="goal_part" th:field="*{goalPart}" required>
-            </div>
-            <div class="nhsuk-form-group">
-                <label class="nhsuk-label" for="goal_description">Description:</label>
+                <label class="nhsuk-label" for="goal_description">Goal Description:</label>
                 <input class="nhsuk-input" type="text" id="goal_description" name="goal_description" th:field="*{goalDescription}">
-            </div>
-            <div class="nhsuk-form-group">
-                <label class="nhsuk-label" for="goal_measurement">Measurement:</label>
-                <input class="nhsuk-input" type="number" id="goal_measurement" name="goal_measurement" th:field="*{goalMeasurement}" required>
-            </div>
-            <div class="nhsuk-form-group">
-                <label class="nhsuk-label" for="goal_unit">Unit:</label>
-                <input class="nhsuk-input" type="text" id="goal_unit" name="goal_unit" th:field="*{goalUnit}" required>
             </div>
             <div class="nhsuk-form-group">
                 <label class="nhsuk-label" for="goal_deadline">Deadline:</label>

@@ -9,19 +9,19 @@ import lombok.Data;
 public class Goal {
     private Long goalId;
     private Long userId;
-    private String goalPart;
+//    private String goalPart;
     private String goalDescription;
-    private Integer goalMeasurement;
-    private String goalUnit;
+//    private Integer goalMeasurement;
+//    private String goalUnit;
     private String goalDeadline;
 
     public Goal() {
         this.goalId = null;
         this.userId = null;
-        this.goalPart = "";
+//        this.goalPart = "";
         this.goalDescription = "";
-        this.goalMeasurement = null;
-        this.goalUnit = "";
+//        this.goalMeasurement = null;
+//        this.goalUnit = "";
         this.goalDeadline = "";
     }
 }
