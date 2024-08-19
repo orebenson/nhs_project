@@ -32,6 +32,7 @@ create table if not exists user_table
     email     VARCHAR(50)  NOT NULL,
     firstname VARCHAR(50)  NOT NULL,
     lastname  VARCHAR(50)  NOT NULL,
+    phone     VARCHAR(50),
     password  VARCHAR(500) NOT NULL,
     enabled   boolean      NOT NULL,
     address1  VARCHAR(500),
