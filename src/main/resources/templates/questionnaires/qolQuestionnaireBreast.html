@@ -1029,5 +1029,14 @@
     </main>
 </div>
 <footer th:replace="~{fragments/_fragments :: footer}"></footer>
+
+<script>
+    window.onload = function() {
+        const selectElement = document.getElementById('overall-select');
+        if (selectElement.value === "0") {
+            selectElement.value = "";
+        }
+    };
+</script>
 </body>
 </html>
