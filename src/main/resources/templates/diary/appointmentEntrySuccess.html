@@ -9,7 +9,11 @@
 <header th:replace="~{fragments/_fragments :: header}"></header>
 <div class="nhsuk-width-container">
     <main class="nhsuk-main-wrapper" id="maincontent" role="main">
-
+        <div th:if="${#authorization.expression('isAuthenticated()') and #authorization.expression('hasRole(''USER'')')}">
+            <script th:inline="javascript">
+                window.location.href = '/diary#appointments';
+            </script>
+        </div>
 
 
         <h2>Appointment entry success</h2>
