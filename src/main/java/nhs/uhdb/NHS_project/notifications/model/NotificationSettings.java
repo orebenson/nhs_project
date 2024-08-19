@@ -3,6 +3,8 @@ package nhs.uhdb.NHS_project.notifications.model;
 public class NotificationSettings {
     private boolean dailyReminders;
     private boolean appointmentReminders;
+    private boolean questionnaireReminders;
+    private boolean goalReminders;
 
     // Getters and Setters
     public boolean isDailyReminders() {
@@ -21,9 +23,6 @@ public class NotificationSettings {
         this.appointmentReminders = appointmentReminders;
     }
 
-    private boolean questionnaireReminders;
-
-    // Getter and Setter
     public boolean isQuestionnaireReminders() {
         return questionnaireReminders;
     }
@@ -32,4 +31,11 @@ public class NotificationSettings {
         this.questionnaireReminders = questionnaireReminders;
     }
 
+    public boolean isGoalReminders() {
+        return goalReminders;
+    }
+
+    public void setGoalReminders(boolean goalReminders) {
+        this.goalReminders = goalReminders;
+    }
 }
