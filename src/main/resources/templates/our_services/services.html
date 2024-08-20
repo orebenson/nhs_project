@@ -6,6 +6,7 @@
 
     <title>Our Services</title>
 
+    <link rel="stylesheet" href="/css/image-enlarge.css">
     <!--    add any extra javascript file references here-->
 
 </head>
@@ -43,50 +44,20 @@
 
         <section id="the-team">
             <h2>Meet our team</h2>
-            <p>Consultants who have an interest in Lymphoedema, and who hold clinics, are:</p>
-            <table class="nhsuk-table">
-                <caption class="nhsuk-table__caption">Consultant List</caption>
-                <thead role="rowgroup" class="nhsuk-table__head">
-                <tr role="row">
-                    <th role="columnheader" class="" scope="col">
-                        Consultant
-                    </th>
-                    <th role="columnheader" class="" scope="col">
-                        Role
-                    </th>
-                </tr>
-                </thead>
-                <tbody class="nhsuk-table__body">
-                <tr role="row" class="nhsuk-table__row">
-                    <td class="nhsuk-table__cell">Dr Vaughan Keeley</td>
-                    <td class="nhsuk-table__cell ">Lead Lymphoedema Consultant</td>
-                </tr>
-                <tr role="row" class="nhsuk-table__row">
-                    <td class="nhsuk-table__cell">Dr Mary Lewis</td>
-                    <td class="nhsuk-table__cell ">Consultant in Palliative Medicine / Lymphoedema</td>
-                </tr>
-                <tr role="row" class="nhsuk-table__row">
-                    <td class="nhsuk-table__cell">Dr Katie Riches</td>
-                    <td class="nhsuk-table__cell ">Advanced Practitioner in Lymphoedema</td>
-                </tr>
-                <tr role="row" class="nhsuk-table__row">
-                    <td class="nhsuk-table__cell">Dr Anusha Panthagani</td>
-                    <td class="nhsuk-table__cell ">Consultant in Dermatology/Lymphoedema</td>
-                </tr>
-                <tr role="row" class="nhsuk-table__row">
-                    <td class="nhsuk-table__cell">Dr Sarah Dodd</td>
-                    <td class="nhsuk-table__cell ">Speciality Doctor in Palliative Medicine/Lymphoedema</td>
-                </tr>
-                <tr role="row" class="nhsuk-table__row">
-                    <td class="nhsuk-table__cell">Dr Heba Elmahady</td>
-                    <td class="nhsuk-table__cell ">Speciality Doctor in Dermatology/Lymphoedema</td>
-                </tr>
-                <tr role="row" class="nhsuk-table__row">
-                    <td class="nhsuk-table__cell">Dr Adedayo Williams</td>
-                    <td class="nhsuk-table__cell ">Speciality Doctor in Lymphoedema</td>
-                </tr>
-                </tbody>
-            </table>
+
+            <div style="display: flex; justify-content: center;">
+                <a href="#enlarge">
+                    <figure class="nhsuk-image">
+                        <img width="100%" height="auto" class="nhsuk-image__img"
+                             src="/assets/images/staffPic.png" alt="Our Team">
+                    </figure>
+                </a>
+            </div>
+
+            <div id="enlarge" class="modal">
+                <a href="#b" class="close">&times;</a>
+                <img src="/assets/images/staffPic.png" alt="OurTeam">
+            </div>
         </section>
 
         <section id="consultations">
