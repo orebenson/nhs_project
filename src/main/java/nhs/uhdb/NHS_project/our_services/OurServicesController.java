@@ -8,8 +8,14 @@ import org.springframework.web.servlet.ModelAndView;
 public class OurServicesController {
     @GetMapping("/services")
     public ModelAndView getServicesPage() { return new ModelAndView("our_services/services"); }
-    @GetMapping("/services/first-consultation")
-    public ModelAndView getFirstConsultationPage() { return new ModelAndView("our_services/1stConsultation"); }
+    @GetMapping("/services/first-consultation-choose")
+    public ModelAndView getFirstConsultationChoose() { return new ModelAndView("our_services/1stConsultationChoose"); }
+    @GetMapping("/services/first-consultation-derby")
+    public ModelAndView getFirstConsultationDerbyPage() { return new ModelAndView("our_services/1stConsultationDerby"); }
+    @GetMapping("/services/first-consultation-nottingham")
+    public ModelAndView getFirstConsultationNottingPage() { return new ModelAndView("our_services/1stConsultationNottingham"); }
     @GetMapping("/services/second-consultation")
     public ModelAndView getSecondConsultationPage() { return new ModelAndView("our_services/followConsultation"); }
+    @GetMapping("/select-clinic")
+    public String selectClinic() { return "select-clinic"; }
 }

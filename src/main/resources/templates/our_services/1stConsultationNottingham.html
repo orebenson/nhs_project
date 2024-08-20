@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
+    <title>First Consultation Instructions For Nottingham</title>
+</head>
+<body>
+<script th:replace="~{fragments/_fragments :: pagescript}"></script>
+<header th:replace="~{fragments/_fragments :: header}"></header>
+
+<div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+
+        <div class="nhsuk-back-link">
+
+            <a class="nhsuk-back-link__link" th:href="@{/services}">
+                <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+                    <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+                </svg>
+                Go back</a>
+        </div>
+
+        <h1>Your Initial Lymphoedema Appointment - What to Expect</h1>
+
+        <div class="nhsuk-form-group">
+            <label class="nhsuk-label" for="select-1">
+                Please Select Your Preferred Clinic:
+            </label>
+            <select class="nhsuk-select" id="select-1" name="select-1" th:onchange="'window.location.href = this.value;'">
+                <option value="">Select a clinic</option>
+                <option th:value="@{/services/first-consultation-derby}">Nightingale Community Hospital</option>
+                <option th:value="@{/services/first-consultation-nottingham}">Long Eaton Health Centre</option>
+            </select>
+        </div>
+
+        <p>When you arrive at the clinic, please book in at the reception desk. You will be provided with a questionnaire and asked to take a seat in the waiting room. Please let the team know if you require any assistance completing the questionnaire.</p>
+
+        <figure class="nhsuk-image">
+            <img class="nhsuk-image__img" src="/assets/images/1stConsultationNot3.jpeg" alt="arrival">
+        </figure>
+
+        <figure class="nhsuk-image">
+            <img class="nhsuk-image__img" src="/assets/images/1stConsultationNot2.jpeg" alt="arrival">
+        </figure>
+
+        <p>A clinical support worker will call you from the waiting room to measure your height, weight and calculate your BMI. Please let the team know if you require any assistance with this. You will then be asked to take a seat in the waiting room again.</p>
+
+        <figure class="nhsuk-image">
+            <img class="nhsuk-image__img" src="/assets/images/1stConsultationPicture2.jpg" alt="weight-measure">
+        </figure>
+
+        <p>A lymphoedema therapist will call you from the waiting room and take you into one of the clinical rooms. You are welcome to bring a family member, friend or carer into the appointment if you wish. The therapist will ask you a few questions and explain what will happen during your appointment. It is useful to bring a list of your most recent medications.</p>
+
+        <figure class="nhsuk-image">
+            <img class="nhsuk-image__img" src="/assets/images/1stConsultationNot1.jpeg" alt="room">
+        </figure>
+
+        <p>If you are attending with leg swelling or arm swelling, the lymphoedema therapist will measure your limb using a Perometer. This machine calculates the volume of your limb using photosensors and LEDs within a frame. The measurements are not invasive and will not hurt. You will be required to maintain a static position for a few moments. If you require assistance, the therapist will help you to position yourself accordingly.</p>
+
+        <figure class="nhsuk-image">
+            <img class="nhsuk-image__img" src="/assets/images/1stConsultationPicture4.jpg" alt="perometer">
+        </figure>
+
+        <p>To use the Perometer your limb will need to be free of clothing. If you are attending with leg swelling you will be asked to remove your shoes and socks and may be asked to remove your trousers so that the whole leg can be measured. Some people choose to wear loose clothing such as shorts or a skirt that can be pulled up.</p>
+
+        <figure class="nhsuk-image">
+            <img class="nhsuk-image__img" src="/assets/images/1stConsultationPicture5.jpg" alt="perometer">
+        </figure>
+
+        <p>If you are attending with arm swelling, you will be asked to remove any watches and bracelets. You may be asked to remove your clothing so that the whole arm and chest can be examined.</p>
+        <p>Your privacy and dignity will be maintained at all times. If you require any assistance with undressing, the therapist can help you.</p>
+        <p>If you are not able to use the Perometer safely, the lymphoedema therapist will use a tape measure to calculate your limb volume. This involves using a water-based pen to mark your skin at 4cm intervals. A circumference measurement is then taken at each mark using a tape measure.</p>
+
+        <figure class="nhsuk-image">
+            <img class="nhsuk-image__img" src="/assets/images/1stConsultationPicture6.jpg" alt="perometer">
+        </figure>
+
+        <p>If you are attending with leg swelling, the lymphoedema therapist will listen to the pulses in your foot and ankle using a small, ultrasound device. This involves a small amount of gel being applied to your foot and ankle and a probe being placed against your skin. It is not an invasive test and will not hurt however, the gel may be slightly cold.</p>
+
+        <figure class="nhsuk-image">
+            <img class="nhsuk-image__img" src="/assets/images/1stConsultationPicture7.jpg" alt="perometer">
+        </figure>
+
+        <p>Once these measurements have been taken, the doctor will join the consultation. You will be asked several questions so that the doctor can understand why the swelling has occurred; how it should be treated; and whether any further investigations are needed. </p>
+        <p>During the assessment the doctor will examine the condition of your skin looking for dryness, skin changes and wounds. The doctor will look for the presence of fluid by applying a small amount of pressure to the skin by pressing with a fingertip (this should not hurt but can sometimes feel tender). The doctor may want to examine the lymph nodes in your groin or under your armpit.  The doctor will explain the examination to you and ask for your consent beforehand. </p>
+        <p>It may be necessary to take photographs. Your consent will be obtained prior to this. </p>
+        <p>If you are found to have lymphoedema, the doctor and therapist will talk to you about how to manage the condition. You may be advised to wear compression garments, such as support socks. The therapist will talk through the options suitable for you.  You may be fitted with compression garments during the appointment or asked to return and have the compression garments fitted at a further appointment.</p>
+        <p>You will be provided with information leaflets and contact details for the clinic.</p>
+        <p>The doctor will write to your GP with an outline of your appointment. Please let the doctor know if you would like a copy of the letter.</p>
+        <p>If a further appointment is required a letter will be sent to you with the appointment details. </p>
+
+    </main>
+</div>
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
+</body>
+</html>
