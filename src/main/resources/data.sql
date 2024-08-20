@@ -11,8 +11,8 @@ values (1, 1);
 
 -- add default user account test test
 insert into user_table (email, firstname, lastname, password, phone, enabled, address1, address2, city, postcode)
-values ('test@test.com', 'Default', 'User', '$2a$10$UnsqVzZTipaKE77lf6Bfme/nvIqwIRSzf2lqPgUr.9LuLjdvT1WkW', '07123456789', true,
-        '21 Test Street', 'Test Avenue', 'Cardiff', 'CF23 1OX');
+values ('anniefresco@test.com', 'Annie', 'Fresco', '$2a$10$UnsqVzZTipaKE77lf6Bfme/nvIqwIRSzf2lqPgUr.9LuLjdvT1WkW', '07123456789', true,
+        '21 Knox Road', 'Madison Avenue', 'Cardiff', 'CF23 1OX');
 insert into users_roles (user_id, role_id)
 values (2, 2);
 insert into user_treatment_plans (user_id, treatment_plan_id)
