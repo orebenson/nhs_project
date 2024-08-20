@@ -6,7 +6,7 @@
 
     <title>Healthy Eating and Lymphoedema</title>
 
-    <!--    add any extra javascript file references here-->
+    <link rel="stylesheet" href="/css/image-enlarge.css">
 
 </head>
 <body>
@@ -52,7 +52,7 @@
                     <a class="nhsuk-contents-list__link" href="#guide">The Eatwell Guide</a>
                 </li>
                 <li class="nhsuk-contents-list__item">
-                    <a class="nhsuk-contents-list__link" href="#food-types">Food Types</a>
+                    <a class="nhsuk-contents-list__link" href="#food-types">Food Groups</a>
                 </li>
                 <li class="nhsuk-contents-list__item">
                     <a class="nhsuk-contents-list__link" href="#fat-and-sugar">Fats and Sugars</a>
@@ -60,10 +60,9 @@
             </ol>
         </nav>
 
-        <h1>Healthy Eating and Lymphoedema</h1>
+        <h1 id="introduction">Healthy Eating and Lymphoedema</h1>
 
         <section>
-            <h2 id="introduction"></h2>
             <p class="nhsuk-body-l">Lymphoedema is a condition which is made worse by being overweight. Carrying excess
                 weight can also make treatment for lymphoedema less effective. Lymph nodes and a
                 complex network of lymphatic vessels are found directly under the skin’s surface. The
@@ -95,12 +94,20 @@
                 sugar are not essential to a healthy diet and should form the smallest part of the diet.
             </p>
             <div style="display: flex; justify-content: center;">
-            <figure class="nhsuk-image" >
-                <img width="100%" height="auto" class="nhsuk-image__img" src="/assets/images/eatwellguide.png" alt="The Eatwell Guide">
-                <figcaption class="nhsuk-image__caption">
-                    The Eatwell Guide shows how much of what you eat overall should come from each food group.
-                </figcaption>
-            </figure>
+                <a href="#enlarge">
+                    <figure class="nhsuk-image">
+                        <img width="100%" height="auto" class="nhsuk-image__img"
+                             src="/assets/images/eatwellguide.png" alt="The Eatwell Guide">
+                        <figcaption class="nhsuk-image__caption">
+                            The Eatwell Guide shows how much of what you eat overall should come from each food group.
+                        </figcaption>
+                    </figure>
+                </a>
+            </div>
+
+            <div id="enlarge" class="modal">
+                <a href="#b"  class="close">&times;</a>
+                <img src="/assets/images/eatwellguide.png" alt="Enlarged Image">
             </div>
         </section>
 
