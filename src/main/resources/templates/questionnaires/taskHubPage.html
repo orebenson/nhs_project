@@ -131,7 +131,7 @@
                                     th:unless="${#lists.isEmpty(qolQuestionnaires)}">
                                     <a th:href="@{questionnaires/qol-questionnaire/{questionnaireId}(questionnaireId=${questionnaire.id})}">
                                         Questionnaire submitted on <span
-                                            th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span>
+                                            th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span> - Leg
                                     </a>
                                 </li>
 
@@ -139,7 +139,7 @@
                                     th:unless="${#lists.isEmpty(qolArmQuestionnaires)}">
                                     <a th:href="@{questionnaires/qol-questionnaire-arm/{questionnaireId}(questionnaireId=${questionnaire.id})}">
                                         Questionnaire submitted on <span
-                                            th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span>
+                                            th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span> - Arm
                                     </a>
                                 </li>
 
@@ -147,7 +147,7 @@
                                     th:unless="${#lists.isEmpty(qolBreastQuestionnaires)}">
                                     <a th:href="@{questionnaires/qol-questionnaire-breast/{questionnaireId}(questionnaireId=${questionnaire.id})}">
                                         Questionnaire submitted on <span
-                                            th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span>
+                                            th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span> - Breast
                                     </a>
                                 </li>
 
