@@ -22,6 +22,18 @@
         </div>
 
         <h1>Your Initial Lymphoedema Appointment - What to Expect</h1>
+
+        <div class="nhsuk-form-group">
+            <label class="nhsuk-label" for="select-1">
+                Please Select Your Preferred Clinic:
+            </label>
+            <select class="nhsuk-select" id="select-1" name="select-1" th:onchange="'window.location.href = this.value;'">
+                <option value="">Select a clinic</option>
+                <option th:value="@{/services/first-consultation-derby}">Nightingale Community Hospital</option>
+                <option th:value="@{/services/first-consultation-nottingham}">Long Eaton Health Centre</option>
+            </select>
+        </div>
+
         <p>When you arrive at the clinic, please book in at the reception desk. You will be provided with a questionnaire and asked to take a seat in the waiting room. Please let the team know if you require any assistance completing the questionnaire.</p>
 
         <figure class="nhsuk-image">
