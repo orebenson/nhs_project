@@ -227,12 +227,12 @@ VALUES (1, 2, 'None', '2024-07-10');
 -- add diary entries
 INSERT INTO diary_entries (user_id, createdAt, weight, cellulitisDetails, mobilityDetails, discomfortDetails, wellnessScore, qualityOfLifeScore)
 VALUES
-    (2, '2023-07-01', 70, 'No cellulitis symptoms', 'Able to walk with minimal discomfort', 'Mild discomfort in the morning',4, 4),
-    (2, '2023-07-02', 82, 'No cellulitis symptoms', 'Limited mobility due to knee pain', 'Discomfort in the knee',3, 4),
-    (2, '2023-07-15', 71, 'Redness and mild swelling observed', 'Slightly difficult to walk', 'Moderate discomfort',2, 5),
-    (2, '2023-07-20', 81, 'Minor redness in the lower leg', 'Mobility slightly improved', 'Mild discomfort',1, 2),
-    (2, '2023-08-01', 70, 'Cellulitis symptoms subsided', 'Mobility back to normal', 'Minimal discomfort',2, 3),
-    (2, '2023-08-05', 80, 'No cellulitis symptoms', 'Able to walk longer distances', 'No discomfort',3, 3);
+    (2, '2023-07-01', 70, 'No cellulitis symptoms', 'Able to walk with minimal discomfort', 'Mild discomfort in the morning',3, 6),
+    (2, '2023-07-08', 69, 'No cellulitis symptoms', 'Limited mobility due to knee pain', 'Discomfort in the knee',3, 6),
+    (2, '2023-07-15', 66, 'Redness and mild swelling observed', 'Slightly difficult to walk', 'Moderate discomfort',5, 7),
+    (2, '2023-07-22', 66, 'Minor redness in the lower leg', 'Mobility slightly improved', 'Mild discomfort',6, 7),
+    (2, '2023-07-29', 65, 'Cellulitis symptoms subsided', 'Mobility back to normal', 'Minimal discomfort',6, 8),
+    (2, '2023-08-05', 64, 'No cellulitis symptoms', 'Able to walk longer distances', 'No discomfort',9, 8);
 
 INSERT INTO diary_entry_exercises (diary_entry_id, exercise_id)
 VALUES
