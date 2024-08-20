@@ -20,3 +20,6 @@ function toggleInput(show) {
 //     const form = document.getElementById('preappointment-form');
 //     form.addEventListener('submit', confirmSubmission);
 // });
+
+/** Removing form submission for better mobile view and consistency
+ */
