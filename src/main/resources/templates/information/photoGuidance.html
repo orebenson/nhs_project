@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
+
+
+    <title>Photo Guidance</title>
+
+    <!--    add any extra javascript file references here-->
+
+</head>
+<body>
+<script th:replace="~{fragments/_fragments :: pagescript}"></script>
+<header th:replace="~{fragments/_fragments :: header}"></header>
+<div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+
+        <!-- Information Sources -->
+        <p>Information sources: <a href="http://www.lymphoedema.org">The Lymphoedema Support Network (LSN)</a>, <a
+                href="https://www.nhs.uk/conditions/lymphoedema/">NHS Health Guide</a>, <a
+                href="https://www.uhdb.nhs.uk/service-lymphoedema">University Hospital of Derby and Burton - Lymphoedema
+            Service Patient Information</a></p>
+
+        <!-- Breadcrumb Navigation -->
+        <nav class="nhsuk-breadcrumb" aria-label="Breadcrumb">
+            <div class="nhsuk-width-container">
+                <ol class="nhsuk-breadcrumb__list">
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/information}">Information</a>
+                    </li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Photo Guidance</a></li>
+
+                </ol>
+                <p class="nhsuk-breadcrumb__back">
+                    <a class="nhsuk-breadcrumb__backlink" th:href="@{/information}">
+                        <span class="nhsuk-u-visually-hidden">Go back &nbsp;</span>
+                        Information
+                    </a>
+                </p>
+            </div>
+        </nav>
+
+        <!-- Page Navigation -->
+        <nav class="nhsuk-contents-list" role="navigation" aria-label="Pages in this guide">
+            <h2 class="nhsuk-u-visually-hidden">Contents</h2>
+            <ol class="nhsuk-contents-list__list">
+                <li class="nhsuk-contents-list__item">
+                    <a class="nhsuk-contents-list__link" href="#introduction">Introduction</a>
+                </li>
+                <li class="nhsuk-contents-list__item">
+                    <a class="nhsuk-contents-list__link" href="#areas-affected">For areas affected by oedema</a>
+                </li>
+                <li class="nhsuk-contents-list__item">
+                    <a class="nhsuk-contents-list__link" href="#lesions">For lesions/skin changes</a>
+                </li>
+                <li class="nhsuk-contents-list__item">
+                    <a class="nhsuk-contents-list__link" href="#rashes">For rashes</a>
+                </li>
+            </ol>
+        </nav>
+
+        <h1>Photo Guidance</h1>
+
+        <section>
+            <h2 id="introduction">Tips on taking photos with your smart phone</h2>
+            <ul class="nhsuk-list nhsuk-list--bullet">
+                <li>Have a solid background like a plain wall or plain sheet. Avoid distractions in the background like
+                    television, cushions etc.
+                </li>
+                <li>Good lighting is essential. Use good light like sunlight or the flash on the camera with no
+                    shadows.
+                </li>
+                <li>After taking the photo zoom in to see if the picture is in focus. If you cannot see it clearly, then
+                    neither can we. Please make sure that the image is not blurred.
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 id="areas-affected">For areas affected by oedema</h2>
+            <ul class="nhsuk-list nhsuk-list--bullet">
+                <li>Take a photo 2 feet away from the area so that we can see its location on your body.
+                </li>
+                <li>Take a second close up photo of the same area about one foot away, so we can see details of the
+                    area.
+                </li>
+                <li>Please do not send images of genital or breast area; if this is the location of your skin problem
+                    then there is no need to send a photo, we will be in touch in due course with a face to face
+                    appointment.
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 id="lesions">For lesions/skin changes</h2>
+            <ul class="nhsuk-list nhsuk-list--bullet">
+                <li>Take a photo 2 feet away from the lesion so that we can see its location on your body.
+                </li>
+                <li>Take a second close up photo of the same lesion about one foot away, so we can see details of the
+                    lesion
+                </li>
+                <li>Use a ruler or a coin next to the lesion (but not obscuring it) to give us a sense of the size of
+                    the lesion.
+                </li>
+                <li>For subtle lesions please use a pen to draw an arrow pointing to the lesion
+                </li>
+                <li>Please do not send images of genital or breast area; if this is the location of your skin problem
+                    then there is no need to send a photo and we will be in touch in due course with a face to face
+                    appointment.
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2 id="rashes">For rashes</h2>
+            <ul class="nhsuk-list nhsuk-list--bullet">
+                <li>Take a picture of the entire rash
+                </li>
+                <li>Take a close up of the worst areas
+                </li>
+                <li>Not more than 5 photos need to be sent. Usually 2 or 3 will be enough.
+                </li>
+                <li>Try to imagine the body divided into segments and take photos of the segments if the rash is
+                    widespread.
+                </li>
+                <li>Please do not send images of genital or breast area; if this is the location of your skin problem
+                    then there is no need to send a photo, we will be in touch in due course with a face to face
+                    appointment.
+                </li>
+            </ul>
+        </section>
+
+    </main>
+</div>
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
+</body>
+</html>

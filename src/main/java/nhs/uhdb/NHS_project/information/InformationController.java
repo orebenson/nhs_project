@@ -18,6 +18,10 @@ public class InformationController {
     public ModelAndView getLegLymphoedemaInformationPage() { return new ModelAndView("information/legLymphoedemaInformation"); }
     @GetMapping("/information/midline_and_genital_lymphoedema")
     public ModelAndView getMidlineAndGenitalLymphoedemaInformationPage() { return new ModelAndView("information/midlineAndGenitalLymphoedemaInformation"); }
-
-
+    @GetMapping("/information/cellulitis")
+    public ModelAndView getCellulitisInformationPage() { return new ModelAndView("information/cellulitisInformation"); }
+    @GetMapping("/information/healthy_eating")
+    public ModelAndView getHealthyEatingInformationPage() { return new ModelAndView("information/healthyEating"); }
+    @GetMapping("/information/photo_guidance")
+    public ModelAndView getPhotoGuidanceInformationPage() { return new ModelAndView("information/photoGuidance"); }
 }
