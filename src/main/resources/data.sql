@@ -232,11 +232,7 @@ VALUES
     (2, '2023-07-15', 71, 'Redness and mild swelling observed', 'Slightly difficult to walk', 'Moderate discomfort',2, 5),
     (2, '2023-07-20', 81, 'Minor redness in the lower leg', 'Mobility slightly improved', 'Mild discomfort',1, 2),
     (2, '2023-08-01', 70, 'Cellulitis symptoms subsided', 'Mobility back to normal', 'Minimal discomfort',2, 3),
-    (2, '2023-08-05', 80, 'No cellulitis symptoms', 'Able to walk longer distances', 'No discomfort',3, 3),
-    (2, '2023-08-15', 69, 'No cellulitis symptoms', 'Walking is normal', 'No discomfort', 3, 4),
-    (2, '2023-08-20', 80, 'No cellulitis symptoms', 'Fully mobile', 'No discomfort', 5, 4),
-    (2, '2023-08-21', 80, 'No cellulitis symptoms', 'Fully mobile', 'Some discomfort', 5, 4),
-    (2, '2023-08-22', 80, 'No cellulitis symptoms', 'Fully mobile', 'No discomfort', 5, 5);
+    (2, '2023-08-05', 80, 'No cellulitis symptoms', 'Able to walk longer distances', 'No discomfort',3, 3);
 
 INSERT INTO diary_entry_exercises (diary_entry_id, exercise_id)
 VALUES
@@ -253,13 +249,7 @@ VALUES
     (5, 3),
     (5, 2),
     (6, 2),
-    (6, 1),
-    (7, 3),
-    (8, 4),
-    (8, 3),
-    (9, 5),
-    (10, 4),
-    (10, 3);
+    (6, 1);
 
 INSERT INTO diary_entry_measurements (diary_entry_id, measurement_type_id, measurement_value)
 VALUES
