@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <th:block th:include="~{fragments/_fragments :: headcontent}"></th:block>
+
+
+    <title>Admin Area</title>
+
+
+</head>
+<body>
+<script th:replace="~{fragments/_fragments :: pagescript}"></script>
+<header th:replace="~{fragments/_fragments :: header}"></header>
+<div class="nhsuk-width-container">
+    <main class="nhsuk-main-wrapper" id="maincontent" role="main">
+
+
+        <nav class="nhsuk-breadcrumb" aria-label="Breadcrumb">
+            <div class="nhsuk-width-container">
+                <ol class="nhsuk-breadcrumb__list">
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/admin}">Admin
+                        area</a></li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" th:href="@{/admin/search}">Search
+                        patients</a></li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link"
+                                                          th:href="@{/admin/search/{userId}(userId=${user.user_id})}">Patient
+                        details</a></li>
+                    <li class="nhsuk-breadcrumb__item"><a class="nhsuk-breadcrumb__link" href="#">Quality of Life
+                        Questionnaire Details</a></li>
+                </ol>
+                <p class="nhsuk-breadcrumb__back">
+                    <a class="nhsuk-breadcrumb__backlink" th:href="@{/admin/search/{userId}(userId=${user.user_id})}">
+                        <span class="nhsuk-u-visually-hidden">Go back &nbsp;</span>
+                        Patient details
+                    </a>
+                </p>
+            </div>
+        </nav>
+
+        <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+            <h1 class="nhsuk-fieldset__heading">
+                Quality of Life Questionnaire Details - Breast Lymphoedema
+            </h1>
+        </legend>
+
+        <p><strong>Response Scale:</strong> N/A (0), Not at all (1), A little (2), Quite a bit (3), A lot (4)</p>
+
+        <div>
+            <p><strong>Date of Submission:</strong> <span th:text="${formattedDate}"></span></p>
+            <p id="firstName"><strong>Name:</strong> <span th:text="${user.firstname}"></span></p>
+            <p id="lastName"><strong>Surname:</strong> <span th:text="${user.lastname}"></span></p>
+        </div>
+
+        <dl class="nhsuk-summary-list">
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q1a) How much does your swollen breast affect your occupation?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolResponseBreast.occupation}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q1b) How much does your swollen breast affect your housework?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolResponseBreast.housework}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q1c) How much does your swollen breast affect your dressing?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolResponseBreast.dressing}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q1d) How much does your swollen breast affect your washing?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolResponseBreast.washing}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q2) How much does it affect your leisure activities/social life?
+                </dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolResponseBreast.leisure}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Examples of how it affects your leisure activities/social life:</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${ #strings.isEmpty(qolResponseBreast.leisure_examples) ? '(N/A)' : qolResponseBreast.leisure_examples}">N/A</p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q3) How much do you have to depend on other people?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolResponseBreast.depend_on_people}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q4) How much do you feel the swelling affects your appearance?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolResponseBreast.appearance}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q5) How much difficulty do you have finding clothes including bras to fit?
+                </dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolResponseBreast.finding_clothes_to_fit}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q6) How much difficulty do you have finding clothes including bras you would like to wear?
+                </dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolResponseBreast.finding_clothes_to_wear}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q7) Does the swelling affect how you feel about yourself?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolResponseBreast.feelings}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q8) Does it affect your relationships with other people?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolResponseBreast.relationships}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q9) Does your swollen breast or chest cause you pain?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolResponseBreast.pain}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q10) Do you have any numbness in your swollen breast or chest?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolResponseBreast.numbness}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q11) Do you have any feelings of "pins & needles" or tingling in your swollen breast or chest?
+                </dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolResponseBreast.pins_and_needles}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q12) Do you have any feeling of tightness in your swollen breast or chest?
+                </dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolResponseBreast.tightness}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q13) Does your swollen breast feel heavy?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolResponseBreast.heavy}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q14) In the past week have you had trouble sleeping?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolResponseBreast.sleeping}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q15) In the past week have you had difficulty concentrating on
+                    things, e.g. reading?
+                </dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolResponseBreast.concentrating}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q16) In the past week have you felt worried?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolResponseBreast.worried}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q17) In the past week have you felt irritable?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolResponseBreast.irritable}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q18) In the past week have you felt depressed?</dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolResponseBreast.depressed}"></p>
+                </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+                <dt class="nhsuk-summary-list__key">Q19) Overall, how would you rate your quality of life at present?
+                </dt>
+                <dd class="nhsuk-summary-list__value">
+                    <p th:text="${qolResponseBreast.overall}"></p>
+                </dd>
+            </div>
+
+        </dl>
+        <div style="display: flex; justify-content: flex-end; margin-top: 20px;">
+            <button class="nhsuk-button" data-module="nhsuk-button" onclick="exportPDF()">Export to PDF file</button>
+        </div>
+
+    </main>
+</div>
+<footer th:replace="~{fragments/_fragments :: footer}"></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        window.exportPDF = function () {
+            const {jsPDF} = window.jspdf;
+            const doc = new jsPDF();
+
+            const submissionDate = document.querySelector('p > span').textContent.trim();
+            const firstName = document.getElementById('firstName').querySelector('span').textContent.trim();
+            const lastName = document.getElementById('lastName').querySelector('span').textContent.trim();
+            const initials = firstName.charAt(0) + lastName.charAt(0);
+
+
+            //Header Information - Title, Response Scale, Submission Date, First name and Last name
+            doc.setFontSize(16);
+            doc.text('Quality of Life Questionnaire Details - Breast Lymphoedema', 10, 10);
+            doc.line(10, 12, 200, 12);
+
+            doc.setFontSize(12);
+            doc.text('Response Scale: N/A (0), Not at all (1), A little (2), Quite a bit (3), A lot (4)', 10, 20);
+
+            doc.setFontSize(12);
+            doc.text('Date of Submission: ' + submissionDate, 10, 30);
+            doc.text('Name: ' + firstName, 10, 35);
+            doc.text('Surname: ' + lastName, 10, 40);
+            doc.line(10, 12, 200, 12);
+
+            //Start printing form details below the header
+            let yPos = 50;
+
+            //Iterating over each question and its corresponding answer
+            document.querySelectorAll('.nhsuk-summary-list__row').forEach(row => {
+                const key = row.querySelector('.nhsuk-summary-list__key').textContent.trim();
+                const value = row.querySelector('.nhsuk-summary-list__value p').textContent.trim();
+                doc.text(key + ': ' + value, 10, yPos);
+                yPos += 10;
+                if (yPos > 270) {
+                    doc.addPage();
+                    yPos = 10;
+                }
+            });
+
+            //Save the PDF with title, initials and submission date
+            doc.save(`quality-of-life-questionnaire-${initials}-${submissionDate}.pdf`);
+        }
+    });
+</script>
+</body>
+</html>

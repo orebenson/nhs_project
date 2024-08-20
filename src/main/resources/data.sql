@@ -11,15 +11,12 @@ values (1, 1);
 
 -- add default user account test test
 insert into user_table (email, firstname, lastname, password, phone, enabled, address1, address2, city, postcode)
-values ('test@test.com', 'Default', 'User', '$2a$10$UnsqVzZTipaKE77lf6Bfme/nvIqwIRSzf2lqPgUr.9LuLjdvT1WkW', '07123456789', true,
-        '21 Test Street', 'Test Avenue', 'Cardiff', 'CF23 1OX');
+values ('anniefresco@test.com', 'Annie', 'Fresco', '$2a$10$UnsqVzZTipaKE77lf6Bfme/nvIqwIRSzf2lqPgUr.9LuLjdvT1WkW', '07123456789', true,
+        '21 Knox Road', 'Madison Avenue', 'Cardiff', 'CF23 1OX');
 insert into users_roles (user_id, role_id)
 values (2, 2);
 insert into user_treatment_plans (user_id, treatment_plan_id)
 values (2, 1);
-insert into user_lymphoedema_types (user_id, lymphoedema_type_id)
-values (2, 1);
-
 
 
 INSERT INTO qol_activity_score_key_table (choice, score)
@@ -38,7 +35,9 @@ VALUES ('Leg Lymphoedema', 'Lymphoedema affecting the legs'),
        ('Arm Lymphoedema', 'Lymphoedema affecting the arms'),
        ('Breast Lymphoedema', 'Lymphoedema affecting the breast area'),
        ('Head and Neck Lymphoedema', 'Lymphoedema affecting the head and neck region'),
-       ('Midline and Genitals Lymphoedema', 'Lymphoedema affecting the midline and genital area');
+       ('Midline and Genitals Lymphoedema', 'Lymphoedema affecting the midline and genital area'),
+       ('Left Leg Lymphoedema', 'Lymphoedema affecting the left leg');
+
 
 -- Set variables for lymphoedema type IDs
 SET @leg_lymphoedema_id = LAST_INSERT_ID();
@@ -46,6 +45,11 @@ SET @arm_lymphoedema_id = @leg_lymphoedema_id + 1;
 SET @breast_lymphoedema_id = @leg_lymphoedema_id + 2;
 SET @head_neck_lymphoedema_id = @leg_lymphoedema_id + 3;
 SET @midline_genitals_lymphoedema_id = @leg_lymphoedema_id + 4;
+SET @left_leg_lymphoedema_id = @leg_lymphoedema_id + 5;
+
+-- assign default lymphoedema type
+insert into user_lymphoedema_types (user_id, lymphoedema_type_id)
+values (2, @left_leg_lymphoedema_id);
 
 -- Insert measurement types
 INSERT INTO measurement_types (name, description, unit)
@@ -123,6 +127,11 @@ INSERT INTO lymphoedema_type_measurements (lymphoedema_type_id, measurement_type
 SELECT @leg_lymphoedema_id, measurement_type_id
 FROM measurement_types
 WHERE measurement_type_id BETWEEN @first_measurement_type_id AND @first_measurement_type_id + 15;
+
+INSERT INTO lymphoedema_type_measurements (lymphoedema_type_id, measurement_type_id)
+SELECT @left_leg_lymphoedema_id, measurement_type_id
+FROM measurement_types
+WHERE measurement_type_id BETWEEN @first_measurement_type_id AND @first_measurement_type_id + 7;
 
 INSERT INTO lymphoedema_type_measurements (lymphoedema_type_id, measurement_type_id)
 SELECT @arm_lymphoedema_id, measurement_type_id
@@ -221,22 +230,23 @@ VALUES (@leg_plan_id, @first_exercise_id),
 
 
 -- add admin goal settings
-INSERT INTO admin_goal_setting (goal_id, user_id, goal_part, goal_description, goal_measurement, goal_unit, goal_deadline)
-VALUES (1, 2, 'Ankle', 'Circumference', 0, 'cm', '2024-07-10');
+INSERT INTO admin_goal_setting (user_id, goal_description, goal_deadline)
+VALUES (2, 'Remember to apply wraps daily', '2024-09-10'),
+       (2, 'Aim to reduce weight', '2024-10-10');
+
+-- add appointment
+INSERT INTO user_appointments (user_id, date, type, description)
+VALUES (2, '2023-08-01', 'Initial appointment', 'First checkup appointment for left leg');
 
 -- add diary entries
 INSERT INTO diary_entries (user_id, createdAt, weight, cellulitisDetails, mobilityDetails, discomfortDetails, wellnessScore, qualityOfLifeScore)
 VALUES
-    (2, '2023-07-01', 70, 'No cellulitis symptoms', 'Able to walk with minimal discomfort', 'Mild discomfort in the morning',4, 4),
-    (2, '2023-07-02', 82, 'No cellulitis symptoms', 'Limited mobility due to knee pain', 'Discomfort in the knee',3, 4),
-    (2, '2023-07-15', 71, 'Redness and mild swelling observed', 'Slightly difficult to walk', 'Moderate discomfort',2, 5),
-    (2, '2023-07-20', 81, 'Minor redness in the lower leg', 'Mobility slightly improved', 'Mild discomfort',1, 2),
-    (2, '2023-08-01', 70, 'Cellulitis symptoms subsided', 'Mobility back to normal', 'Minimal discomfort',2, 3),
-    (2, '2023-08-05', 80, 'No cellulitis symptoms', 'Able to walk longer distances', 'No discomfort',3, 3),
-    (2, '2023-08-15', 69, 'No cellulitis symptoms', 'Walking is normal', 'No discomfort', 3, 4),
-    (2, '2023-08-20', 80, 'No cellulitis symptoms', 'Fully mobile', 'No discomfort', 5, 4),
-    (2, '2023-08-21', 80, 'No cellulitis symptoms', 'Fully mobile', 'Some discomfort', 5, 4),
-    (2, '2023-08-22', 80, 'No cellulitis symptoms', 'Fully mobile', 'No discomfort', 5, 5);
+    (2, '2023-07-01', 70, 'No cellulitis symptoms', 'Able to walk with minimal discomfort', 'Mild discomfort in the morning',3, 6),
+    (2, '2023-07-08', 69, 'No cellulitis symptoms', 'Limited mobility due to knee pain', 'Discomfort in the knee',3, 6),
+    (2, '2023-07-15', 66, 'Redness and mild swelling observed', 'Slightly difficult to walk', 'Moderate discomfort',5, 7),
+    (2, '2023-07-22', 66, 'Minor redness in the lower leg', 'Mobility slightly improved', 'Mild discomfort',6, 7),
+    (2, '2023-07-29', 65, 'Cellulitis symptoms subsided', 'Mobility back to normal', 'Minimal discomfort',6, 8),
+    (2, '2023-08-05', 64, 'No cellulitis symptoms', 'Able to walk longer distances', 'No discomfort',9, 8);
 
 INSERT INTO diary_entry_exercises (diary_entry_id, exercise_id)
 VALUES
@@ -253,81 +263,75 @@ VALUES
     (5, 3),
     (5, 2),
     (6, 2),
-    (6, 1),
-    (7, 3),
-    (8, 4),
-    (8, 3),
-    (9, 5),
-    (10, 4),
-    (10, 3);
+    (6, 1);
 
 INSERT INTO diary_entry_measurements (diary_entry_id, measurement_type_id, measurement_value)
 VALUES
-    (1, 1, 13),
-    (1, 2, 13),
-    (1, 3, 13),
-    (1, 4, 13),
-    (1, 5, 13),
-    (1, 6, 13),
-    (1, 7, 13),
-    (1, 8, 13),
-    (1, 9, 13),
-    (1, 10, 13),
-    (1, 11, 13),
-    (1, 12, 13),
-    (1, 13, 13),
-    (1, 14, 13),
-    (1, 15, 13),
-    (1, 16, 13),
-    (1, 17, 13),
-    (1, 18, 13),
-    (1, 19, 13),
-    (1, 20, 13),
-    (1, 21, 13),
-    (1, 22, 13),
+    (1, 1, 30),
+    (1, 2, 30),
+    (1, 3, 30),
+    (1, 4, 30),
+    (1, 5, 30),
+    (1, 6, 30),
+    (1, 7, 30),
+    (1, 8, 30),
+    (1, 9, 30),
+    (1, 10, 30),
+    (1, 11, 30),
+    (1, 12, 25),
+    (1, 13, 25),
+    (1, 14, 25),
+    (1, 15, 22),
+    (1, 16, 22),
+    (1, 17, 22),
+    (1, 18, 22),
+    (1, 19, 22),
+    (1, 20, 22),
+    (1, 21, 22),
+    (1, 22, 22),
 
-    (2, 1, 13),
-    (2, 2, 13),
-    (2, 3, 13),
-    (2, 4, 13),
-    (2, 5, 13),
-    (2, 6, 13),
-    (2, 7, 13),
-    (2, 8, 13),
-    (2, 9, 13),
-    (2, 10, 13),
-    (2, 11, 13),
-    (2, 12, 13),
-    (2, 13, 13),
-    (2, 14, 13),
-    (2, 15, 13),
-    (2, 16, 13),
-    (2, 17, 13),
-    (2, 18, 13),
-    (2, 19, 13),
-    (2, 20, 13),
-    (2, 21, 13),
-    (2, 22, 13),
+    (2, 1, 25),
+    (2, 2, 25),
+    (2, 3, 25),
+    (2, 4, 25),
+    (2, 5, 25),
+    (2, 6, 25),
+    (2, 7, 25),
+    (2, 8, 25),
+    (2, 9, 25),
+    (2, 10, 22),
+    (2, 11, 22),
+    (2, 12, 22),
+    (2, 13, 22),
+    (2, 14, 22),
+    (2, 15, 22),
+    (2, 16, 22),
+    (2, 17, 22),
+    (2, 18, 22),
+    (2, 19, 22),
+    (2, 20, 22),
+    (2, 21, 22),
+    (2, 22, 22),
 
-    (3, 1, 13),
-    (3, 2, 13),
-    (3, 3, 13),
-    (3, 4, 13),
-    (3, 5, 13),
-    (3, 6, 13),
-    (3, 7, 13),
-    (3, 8, 13),
-    (3, 9, 13),
-    (3, 10, 13),
-    (3, 11, 13),
-    (3, 12, 13),
-    (3, 13, 13),
-    (3, 14, 13),
-    (3, 15, 13),
-    (3, 16, 13),
-    (3, 17, 13),
-    (3, 18, 13),
-    (3, 19, 13),
-    (3, 20, 13),
-    (3, 21, 13),
-    (3, 22, 13);
+    (3, 1, 20),
+    (3, 2, 20),
+    (3, 3, 20),
+    (3, 4, 20),
+    (3, 5, 20),
+    (3, 6, 20),
+    (3, 7, 20),
+    (3, 8, 20),
+    (3, 9, 20),
+    (3, 10, 18),
+    (3, 11, 18),
+    (3, 12, 18),
+    (3, 13, 18),
+    (3, 14, 18),
+    (3, 15, 18),
+    (3, 16, 18),
+    (3, 17, 18),
+    (3, 18, 18),
+    (3, 19, 18),
+    (3, 20, 18),
+    (3, 21, 18),
+    (3, 22, 18);

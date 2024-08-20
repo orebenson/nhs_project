@@ -26,6 +26,9 @@ drop table if exists qol_questionnaire_responses;
 drop table if exists cellulitis_incident_responses;
 drop table if exists preappointment_cellulitis_incident_responses;
 
+drop table if exists qol_questionnaire_responses_arm;
+drop table if exists qol_questionnaire_responses_breast;
+
 create table if not exists user_table
 (
     user_id   BIGINT       NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -39,7 +42,7 @@ create table if not exists user_table
     address2  VARCHAR(500),
     city      VARCHAR(50),
     postcode  VARCHAR(10),
-    clinic VARCHAR(500)
+    clinic    VARCHAR(500)
 ) engine = InnoDB;
 
 create table if not exists roles_table
@@ -102,11 +105,11 @@ create table if not exists photos
 
 create table if not exists user_appointments
 (
-    appointment_id     BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    user_id   BIGINT NOT NULL,
-    date DATE   NOT NULL,
-    type VARCHAR(500),
-    description VARCHAR(500)
+    appointment_id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id        BIGINT NOT NULL,
+    date           DATE   NOT NULL,
+    type           VARCHAR(500),
+    description    VARCHAR(500)
 ) engine = InnoDB;
 
 create table if not exists diary_entries
@@ -175,10 +178,7 @@ create table if not exists admin_goal_setting
 (
     goal_id          INT          NOT NULL PRIMARY KEY AUTO_INCREMENT,
     user_id          BIGINT       NOT NULL,
-    goal_part        VARCHAR(500) NOT NULL,
     goal_description VARCHAR(500),
-    goal_measurement INT,
-    goal_unit        VARCHAR(100) NOT NULL,
     goal_deadline    VARCHAR(10)
 ) engine = InnoDB;
 
@@ -260,4 +260,71 @@ create table if not exists preappointment_cellulitis_incident_responses
 (
     preappointment_questionnaire_response_id BIGINT NOT NULL,
     cellulitis_incident_response_id          BIGINT NOT NULL
+) engine = InnoDB;
+
+create table if not exists qol_questionnaire_responses_arm
+(
+    qol_questionnaire_responses_arm_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id                            BIGINT NOT NULL,
+    created_at                         DATE   NOT NULL,
+    occupation                         INT,
+    housework                          INT,
+    combing_hair                       INT,
+    dressing                           INT,
+    writing                            INT,
+    eating                             INT,
+    washing                            INT,
+    cleaning_teeth                     INT,
+    leisure                            INT,
+    leisure_examples                   TEXT,
+    depend_on_people                   INT,
+    appearance                         INT,
+    difficulty_finding_fitting_clothes INT,
+    difficulty_finding_liked_clothes   INT,
+    feelings                           INT,
+    relationships                      INT,
+    pain                               INT,
+    numbness                           INT,
+    pins_and_needles                   INT,
+    weak                               INT,
+    heavy                              INT,
+    tired                              INT,
+    sleeping                           INT,
+    concentrating                      INT,
+    tense                              INT,
+    worried                            INT,
+    irritable                          INT,
+    depressed                          INT,
+    overall                            INT
+) engine = InnoDB;
+
+create table if not exists qol_questionnaire_responses_breast
+(
+    qol_questionnaire_responses_breast_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id                               BIGINT NOT NULL,
+    created_at                            DATE   NOT NULL,
+    occupation                            INT,
+    housework                             INT,
+    dressing                              INT,
+    washing                               INT,
+    leisure                               INT,
+    leisure_examples                      TEXT,
+    depend_on_people                      INT,
+    appearance                            INT,
+    finding_clothes_to_fit                INT,
+    finding_clothes_to_wear               INT,
+    feelings                              INT,
+    relationships                         INT,
+    pain                                  INT,
+    numbness                              INT,
+    pins_and_needles                      INT,
+    tightness                             INT,
+    heavy                                 INT,
+    sleeping                              INT,
+    concentrating                         INT,
+    worried                               INT,
+    irritable                             INT,
+    depressed                             INT,
+    overall                               INT
+
 ) engine = InnoDB;

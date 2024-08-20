@@ -227,14 +227,16 @@
                             <div th:if="${#lists.isEmpty(questionnaires)}">
                                 <p>This patient has not submitted any questionnaires.</p>
                             </div>
-                            <ul class="nhsuk-list nhsuk-list" th:unless="${#lists.isEmpty(questionnaires)}">
-                                <li th:each="questionnaire : ${questionnaires}">
+                            <ul class="nhsuk-list nhsuk-list" >
+                                <li th:each="questionnaire : ${questionnaires}" th:unless="${#lists.isEmpty(questionnaires)}">
                                     <a th:href="@{/admin/{userId}/preappointment-questionnaire/{questionnaireId}(userId=${user.user_id}, questionnaireId=${questionnaire.id})}">
                                         Questionnaire submitted on <span
                                             th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span>
                                     </a>
                                 </li>
+
                             </ul>
+
                         </div>
                     </details>
                 </div>
@@ -247,16 +249,29 @@
                             </span>
                         </summary>
                         <div class="nhsuk-details__text">
-                            <div th:if="${#lists.isEmpty(qolQuestionnaires)}">
+                            <div th:if="${#lists.isEmpty(qolQuestionnaires) && #lists.isEmpty(qolArmQuestionnaires) && #lists.isEmpty(qolBreastQuestionnaires)}">
                                 <p>This patient has not submitted any questionnaires.</p>
                             </div>
-                            <ul class="nhsuk-list nhsuk-list" th:unless="${#lists.isEmpty(qolQuestionnaires)}">
-                                <li th:each="questionnaire : ${qolQuestionnaires}">
+                            <ul class="nhsuk-list nhsuk-list" >
+                                <li th:each="questionnaire : ${qolQuestionnaires}" th:unless="${#lists.isEmpty(qolQuestionnaires)}">
                                     <a th:href="@{/admin/{userId}/qol-questionnaire/{questionnaireId}(userId=${user.user_id}, questionnaireId=${questionnaire.id})}">
                                         Questionnaire submitted on <span
-                                            th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span>
+                                            th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span> - Leg
                                     </a>
                                 </li>
+                                <li th:each="questionnaire : ${qolArmQuestionnaires}" th:unless="${#lists.isEmpty(qolArmQuestionnaires)}">
+                                    <a th:href="@{/admin/{userId}/qol-questionnaire-arm/{questionnaireId}(userId=${user.user_id}, questionnaireId=${questionnaire.id})}">
+                                        Questionnaire submitted on <span
+                                            th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span> - Arm
+                                    </a>
+                                </li>
+                                <li th:each="questionnaire : ${qolBreastQuestionnaires}" th:unless="${#lists.isEmpty(qolBreastQuestionnaires)}">
+                                    <a th:href="@{/admin/{userId}/qol-questionnaire-breast/{questionnaireId}(userId=${user.user_id}, questionnaireId=${questionnaire.id})}">
+                                        Questionnaire submitted on <span
+                                            th:text="${#temporals.format(questionnaire.createdAt, 'dd-MM-yyyy')}"></span> - Breast
+                                    </a>
+                                </li>
+
                             </ul>
                         </div>
                     </details>
@@ -287,9 +302,9 @@
                         <th role="columnheader" class="" scope="col">
                             Description
                         </th>
-                        <th role="columnheader" class="" scope="col">
-                            Value
-                        </th>
+<!--                        <th role="columnheader" class="" scope="col">-->
+<!--                            Value-->
+<!--                        </th>-->
                         <th role="columnheader" class="" scope="col">
                             Deadline
                         </th>
@@ -302,13 +317,13 @@
                     <tr th:each="goal : ${goals}" role="row"
                         class="nhsuk-table__row">
                         <td class="nhsuk-table__cell"
-                            th:text="${goal.getGoalPart} + ' - ' + ${goal.getGoalDescription}">
+                            th:text="${goal.getGoalDescription}">
                             Goal Description
                         </td>
-                        <td class="nhsuk-table__cell"
-                            th:text="${goal.getGoalMeasurement} + ' ' + ${goal.getGoalUnit}">
-                            Goal Value
-                        </td>
+<!--                        <td class="nhsuk-table__cell"-->
+<!--                            th:text="${goal.getGoalMeasurement} + ' ' + ${goal.getGoalUnit}">-->
+<!--                            Goal Value-->
+<!--                        </td>-->
                         <td class="nhsuk-table__cell"
                             th:text="${goal.getGoalDeadline}">
                             Goal Deadline
