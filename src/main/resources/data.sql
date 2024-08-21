@@ -335,3 +335,160 @@ VALUES
     (3, 20, 18),
     (3, 21, 18),
     (3, 22, 18);
+
+INSERT INTO preappointment_questionnaire_responses (
+    user_id,
+    created_at,
+    medications,
+    changes_to_health,
+    swelling_concerns,
+    hosiery_concerns,
+    cellulitis_episodes
+) VALUES
+      (2, '2024-06-22', 'Ibuprofen', 'Mild leg pain, increased fatigue', 'Mild swelling in left ankle', 'No issues with current hosiery', 2);
+
+INSERT INTO cellulitis_incident_responses (
+    date_of_cellulitis,
+    area_affected,
+    redness,
+    pain_discomfort,
+    warm_touch,
+    swelling_worsen,
+    blisters,
+    raised_temperature,
+    flu_symptoms,
+    advice_visit,
+    oral_antibiotics,
+    course_duration,
+    iv_antibiotics,
+    hospital_admission,
+    lymphoedema_clinic_contact,
+    comments
+) VALUES
+    (
+        '01/06/2024',
+        'Left Leg',
+        'Yes',
+        'Yes',
+        'Yes',
+        'Yes',
+        'No',
+        'Yes',
+        'Yes',
+        'Visited GP',
+        'Yes',
+        '7 days',
+        'No',
+        'No',
+        'Yes',
+        'First cellulitis episode after minor cut on leg.'
+    );
+
+INSERT INTO cellulitis_incident_responses (
+    date_of_cellulitis,
+    area_affected,
+    redness,
+    pain_discomfort,
+    warm_touch,
+    swelling_worsen,
+    blisters,
+    raised_temperature,
+    flu_symptoms,
+    advice_visit,
+    oral_antibiotics,
+    course_duration,
+    iv_antibiotics,
+    hospital_admission,
+    lymphoedema_clinic_contact,
+    comments
+) VALUES
+    (
+        '18/06/2024',
+        'Left Ankle',
+        'Yes',
+        'No',
+        'Yes',
+        'No',
+        'Yes',
+        'Yes',
+        'No',
+        'Visited Emergency Room',
+        'Yes',
+        '10 days',
+        'No',
+        'No',
+        'Yes',
+        'Swelling worsened, but no significant pain.'
+    );
+
+INSERT INTO preappointment_cellulitis_incident_responses (
+    preappointment_questionnaire_response_id,
+    cellulitis_incident_response_id
+) VALUES
+      (1, 1),
+      (1, 2);
+
+INSERT INTO qol_questionnaire_responses (
+    user_id,
+    created_at,
+    walking,
+    bending,
+    standing,
+    getting_up,
+    occupation,
+    housework,
+    leisure_activities,
+    leisure_examples,
+    dependency,
+    appearance,
+    clothes_fit_difficulty,
+    clothes_preference_difficulty,
+    shoes_fit_difficulty,
+    socks_fit_difficulty,
+    self_perception,
+    relationship_impact,
+    pain,
+    numbness,
+    pins_needles,
+    leg_weakness,
+    leg_heaviness,
+    sleep_trouble,
+    difficulty_concentrating,
+    feeling_tense,
+    feeling_worried,
+    feeling_irritable,
+    feeling_depressed,
+    quality_of_life
+) VALUES
+    (
+        2,                    -- user_id
+        '2024-06-22',         -- created_at
+        3,                    -- Q1a) Quite a bit - Your walking
+        2,                    -- Q1b) A little - Your ability to bend
+        3,                    -- Q1c) Quite a bit - Your ability to stand
+        2,                    -- Q1d) A little - Your ability to get up from a chair
+        4,                    -- Q1e) A lot - Your occupation
+        3,                    -- Q1f) Quite a bit - Your ability to do housework
+        3,                    -- Q2) A lot - Your leisure activities/social life
+        'I usually cant take part in meeting friends for casual walks since they are inconvenient and painful', -- For leisure activities
+        3,                    -- Q3) Quite a bit - Dependence on others
+        4,                    -- Q4) A lot - Swelling affecting appearance
+        2,                    -- Q5) A little - Difficulty finding clothes to fit
+        3,                    -- Q6) Quite a bit - Difficulty finding clothes you'd like to wear
+        4,                    -- Q7) A lot - Difficulty finding shoes to fit
+        2,                    -- Q8) A little - Difficulty finding socks/tights/stockings to fit
+        3,                    -- Q9) Quite a bit - Swelling affecting self-perception
+        4,                    -- Q10) A lot - Impact on relationships
+        3,                    -- Q11) Quite a bit - Lymphoedema causing pain
+        2,                    -- Q12) A little - Numbness in swollen leg(s)
+        3,                    -- Q13) Quite a bit - Pins & needles in swollen leg(s)
+        2,                    -- Q14) A little - Swollen leg(s) feel weak
+        4,                    -- Q15) A lot - Swollen leg(s) feel heavy
+        3,                    -- Q16) Quite a bit - Trouble sleeping in the past week
+        2,                    -- Q17) A little - Difficulty concentrating
+        3,                    -- Q18) Quite a bit - Feeling tense
+        4,                    -- Q19) A lot - Feeling worried
+        3,                    -- Q20) Quite a bit - Feeling irritable
+        4,                    -- Q21) A lot - Feeling depressed
+        7                     -- Q22) Quality of life rated 7 out of 10
+    );

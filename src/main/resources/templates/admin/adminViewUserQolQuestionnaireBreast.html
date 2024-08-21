@@ -241,8 +241,8 @@
             document.querySelectorAll('.nhsuk-summary-list__row').forEach(row => {
                 const key = row.querySelector('.nhsuk-summary-list__key').textContent.trim();
                 const value = row.querySelector('.nhsuk-summary-list__value p').textContent.trim();
-                doc.text(key + ': ' + value, 10, yPos);
-                yPos += 10;
+                doc.text(key + ': ' + value, 10, yPos, { maxWidth: 190 });
+                yPos += 12;
                 if (yPos > 270) {
                     doc.addPage();
                     yPos = 10;

@@ -54,7 +54,7 @@
                 </dd>
             </div>
             <div class="nhsuk-summary-list__row">
-                <dt class="nhsuk-summary-list__key">Q1b) How much does your swollen leg affect your ability to bend, e.g. to tie shoelaces or cut toenails
+                <dt class="nhsuk-summary-list__key">Q1b) How much does your swollen leg affect your ability to bend, e.g. tie shoelaces or cut toenails
                 </dt>
                 <dd class="nhsuk-summary-list__value">
                     <p th:text="${qolQuestionnaireForm.bending}"></p>
@@ -120,8 +120,7 @@
                 </dd>
             </div>
             <div class="nhsuk-summary-list__row">
-                <dt class="nhsuk-summary-list__key">Q6) How much difficulty do you have finding clothes you would like
-                    to wear?
+                <dt class="nhsuk-summary-list__key">Q6) How much difficulty do you have finding clothes you would like to wear?
                 </dt>
                 <dd class="nhsuk-summary-list__value">
                     <p th:text="${qolQuestionnaireForm.clothesPreferenceDifficulty}"></p>
@@ -165,8 +164,7 @@
                 </dd>
             </div>
             <div class="nhsuk-summary-list__row">
-                <dt class="nhsuk-summary-list__key">Q13) Do you have any feelings of "pins & needles" or tingling in
-                    your swollen leg(s)?
+                <dt class="nhsuk-summary-list__key">Q13) Do you have any feelings of "pins & needles" or tingling in your swollen leg(s)?
                 </dt>
                 <dd class="nhsuk-summary-list__value">
                     <p th:text="${qolQuestionnaireForm.pinsNeedles}"></p>
@@ -191,8 +189,7 @@
                 </dd>
             </div>
             <div class="nhsuk-summary-list__row">
-                <dt class="nhsuk-summary-list__key">Q17) Have you had difficulty concentrating on things, e.g.
-                    reading?
+                <dt class="nhsuk-summary-list__key">Q17) Have you had difficulty concentrating on things, e.g. reading?
                 </dt>
                 <dd class="nhsuk-summary-list__value">
                     <p th:text="${qolQuestionnaireForm.difficultyConcentrating}"></p>
@@ -273,8 +270,8 @@
             document.querySelectorAll('.nhsuk-summary-list__row').forEach(row => {
                 const key = row.querySelector('.nhsuk-summary-list__key').textContent.trim();
                 const value = row.querySelector('.nhsuk-summary-list__value p').textContent.trim();
-                doc.text(key + ': ' + value, 10, yPos);
-                yPos += 10;
+                doc.text(key + ': ' + value, 10, yPos, { maxWidth: 190 });
+                yPos += 12;
                 if (yPos > 270) {
                     doc.addPage();
                     yPos = 10;
