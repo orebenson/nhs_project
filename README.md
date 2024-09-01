@@ -15,7 +15,7 @@ The primary objective is to develop an application to assist patients suffering 
 - **Patient management**: Nurses can manage patient treatment plans, questionnaires, notifications, and more.
 - **Questionnaires**: Patients can fill out pre-appointment and quality of life questionnaires.
 - **Information**: Users can view general and detailed information and support on lymphoedema.
-- 
+
 
 ![front_page](/assets/preview.png)
 
