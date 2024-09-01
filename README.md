@@ -17,7 +17,7 @@ The primary objective is to develop an application to assist patients suffering 
 - **Information**: Users can view general and detailed information and support on lymphoedema.
 - 
 
-![front_page](/assets/preview.PNG)
+![front_page](/assets/preview.png)
 
 
 ## Collaboration
