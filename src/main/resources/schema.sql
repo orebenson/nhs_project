@@ -1,4 +1,6 @@
 use nhsdb;
+drop view if exists user_authorities;
+
 drop table if exists user_table;
 drop table if exists roles_table;
 drop table if exists users_roles;
@@ -18,7 +20,6 @@ drop table if exists lymphoedema_type_measurements;
 drop table if exists diary_entry_photos;
 drop table if exists admin_goal_setting;
 drop table if exists user_appointments;
-
 
 drop table if exists preappointment_questionnaire_responses;
 drop table if exists qol_activity_score_key_table;
@@ -58,7 +59,7 @@ create table if not exists users_roles
     role_id BIGINT NOT NULL
 ) engine = InnoDB;
 
-create view if not exists user_authorities as
+create view user_authorities as
 select u.user_id as user_id, CONCAT('ROLE_', r.name) as authority
 from user_table u
          inner join users_roles ur on u.user_id = ur.user_id
